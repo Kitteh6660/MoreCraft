@@ -38,17 +38,13 @@ public class ItemBonelordArmor extends ItemArmor
 		return repairMaterial == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
     
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
     {
-		if (stack.toString().contains("leggings")) 
+
+		if (stack.toString().contains("Legs") || stack.toString().contains("Leggings") || stack.toString().contains("Pants")) 
 		{
-			return "BetterCraft:" + armorNamePrefix + "_layer_2.png";
+			return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_2.png";
 		}
-		
-		if (stack.toString().contains("Leggings")) 
-		{
-			return "BetterCraft:" + armorNamePrefix + "_layer_2.png";
-		}
-		return "BetterCraft:" + armorNamePrefix + "_layer_1.png";
+		return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_1.png";
 	}
 }

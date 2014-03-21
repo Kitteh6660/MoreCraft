@@ -32,7 +32,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "BetterCraft", name = "BetterCraft", version = "2.6b3")
+@Mod(modid = "BetterCraft", name = "BetterCraft", version = "2.6b4")
 @NetworkMod(clientSideRequired = true)
 public class BetterCraft 
 {
@@ -91,7 +91,7 @@ public class BetterCraft
     public static final BlockHalfSlab NetherWoodSlab = (BlockHalfSlab) new BlockNetherwoodSlab(196, false, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("NetherPlanksSlab").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:NetherPlanks");
     public static final BlockHalfSlab NetherWoodSlabFull = (BlockHalfSlab) new BlockNetherwoodSlab(197, true, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("NetherPlanksSlab").setTextureName("bettercraft:NetherPlanksSlab");
     public static final Block SoulGlass = new BlockSoulGlass(198, Material.glass, false).setHardness(0.5F).setResistance(15.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("SoulGlass").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:SoulGlass");
-    public static final Block NetherwoodChest = new BlockNetherwoodChest(199, 2).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("NetherwoodChest").setCreativeTab(CreativeTabs.tabDecorations);    
+    public static final BlockNetherwoodChest NetherwoodChest = (BlockNetherwoodChest)(new BlockNetherwoodChest(199, 0)).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("NetherwoodChest").setCreativeTab(CreativeTabs.tabDecorations);    
     public static final Block EnderBlock = new BlockStorage(200, Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("EnderBlock").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:EnderBlock");    
     public static final Block GunpowderBlock = new BlockSand(201).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("GunpowderBlock").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:GunpowderBlock");    
     public static final Block SlimeBlock = new BlockSlimeBlock(202, Material.sand).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("SlimeBlock").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:SlimeBlock");    
@@ -291,6 +291,8 @@ public class BetterCraft
     	GameRegistry.registerBlock(SlimeBlock, "blockSlime");
     	GameRegistry.registerBlock(BedrockBrick, "bedrockBricks");
 
+    	GameRegistry.registerTileEntity(TileEntityNetherwoodChest.class, "tileentitynetherchest");
+    	
         LanguageRegistry.addName(BoneBlock, "Block of Bones");
         LanguageRegistry.addName(FleshBlock, "Block of Rotten Flesh");
         LanguageRegistry.addName(StoneStair, "Stone Stairs");
@@ -618,7 +620,7 @@ public class BetterCraft
         //--IMPORTANT RECIPES--\\
         GameRegistry.addRecipe(new ItemStack(Block.web, 1), new Object[] {"S S", " S ", "S S", 'S', Item.silk});
         GameRegistry.addRecipe(new ItemStack(WitherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Block.obsidian, 'B', Item.bone, 'N', Item.netherStar});
-        GameRegistry.addRecipe(new ItemStack(IronTrapdoor, 1), new Object[] {"III", "ITI", "III",'I', Item.ingotIron, 'T', Block.trapdoor});
+        GameRegistry.addRecipe(new ItemStack(IronTrapdoor, 1), new Object[] {"II", "II",'I', Item.ingotIron});
 		GameRegistry.addRecipe(new ItemStack(Block.anvil, 1, 1), new Object[] {"III", "IAI", "III", 'I', Item.ingotIron, 'A', new ItemStack(Block.anvil, 1, 2)});
 		GameRegistry.addRecipe(new ItemStack(Block.anvil, 1, 0), new Object[] {"III", "IAI", "III", 'I', Item.ingotIron, 'A', new ItemStack(Block.anvil, 1, 1)});
 		GameRegistry.addRecipe(new ItemStack(Item.saddle, 1), new Object[] {"LLL", "LSL", "I I", 'I', Item.ingotIron, 'L', Item.leather, 'S', Item.silk});

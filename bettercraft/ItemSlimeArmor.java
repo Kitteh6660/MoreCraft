@@ -13,6 +13,7 @@ public class ItemSlimeArmor extends ItemArmor
 	public String armorNamePrefix;
 	public EnumArmorMaterial material;
 	public int repairMaterial;
+	public int tickUntilSelfRepair = 200;
 
 	public ItemSlimeArmor(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix, int par6)
 	{
@@ -42,16 +43,25 @@ public class ItemSlimeArmor extends ItemArmor
 		{
 			SlimeArmorProgress.ticksUntilRegen = SlimeArmorProgress.ticksUntilRegen - 1;
 		}
-		
-		if ((SlimeArmorProgress.ticksUntilRegen & 100) == 0)
+
+		if (this.tickUntilSelfRepair > 0)
 		{
-			System.out.println(SlimeArmorProgress.ticksUntilRegen);
+			this.tickUntilSelfRepair = this.tickUntilSelfRepair - 1;
 		}
 		
 		if (SlimeArmorProgress.ticksUntilRegen == 0)
 		{
 			player.heal(1.0F);
 			SlimeArmorProgress.ticksUntilRegen = 1200;
+		}
+		
+		if (this.tickUntilSelfRepair == 0)
+		{
+			if (itemStack.getItemDamage() > 0)
+			{
+				itemStack.damageItem(-1, player);
+			}
+			this.tickUntilSelfRepair = 200;
 		}
 	}
 	

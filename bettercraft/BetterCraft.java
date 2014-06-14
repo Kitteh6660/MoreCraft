@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -32,7 +34,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "BetterCraft", name = "BetterCraft", version = "2.6b4")
+@Mod(modid = "BetterCraft", name = "BetterCraft", version = "2.6.1")
 @NetworkMod(clientSideRequired = true)
 public class BetterCraft 
 {
@@ -251,7 +253,6 @@ public class BetterCraft
 	// @PreInit // used in 1.5.2
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-		MinecraftForge.EVENT_BUS.register(new EnderdragonDrop());
 		MinecraftForge.EVENT_BUS.register(new MobDrop());
 		MinecraftForge.EVENT_BUS.register(new BonemealUsage());
 	}
@@ -259,7 +260,8 @@ public class BetterCraft
 	@EventHandler
 	// used in 1.6.2
 	// @Init // used in 1.5.2
-	public void load(FMLInitializationEvent event) {
+	public void load(FMLInitializationEvent event) 
+	{
 		proxy.registerRenderers();
 		
     	GameRegistry.registerBlock(BoneBlock, "blockBone");
@@ -619,7 +621,7 @@ public class BetterCraft
                
         //--IMPORTANT RECIPES--\\
         GameRegistry.addRecipe(new ItemStack(Block.web, 1), new Object[] {"S S", " S ", "S S", 'S', Item.silk});
-        GameRegistry.addRecipe(new ItemStack(WitherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Block.obsidian, 'B', Item.bone, 'N', Item.netherStar});
+        GameRegistry.addRecipe(new ItemStack(WitherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Item.coal, 'B', Item.bone, 'N', Item.netherStar});
         GameRegistry.addRecipe(new ItemStack(IronTrapdoor, 1), new Object[] {"II", "II",'I', Item.ingotIron});
 		GameRegistry.addRecipe(new ItemStack(Block.anvil, 1, 1), new Object[] {"III", "IAI", "III", 'I', Item.ingotIron, 'A', new ItemStack(Block.anvil, 1, 2)});
 		GameRegistry.addRecipe(new ItemStack(Block.anvil, 1, 0), new Object[] {"III", "IAI", "III", 'I', Item.ingotIron, 'A', new ItemStack(Block.anvil, 1, 1)});
@@ -627,6 +629,7 @@ public class BetterCraft
 		GameRegistry.addRecipe(new ItemStack(NetherBrickDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Block.netherBrick});
 		GameRegistry.addRecipe(new ItemStack(GlassDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Block.glass});
 		GameRegistry.addRecipe(new ItemStack(NetherBrickFenceGate, 1), new Object[] {"#B#", "#B#", 'B', Block.netherBrick, '#', Item.netherrackBrick});
+		GameRegistry.addRecipe(new ItemStack(BedrockBrick, 4), new Object[] {"##", "##", '#', Block.bedrock});
 		
 		/*Horse Armour*/
         GameRegistry.addRecipe(new ItemStack(Item.horseArmorIron, 1), new Object[] {"  #", "#C#", "###", '#', Item.ingotIron, 'C', Block.cloth});
@@ -732,7 +735,39 @@ public class BetterCraft
         
         GameRegistry.registerWorldGenerator(new BetterCraftGenerator());
     }
-
+	
+    public static void oreRegistration()
+    {
+            //|--| Register blocks to Ore Dictionary |--|\\
+    	
+    		//Ruby ores and blocks
+    		OreDictionary.registerOre("oreRuby", RubyOre);
+    		OreDictionary.registerOre("blockRuby", RubyBlock);
+    		
+    		//Netherwood
+    		OreDictionary.registerOre("logNetherwood", NetherLog);
+    		OreDictionary.registerOre("plankNetherwood", NetherPlanks);
+    		OreDictionary.registerOre("leavesNetherwood", NetherLeaves);
+    		OreDictionary.registerOre("saplingNetherwood", NetherSapling);
+    		OreDictionary.registerOre("chestNetherwood", NetherwoodChest);
+    		
+    		//Ender Bricks block
+    		OreDictionary.registerOre("blockEnderBricks", EndBrickBlock);
+    		
+    		//Blocks made from vanilla resources.
+    		OreDictionary.registerOre("blockFlesh", FleshBlock);
+    		OreDictionary.registerOre("blockBones", BoneBlock);
+    		OreDictionary.registerOre("blockSlime", SlimeBlock);
+    		OreDictionary.registerOre("blockGunpowder", GunpowderBlock);
+    		OreDictionary.registerOre("blockBlaze", BlazeBlock);
+    		OreDictionary.registerOre("blockEnder", EnderBlock);
+    		
+    		//|--| Register items to Ore Dictionary |--|\\
+            OreDictionary.registerOre("gemRuby", Ruby);
+            OreDictionary.registerOre("boneWither", WitherBone);
+            OreDictionary.registerOre("brickEnder", EnderBrick);
+            
+    }
 
 	
 	/*public void generateNether(World world, Random random, int blockX, int blockZ)

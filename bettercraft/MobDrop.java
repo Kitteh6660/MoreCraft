@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -61,7 +62,6 @@ public class MobDrop
         
         if(event.entityLiving instanceof EntityEnderman)
         {
-        	System.out.println("Enderman drops");
         	if (((EntityEnderman) event.entityLiving).getCarried() != 0) //Prevents crash if Enderman carries nothing.
         	{
         		event.entityLiving.entityDropItem(new ItemStack(((EntityEnderman) event.entityLiving).getCarried(), 1, ((EntityEnderman) event.entityLiving).getCarryingData()), 0.0F);;
@@ -112,6 +112,14 @@ public class MobDrop
         			}
         		}
         	}
+        }
+        
+        if(event.entityLiving instanceof EntityDragon)
+        {
+	        event.entityLiving.dropItem(BetterCraft.DragonscaleHelmet.itemID, 1);
+	        event.entityLiving.dropItem(BetterCraft.DragonscaleBody.itemID, 1);
+	        event.entityLiving.dropItem(BetterCraft.DragonscaleLegs.itemID, 1);
+	        event.entityLiving.dropItem(BetterCraft.DragonscaleBoots.itemID, 1);
         }
     }
 	

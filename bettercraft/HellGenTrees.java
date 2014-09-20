@@ -1,94 +1,154 @@
 package kittehmod.bettercraft;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class HellGenTrees extends WorldGenerator
+public class HellGenTrees extends WorldGenAbstractTree
 {
-	public void MCPlus_HellGenTrees()
-	{
+    /** The minimum height of a generated tree. */
+    private final int minTreeHeight;
 
-	}
+    /** True if this tree should grow Vines. */
+    private final boolean vinesGrow;
 
-	public boolean generate(World world, Random random, int i, int j, int k)
-	{
-		int l = random.nextInt(3) + 4;
-		boolean flag = true;
-		if(j < 1 || j + l + 1 > 256)
-		{
-			return false;
-		}
-		for(int i1 = j; i1 <= j + 1 + l; i1++)
-		{
-			byte byte0 = 1;
-			if(i1 == j)
-			{
-				byte0 = 0;
-			}
-			if(i1 >= (j + 1 + l) - 2)
-			{
-				byte0 = 2;
-			}
-			for(int i2 = i - byte0; i2 <= i + byte0 && flag; i2++)
-			{
-				for(int l2 = k - byte0; l2 <= k + byte0 && flag; l2++)
-				{
-					if(i1 >= 0 && i1 < 256)
-					{
-						int j3 = world.getBlockId(i2, i1, l2);
-						if(j3 != 0 && j3 != BetterCraft.NetherLeaves.blockID) //Change this to your leaf block.
-						{
-							flag = false;
-						}
-					} else
-					{
-						flag = false;
-					}
-				}
-			}
-		}
-		if(!flag)
-		{
-			return false;
-		}
-		int j1 = world.getBlockId(i, j - 1, k);
-		if(j1 != Block.grass.blockID && j1 != Block.dirt.blockID && j1 != Block.slowSand.blockID && j1 != Block.netherrack.blockID || j >= 256 - l - 1) //This determines on what blocks your tree can generate.
-		{
-			return false;
-		}
+    /** The metadata value of the wood to use in tree generation. */
+    private final int metaWood;
 
-		if (j1 == Block.netherrack.blockID)
-		{
-			world.setBlock(i, j - 1, k, Block.slowSand.blockID); //Also determines what block your tree can generate on.
-		}
-		for(int k1 = (j - 3) + l; k1 <= j + l; k1++)
-		{
-			int j2 = k1 - (j + l);
-			int i3 = 1 - j2 / 2;
-			for(int k3 = i - i3; k3 <= i + i3; k3++)
-			{
-				int l3 = k3 - i;
-				for(int i4 = k - i3; i4 <= k + i3; i4++)
-				{
-					int j4 = i4 - k;
-					if((Math.abs(l3) != i3 || Math.abs(j4) != i3 || random.nextInt(2) != 0 && j2 != 0) && !Block.opaqueCubeLookup[world.getBlockId(k3, k1, i4)])
-					{
-						setBlockAndMetadata(world, k3, k1, i4, BetterCraft.NetherLeaves.blockID, 0); //Change to your leaf block.
-					}
-				}
-			}
-		}
-		for(int l1 = 0; l1 < l; l1++)
-		{
-			int k2 = world.getBlockId(i, j + l1, k);
-			if(k2 == 0 || k2 == BetterCraft.NetherLeaves.blockID)
-			{
-				setBlockAndMetadata(world, i, j + l1, k, BetterCraft.NetherLog.blockID, 0); //Change to your wood block.
-			}
-		}
-		return true;
-	}
+    /** The metadata value of the leaves to use in tree generation. */
+    private final int metaLeaves;
+
+    public HellGenTrees(boolean p_i2027_1_)
+    {
+        this(p_i2027_1_, 4, 0, 0, false);
+    }
+
+    public HellGenTrees(boolean p_i2028_1_, int p_i2028_2_, int p_i2028_3_, int p_i2028_4_, boolean p_i2028_5_)
+    {
+        super(p_i2028_1_);
+        this.minTreeHeight = p_i2028_2_;
+        this.metaWood = p_i2028_3_;
+        this.metaLeaves = p_i2028_4_;
+        this.vinesGrow = p_i2028_5_;
+    }
+
+    public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
+    {
+        int var6 = p_76484_2_.nextInt(3) + this.minTreeHeight;
+        boolean var7 = true;
+
+        if (p_76484_4_ >= 1 && p_76484_4_ + var6 + 1 <= 256)
+        {
+            byte var9;
+            int var11;
+            Block var12;
+
+            for (int var8 = p_76484_4_; var8 <= p_76484_4_ + 1 + var6; ++var8)
+            {
+                var9 = 1;
+
+                if (var8 == p_76484_4_)
+                {
+                    var9 = 0;
+                }
+
+                if (var8 >= p_76484_4_ + 1 + var6 - 2)
+                {
+                    var9 = 2;
+                }
+
+                for (int var10 = p_76484_3_ - var9; var10 <= p_76484_3_ + var9 && var7; ++var10)
+                {
+                    for (var11 = p_76484_5_ - var9; var11 <= p_76484_5_ + var9 && var7; ++var11)
+                    {
+                        if (var8 >= 0 && var8 < 256)
+                        {
+                            var12 = p_76484_1_.getBlock(var10, var8, var11);
+
+                            if (!this.func_150523_a(var12))
+                            {
+                                var7 = false;
+                            }
+                        }
+                        else
+                        {
+                            var7 = false;
+                        }
+                    }
+                }
+            }
+
+            if (!var7)
+            {
+                return false;
+            }
+            else
+            {
+                Block var19 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ - 1, p_76484_5_);
+
+                if ((var19 == Blocks.grass || var19 == Blocks.dirt || var19 == Blocks.farmland || var19 == Blocks.soul_sand) && p_76484_4_ < 256 - var6 - 1)
+                {
+                	if (var19 != Blocks.soul_sand)
+                	{
+                		this.func_150515_a(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, Blocks.dirt);
+                	}
+                    var9 = 3;
+                    byte var20 = 0;
+                    int var13;
+                    int var14;
+                    int var15;
+                    int var21;
+
+                    for (var11 = p_76484_4_ - var9 + var6; var11 <= p_76484_4_ + var6; ++var11)
+                    {
+                        var21 = var11 - (p_76484_4_ + var6);
+                        var13 = var20 + 1 - var21 / 2;
+
+                        for (var14 = p_76484_3_ - var13; var14 <= p_76484_3_ + var13; ++var14)
+                        {
+                            var15 = var14 - p_76484_3_;
+
+                            for (int var16 = p_76484_5_ - var13; var16 <= p_76484_5_ + var13; ++var16)
+                            {
+                                int var17 = var16 - p_76484_5_;
+
+                                if (Math.abs(var15) != var13 || Math.abs(var17) != var13 || p_76484_2_.nextInt(2) != 0 && var21 != 0)
+                                {
+                                    Block var18 = p_76484_1_.getBlock(var14, var11, var16);
+
+                                    if (var18.getMaterial() == Material.air || var18.getMaterial() == Material.leaves)
+                                    {
+                                    	p_76484_1_.setBlock(var14, var11, var16, BetterCraft.NetherLeaves);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    for (var11 = 0; var11 < var6; ++var11)
+                    {
+                        var12 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + var11, p_76484_5_);
+
+                        if (var12.getMaterial() == Material.air || var12.getMaterial() == Material.leaves)
+                        {
+                        	p_76484_1_.setBlock(p_76484_3_, p_76484_4_ + var11, p_76484_5_, BetterCraft.NetherLog);
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

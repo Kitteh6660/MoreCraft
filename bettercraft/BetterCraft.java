@@ -69,12 +69,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "BetterCraft", version = "2.7a1")
+@Mod(modid = "bettercraft", name = "BetterCraft", version = "2.7b1")
 
 public class BetterCraft 
 {
     public static final String modid = "bettercraft";
-    public static final String version = "2.7a1";
+    public static final String version = "2.7b1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance(value = "BetterCraft")
@@ -197,18 +197,18 @@ public class BetterCraft
     public static final Item leggingsBone = new ItemNormalArmor(BONE_A, 4, 2, "bone", Items.bone).setUnlocalizedName("leggingsBone").setTextureName("bettercraft:bone_leggings");
     public static final Item bootsBone = new ItemNormalArmor(BONE_A, 4, 3, "bone", Items.bone).setUnlocalizedName("bootsBone").setTextureName("bettercraft:bone_boots");
     
-    public static final Item WitherBone = new Item().setUnlocalizedName("WitherBone").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:wither_bone");
+    public static final Item witherBone = new Item().setUnlocalizedName("witherBone").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:wither_bone");
 
-    public static final Item pickaxeWitherbone = new ItemNormalPickaxe(WITHERBONE_T, WitherBone).setUnlocalizedName("pickaxeWitherbone").setTextureName("bettercraft:witherbone_pickaxe");
-    public static final Item axeWitherbone = new ItemNormalAxe(WITHERBONE_T, WitherBone).setUnlocalizedName("axeWitherbone").setTextureName("bettercraft:witherbone_axe");
-    public static final Item shovelWitherbone = new ItemNormalSpade(WITHERBONE_T, WitherBone).setUnlocalizedName("shovelWitherbone").setTextureName("bettercraft:witherbone_shovel");
-    public static final Item hoeWitherbone = new ItemNormalHoe(WITHERBONE_T, WitherBone).setUnlocalizedName("hoeWitherbone").setTextureName("bettercraft:witherbone_hoe");
-    public static final Item swordWitherbone = new ItemWitherSword(WITHERBONE_T, WitherBone).setUnlocalizedName("swordWitherbone").setTextureName("bettercraft:witherbone_sword");
+    public static final Item pickaxeWitherbone = new ItemNormalPickaxe(WITHERBONE_T, witherBone).setUnlocalizedName("pickaxeWitherbone").setTextureName("bettercraft:witherbone_pickaxe");
+    public static final Item axeWitherbone = new ItemNormalAxe(WITHERBONE_T, witherBone).setUnlocalizedName("axeWitherbone").setTextureName("bettercraft:witherbone_axe");
+    public static final Item shovelWitherbone = new ItemNormalSpade(WITHERBONE_T, witherBone).setUnlocalizedName("shovelWitherbone").setTextureName("bettercraft:witherbone_shovel");
+    public static final Item hoeWitherbone = new ItemNormalHoe(WITHERBONE_T, witherBone).setUnlocalizedName("hoeWitherbone").setTextureName("bettercraft:witherbone_hoe");
+    public static final Item swordWitherbone = new ItemWitherSword(WITHERBONE_T, witherBone).setUnlocalizedName("swordWitherbone").setTextureName("bettercraft:witherbone_sword");
     
-    public static final Item helmetWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 0, "witherbone", WitherBone).setUnlocalizedName("helmetWitherbone").setTextureName("bettercraft:witherbone_helmet");
-    public static final Item chestplateWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 1, "witherbone", WitherBone).setUnlocalizedName("chestplateWitherbone").setTextureName("bettercraft:witherbone_chestplate");
-    public static final Item leggingsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 2, "witherbone", WitherBone).setUnlocalizedName("leggingsWitherbone").setTextureName("bettercraft:witherbone_leggings");
-    public static final Item bootsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 3, "witherbone", WitherBone).setUnlocalizedName("bootsWitherbone").setTextureName("bettercraft:witherbone_boots");
+    public static final Item helmetWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 0, "witherBone", witherBone).setUnlocalizedName("helmetWitherbone").setTextureName("bettercraft:witherbone_helmet");
+    public static final Item chestplateWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 1, "witherBone", witherBone).setUnlocalizedName("chestplateWitherbone").setTextureName("bettercraft:witherbone_chestplate");
+    public static final Item leggingsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 2, "witherBone", witherBone).setUnlocalizedName("leggingsWitherbone").setTextureName("bettercraft:witherbone_leggings");
+    public static final Item bootsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 3, "witherBone", witherBone).setUnlocalizedName("bootsWitherbone").setTextureName("bettercraft:witherbone_boots");
 
     public static final Item pickaxeEmerald = new ItemNormalPickaxe(EMERALD_T, Items.emerald).setUnlocalizedName("pickaxeEmerald").setTextureName("bettercraft:emerald_pickaxe");
     public static final Item axeEmerald = new ItemNormalAxe(EMERALD_T, Items.emerald).setUnlocalizedName("axeEmerald").setTextureName("bettercraft:emerald_axe");
@@ -340,7 +340,7 @@ public class BetterCraft
     	//Register materials
     	GameRegistry.registerItem(EnderBrick, "brickEnder");
     	GameRegistry.registerItem(ruby, "ruby");
-    	GameRegistry.registerItem(WitherBone, "boneWither");
+    	GameRegistry.registerItem(witherBone, "boneWither");
     	//Register door items
     	GameRegistry.registerItem(NetherBrickDoor, "doorNetherbrick");
     	GameRegistry.registerItem(GlassDoor, "doorGlass");
@@ -494,15 +494,15 @@ public class BetterCraft
         GameRegistry.addRecipe(new ItemStack(swordBone, 1), new Object[] {"K", "K", "S", 'K', Items.bone, 'S', Items.stick}); 
         
         //--Wither Bone Tools/Armor--\\
-        GameRegistry.addRecipe(new ItemStack(helmetWitherbone, 1), new Object[] {"KKK", "K K", 'K', WitherBone});
-        GameRegistry.addRecipe(new ItemStack(chestplateWitherbone, 1), new Object[] {"K K", "KKK", "KKK", 'K', WitherBone});
-        GameRegistry.addRecipe(new ItemStack(leggingsWitherbone, 1), new Object[] {"KKK", "K K", "K K", 'K', WitherBone});
-        GameRegistry.addRecipe(new ItemStack(bootsWitherbone, 1), new Object[] {"K K", "K K", 'K', WitherBone});
-        GameRegistry.addRecipe(new ItemStack(pickaxeWitherbone, 1), new Object[] {"KKK", " S ", " S ", 'K', WitherBone, 'S', Items.stick});
-        GameRegistry.addRecipe(new ItemStack(axeWitherbone, 1), new Object[] {"KK ", "KS ", " S ", 'K', WitherBone, 'S', Items.stick});
-        GameRegistry.addRecipe(new ItemStack(shovelWitherbone, 1), new Object[] {"K", "S", "S", 'K', WitherBone, 'S', Items.stick});
-        GameRegistry.addRecipe(new ItemStack(hoeWitherbone, 1), new Object[] {"KK", " S", " S", 'K', WitherBone, 'S', Items.stick});
-        GameRegistry.addRecipe(new ItemStack(swordWitherbone, 1), new Object[] {"K", "K", "S", 'K', WitherBone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(helmetWitherbone, 1), new Object[] {"KKK", "K K", 'K', witherBone});
+        GameRegistry.addRecipe(new ItemStack(chestplateWitherbone, 1), new Object[] {"K K", "KKK", "KKK", 'K', witherBone});
+        GameRegistry.addRecipe(new ItemStack(leggingsWitherbone, 1), new Object[] {"KKK", "K K", "K K", 'K', witherBone});
+        GameRegistry.addRecipe(new ItemStack(bootsWitherbone, 1), new Object[] {"K K", "K K", 'K', witherBone});
+        GameRegistry.addRecipe(new ItemStack(pickaxeWitherbone, 1), new Object[] {"KKK", " S ", " S ", 'K', witherBone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(axeWitherbone, 1), new Object[] {"KK ", "KS ", " S ", 'K', witherBone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(shovelWitherbone, 1), new Object[] {"K", "S", "S", 'K', witherBone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(hoeWitherbone, 1), new Object[] {"KK", " S", " S", 'K', witherBone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(swordWitherbone, 1), new Object[] {"K", "K", "S", 'K', witherBone, 'S', Items.stick});
         
         //--Obsidian Tools/Armor--\\
         GameRegistry.addRecipe(new ItemStack(helmetObsidian, 1), new Object[] {"KKK", "K K", 'K', Blocks.obsidian});
@@ -636,7 +636,7 @@ public class BetterCraft
                
         //--IMPORTANT RECIPES--\\
         GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"S S", " S ", "S S", 'S', Items.string});
-        GameRegistry.addRecipe(new ItemStack(WitherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Items.coal, 'B', Items.bone, 'N', Items.nether_star});
+        GameRegistry.addRecipe(new ItemStack(witherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Items.coal, 'B', Items.bone, 'N', Items.nether_star});
         GameRegistry.addRecipe(new ItemStack(IronTrapdoor, 1), new Object[] {"II", "II",'I', Items.iron_ingot});
 		GameRegistry.addRecipe(new ItemStack(Blocks.anvil, 1, 1), new Object[] {"III", "IAI", "III", 'I', Items.iron_ingot, 'A', new ItemStack(Blocks.anvil, 1, 2)});
 		GameRegistry.addRecipe(new ItemStack(Blocks.anvil, 1, 0), new Object[] {"III", "IAI", "III", 'I', Items.iron_ingot, 'A', new ItemStack(Blocks.anvil, 1, 1)});
@@ -783,7 +783,7 @@ public class BetterCraft
     		
     		//|--| Register items to Ore Dictionary |--|\\
             OreDictionary.registerOre("gemRuby", ruby);
-            OreDictionary.registerOre("boneWither", WitherBone);
+            OreDictionary.registerOre("boneWither", witherBone);
             OreDictionary.registerOre("brickEnder", EnderBrick);
             
     }

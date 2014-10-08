@@ -8,6 +8,8 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 public class ItemSlimeArmor extends ItemArmor
@@ -16,6 +18,7 @@ public class ItemSlimeArmor extends ItemArmor
 	public ArmorMaterial material;
 	public Item repairMaterial;
 	public int tickUntilSelfRepair = 200;
+	public int tickUntilRegen = 200;
 
 	public ItemSlimeArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix, Item par6)
 	{
@@ -33,31 +36,20 @@ public class ItemSlimeArmor extends ItemArmor
 		return BetterCraft.SLIME_A;
 	}
 	
-	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack) 
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
 
-		ItemStack helmet = player.getCurrentArmor(4);
-		ItemStack plate = player.getCurrentArmor(3);
-		ItemStack legs = player.getCurrentArmor(2);
-		ItemStack boots = player.getCurrentArmor(1); 
+		this.tickUntilRegen--;
+		this.tickUntilSelfRepair--;
 		
-		if (SlimeArmorProgress.ticksUntilRegen > 0)
-		{
-			SlimeArmorProgress.ticksUntilRegen = SlimeArmorProgress.ticksUntilRegen - 1;
-		}
-
-		if (this.tickUntilSelfRepair > 0)
-		{
-			this.tickUntilSelfRepair = this.tickUntilSelfRepair - 1;
-		}
-		
-		if (SlimeArmorProgress.ticksUntilRegen == 0)
+		if (this.tickUntilRegen <= 0)
 		{
 			player.heal(1.0F);
-			SlimeArmorProgress.ticksUntilRegen = 1200;
+			this.tickUntilRegen = 1200;
 		}
 		
-		if (this.tickUntilSelfRepair == 0)
+		if (this.tickUntilSelfRepair <= 0)
 		{
 			if (itemStack.getItemDamage() > 0)
 			{

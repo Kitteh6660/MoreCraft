@@ -1,14 +1,17 @@
 package kittehmod.bettercraft;
 
 import java.util.Calendar;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import cpw.mods.fml.common.FMLLog;
@@ -130,8 +133,8 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
 	}
-	public void renderTileEntityAt(TileEntity p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
-	{
-		this.renderTileEntityAt((TileEntityNetherwoodChest)p_147500_1_, p_147500_2_, p_147500_4_, p_147500_6_, p_147500_8_);
-	}
+    public void renderTileEntityAt(TileEntity p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
+    {
+        this.renderTileEntityAt((TileEntityNetherwoodChest)p_147500_1_, p_147500_2_, p_147500_4_, p_147500_6_, p_147500_8_);
+    }
 }

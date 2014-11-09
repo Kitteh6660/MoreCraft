@@ -14,6 +14,7 @@ import kittehmod.bettercraft.block.BlockNetherLog;
 import kittehmod.bettercraft.block.BlockNetherSapling;
 import kittehmod.bettercraft.block.BlockNetherWood;
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
+import kittehmod.bettercraft.block.BlockNetherwoodFence;
 import kittehmod.bettercraft.block.BlockNetherwoodSlab;
 import kittehmod.bettercraft.block.BlockNormal;
 import kittehmod.bettercraft.block.BlockNormalStairs;
@@ -21,6 +22,8 @@ import kittehmod.bettercraft.block.BlockOreRuby;
 import kittehmod.bettercraft.block.BlockSlimeBlock;
 import kittehmod.bettercraft.block.BlockSoulGlass;
 import kittehmod.bettercraft.block.BlockStorage;
+import kittehmod.bettercraft.block.DoorAnimator;
+import kittehmod.bettercraft.client.ClientProxy;
 import kittehmod.bettercraft.item.ItemBlazeSword;
 import kittehmod.bettercraft.item.ItemBlazeSword;
 import kittehmod.bettercraft.item.ItemBonelordArmor;
@@ -58,6 +61,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -69,12 +73,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "BetterCraft", version = "2.7b1")
+@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7", dependencies = "after:malisisdoors")
 
 public class BetterCraft 
 {
     public static final String modid = "bettercraft";
-    public static final String version = "2.7b1";
+    public static final String version = "2.7";
 	
 	// The instance of your mod that Forge uses.
 	@Instance(value = "BetterCraft")
@@ -82,7 +86,7 @@ public class BetterCraft
 
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "kittehmod.bettercraft.client.ClientProxy", serverSide = "kittehmod.bettercraft.CommonProxy")
-	public static CommonProxy proxy;
+	public static ClientProxy proxy;
 
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);
@@ -93,7 +97,8 @@ public class BetterCraft
     public static ToolMaterial BLAZE_T = EnumHelper.addToolMaterial("BlazeT", 2, 100, 7.0F, 2, 15);
     public static ToolMaterial NETHERRACK_T = EnumHelper.addToolMaterial("NetherrackT", 1, 59, 3.5F, 1, 8);
     public static ToolMaterial ENDSTONE_T = EnumHelper.addToolMaterial("EndstoneT", 1, 188, 4.0F, 1, 5);
-
+    public static ToolMaterial BEDROCK_T = EnumHelper.addToolMaterial("BedrockT", 3, -1, 20.0F, 5, 30);
+    
     public static ArmorMaterial SLIME_A = EnumHelper.addArmorMaterial("SlimeA", 8, new int[] { 2, 3, 2, 2 }, 20);
     public static ArmorMaterial FLESH_A = EnumHelper.addArmorMaterial("FleshA", 4, new int[] { 1, 3, 2, 1 }, 17);
     public static ArmorMaterial WEB_A = EnumHelper.addArmorMaterial("WebA", 24, new int[] { 2, 3, 3, 2 }, 15);
@@ -105,15 +110,16 @@ public class BetterCraft
     public static ArmorMaterial ENDER_A = EnumHelper.addArmorMaterial("EnderA", 15, new int[] { 3, 6, 5, 3 }, 15);
     public static ArmorMaterial BLAZE_A = EnumHelper.addArmorMaterial("BlazeA", 10, new int[] { 3, 5, 5, 3 }, 10);
     public static ArmorMaterial BONELORD_A = EnumHelper.addArmorMaterial("BoneLordA", 20, new int[] { 3, 6, 6, 3 }, 25);
-    public static ArmorMaterial ENDERDRAGON_A = EnumHelper.addArmorMaterial("DragonScaleA", -1, new int[] { 4, 8, 6, 4 }, 30);
+    public static ArmorMaterial ENDERDRAGON_A = EnumHelper.addArmorMaterial("DragonScaleA", 99999999, new int[] { 4, 8, 6, 4 }, 30);
+    public static ArmorMaterial BEDROCK_A = EnumHelper.addArmorMaterial("BedrockA", 99999999, new int[] { 5, 8, 6, 5 }, 30);
     
     public static final Block BoneBlock = new BlockStorage(Material.rock).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeStone).setBlockName("blockBone").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BoneBlock");
     public static final Block FleshBlock = new BlockStorage(Material.cloth).setHardness(1.0F).setResistance(2.0F).setStepSound(Block.soundTypeCloth).setBlockName("blockFlesh").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:FleshBlock");
-    public static final Block doorNether = new BlockMoreDoors(Material.rock).setHardness(5.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("doorNether").setBlockTextureName("doorNether");
-    public static final Block doorGlass = new BlockMoreDoors(Material.glass).setHardness(1.0F).setResistance(3.0F).setStepSound(Block.soundTypeGlass).setBlockName("doorGlass").setBlockTextureName("doorGlass");
-    public static final Block doorNetherwood = new BlockMoreDoors(Material.wood).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setBlockName("doorNetherwood").setBlockTextureName("doorNetherwood");
+    public static Block doorNether;
+    public static Block doorGlass;
+    public static Block doorNetherwood;
 
-    public static final Block NetherBrickFenceGate = new BlockNetherBrickFenceGate().setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("NetherBrickFenceGate").setBlockTextureName("NetherBrickFenceGate");
+    public static Block gateNetherBrick = new BlockNetherBrickFenceGate().setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("gateNetherBrick").setBlockTextureName("gateNetherBrick");
     public static final Block StoneStair = new BlockNormalStairs(Blocks.stone, 0).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("stairStone").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:StoneStair");
     public static final Block RubyOre = new BlockOreRuby(Material.rock).setHardness(4.0F).setResistance(2.0F).setStepSound(Block.soundTypeStone).setBlockName("oreRuby").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:RubyOre");
     public static final Block RubyBlock = new BlockStorage(Material.rock).setHardness(6.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setBlockName("blockRuby").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:RubyBlock");
@@ -136,6 +142,7 @@ public class BetterCraft
     public static final Block GunpowderBlock = new BlockGunpowder().setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("blockGunpowder").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:GunpowderBlock");    
     public static final Block SlimeBlock = new BlockSlimeBlock(Material.sand).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeSand).setBlockName("blockSlime").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:SlimeBlock");    
     public static final Block BedrockBrick = new BlockBedrockBricks(Material.rock).setBlockUnbreakable().setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("bedrockBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BedrockBrick");    
+    //public static final Block netherwood_fence = new BlockNetherwoodFence("bettercraft:NetherPlanks", Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
     
     //--LIST OF ITEMS--\\
     public static final Item fleshCooked = (new ItemFood(8, 0.8F, true)).setPotionEffect(Potion.confusion.id, 20, 0, 0.1F).setUnlocalizedName("fleshCooked").setTextureName("bettercraft:CookedFlesh");
@@ -150,9 +157,9 @@ public class BetterCraft
     public static final Item eggFried = (new ItemFood(6, 0.5F, false)).setUnlocalizedName("eggCooked").setTextureName("bettercraft:FriedEgg");
     
     public static final Item EnderBrick = (new Item()).setUnlocalizedName("brickEnder").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:ender_brick");
-    public static final Item NetherBrickDoor = (new ItemMoreDoors(doorNether)).setUnlocalizedName("doorNether").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNether");
-    public static final Item GlassDoor = (new ItemMoreDoors(doorGlass)).setUnlocalizedName("doorGlass").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorGlass");
-    public static final Item NetherwoodDoor = (new ItemMoreDoors(doorNetherwood)).setUnlocalizedName("doorNetherwood").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNetherwood");
+    public static Item NetherBrickDoor;
+    public static Item GlassDoor;
+    public static Item NetherwoodDoor;
     
     //Not active.
     //public static final Item HorseArmorBone = (new Item(6640)).setUnlocalizedName("horseArmorBone").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabMisc).setTextureName("bettercraft:entity/horse/bone_horse_armor");
@@ -164,7 +171,7 @@ public class BetterCraft
     public static final Item chestplateSlime = new ItemSlimeArmor(SLIME_A, 4, 1, "slime", Items.slime_ball).setUnlocalizedName("chestplateSlime").setTextureName("bettercraft:slime_chestplate");
     public static final Item leggingsSlime = new ItemSlimeArmor(SLIME_A, 4, 2, "slime", Items.slime_ball).setUnlocalizedName("leggingsSlime").setTextureName("bettercraft:slime_leggings");
     public static final Item bootsSlime = new ItemSlimeArmor(SLIME_A, 4, 3, "slime", Items.slime_ball).setUnlocalizedName("bootsSlime").setTextureName("bettercraft:slime_boots");
-   
+    
     public static final Item helmetFlesh = new ItemNormalArmor(FLESH_A, 4, 0, "flesh", Items.rotten_flesh).setUnlocalizedName("helmetFlesh").setTextureName("bettercraft:flesh_helmet");
     public static final Item chestplateFlesh = new ItemNormalArmor(FLESH_A, 4, 1, "flesh", Items.rotten_flesh).setUnlocalizedName("chestplateFlesh").setTextureName("bettercraft:flesh_chestplate");
     public static final Item leggingsFlesh = new ItemNormalArmor(FLESH_A, 4, 2, "flesh", Items.rotten_flesh).setUnlocalizedName("leggingsFlesh").setTextureName("bettercraft:flesh_leggings");
@@ -198,7 +205,7 @@ public class BetterCraft
     public static final Item bootsBone = new ItemNormalArmor(BONE_A, 4, 3, "bone", Items.bone).setUnlocalizedName("bootsBone").setTextureName("bettercraft:bone_boots");
     
     public static final Item witherBone = new Item().setUnlocalizedName("witherBone").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:wither_bone");
-
+    
     public static final Item pickaxeWitherbone = new ItemNormalPickaxe(WITHERBONE_T, witherBone).setUnlocalizedName("pickaxeWitherbone").setTextureName("bettercraft:witherbone_pickaxe");
     public static final Item axeWitherbone = new ItemNormalAxe(WITHERBONE_T, witherBone).setUnlocalizedName("axeWitherbone").setTextureName("bettercraft:witherbone_axe");
     public static final Item shovelWitherbone = new ItemNormalSpade(WITHERBONE_T, witherBone).setUnlocalizedName("shovelWitherbone").setTextureName("bettercraft:witherbone_shovel");
@@ -209,7 +216,7 @@ public class BetterCraft
     public static final Item chestplateWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 1, "witherBone", witherBone).setUnlocalizedName("chestplateWitherbone").setTextureName("bettercraft:witherbone_chestplate");
     public static final Item leggingsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 2, "witherBone", witherBone).setUnlocalizedName("leggingsWitherbone").setTextureName("bettercraft:witherbone_leggings");
     public static final Item bootsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 3, "witherBone", witherBone).setUnlocalizedName("bootsWitherbone").setTextureName("bettercraft:witherbone_boots");
-
+    
     public static final Item pickaxeEmerald = new ItemNormalPickaxe(EMERALD_T, Items.emerald).setUnlocalizedName("pickaxeEmerald").setTextureName("bettercraft:emerald_pickaxe");
     public static final Item axeEmerald = new ItemNormalAxe(EMERALD_T, Items.emerald).setUnlocalizedName("axeEmerald").setTextureName("bettercraft:emerald_axe");
     public static final Item shovelEmerald = new ItemNormalSpade(EMERALD_T, Items.emerald).setUnlocalizedName("shovelEmerald").setTextureName("bettercraft:emerald_shovel");
@@ -220,9 +227,9 @@ public class BetterCraft
     public static final Item chestplateEmerald = new ItemNormalArmor(EMERALD_A, 4, 1, "emerald", Items.emerald).setUnlocalizedName("chestplateEmerald").setTextureName("bettercraft:emerald_chestplate");
     public static final Item leggingsEmerald = new ItemNormalArmor(EMERALD_A, 4, 2, "emerald", Items.emerald).setUnlocalizedName("leggingsEmerald").setTextureName("bettercraft:emerald_leggings");
     public static final Item bootsEmerald = new ItemNormalArmor(EMERALD_A, 4, 3, "emerald", Items.emerald).setUnlocalizedName("bootsEmerald").setTextureName("bettercraft:emerald_boots");
-
+    
     public static final Item ruby = new Item().setUnlocalizedName("ruby").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("ruby");    
-
+    
     public static final Item pickaxeRuby = new ItemNormalPickaxe(RUBY_T, ruby).setUnlocalizedName("pickaxeRuby").setTextureName("bettercraft:ruby_pickaxe");
     public static final Item axeRuby = new ItemNormalAxe(RUBY_T, ruby).setUnlocalizedName("axeRuby").setTextureName("bettercraft:ruby_axe");
     public static final Item shovelRuby = new ItemNormalSpade(RUBY_T, ruby).setUnlocalizedName("shovelRuby").setTextureName("bettercraft:ruby_shovel");
@@ -244,7 +251,7 @@ public class BetterCraft
     public static final Item chestplateBlaze = new ItemNormalArmor(BLAZE_A, 4, 1, "blaze", Items.blaze_rod).setUnlocalizedName("chestplateBlaze").setTextureName("bettercraft:blaze_chestplate");
     public static final Item leggingsBlaze = new ItemNormalArmor(BLAZE_A, 4, 2, "blaze", Items.blaze_rod).setUnlocalizedName("leggingsBlaze").setTextureName("bettercraft:blaze_leggings");
     public static final Item bootsBlaze = new ItemNormalArmor(BLAZE_A, 4, 3, "blaze", Items.blaze_rod).setUnlocalizedName("bootsBlaze").setTextureName("bettercraft:blaze_boots");
-
+    
     public static final Item pickaxeEnder = new ItemNormalPickaxe(ENDER_T, Items.ender_pearl).setUnlocalizedName("pickaxeEnder").setTextureName("bettercraft:ender_pickaxe");
     public static final Item axeEnder = new ItemNormalAxe(ENDER_T, Items.ender_pearl).setUnlocalizedName("axeEnder").setTextureName("bettercraft:ender_axe");
     public static final Item shovelEnder = new ItemNormalSpade(ENDER_T, Items.ender_pearl).setUnlocalizedName("shovelEnder").setTextureName("bettercraft:ender_shovel");
@@ -261,7 +268,7 @@ public class BetterCraft
     public static final Item shovelEndstone = new ItemNormalSpade(ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("shovelEndstone").setTextureName("bettercraft:endstone_shovel");
     public static final Item hoeEndstone = new ItemNormalHoe(ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("hoeEndstone").setTextureName("bettercraft:endstone_hoe");
     public static final Item swordEndstone = new ItemNormalSword(ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("swordEndstone").setTextureName("bettercraft:endstone_sword");
-
+    
     public static final Item pickaxeNetherrack = new ItemNormalPickaxe(NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("pickaxeNetherrack").setTextureName("bettercraft:netherrack_pickaxe");
     public static final Item axeNetherrack = new ItemNormalAxe(NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("axeNetherrack").setTextureName("bettercraft:netherrack_axe");
     public static final Item shovelNetherrack = new ItemNormalSpade(NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("shovelNetherrack").setTextureName("bettercraft:netherrack_shovel");
@@ -272,21 +279,66 @@ public class BetterCraft
     public static final Item chestplateBonelord = new ItemBonelordArmor(BONELORD_A, 4, 1, "necro", Items.bone).setUnlocalizedName("chestplateBonelord").setTextureName("bettercraft:bonelord_chestplate");
     public static final Item leggingsBonelord = new ItemBonelordArmor(BONELORD_A, 4, 2, "necro", Items.bone).setUnlocalizedName("leggingsBonelord").setTextureName("bettercraft:bonelord_leggings");
     public static final Item bootsBonelord = new ItemBonelordArmor(BONELORD_A, 4, 3, "necro", Items.bone).setUnlocalizedName("bootsBonelord").setTextureName("bettercraft:bonelord_boots");
-
+    
     public static final Item helmetEnderdragon = new ItemEnderdragonArmor(ENDERDRAGON_A, 4, 0, "enderdragon").setUnlocalizedName("helmetEnderdragon").setTextureName("bettercraft:enderdragon_helmet");
     public static final Item chestplateEnderdragon = new ItemEnderdragonArmor(ENDERDRAGON_A, 4, 1, "enderdragon").setUnlocalizedName("chestplateEnderdragon").setTextureName("bettercraft:enderdragon_chestplate");
     public static final Item leggingsEnderdragon = new ItemEnderdragonArmor(ENDERDRAGON_A, 4, 2, "enderdragon").setUnlocalizedName("leggingsEnderdragon").setTextureName("bettercraft:enderdragon_leggings");
     public static final Item bootsEnderdragon = new ItemEnderdragonArmor(ENDERDRAGON_A, 4, 3, "enderdragon").setUnlocalizedName("bootsEnderdragon").setTextureName("bettercraft:enderdragon_boots");
     
+    public static final Item helmetBedrock = new ItemNormalArmor(BEDROCK_A, 4, 0, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("helmetBedrock").setTextureName("bettercraft:bedrock_helmet");
+    public static final Item chestplateBedrock = new ItemNormalArmor(BEDROCK_A, 4, 1, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("chestplateBedrock").setTextureName("bettercraft:bedrock_chestplate");
+    public static final Item leggingsBedrock = new ItemNormalArmor(BEDROCK_A, 4, 2, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("leggingsBedrock").setTextureName("bettercraft:bedrock_leggings");
+    public static final Item bootsBedrock = new ItemNormalArmor(BEDROCK_A, 4, 3, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bootsBedrock").setTextureName("bettercraft:bedrock_boots");
     
+    public static final Item pickaxeBedrock = new ItemNormalPickaxe(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("pickaxeBedrock").setTextureName("bettercraft:bedrock_pickaxe");
+    public static final Item axeBedrock = new ItemNormalAxe(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("axeBedrock").setTextureName("bettercraft:bedrock_axe");
+    public static final Item shovelBedrock = new ItemNormalSpade(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("shovelBedrock").setTextureName("bettercraft:bedrock_shovel");
+    public static final Item hoeBedrock = new ItemNormalHoe(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("hoeBedrock").setTextureName("bettercraft:bedrock_hoe");
+    public static final Item swordBedrock = new ItemNormalSword(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("swordBedrock").setTextureName("bettercraft:bedrock_sword");
     
 	@EventHandler
 	// used in 1.6.2
 	// @PreInit // used in 1.5.2
 	public void preInit(FMLPreInitializationEvent event) 
 	{
+
+		if (Loader.isModLoaded("malisisdoors"))
+		{
+			//Instantiate your descriptor
+			DoorAnimator netherDoorDescriptor = new DoorAnimator(Material.rock, Block.soundTypeStone, "doorNetherBrick", "BetterCraft:doorNether");
+			netherDoorDescriptor.register();
+			doorNether = netherDoorDescriptor.getBlock().setHardness(5.0F).setResistance(20.0F);
+			NetherBrickDoor = netherDoorDescriptor.getItem();
+			
+			DoorAnimator glassDoorDescriptor = new DoorAnimator(Material.glass, Block.soundTypeGlass, "doorGlass", "BetterCraft:doorGlass");
+			glassDoorDescriptor.register();
+			doorGlass = glassDoorDescriptor.getBlock().setHardness(1.0F).setResistance(3.0F);
+			GlassDoor = glassDoorDescriptor.getItem();
+			
+			DoorAnimator netherwoodDoorDescriptor = new DoorAnimator(Material.wood, Block.soundTypeWood, "doorNetherwood", "BetterCraft:doorNetherwood");
+			netherwoodDoorDescriptor.register();
+			doorNetherwood = netherwoodDoorDescriptor.getBlock().setHardness(2.5F).setResistance(7.5F);
+			NetherwoodDoor = netherwoodDoorDescriptor.getItem();	
+		}
+		else 
+		{
+			//Mod not found.
+			doorNether = new BlockMoreDoors(Material.rock).setHardness(5.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("doorNether").setBlockTextureName("doorNether");
+			NetherBrickDoor = (new ItemMoreDoors(doorNether)).setUnlocalizedName("doorNether").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNether");
+			doorGlass = new BlockMoreDoors(Material.glass).setHardness(1.0F).setResistance(3.0F).setStepSound(Block.soundTypeGlass).setBlockName("doorGlass").setBlockTextureName("doorGlass");
+			GlassDoor = (new ItemMoreDoors(doorGlass)).setUnlocalizedName("doorGlass").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorGlass");
+			doorNetherwood = new BlockMoreDoors(Material.wood).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setBlockName("doorNetherwood").setBlockTextureName("doorNetherwood");
+			NetherwoodDoor = (new ItemMoreDoors(doorNetherwood)).setUnlocalizedName("doorNetherwood").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNetherwood");
+			GameRegistry.registerBlock(doorNether, "doorNetherBrickBlock");
+			GameRegistry.registerItem(NetherBrickDoor, "doorNetherBrick");
+			GameRegistry.registerBlock(doorGlass, "doorGlassBlock");
+			GameRegistry.registerItem(GlassDoor, "doorGlass");
+			GameRegistry.registerBlock(doorNetherwood, "doorNetherwoodBlock");
+	    	GameRegistry.registerItem(NetherwoodDoor, "doorNetherwood");
+		}
 		MinecraftForge.EVENT_BUS.register(new MobDrop());
 		MinecraftForge.EVENT_BUS.register(new BonemealUsage());
+		proxy.registerRenderers();
 	}
 
 	@EventHandler
@@ -294,16 +346,13 @@ public class BetterCraft
 	// @Init // used in 1.5.2
 	public void load(FMLInitializationEvent event) 
 	{
-		proxy.registerRenderers();
 		
 		//Register blocks
     	GameRegistry.registerBlock(BoneBlock, "blockBone");
     	GameRegistry.registerBlock(FleshBlock, "blockFlesh");
     	GameRegistry.registerBlock(StoneStair, "stairStone");
-    	GameRegistry.registerBlock(doorNether, "doorNetherBlock");
-    	GameRegistry.registerBlock(doorGlass, "doorGlassBlock");
-    	GameRegistry.registerBlock(doorNetherwood, "doorNetherwoodBlock");
-    	GameRegistry.registerBlock(NetherBrickFenceGate, "gateNetherBrick");
+    	
+    	GameRegistry.registerBlock(gateNetherBrick, "gateNetherBrick");
     	GameRegistry.registerBlock(RubyOre, "oreRuby");
     	GameRegistry.registerBlock(RubyBlock, "blockRuby");
     	GameRegistry.registerBlock(BlazeBlock, "blockBlaze");
@@ -319,6 +368,7 @@ public class BetterCraft
     	GameRegistry.registerBlock(NetherWoodStairs, "stairsNetherwood");
     	GameRegistry.registerBlock(NetherWoodSlab, ItemNetherwoodSlab.class, "slabNetherwood");
     	GameRegistry.registerBlock(NetherWoodSlabFull, ItemNetherwoodSlab.class, "slabNetherwoodFull");
+    	//GameRegistry.registerBlock(netherwood_fence, "fenceNetherwood");
     	GameRegistry.registerBlock(SoulGlass, "soulGlass");
     	GameRegistry.registerBlock(NetherwoodChest, "chestNetherwood");
     	GameRegistry.registerBlock(EnderBlock, "blockEnder");  
@@ -340,11 +390,8 @@ public class BetterCraft
     	//Register materials
     	GameRegistry.registerItem(EnderBrick, "brickEnder");
     	GameRegistry.registerItem(ruby, "ruby");
-    	GameRegistry.registerItem(witherBone, "boneWither");
+    	GameRegistry.registerItem(witherBone, "witherBone");
     	//Register door items
-    	GameRegistry.registerItem(NetherBrickDoor, "doorNetherbrick");
-    	GameRegistry.registerItem(GlassDoor, "doorGlass");
-    	GameRegistry.registerItem(NetherwoodDoor, "doorNetherwood");
     	//Register tools
     	GameRegistry.registerItem(pickaxeObsidian, "pickaxeObsidian");
     	GameRegistry.registerItem(axeObsidian, "axeObsidian");
@@ -399,6 +446,12 @@ public class BetterCraft
     	GameRegistry.registerItem(shovelEndstone, "shovelEndstone");
     	GameRegistry.registerItem(hoeEndstone, "hoeEndstone");
     	GameRegistry.registerItem(swordEndstone, "swordEndstone");
+    	
+    	GameRegistry.registerItem(pickaxeBedrock, "pickaxeBedrock");
+    	GameRegistry.registerItem(axeBedrock, "axeBedrock");
+    	GameRegistry.registerItem(shovelBedrock, "shovelBedrock");
+    	GameRegistry.registerItem(hoeBedrock, "hoeBedrock");
+    	GameRegistry.registerItem(swordBedrock, "swordBedrock");
 
     	//Register armour
      	GameRegistry.registerItem(helmetSlime, "helmetSlime");
@@ -460,6 +513,11 @@ public class BetterCraft
     	GameRegistry.registerItem(chestplateEnderdragon, "chestplateDragonscale");
     	GameRegistry.registerItem(leggingsEnderdragon, "leggingsDragonscale");
     	GameRegistry.registerItem(bootsEnderdragon, "bootsDragonscale");
+    	
+    	GameRegistry.registerItem(helmetBedrock, "helmetBedrock");
+    	GameRegistry.registerItem(chestplateBedrock, "chestplateBedrock");
+    	GameRegistry.registerItem(leggingsBedrock, "leggingsBedrock");
+    	GameRegistry.registerItem(bootsBedrock, "bootsBedrock");
 
     	//Register tile entities
     	GameRegistry.registerTileEntity(TileEntityNetherwoodChest.class, "tileentitynetherchest");
@@ -597,6 +655,16 @@ public class BetterCraft
         GameRegistry.addRecipe(new ItemStack(leggingsBonelord, 1), new Object[] {"BBB", "C C", "B B", 'B', Items.bone, 'C', Blocks.web});
         GameRegistry.addRecipe(new ItemStack(bootsBonelord, 1), new Object[] {"C C", "B B", 'B', Items.bone, 'C', Blocks.web});
 
+        //--Bedrock Tools/Armor--\\
+        GameRegistry.addRecipe(new ItemStack(helmetBedrock, 1), new Object[] {"KKK", "K K", 'K', Blocks.bedrock});
+        GameRegistry.addRecipe(new ItemStack(chestplateBedrock, 1), new Object[] {"K K", "KKK", "KKK", 'K', Blocks.bedrock});
+        GameRegistry.addRecipe(new ItemStack(leggingsBedrock, 1), new Object[] {"KKK", "K K", "K K", 'K', Blocks.bedrock});
+        GameRegistry.addRecipe(new ItemStack(bootsBedrock, 1), new Object[] {"K K", "K K", 'K', Blocks.bedrock});
+        GameRegistry.addRecipe(new ItemStack(pickaxeBedrock, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.bedrock, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(axeBedrock, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.bedrock, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(shovelBedrock, 1), new Object[] {"K", "S", "S", 'K', Blocks.bedrock, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(hoeBedrock, 1), new Object[] {"KK", " S", " S", 'K', Blocks.bedrock, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(swordBedrock, 1), new Object[] {"K", "K", "S", 'K', Blocks.bedrock, 'S', Items.stick});
         
         
         //--Block Recipes--\\
@@ -643,7 +711,7 @@ public class BetterCraft
 		GameRegistry.addRecipe(new ItemStack(Items.saddle, 1), new Object[] {"LLL", "LSL", "I I", 'I', Items.iron_ingot, 'L', Items.leather, 'S', Items.string});
 		GameRegistry.addRecipe(new ItemStack(NetherBrickDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Blocks.nether_brick});
 		GameRegistry.addRecipe(new ItemStack(GlassDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Blocks.glass});
-		GameRegistry.addRecipe(new ItemStack(NetherBrickFenceGate, 1), new Object[] {"#B#", "#B#", 'B', Blocks.nether_brick, '#', Items.netherbrick});
+		GameRegistry.addRecipe(new ItemStack(gateNetherBrick, 1), new Object[] {"#B#", "#B#", 'B', Blocks.nether_brick, '#', Items.netherbrick});
 		GameRegistry.addRecipe(new ItemStack(BedrockBrick, 4), new Object[] {"##", "##", '#', Blocks.bedrock});
 		
 		/*Horse Armour*/
@@ -783,7 +851,7 @@ public class BetterCraft
     		
     		//|--| Register items to Ore Dictionary |--|\\
             OreDictionary.registerOre("gemRuby", ruby);
-            OreDictionary.registerOre("boneWither", witherBone);
+            OreDictionary.registerOre("witherBone", witherBone);
             OreDictionary.registerOre("brickEnder", EnderBrick);
             
     }

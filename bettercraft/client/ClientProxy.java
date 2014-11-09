@@ -10,11 +10,11 @@ import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import kittehmod.bettercraft.TileEntityNetherwoodChestRenderer;
 import kittehmod.bettercraft.item.ItemNetherwoodChestRenderer;
 
-public class ClientProxy extends CommonProxy 
+public class ClientProxy extends CommonProxy
 {
 
 	@Override
-	public void registerRenderers() 
+	public void registerRenderers()
 	{
 		// This is for rendering entities and so forth later on
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new TileEntityNetherwoodChestRenderer());

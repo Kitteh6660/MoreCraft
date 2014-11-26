@@ -73,12 +73,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7", dependencies = "after:malisisdoors")
+@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7_1", dependencies = "after:malisisdoors")
 
 public class BetterCraft 
 {
     public static final String modid = "bettercraft";
-    public static final String version = "2.7";
+    public static final String version = "2.7_1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance(value = "BetterCraft")
@@ -86,7 +86,7 @@ public class BetterCraft
 
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "kittehmod.bettercraft.client.ClientProxy", serverSide = "kittehmod.bettercraft.CommonProxy")
-	public static ClientProxy proxy;
+	public static CommonProxy proxy;
 
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);

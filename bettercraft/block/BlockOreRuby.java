@@ -17,7 +17,7 @@ public class BlockOreRuby extends Block
 		super(material);
 	}
 	
-	public Item idDropped(int par1, Random random, int zero) 
+	public Item getItemDropped(int par1, Random random, int zero) 
 	{
         return BetterCraft.ruby;
 	}

@@ -57,10 +57,13 @@ import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -69,16 +72,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 //import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7_1", dependencies = "after:malisisdoors")
-
+@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7.1", guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory", dependencies = "after:malisisdoors")
 public class BetterCraft 
 {
     public static final String modid = "bettercraft";
-    public static final String version = "2.7_1";
+    public static final String version = "2.7.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance(value = "BetterCraft")
@@ -87,6 +90,15 @@ public class BetterCraft
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "kittehmod.bettercraft.client.ClientProxy", serverSide = "kittehmod.bettercraft.CommonProxy")
 	public static CommonProxy proxy;
+	
+	public static Configuration config;
+	public static Boolean hardcoreRecipes;
+	public static Boolean sillyRecipes; //Enables silly recipes.
+	public static Boolean salvageRecipes;
+	public static Boolean overrideMobDrops; //Overrides mob drops.
+	public static Boolean endermanBlockDrops; //Enables Enderman dropping carried block on death.
+	public static Boolean mobHeadDrops; //Enables mob head drops.
+	//public static Boolean generateNetherwoodTrees; //Enables Netherwood trees generation.
 
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);
@@ -296,12 +308,26 @@ public class BetterCraft
     public static final Item hoeBedrock = new ItemNormalHoe(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("hoeBedrock").setTextureName("bettercraft:bedrock_hoe");
     public static final Item swordBedrock = new ItemNormalSword(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("swordBedrock").setTextureName("bettercraft:bedrock_sword");
     
+    
 	@EventHandler
 	// used in 1.6.2
 	// @PreInit // used in 1.5.2
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-
+		
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		
+		config.load();
+		
+		hardcoreRecipes = config.getBoolean("hardcoreRecipes", config.CATEGORY_GENERAL, false, "Disables certain recipes and make some recipes harder. \n[Restart required!]");
+		sillyRecipes = config.getBoolean("sillyRecipes", config.CATEGORY_GENERAL, false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone.  \n[Restart required!]");
+		salvageRecipes = config.getBoolean("salvageRecipes", config.CATEGORY_GENERAL, true, "Enable or disable recipes involving dismantling items to get resources back.  \n[Restart required!]");
+		overrideMobDrops = config.getBoolean("overrideMobDrops", config.CATEGORY_GENERAL, true, "Override drops of sheeps, squids, and spiders to drop the new items? \n(You still can get the vanilla resources) ");
+		endermanBlockDrops = config.getBoolean("endermanBlockDrops", config.CATEGORY_GENERAL, true, "Allow Endermen to drop carried blocks on death? ");
+		mobHeadDrops = config.getBoolean("mobHeadDrops", config.CATEGORY_GENERAL, true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, and Skeletons) ");
+		//generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", config.CATEGORY_GENERAL, true, "Should Netherwood trees be generated? \n(Note: Only applies to new chunks!) \n[Restart required!]");
+		
+		config.save();
 		if (Loader.isModLoaded("malisisdoors"))
 		{
 			//Instantiate your descriptor
@@ -338,6 +364,7 @@ public class BetterCraft
 		}
 		MinecraftForge.EVENT_BUS.register(new MobDrop());
 		MinecraftForge.EVENT_BUS.register(new BonemealUsage());
+		FMLCommonHandler.instance().bus().register(new ConfigurationEvents());
 		proxy.registerRenderers();
 	}
 
@@ -701,9 +728,9 @@ public class BetterCraft
         // Convert Logs to Planks
         GameRegistry.addRecipe(new ItemStack(NetherPlanks, 4), new Object[] {"#", '#', NetherLog});
 
-               
         //--IMPORTANT RECIPES--\\
-        GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"S S", " S ", "S S", 'S', Items.string});
+        if (!hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"S S", " S ", "S S", 'S', Items.string});
+        else GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"SSS", "SSS", "SSS", 'S', Items.string}); //If hardcore recipes are enabled, take 9 strings to make 1 cobweb.
         GameRegistry.addRecipe(new ItemStack(witherBone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Items.coal, 'B', Items.bone, 'N', Items.nether_star});
         GameRegistry.addRecipe(new ItemStack(IronTrapdoor, 1), new Object[] {"II", "II",'I', Items.iron_ingot});
 		GameRegistry.addRecipe(new ItemStack(Blocks.anvil, 1, 1), new Object[] {"III", "IAI", "III", 'I', Items.iron_ingot, 'A', new ItemStack(Blocks.anvil, 1, 2)});
@@ -746,11 +773,16 @@ public class BetterCraft
 
         GameRegistry.addShapelessRecipe(new ItemStack(cakeSlice, 6), new Object[] {Items.cake});
         GameRegistry.addShapelessRecipe(new ItemStack(applePie, 1), new Object[] {Items.egg, Items.apple, Items.sugar});
-
         
         /*Rotten flesh recipes, used as substitute for leather.*/
-        GameRegistry.addRecipe(new ItemStack(Items.item_frame, 1), new Object[] {"SSS", "SFS", "SSS", 'S', Items.stick, 'F', Items.rotten_flesh});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.book, 1), new Object[] {Items.paper, Items.paper, Items.paper, Items.rotten_flesh});
+        if (!hardcoreRecipes) {
+	        GameRegistry.addRecipe(new ItemStack(Items.item_frame, 1), new Object[] {"SSS", "SFS", "SSS", 'S', Items.stick, 'F', Items.rotten_flesh});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.book, 1), new Object[] {Items.paper, Items.paper, Items.paper, Items.rotten_flesh});
+        }
+        /*Silly recipes.*/
+        if (sillyRecipes) {
+            GameRegistry.addRecipe(new ItemStack(Blocks.bedrock, 1), new Object[] {"BS", 'B', Items.bed, 'S', Blocks.stone});
+        }
         
         // ~ --DISMANTLE/SALVAGE RECIPES-- ~ \\
         
@@ -786,20 +818,21 @@ public class BetterCraft
         GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 6)});
         
         //--Dismantling objects--\\
-        GameRegistry.addRecipe(new ItemStack(Items.stick, 1), new Object[] {"AA", "AA", 'A', Items.arrow});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.fence});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 6), new Object[] {Items.wooden_door});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Items.boat});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.sign});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3), new Object[] {Items.bow});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 8), new Object[] {Blocks.chest});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 3), new Object[] {Blocks.trapdoor});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.fence_gate});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {Blocks.lever});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.ladder});
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Blocks.crafting_table});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 4), new Object[] {Blocks.quartz_block});
-        
+        if (salvageRecipes) {
+	        GameRegistry.addRecipe(new ItemStack(Items.stick, 1), new Object[] {"AA", "AA", 'A', Items.arrow});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.fence});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 6), new Object[] {Items.wooden_door});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Items.boat});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.sign});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3), new Object[] {Items.bow});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 8), new Object[] {Blocks.chest});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 3), new Object[] {Blocks.trapdoor});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.fence_gate});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {Blocks.lever});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.ladder});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Blocks.crafting_table});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 4), new Object[] {Blocks.quartz_block});
+        }
         
         // ~ --FURNACE RECIPES -- ~ \\
 
@@ -856,7 +889,20 @@ public class BetterCraft
             
     }
 
-	
+    public static void syncConfig() {
+    	System.out.println("Syncing...");
+        hardcoreRecipes = config.getBoolean("hardcoreRecipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "Disables certain recipes and make some recipes harder.");
+        sillyRecipes = config.getBoolean("sillyRecipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone.");
+        salvageRecipes = config.getBoolean("salvageRecipes", Configuration.CATEGORY_GENERAL, salvageRecipes, "Enable or disable recipes involving dismantling items to get resources back.");
+        overrideMobDrops = config.getBoolean("overrideMobDrops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "Override drops of sheep, squids, and spiders to drop the new items? (You still can get the vanilla resources)");
+        endermanBlockDrops = config.getBoolean("endermanBlockDrops", Configuration.CATEGORY_GENERAL, endermanBlockDrops, "Allow Endermen to drop carried blocks on death?");
+        mobHeadDrops = config.getBoolean("mobHeadDrops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "Should mobs rarely drop head when killed? (Creepers, Zombies, and Skeletons)");
+        //generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, "Should Netherwood trees be generated? (Note: Only applies to new chunks!)");
+
+        if(config.hasChanged())
+            config.save();
+    }
+    
 	/*public void generateNether(World world, Random random, int blockX, int blockZ)
 	{
 		HellGenTrees tree = new HellGenTrees();

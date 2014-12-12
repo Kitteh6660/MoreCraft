@@ -1,5 +1,6 @@
 package kittehmod.bettercraft.block;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
@@ -204,16 +205,20 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		return random.nextInt(20) != 0 ? 0 : 1;
 	}
 
-	public Item getItemDropped(int i, Random random, int j)
+	public Item getItemDropped(int par1, Random random, int zero) 
 	{
 		return Item.getItemFromBlock(BetterCraft.NetherSapling); //Makes your leaves drop your type of sapling.
 	}
 
-    public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
+    public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int fortune)
     {
-		if (world.rand.nextInt(50) == 0)
+		if (world.rand.nextInt(50/(fortune+1)) == 0)
 		{
 			dropBlockAsItem(world, i, j, k, new ItemStack(Items.apple, 1, 0)); //Makes your leaf have a 1/50 chance to drop an apple.
+		}
+		else if (world.rand.nextInt(20/(fortune+1)) == 0)
+		{
+			dropBlockAsItem(world, i, j, k, new ItemStack(BetterCraft.NetherSapling, 1, 0)); //Makes your leaf have a 1/20 chance to drop an apple.			
 		}
     }
 
@@ -243,6 +248,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		return i & 3;
 	}
 
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
@@ -253,6 +259,11 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		super.onEntityWalking(world, i, j, k, entity);
 	}
 
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+	
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
 	{
@@ -260,4 +271,5 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		return !this.field_150121_P && var6 == this ? true : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
 	}
 
+	
 }

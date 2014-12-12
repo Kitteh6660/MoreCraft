@@ -37,7 +37,7 @@ public class MobDrop
     public void Drops(LivingDropsEvent event)
     {
 		
-        if(event.entityLiving instanceof EntitySheep)
+        if (event.entityLiving instanceof EntitySheep && BetterCraft.overrideMobDrops)
         {
         	if (((EntitySheep) event.entityLiving).isBurning())
         	{
@@ -49,20 +49,20 @@ public class MobDrop
         	}
         }
         
-        if(event.entityLiving instanceof EntitySquid)
+        if (event.entityLiving instanceof EntitySquid && BetterCraft.overrideMobDrops)
         {
         	event.setCanceled(true);
         	event.entityLiving.dropItem(BetterCraft.squid, 1);
         }
         
-        if(event.entityLiving instanceof EntitySpider)
+        if (event.entityLiving instanceof EntitySpider && BetterCraft.overrideMobDrops)
         {
         	event.setCanceled(true);
         	event.entityLiving.dropItem(Items.string, r.nextInt(3) + r.nextInt(event.lootingLevel + 1));
         	event.entityLiving.dropItem(BetterCraft.spiderMeatRaw, 1);
         }
         
-        if(event.entityLiving instanceof EntityEnderman)
+        if (event.entityLiving instanceof EntityEnderman && BetterCraft.endermanBlockDrops)
         {
         	if (((EntityEnderman) event.entityLiving).func_146080_bZ() != Blocks.air) //Prevents crash if Enderman carries nothing.
         	{
@@ -70,7 +70,7 @@ public class MobDrop
         	}
         }
         
-        if(event.entityLiving instanceof EntitySkeleton)
+        if (event.entityLiving instanceof EntitySkeleton && BetterCraft.mobHeadDrops)
         {
         	if (((EntitySkeleton) event.entityLiving).getSkeletonType() == 0)
         	{
@@ -85,7 +85,7 @@ public class MobDrop
        		}
         }
         
-        if(event.entityLiving instanceof EntityZombie)
+        if (event.entityLiving instanceof EntityZombie && BetterCraft.mobHeadDrops)
         {
         	if (event.source.getDamageType().equals("player")) { //Checks for Damage Type.
         		rand = Math.random(); //Initializes double "rand"
@@ -97,7 +97,7 @@ public class MobDrop
         	}
         }
         
-        if(event.entityLiving instanceof EntityCreeper)
+        if (event.entityLiving instanceof EntityCreeper && BetterCraft.mobHeadDrops)
         {
         	if (event.source.getDamageType().equals("player")) { //Checks for Damage Type.
         		rand = Math.random(); //Initializes double "rand"
@@ -116,7 +116,7 @@ public class MobDrop
         	}
         }
         
-        if(event.entityLiving instanceof EntityDragon)
+        if (event.entityLiving instanceof EntityDragon)
         {
 	        event.entityLiving.dropItem(BetterCraft.helmetEnderdragon, 1);
 	        event.entityLiving.dropItem(BetterCraft.chestplateEnderdragon, 1);
@@ -129,6 +129,9 @@ public class MobDrop
 	{
 	}
 	
-	
+	/*public void EnderDragonHitBlock(event)
+	{
+		event.setCanceled(true);
+	}*/
 	
 }

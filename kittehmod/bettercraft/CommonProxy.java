@@ -1,5 +1,7 @@
 package kittehmod.bettercraft;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
+
 public class CommonProxy 
 {
 
@@ -8,6 +10,10 @@ public class CommonProxy
 	{
 
 	}
+	
+	/*public void registerNetwork(){
+		NetworkRegistry.INSTANCE.registerGuiHandler(BetterCraft, new GuiHandler());
+	}*/
 	
 	public int addArmor(String armor)
     {

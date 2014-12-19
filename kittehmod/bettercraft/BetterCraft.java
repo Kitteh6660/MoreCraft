@@ -14,6 +14,7 @@ import kittehmod.bettercraft.block.BlockNetherLog;
 import kittehmod.bettercraft.block.BlockNetherSapling;
 import kittehmod.bettercraft.block.BlockNetherWood;
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
+import kittehmod.bettercraft.block.BlockNetherwoodCraftingTable;
 import kittehmod.bettercraft.block.BlockNetherwoodFence;
 import kittehmod.bettercraft.block.BlockNetherwoodSlab;
 import kittehmod.bettercraft.block.BlockNormal;
@@ -24,6 +25,7 @@ import kittehmod.bettercraft.block.BlockSoulGlass;
 import kittehmod.bettercraft.block.BlockStorage;
 import kittehmod.bettercraft.block.DoorAnimator;
 import kittehmod.bettercraft.client.ClientProxy;
+import kittehmod.bettercraft.item.ItemBlazeArmor;
 import kittehmod.bettercraft.item.ItemBlazeSword;
 import kittehmod.bettercraft.item.ItemBlazeSword;
 import kittehmod.bettercraft.item.ItemBonelordArmor;
@@ -37,6 +39,7 @@ import kittehmod.bettercraft.item.ItemNormalPickaxe;
 import kittehmod.bettercraft.item.ItemNormalSpade;
 import kittehmod.bettercraft.item.ItemNormalSword;
 import kittehmod.bettercraft.item.ItemSlimeArmor;
+import kittehmod.bettercraft.item.ItemWitherArmor;
 import kittehmod.bettercraft.item.ItemWitherSword;
 import kittehmod.bettercraft.item.ItemNetherwoodSlab;
 import net.minecraft.block.Block;
@@ -47,12 +50,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumChatFormatting;
 //import net.minecraft.src.ModLoader; --Deprecated.
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -74,17 +79,18 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 //import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7.1", guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory", dependencies = "after:malisisdoors")
+@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7.2", guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory", dependencies = "after:malisisdoors")
 public class BetterCraft 
 {
     public static final String modid = "bettercraft";
-    public static final String version = "2.7.1";
+    public static final String version = "2.7.2";
 	
 	// The instance of your mod that Forge uses.
-	@Instance(value = "BetterCraft")
+	@Instance("bettercraft")
 	public static BetterCraft instance;
 
 	// Says where the client and server 'proxy' code is loaded.
@@ -99,6 +105,7 @@ public class BetterCraft
 	public static Boolean endermanBlockDrops; //Enables Enderman dropping carried block on death.
 	public static Boolean mobHeadDrops; //Enables mob head drops.
 	//public static Boolean generateNetherwoodTrees; //Enables Netherwood trees generation.
+	public static EnumRarity legendary = EnumHelper.addRarity("Legendary", EnumChatFormatting.GOLD, "Legendary");
 
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);
@@ -154,6 +161,7 @@ public class BetterCraft
     public static final Block GunpowderBlock = new BlockGunpowder().setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("blockGunpowder").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:GunpowderBlock");    
     public static final Block SlimeBlock = new BlockSlimeBlock(Material.sand).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeSand).setBlockName("blockSlime").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:SlimeBlock");    
     public static final Block BedrockBrick = new BlockBedrockBricks(Material.rock).setBlockUnbreakable().setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("bedrockBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BedrockBrick");    
+    public static final Block NetherWoodCraftingTable = new BlockNetherwoodCraftingTable().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("netherwoodWorkbench").setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("bettercraft:netherwood_crafting_table");
     //public static final Block netherwood_fence = new BlockNetherwoodFence("bettercraft:NetherPlanks", Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
     
     //--LIST OF ITEMS--\\
@@ -224,10 +232,10 @@ public class BetterCraft
     public static final Item hoeWitherbone = new ItemNormalHoe(WITHERBONE_T, witherBone).setUnlocalizedName("hoeWitherbone").setTextureName("bettercraft:witherbone_hoe");
     public static final Item swordWitherbone = new ItemWitherSword(WITHERBONE_T, witherBone).setUnlocalizedName("swordWitherbone").setTextureName("bettercraft:witherbone_sword");
     
-    public static final Item helmetWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 0, "witherBone", witherBone).setUnlocalizedName("helmetWitherbone").setTextureName("bettercraft:witherbone_helmet");
-    public static final Item chestplateWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 1, "witherBone", witherBone).setUnlocalizedName("chestplateWitherbone").setTextureName("bettercraft:witherbone_chestplate");
-    public static final Item leggingsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 2, "witherBone", witherBone).setUnlocalizedName("leggingsWitherbone").setTextureName("bettercraft:witherbone_leggings");
-    public static final Item bootsWitherbone = new ItemNormalArmor(WITHERBONE_A, 4, 3, "witherBone", witherBone).setUnlocalizedName("bootsWitherbone").setTextureName("bettercraft:witherbone_boots");
+    public static final Item helmetWitherbone = new ItemWitherArmor(WITHERBONE_A, 4, 0, "witherbone", witherBone).setUnlocalizedName("helmetWitherbone").setTextureName("bettercraft:witherbone_helmet");
+    public static final Item chestplateWitherbone = new ItemWitherArmor(WITHERBONE_A, 4, 1, "witherbone", witherBone).setUnlocalizedName("chestplateWitherbone").setTextureName("bettercraft:witherbone_chestplate");
+    public static final Item leggingsWitherbone = new ItemWitherArmor(WITHERBONE_A, 4, 2, "witherbone", witherBone).setUnlocalizedName("leggingsWitherbone").setTextureName("bettercraft:witherbone_leggings");
+    public static final Item bootsWitherbone = new ItemWitherArmor(WITHERBONE_A, 4, 3, "witherbone", witherBone).setUnlocalizedName("bootsWitherbone").setTextureName("bettercraft:witherbone_boots");
     
     public static final Item pickaxeEmerald = new ItemNormalPickaxe(EMERALD_T, Items.emerald).setUnlocalizedName("pickaxeEmerald").setTextureName("bettercraft:emerald_pickaxe");
     public static final Item axeEmerald = new ItemNormalAxe(EMERALD_T, Items.emerald).setUnlocalizedName("axeEmerald").setTextureName("bettercraft:emerald_axe");
@@ -259,10 +267,10 @@ public class BetterCraft
     public static final Item hoeBlaze = new ItemNormalHoe(BLAZE_T, Items.blaze_rod).setUnlocalizedName("hoeBlaze").setTextureName("bettercraft:blaze_hoe");
     public static final Item swordBlaze = new ItemBlazeSword(BLAZE_T, Items.blaze_rod).setUnlocalizedName("swordBlaze").setTextureName("bettercraft:blaze_sword");
     
-    public static final Item helmetBlaze = new ItemNormalArmor(BLAZE_A, 4, 0, "blaze", Items.blaze_rod).setUnlocalizedName("helmetBlaze").setTextureName("bettercraft:blaze_helmet");
-    public static final Item chestplateBlaze = new ItemNormalArmor(BLAZE_A, 4, 1, "blaze", Items.blaze_rod).setUnlocalizedName("chestplateBlaze").setTextureName("bettercraft:blaze_chestplate");
-    public static final Item leggingsBlaze = new ItemNormalArmor(BLAZE_A, 4, 2, "blaze", Items.blaze_rod).setUnlocalizedName("leggingsBlaze").setTextureName("bettercraft:blaze_leggings");
-    public static final Item bootsBlaze = new ItemNormalArmor(BLAZE_A, 4, 3, "blaze", Items.blaze_rod).setUnlocalizedName("bootsBlaze").setTextureName("bettercraft:blaze_boots");
+    public static final Item helmetBlaze = new ItemBlazeArmor(BLAZE_A, 4, 0, "blaze", Items.blaze_rod).setUnlocalizedName("helmetBlaze").setTextureName("bettercraft:blaze_helmet");
+    public static final Item chestplateBlaze = new ItemBlazeArmor(BLAZE_A, 4, 1, "blaze", Items.blaze_rod).setUnlocalizedName("chestplateBlaze").setTextureName("bettercraft:blaze_chestplate");
+    public static final Item leggingsBlaze = new ItemBlazeArmor(BLAZE_A, 4, 2, "blaze", Items.blaze_rod).setUnlocalizedName("leggingsBlaze").setTextureName("bettercraft:blaze_leggings");
+    public static final Item bootsBlaze = new ItemBlazeArmor(BLAZE_A, 4, 3, "blaze", Items.blaze_rod).setUnlocalizedName("bootsBlaze").setTextureName("bettercraft:blaze_boots");
     
     public static final Item pickaxeEnder = new ItemNormalPickaxe(ENDER_T, Items.ender_pearl).setUnlocalizedName("pickaxeEnder").setTextureName("bettercraft:ender_pickaxe");
     public static final Item axeEnder = new ItemNormalAxe(ENDER_T, Items.ender_pearl).setUnlocalizedName("axeEnder").setTextureName("bettercraft:ender_axe");
@@ -373,6 +381,7 @@ public class BetterCraft
 	// @Init // used in 1.5.2
 	public void load(FMLInitializationEvent event) 
 	{
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		
 		//Register blocks
     	GameRegistry.registerBlock(BoneBlock, "blockBone");
@@ -402,6 +411,7 @@ public class BetterCraft
     	GameRegistry.registerBlock(GunpowderBlock, "blockGunpowder");
     	GameRegistry.registerBlock(SlimeBlock, "blockSlime");
     	GameRegistry.registerBlock(BedrockBrick, "bedrockBricks");
+    	GameRegistry.registerBlock(NetherWoodCraftingTable, "netherwoodWorkbench");
 
     	//Register food
     	GameRegistry.registerItem(fleshCooked, "fleshCooked");
@@ -548,7 +558,7 @@ public class BetterCraft
 
     	//Register tile entities
     	GameRegistry.registerTileEntity(TileEntityNetherwoodChest.class, "tileentitynetherchest");
-        
+    	
 		//MinecraftForge.setBlockHarvestLevel(BoneBlock, "pickaxe", 0);
 		//MinecraftForge.setBlockHarvestLevel(StoneStair, "pickaxe", 0);           
 		//MinecraftForge.setBlockHarvestLevel(RubyOre, "pickaxe", 2);
@@ -748,7 +758,7 @@ public class BetterCraft
         
 		/*Nether wood planks recipes*/
 		GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"B", "B", 'B', NetherPlanks});
-		GameRegistry.addRecipe(new ItemStack(Blocks.crafting_table, 1), new Object[] {"BB", "BB", 'B', NetherPlanks});
+		GameRegistry.addRecipe(new ItemStack(NetherWoodCraftingTable, 1), new Object[] {"BB", "BB", 'B', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.trapdoor, 2), new Object[] {"###", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_button, 1), new Object[] {"#", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(NetherwoodChest, 1), new Object[] {"###", "# #", "###", '#', NetherPlanks});
@@ -832,6 +842,7 @@ public class BetterCraft
 	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.ladder});
 	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Blocks.crafting_table});
 	        GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 4), new Object[] {Blocks.quartz_block});
+	        GameRegistry.addShapelessRecipe(new ItemStack(NetherPlanks, 4), new Object[] {NetherWoodCraftingTable});
         }
         
         // ~ --FURNACE RECIPES -- ~ \\
@@ -854,6 +865,8 @@ public class BetterCraft
         GameRegistry.addSmelting(Items.cauldron, new ItemStack(Items.iron_ingot, 7), 0.5F);
         
         GameRegistry.registerWorldGenerator(new BetterCraftGenerator(), 1);
+        //proxy.registerNetwork();
+        
     }
 	
     public static void oreRegistration()

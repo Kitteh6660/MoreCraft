@@ -3,6 +3,7 @@ package kittehmod.bettercraft.item;
 import kittehmod.bettercraft.BetterCraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,11 @@ public class ItemBlazeSword extends ItemNormalSword
     public ToolMaterial getToolMaterial(ItemStack par1ItemStack)
     {
     	return BetterCraft.BLAZE_T;
+    }
+    
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.uncommon;
     }
     
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)

@@ -11,6 +11,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockNetherLeaves extends BlockLeavesBase
 {
@@ -38,6 +40,14 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		double d1 = 1.0D;
 		return 0;
 	}
+	
+	/*@Override
+	public void onBlockPlacedBy(World world, int coordX, int coordY, int coordZ, EntityLivingBase entity, ItemStack itemStack) {
+		//System.out.println("The block is being placed.");
+		if ((EntityPlayer) entity instanceof EntityPlayer) {
+			//System.out.println("Placed by player!");
+		}
+	}*/
 	
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
 	{
@@ -191,7 +201,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
 	{
-		if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) && par5Random.nextInt(15) == 1)
+		if (par1World.isRainingAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) && par5Random.nextInt(15) == 1)
 		{
 			double var6 = (double)((float)par2 + par5Random.nextFloat());
 			double var8 = (double)par3 - 0.05D;
@@ -270,6 +280,10 @@ public class BlockNetherLeaves extends BlockLeavesBase
 		Block var6 = par1IBlockAccess.getBlock(par2, par3, par4);
 		return !this.field_150121_P && var6 == this ? true : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
 	}
-
 	
+	@Override
+    public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    {
+        return false;
+    }
 }

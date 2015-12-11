@@ -19,7 +19,7 @@ public class ItemNormalArmor extends ItemArmor
 	    this.material = par2EnumArmorMaterial;
 	    //this.setCreativeTab(CreativeTabs.tabCombat); 
 	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
-	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.setMaxDurability(par2EnumArmorMaterial.getDurability(par4));
 	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	    repairMaterial = par6;

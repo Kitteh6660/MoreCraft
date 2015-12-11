@@ -35,11 +35,11 @@ public class BlockMoreDoors extends BlockDoor
         return this.field_150016_b[0];
     }
 
-    public IIcon getIcon(IBlockAccess p_149673_1_, int p_149673_2_, int p_149673_3_, int p_149673_4_, int p_149673_5_)
+    public IIcon getIcon(IBlockAccess p_149673_1_, int coordX, int coordY, int coordZ, int p_149673_5_)
     {
         if (p_149673_5_ != 1 && p_149673_5_ != 0)
         {
-            int var6 = this.func_150012_g(p_149673_1_, p_149673_2_, p_149673_3_, p_149673_4_);
+            int var6 = this.func_150013_e(p_149673_1_, coordX, coordY, coordZ);
             int var7 = var6 & 3;
             boolean var8 = (var6 & 4) != 0;
             boolean var9 = false;

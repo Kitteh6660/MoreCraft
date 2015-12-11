@@ -45,6 +45,8 @@ public class BetterCraftGenerator implements IWorldGenerator
 
 	private void generateNether(World world, Random rand, int chunkX, int chunkZ) 
 	{
+		if (!BetterCraft.generateNetherwoodTrees) { return; } //If disabled, don't generate trees.
+		
         for(int k = 0; k < 32; k++)
         {
         	int firstBlockXCoord = chunkX + rand.nextInt(16);

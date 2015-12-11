@@ -64,9 +64,9 @@ public class MobDrop
         
         if (event.entityLiving instanceof EntityEnderman && BetterCraft.endermanBlockDrops)
         {
-        	if (((EntityEnderman) event.entityLiving).func_146080_bZ() != Blocks.air) //Prevents crash if Enderman carries nothing.
+        	if (((EntityEnderman) event.entityLiving).getCarriedBlock() != Blocks.air) //Prevents crash if Enderman carries nothing.
         	{
-        		event.entityLiving.entityDropItem(new ItemStack(((EntityEnderman) event.entityLiving).func_146080_bZ(), 1, ((EntityEnderman) event.entityLiving).getCarryingData()), 0.0F);;
+        		event.entityLiving.entityDropItem(new ItemStack(((EntityEnderman) event.entityLiving).getCarriedBlock(), 1, ((EntityEnderman) event.entityLiving).getCarryingData()), 0.0F);;
         	}
         }
         

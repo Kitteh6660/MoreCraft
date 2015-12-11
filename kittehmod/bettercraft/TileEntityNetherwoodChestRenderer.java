@@ -21,8 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 {
-	private static final ResourceLocation field_147505_d = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
-	private static final ResourceLocation field_147504_g = new ResourceLocation("bettercraft:textures/entity/chest/netherwood.png");
+	private static final ResourceLocation textureDouble = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
+	private static final ResourceLocation textureSingle = new ResourceLocation("bettercraft:textures/entity/chest/netherwood.png");
 	private ModelChest field_147510_h = new ModelChest();
 	private ModelChest field_147511_i = new ModelLargeChest();
 	private boolean field_147509_j;
@@ -35,6 +35,7 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 			this.field_147509_j = true;
 		}
 	}
+	
 	public void renderTileEntityAt(TileEntityNetherwoodChest p_147502_1_, double p_147502_2_, double p_147502_4_, double p_147502_6_, float p_147502_8_)
 	{
 		int i;
@@ -50,7 +51,7 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 			{
 				try
 				{
-					((BlockNetherwoodChest)block).func_149954_e(p_147502_1_.getWorldObj(), p_147502_1_.xCoord, p_147502_1_.yCoord, p_147502_1_.zCoord);
+					((BlockNetherwoodChest)block).func_149951_m(p_147502_1_.getWorld(), p_147502_1_.xCoord, p_147502_1_.yCoord, p_147502_1_.zCoord);
 				}
 				catch (ClassCastException e)
 				{
@@ -66,12 +67,12 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 			if (p_147502_1_.adjacentChestXPos == null && p_147502_1_.adjacentChestZPos == null)
 			{
 				modelchest = this.field_147510_h;
-				this.bindTexture(field_147504_g);
+				this.bindTexture(textureSingle);
 			}
 			else
 			{
 				modelchest = this.field_147511_i;
-				this.bindTexture(field_147505_d);
+				this.bindTexture(textureDouble);
 			}
 			GL11.glPushMatrix();
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);

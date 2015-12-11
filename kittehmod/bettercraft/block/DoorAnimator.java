@@ -1,5 +1,6 @@
 package kittehmod.bettercraft.block;
 
+import cpw.mods.fml.common.Loader;
 import net.malisis.doors.door.DoorDescriptor;
 import net.malisis.doors.door.DoorRegistry;
 import net.malisis.doors.door.movement.RotateAndPlaceMovement;
@@ -34,4 +35,4 @@ public class DoorAnimator extends DoorDescriptor
 		setTab(CreativeTabs.tabRedstone);
 	}
 
-}	
+}

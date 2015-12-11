@@ -14,7 +14,7 @@ public class ItemNetherwoodSlab extends ItemSlab
     public ItemNetherwoodSlab(Block block)
     {
 	    super(block, (BlockSlab)BetterCraft.NetherWoodSlab, (BlockSlab)BetterCraft.NetherWoodSlabFull, false);
-	    this.setMaxDamage(0);
+	    this.setMaxDurability(0);
 	    this.setHasSubtypes(true);
     }
 }

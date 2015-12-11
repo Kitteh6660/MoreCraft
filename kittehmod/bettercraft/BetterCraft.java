@@ -2,7 +2,10 @@ package kittehmod.bettercraft;
 
 import java.util.Random;
 
-import kittehmod.bettercraft.block.BlockBedrockBricks;
+import kittehmod.bettercraft.block.*;
+import kittehmod.bettercraft.item.*;
+
+/*import kittehmod.bettercraft.block.BlockBedrockBricks;
 import kittehmod.bettercraft.block.BlockBlazeBlock;
 import kittehmod.bettercraft.block.BlockEnderBrickSlab;
 import kittehmod.bettercraft.block.BlockGunpowder;
@@ -41,11 +44,12 @@ import kittehmod.bettercraft.item.ItemNormalSword;
 import kittehmod.bettercraft.item.ItemSlimeArmor;
 import kittehmod.bettercraft.item.ItemWitherArmor;
 import kittehmod.bettercraft.item.ItemWitherSword;
-import kittehmod.bettercraft.item.ItemNetherwoodSlab;
+import kittehmod.bettercraft.item.ItemNetherwoodSlab;*/
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -83,11 +87,11 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "bettercraft", name = "MoreCraft", version = "2.7.2", guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory", dependencies = "after:malisisdoors")
+@Mod(name = "MoreCraft", modid = BetterCraft.MODID, version = BetterCraft.VERSION, guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory", dependencies = "after:malisisdoors")
 public class BetterCraft 
 {
-    public static final String modid = "bettercraft";
-    public static final String version = "2.7.2";
+    public static final String MODID = "bettercraft";
+    public static final String VERSION = "2.7.3";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -104,7 +108,8 @@ public class BetterCraft
 	public static Boolean overrideMobDrops; //Overrides mob drops.
 	public static Boolean endermanBlockDrops; //Enables Enderman dropping carried block on death.
 	public static Boolean mobHeadDrops; //Enables mob head drops.
-	//public static Boolean generateNetherwoodTrees; //Enables Netherwood trees generation.
+	public static Boolean generateNetherwoodTrees; //Enables Netherwood trees generation.
+	
 	public static EnumRarity legendary = EnumHelper.addRarity("Legendary", EnumChatFormatting.GOLD, "Legendary");
 
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
@@ -132,37 +137,52 @@ public class BetterCraft
     public static ArmorMaterial ENDERDRAGON_A = EnumHelper.addArmorMaterial("DragonScaleA", 99999999, new int[] { 4, 8, 6, 4 }, 30);
     public static ArmorMaterial BEDROCK_A = EnumHelper.addArmorMaterial("BedrockA", 99999999, new int[] { 5, 8, 6, 5 }, 30);
     
-    public static final Block BoneBlock = new BlockStorage(Material.rock).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeStone).setBlockName("blockBone").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BoneBlock");
-    public static final Block FleshBlock = new BlockStorage(Material.cloth).setHardness(1.0F).setResistance(2.0F).setStepSound(Block.soundTypeCloth).setBlockName("blockFlesh").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:FleshBlock");
+	//--LIST OF BLOCKS--\\
+    //Doors & Gates
     public static Block doorNether;
     public static Block doorGlass;
     public static Block doorNetherwood;
+    public static Block doorBone;
+    public static Block gateNetherBrick = new BlockNetherBrickFenceGate().setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("gateNetherBrick").setTextureName("gateNetherBrick");
+    
+    //Ores
+    public static final Block RubyOre = new BlockOreRuby(Material.rock).setHardness(4.0F).setResistance(2.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:RubyOre");
+   
+    //Storage Blocks
+    public static final Block BoneBlock = new BlockStorage(Material.rock).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("blockBone").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:BoneBlock");
+    public static final Block FleshBlock = new BlockStorage(Material.cloth).setHardness(1.0F).setResistance(2.0F).setStepSound(Block.soundTypeCloth).setUnlocalizedName("blockFlesh").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:FleshBlock");
+    public static final Block RubyBlock = new BlockStorage(Material.rock).setHardness(6.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setUnlocalizedName("blockRuby").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:RubyBlock");
+    public static final Block BlazeBlock = new BlockBlazeBlock().setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setUnlocalizedName("blockBlaze").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:BlazeBlock");
+    public static final Block EnderBlock = new BlockStorage(Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("blockEnder").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:EnderBlock");    
+    public static final Block GunpowderBlock = new BlockGunpowder().setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("blockGunpowder").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:GunpowderBlock");    
+    public static final Block SlimeBlock = new BlockSlimeBlock(Material.sand).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeSand).setUnlocalizedName("blockSlime").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:SlimeBlock"); //Will be removed in 1.8.
+    public static final Block BedrockBrick = new BlockNormal(Material.rock).setBlockUnbreakable().setResistance(5.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("bedrockBrick").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:BedrockBrick");    
+    
+    //Netherwood
+    public static final Block NetherLog = new BlockNetherLog().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherLog").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:Netherwood");
+    public static final Block NetherPlanks = new BlockNetherWood().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherPlanks").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:NetherPlanks");
+    public static final BlockNetherLeaves NetherLeaves = (BlockNetherLeaves) new BlockNetherLeaves().setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setUnlocalizedName("netherLeaves").setCreativeTab(CreativeTabs.tabDecorations).setTextureName("bettercraft:NetherLeaves");   
+    public static final Block NetherSapling = new BlockNetherSapling().setHardness(0F).setResistance(1.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("netherSapling").setCreativeTab(CreativeTabs.tabDecorations).setTextureName("bettercraft:NetherSapling");
+    public static final Block NetherWoodStairs = new BlockNormalStairs(NetherPlanks, 0).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("stairsNetherwood").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:NetherPlanksStair");
+    public static final Block NetherWoodSlab = new BlockNormalSlab(false, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("slabNetherwood").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:NetherPlanks");
+    public static final Block NetherWoodSlabFull = new BlockNormalSlab(true, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("slabNetherwood").setTextureName("bettercraft:NetherPlanks");
+    public static final BlockNetherwoodChest NetherWoodChest = (BlockNetherwoodChest)(new BlockNetherwoodChest(0)).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("chestNetherwood").setCreativeTab(CreativeTabs.tabDecorations);    
+    public static final Block NetherWoodCraftingTable = new BlockNetherwoodCraftingTable().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwoodWorkbench").setCreativeTab(CreativeTabs.tabDecorations).setTextureName("bettercraft:Netherwood_crafting_table");
+    //public static final Block netherwood_fence = new BlockNetherwoodFence("bettercraft:NetherPlanks", Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceNetherwood").setTextureName("bettercraft:NetherPlanks");
 
-    public static Block gateNetherBrick = new BlockNetherBrickFenceGate().setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("gateNetherBrick").setBlockTextureName("gateNetherBrick");
-    public static final Block StoneStair = new BlockNormalStairs(Blocks.stone, 0).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("stairStone").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:StoneStair");
-    public static final Block RubyOre = new BlockOreRuby(Material.rock).setHardness(4.0F).setResistance(2.0F).setStepSound(Block.soundTypeStone).setBlockName("oreRuby").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:RubyOre");
-    public static final Block RubyBlock = new BlockStorage(Material.rock).setHardness(6.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setBlockName("blockRuby").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:RubyBlock");
-    public static final Block BlazeBlock = new BlockBlazeBlock().setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setBlockName("blockBlaze").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BlazeBlock");
-    public static final Block EndBrickBlock = new BlockNormal(Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setBlockName("enderBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:EndBrickBlock");
-    public static final Block EndBrickStair = new BlockNormalStairs(EndBrickBlock, 0).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setBlockName("stairsEnderBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:EndBrickBlock");
-    public static final BlockSlab EndBrickSlab = (BlockSlab) new BlockEnderBrickSlab(false, Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setBlockName("slabEnderBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:EndBrickBlock");
-    public static final BlockSlab EndBrickSlabFull = (BlockSlab) new BlockEnderBrickSlab(true, Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setBlockName("slabEnderBrick").setBlockTextureName("bettercraft:EndBrickBlock");
-    public static final Block IronTrapdoor = new BlockIronTrapdoor(Material.iron).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setBlockName("trapdoorIron").setCreativeTab(CreativeTabs.tabRedstone).setBlockTextureName("bettercraft:trapdoorIron");
-    public static final Block NetherLog = new BlockNetherLog().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("netherLog").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:NetherLog");
-    public static final Block NetherPlanks = new BlockNetherWood().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("netherPlanks").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:NetherPlanks");
-    public static final BlockNetherLeaves NetherLeaves = (BlockNetherLeaves) new BlockNetherLeaves().setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("netherLeaves").setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("bettercraft:NetherLeaves");   
-    public static final Block NetherSapling = new BlockNetherSapling().setHardness(0F).setResistance(1.0F).setStepSound(Block.soundTypeGrass).setBlockName("netherSapling").setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("bettercraft:NetherSapling");
-    public static final Block NetherWoodStairs = new BlockNormalStairs(NetherPlanks, 0).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("stairsNetherwood").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:NetherPlanksStair");
-    public static final BlockSlab NetherWoodSlab = (BlockSlab) new BlockNetherwoodSlab(false, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("slabNetherwood").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:NetherPlanks");
-    public static final BlockSlab NetherWoodSlabFull = (BlockSlab) new BlockNetherwoodSlab(true, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("slabNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
-    public static final Block SoulGlass = new BlockSoulGlass(Material.glass, false).setHardness(0.5F).setResistance(15.0F).setStepSound(Block.soundTypeGlass).setBlockName("soulGlass").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:SoulGlass");
-    public static final BlockNetherwoodChest NetherwoodChest = (BlockNetherwoodChest)(new BlockNetherwoodChest(0)).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundTypeWood).setBlockName("chestNetherwood").setCreativeTab(CreativeTabs.tabDecorations);    
-    public static final Block EnderBlock = new BlockStorage(Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("blockEnder").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:EnderBlock");    
-    public static final Block GunpowderBlock = new BlockGunpowder().setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("blockGunpowder").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:GunpowderBlock");    
-    public static final Block SlimeBlock = new BlockSlimeBlock(Material.sand).setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeSand).setBlockName("blockSlime").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:SlimeBlock");    
-    public static final Block BedrockBrick = new BlockBedrockBricks(Material.rock).setBlockUnbreakable().setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("bedrockBrick").setCreativeTab(CreativeTabs.tabBlock).setBlockTextureName("bettercraft:BedrockBrick");    
-    public static final Block NetherWoodCraftingTable = new BlockNetherwoodCraftingTable().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("netherwoodWorkbench").setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("bettercraft:netherwood_crafting_table");
-    //public static final Block netherwood_fence = new BlockNetherwoodFence("bettercraft:NetherPlanks", Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
+    //Ender Bricks
+    public static final Block EndBrickBlock = new BlockNormal(Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("enderBrick").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:EndBrickBlock");
+    public static final Block EndBrickStair = new BlockNormalStairs(EndBrickBlock, 0).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("stairsEnderBrick").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:EndBrickBlock");
+    public static final Block EndBrickSlab = new BlockNormalSlab(false, Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("slabEnderBrick").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:EndBrickBlock");
+    public static final Block EndBrickSlabFull = new BlockNormalSlab(true, Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("slabEnderBrick").setTextureName("bettercraft:EndBrickBlock");
+    
+    //Others
+    public static final Block StoneStair = new BlockNormalStairs(Blocks.stone, 0).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("stairStone").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:StoneStair");
+    public static final Block IronTrapdoor = new BlockIronTrapdoor(Material.iron).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setUnlocalizedName("trapdoorIron").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:trapdoorIron"); //Will be removed in 1.8.
+    public static final Block SoulGlass = new BlockSoulGlass(Material.glass, false).setHardness(0.5F).setResistance(15.0F).setStepSound(Block.soundTypeGlass).setUnlocalizedName("soulGlass").setCreativeTab(CreativeTabs.tabBlock).setTextureName("bettercraft:SoulGlass");
+    public static final Block BoneLadder = new BlockBoneLadder().setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("boneLadder").setCreativeTab(CreativeTabs.tabDecorations).setTextureName("bettercraft:BoneLadder");
+    public static final Block GlowstoneTorch = (new BlockGlowstoneTorch()).setUnlocalizedName("glowstoneTorch").setCreativeTab(CreativeTabs.tabDecorations).setTextureName("bettercraft:GlowstoneTorch");
+   
     
     //--LIST OF ITEMS--\\
     public static final Item fleshCooked = (new ItemFood(8, 0.8F, true)).setPotionEffect(Potion.confusion.id, 20, 0, 0.1F).setUnlocalizedName("fleshCooked").setTextureName("bettercraft:CookedFlesh");
@@ -176,10 +196,12 @@ public class BetterCraft
     public static final Item lambchopCooked = (new ItemFood(8, 0.8F, true)).setUnlocalizedName("muttonCooked").setTextureName("bettercraft:LambChopCooked");
     public static final Item eggFried = (new ItemFood(6, 0.5F, false)).setUnlocalizedName("eggCooked").setTextureName("bettercraft:FriedEgg");
     
-    public static final Item EnderBrick = (new Item()).setUnlocalizedName("brickEnder").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:ender_brick");
+    public static final Item EnderBrick = (new Item()).setUnlocalizedName("brickEnder").setCreativeTab(CreativeTabs.tabMaterials).setTextureName("bettercraft:ender_brick");   
+    
     public static Item NetherBrickDoor;
     public static Item GlassDoor;
     public static Item NetherwoodDoor;
+    public static Item BoneDoor;
     
     //Not active.
     //public static final Item HorseArmorBone = (new Item(6640)).setUnlocalizedName("horseArmorBone").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabMisc).setTextureName("bettercraft:entity/horse/bone_horse_armor");
@@ -316,28 +338,28 @@ public class BetterCraft
     public static final Item hoeBedrock = new ItemNormalHoe(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("hoeBedrock").setTextureName("bettercraft:bedrock_hoe");
     public static final Item swordBedrock = new ItemNormalSword(BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("swordBedrock").setTextureName("bettercraft:bedrock_sword");
     
-    
 	@EventHandler
 	// used in 1.6.2
 	// @PreInit // used in 1.5.2
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-		
 		config = new Configuration(event.getSuggestedConfigurationFile());
-		
 		config.load();
-		
-		hardcoreRecipes = config.getBoolean("hardcoreRecipes", config.CATEGORY_GENERAL, false, "Disables certain recipes and make some recipes harder. \n[Restart required!]");
-		sillyRecipes = config.getBoolean("sillyRecipes", config.CATEGORY_GENERAL, false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone.  \n[Restart required!]");
-		salvageRecipes = config.getBoolean("salvageRecipes", config.CATEGORY_GENERAL, true, "Enable or disable recipes involving dismantling items to get resources back.  \n[Restart required!]");
-		overrideMobDrops = config.getBoolean("overrideMobDrops", config.CATEGORY_GENERAL, true, "Override drops of sheeps, squids, and spiders to drop the new items? \n(You still can get the vanilla resources) ");
-		endermanBlockDrops = config.getBoolean("endermanBlockDrops", config.CATEGORY_GENERAL, true, "Allow Endermen to drop carried blocks on death? ");
-		mobHeadDrops = config.getBoolean("mobHeadDrops", config.CATEGORY_GENERAL, true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, and Skeletons) ");
-		//generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", config.CATEGORY_GENERAL, true, "Should Netherwood trees be generated? \n(Note: Only applies to new chunks!) \n[Restart required!]");
-		
+		//------
+		//Recipes
+		hardcoreRecipes = config.getBoolean("hardcoreRecipes", config.CATEGORY_GENERAL, false, "Disables certain recipes and make some recipes harder. \n§4Restart required!§r");
+		sillyRecipes = config.getBoolean("sillyRecipes", config.CATEGORY_GENERAL, false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone.  \n§4Restart required!§r");
+		salvageRecipes = config.getBoolean("salvageRecipes", config.CATEGORY_GENERAL, true, "Enable or disable recipes involving dismantling items to get resources back. It also includes converting stairs and slabs back to blocks.  \n§4Restart required!§r");
+		//Mob Drops
+		overrideMobDrops = config.getBoolean("overrideMobDrops", config.CATEGORY_GENERAL, true, "Override drops of sheeps, squids, and spiders to drop the new items? You still can get the vanilla resources\n§2Doesn't require restart.§r");
+		endermanBlockDrops = config.getBoolean("endermanBlockDrops", config.CATEGORY_GENERAL, true, "Allow Endermen to drop carried blocks on death?\n§2Doesn't require restart.§r");
+		mobHeadDrops = config.getBoolean("mobHeadDrops", config.CATEGORY_GENERAL, true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, and Skeletons)\n§2Doesn't require restart.§r");
+		//Generation
+		generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", config.CATEGORY_GENERAL, true, "Should Netherwood trees be generated? Note that this only applies to new chunks! \n§4Restart required!§r");
+		//------
 		config.save();
-		if (Loader.isModLoaded("malisisdoors"))
-		{
+		
+		if (Loader.isModLoaded("malisisdoors")) {
 			//Instantiate your descriptor
 			DoorAnimator netherDoorDescriptor = new DoorAnimator(Material.rock, Block.soundTypeStone, "doorNetherBrick", "BetterCraft:doorNether");
 			netherDoorDescriptor.register();
@@ -352,26 +374,34 @@ public class BetterCraft
 			DoorAnimator netherwoodDoorDescriptor = new DoorAnimator(Material.wood, Block.soundTypeWood, "doorNetherwood", "BetterCraft:doorNetherwood");
 			netherwoodDoorDescriptor.register();
 			doorNetherwood = netherwoodDoorDescriptor.getBlock().setHardness(2.5F).setResistance(7.5F);
-			NetherwoodDoor = netherwoodDoorDescriptor.getItem();	
+			NetherwoodDoor = netherwoodDoorDescriptor.getItem();
+			
+			DoorAnimator boneDoorDescriptor = new DoorAnimator(Material.rock, Block.soundTypeStone, "doorBone", "BetterCraft:doorBone");
+			boneDoorDescriptor.register();
+			doorBone = boneDoorDescriptor.getBlock().setHardness(4.0F).setResistance(10.0F);
+			BoneDoor = boneDoorDescriptor.getItem();	
 		}
-		else 
-		{
+		else {
 			//Mod not found.
-			doorNether = new BlockMoreDoors(Material.rock).setHardness(5.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("doorNether").setBlockTextureName("doorNether");
+			doorNether = new BlockMoreDoors(Material.rock).setHardness(5.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("doorNether").setTextureName("doorNether");
 			NetherBrickDoor = (new ItemMoreDoors(doorNether)).setUnlocalizedName("doorNether").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNether");
-			doorGlass = new BlockMoreDoors(Material.glass).setHardness(1.0F).setResistance(3.0F).setStepSound(Block.soundTypeGlass).setBlockName("doorGlass").setBlockTextureName("doorGlass");
+			doorGlass = new BlockMoreDoors(Material.glass).setHardness(1.0F).setResistance(3.0F).setStepSound(Block.soundTypeGlass).setUnlocalizedName("doorGlass").setTextureName("doorGlass");
 			GlassDoor = (new ItemMoreDoors(doorGlass)).setUnlocalizedName("doorGlass").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorGlass");
-			doorNetherwood = new BlockMoreDoors(Material.wood).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setBlockName("doorNetherwood").setBlockTextureName("doorNetherwood");
+			doorNetherwood = new BlockMoreDoors(Material.wood).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("doorNetherwood").setTextureName("doorNetherwood");
 			NetherwoodDoor = (new ItemMoreDoors(doorNetherwood)).setUnlocalizedName("doorNetherwood").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorNetherwood");
+			doorBone = new BlockMoreDoors(Material.rock).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("doorBone").setTextureName("doorBone");
+			BoneDoor = (new ItemMoreDoors(doorBone)).setUnlocalizedName("doorBone").setCreativeTab(CreativeTabs.tabRedstone).setTextureName("bettercraft:doorBone");
 			GameRegistry.registerBlock(doorNether, "doorNetherBrickBlock");
 			GameRegistry.registerItem(NetherBrickDoor, "doorNetherBrick");
 			GameRegistry.registerBlock(doorGlass, "doorGlassBlock");
 			GameRegistry.registerItem(GlassDoor, "doorGlass");
 			GameRegistry.registerBlock(doorNetherwood, "doorNetherwoodBlock");
 	    	GameRegistry.registerItem(NetherwoodDoor, "doorNetherwood");
+			GameRegistry.registerBlock(doorBone, "doorBoneBlock");
+	    	GameRegistry.registerItem(BoneDoor, "doorBone");
 		}
 		MinecraftForge.EVENT_BUS.register(new MobDrop());
-		MinecraftForge.EVENT_BUS.register(new BonemealUsage());
+		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
 		FMLCommonHandler.instance().bus().register(new ConfigurationEvents());
 		proxy.registerRenderers();
 	}
@@ -406,12 +436,14 @@ public class BetterCraft
     	GameRegistry.registerBlock(NetherWoodSlabFull, ItemNetherwoodSlab.class, "slabNetherwoodFull");
     	//GameRegistry.registerBlock(netherwood_fence, "fenceNetherwood");
     	GameRegistry.registerBlock(SoulGlass, "soulGlass");
-    	GameRegistry.registerBlock(NetherwoodChest, "chestNetherwood");
+    	GameRegistry.registerBlock(NetherWoodChest, "chestNetherwood");
     	GameRegistry.registerBlock(EnderBlock, "blockEnder");  
     	GameRegistry.registerBlock(GunpowderBlock, "blockGunpowder");
     	GameRegistry.registerBlock(SlimeBlock, "blockSlime");
     	GameRegistry.registerBlock(BedrockBrick, "bedrockBricks");
     	GameRegistry.registerBlock(NetherWoodCraftingTable, "netherwoodWorkbench");
+    	GameRegistry.registerBlock(BoneLadder, "boneLadder");
+    	GameRegistry.registerBlock(GlowstoneTorch, "glowstoneTorch");
 
     	//Register food
     	GameRegistry.registerItem(fleshCooked, "fleshCooked");
@@ -726,6 +758,8 @@ public class BetterCraft
         
         // Decorative Blocks
         GameRegistry.addRecipe(new ItemStack(EndBrickBlock, 1), new Object[] {"##","##",'#', EnderBrick});
+		GameRegistry.addRecipe(new ItemStack(BoneLadder, 3), new Object[] {"# #", "###", "# #", '#', Items.bone});
+        GameRegistry.addRecipe(new ItemStack(GlowstoneTorch, 1), new Object[] {"G", "S", 'G', Items.glowstone_dust, 'S', Items.stick});
 
         // Slabs and Stairs
         GameRegistry.addRecipe(new ItemStack(EndBrickStair, 4), new Object[] {"  #"," ##","###",'#', EndBrickBlock});
@@ -748,20 +782,25 @@ public class BetterCraft
 		GameRegistry.addRecipe(new ItemStack(Items.saddle, 1), new Object[] {"LLL", "LSL", "I I", 'I', Items.iron_ingot, 'L', Items.leather, 'S', Items.string});
 		GameRegistry.addRecipe(new ItemStack(NetherBrickDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Blocks.nether_brick});
 		GameRegistry.addRecipe(new ItemStack(GlassDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Blocks.glass});
+		GameRegistry.addRecipe(new ItemStack(BoneDoor, 1), new Object[] {"BB", "BB", "BB", 'B', Items.bone});
 		GameRegistry.addRecipe(new ItemStack(gateNetherBrick, 1), new Object[] {"#B#", "#B#", 'B', Blocks.nether_brick, '#', Items.netherbrick});
 		GameRegistry.addRecipe(new ItemStack(BedrockBrick, 4), new Object[] {"##", "##", '#', Blocks.bedrock});
+		//Needed because otherwise, these vanilla items would be unobtainable.
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.spider_eye, 1), new Object[] {spiderMeatRaw});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 0), new Object[] {squid});
 		
 		/*Horse Armour*/
-        GameRegistry.addRecipe(new ItemStack(Items.iron_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.iron_ingot, 'C', Blocks.wool});
-        GameRegistry.addRecipe(new ItemStack(Items.golden_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.gold_ingot, 'C', Blocks.wool});
-        GameRegistry.addRecipe(new ItemStack(Items.diamond_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.diamond, 'C', Blocks.wool});
-        
+        if (!hardcoreRecipes) {
+	        GameRegistry.addRecipe(new ItemStack(Items.iron_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.iron_ingot, 'C', Blocks.wool});
+	        GameRegistry.addRecipe(new ItemStack(Items.golden_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.gold_ingot, 'C', Blocks.wool});
+	        GameRegistry.addRecipe(new ItemStack(Items.diamond_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.diamond, 'C', Blocks.wool});
+        }
 		/*Nether wood planks recipes*/
 		GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"B", "B", 'B', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(NetherWoodCraftingTable, 1), new Object[] {"BB", "BB", 'B', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.trapdoor, 2), new Object[] {"###", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_button, 1), new Object[] {"#", '#', NetherPlanks});
-		GameRegistry.addRecipe(new ItemStack(NetherwoodChest, 1), new Object[] {"###", "# #", "###", '#', NetherPlanks});
+		GameRegistry.addRecipe(new ItemStack(NetherWoodChest, 1), new Object[] {"###", "# #", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.jukebox, 1), new Object[] {"###", "#D#", "###", '#', NetherPlanks, 'D', Items.diamond});
 		GameRegistry.addRecipe(new ItemStack(Blocks.noteblock, 1), new Object[] {"###", "#R#", "###", '#', NetherPlanks, 'R', Items.redstone});
 		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_pressure_plate, 1), new Object[] {"##", '#', NetherPlanks});
@@ -777,10 +816,8 @@ public class BetterCraft
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe, 1), new Object[] {"##", "#S", " S", '#', NetherPlanks, 'S', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_shovel, 1), new Object[] {"#", "S", "S", '#', NetherPlanks, 'S', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_hoe, 1), new Object[] {"##", " S", " S", '#', NetherPlanks, 'S', Items.stick});
-		
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.spider_eye, 1), new Object[] {spiderMeatRaw});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 0), new Object[] {squid});
 
+        //Food recipes
         GameRegistry.addShapelessRecipe(new ItemStack(cakeSlice, 6), new Object[] {Items.cake});
         GameRegistry.addShapelessRecipe(new ItemStack(applePie, 1), new Object[] {Items.egg, Items.apple, Items.sugar});
         
@@ -797,35 +834,38 @@ public class BetterCraft
         // ~ --DISMANTLE/SALVAGE RECIPES-- ~ \\
         
         //--Convert slabs and stairs to full blocks--\\
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.oak_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.spruce_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.birch_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.jungle_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.acacia_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.dark_oak_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), new Object[] {"SS", "SS", 'S', Blocks.sandstone_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 6), new Object[] {"SS", "SS", 'S', Blocks.brick_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_brick_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 6), new Object[] {"SS", "SS", 'S', Blocks.nether_brick_stairs});
-        GameRegistry.addRecipe(new ItemStack(Blocks.quartz_block, 6), new Object[] {"SS", "SS", 'S', Blocks.quartz_stairs}); //--Quartz stairs to quartz blocks.
-        GameRegistry.addRecipe(new ItemStack(EndBrickBlock, 6), new Object[] {"SS", "SS", 'S', EndBrickStair}); //--Ender Brick stairs to ender brick blocks.
-        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 6), new Object[] {"SS", "SS", 'S', StoneStair}); //--Smooth Stone stairs to smooth stone blocks.
-        GameRegistry.addRecipe(new ItemStack(NetherPlanks, 6), new Object[] {"SS", "SS", 'S', NetherWoodStairs});
-
-        
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 0)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 1)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 2)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 3)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 4)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 5)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 3)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 0)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 1)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 4)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 5)});
-        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 6)});
+        if (salvageRecipes) {
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.oak_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.spruce_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.birch_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.jungle_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.acacia_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.dark_oak_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), new Object[] {"SS", "SS", 'S', Blocks.sandstone_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 6), new Object[] {"SS", "SS", 'S', Blocks.brick_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_brick_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 6), new Object[] {"SS", "SS", 'S', Blocks.nether_brick_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.quartz_block, 6), new Object[] {"SS", "SS", 'S', Blocks.quartz_stairs}); //--Quartz stairs to quartz blocks.
+	        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 6), new Object[] {"SS", "SS", 'S', StoneStair}); //--Smooth Stone stairs to smooth stone blocks.
+	        GameRegistry.addRecipe(new ItemStack(EndBrickBlock, 6), new Object[] {"SS", "SS", 'S', EndBrickStair}); //--Ender Brick stairs to ender brick blocks.
+	        GameRegistry.addRecipe(new ItemStack(NetherPlanks, 6), new Object[] {"SS", "SS", 'S', NetherWoodStairs});
+	
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 1)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 2)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 3)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 4)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 5)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 3)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 1)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 4)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 5)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 6)});
+	        GameRegistry.addRecipe(new ItemStack(EndBrickBlock, 1), new Object[] {"#", "#", '#', new ItemStack(EndBrickSlab, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(NetherPlanks, 1), new Object[] {"#", "#", '#', new ItemStack(NetherWoodSlab, 1, 0)});
+        }
         
         //--Dismantling objects--\\
         if (salvageRecipes) {
@@ -842,6 +882,7 @@ public class BetterCraft
 	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.ladder});
 	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Blocks.crafting_table});
 	        GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 4), new Object[] {Blocks.quartz_block});
+	        GameRegistry.addShapelessRecipe(new ItemStack(NetherPlanks, 8), new Object[] {NetherWoodChest});
 	        GameRegistry.addShapelessRecipe(new ItemStack(NetherPlanks, 4), new Object[] {NetherWoodCraftingTable});
         }
         
@@ -860,10 +901,11 @@ public class BetterCraft
         GameRegistry.addSmelting(Items.egg, new ItemStack(BetterCraft.eggFried), 1.0F);
 		
         //--Melting down--\\
-        GameRegistry.addSmelting(Items.iron_door, new ItemStack(Items.iron_ingot, 6), 0.5F);
-        GameRegistry.addSmelting(Items.minecart, new ItemStack(Items.iron_ingot, 5), 0.5F);
-        GameRegistry.addSmelting(Items.cauldron, new ItemStack(Items.iron_ingot, 7), 0.5F);
-        
+        if (salvageRecipes) {
+	        GameRegistry.addSmelting(Items.iron_door, new ItemStack(Items.iron_ingot, 6), 0.5F);
+	        GameRegistry.addSmelting(Items.minecart, new ItemStack(Items.iron_ingot, 5), 0.5F);
+	        GameRegistry.addSmelting(Items.cauldron, new ItemStack(Items.iron_ingot, 7), 0.5F);
+        }
         GameRegistry.registerWorldGenerator(new BetterCraftGenerator(), 1);
         //proxy.registerNetwork();
         
@@ -882,7 +924,7 @@ public class BetterCraft
     		OreDictionary.registerOre("plankNetherwood", NetherPlanks);
     		OreDictionary.registerOre("leavesNetherwood", NetherLeaves);
     		OreDictionary.registerOre("saplingNetherwood", NetherSapling);
-    		OreDictionary.registerOre("chestNetherwood", NetherwoodChest);
+    		OreDictionary.registerOre("chestNetherwood", NetherWoodChest);
     		
     		//Ender Bricks block
     		OreDictionary.registerOre("blockEnderBricks", EndBrickBlock);
@@ -904,13 +946,16 @@ public class BetterCraft
 
     public static void syncConfig() {
     	System.out.println("Syncing...");
-        hardcoreRecipes = config.getBoolean("hardcoreRecipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "Disables certain recipes and make some recipes harder.");
-        sillyRecipes = config.getBoolean("sillyRecipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone.");
-        salvageRecipes = config.getBoolean("salvageRecipes", Configuration.CATEGORY_GENERAL, salvageRecipes, "Enable or disable recipes involving dismantling items to get resources back.");
-        overrideMobDrops = config.getBoolean("overrideMobDrops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "Override drops of sheep, squids, and spiders to drop the new items? (You still can get the vanilla resources)");
-        endermanBlockDrops = config.getBoolean("endermanBlockDrops", Configuration.CATEGORY_GENERAL, endermanBlockDrops, "Allow Endermen to drop carried blocks on death?");
-        mobHeadDrops = config.getBoolean("mobHeadDrops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "Should mobs rarely drop head when killed? (Creepers, Zombies, and Skeletons)");
-        //generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, "Should Netherwood trees be generated? (Note: Only applies to new chunks!)");
+    	//Recipes
+        hardcoreRecipes = config.getBoolean("hardcoreRecipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "");
+        sillyRecipes = config.getBoolean("sillyRecipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "");
+        salvageRecipes = config.getBoolean("salvageRecipes", Configuration.CATEGORY_GENERAL, salvageRecipes, "");
+        //Mob Drops
+        overrideMobDrops = config.getBoolean("overrideMobDrops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "");
+        endermanBlockDrops = config.getBoolean("endermanBlockDrops", Configuration.CATEGORY_GENERAL, endermanBlockDrops, "");
+        mobHeadDrops = config.getBoolean("mobHeadDrops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "");
+        //Generation
+        generateNetherwoodTrees = config.getBoolean("generateNetherwoodTrees", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, "");
 
         if(config.hasChanged())
             config.save();

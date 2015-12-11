@@ -23,7 +23,7 @@ public class ItemBlazeArmor extends ItemArmor
 	    super(par2EnumArmorMaterial, par3, par4);
 	    this.material = par2EnumArmorMaterial;
 	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
-	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.setMaxDurability(par2EnumArmorMaterial.getDurability(par4));
 	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	    repairMaterial = par6;

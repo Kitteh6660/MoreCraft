@@ -25,7 +25,7 @@ public class ItemSlimeArmor extends ItemArmor
 	    super(par2EnumArmorMaterial, par3, par4);
 	    this.material = par2EnumArmorMaterial;
 	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
-	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.setMaxDurability(par2EnumArmorMaterial.getDurability(par4));
 	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	    repairMaterial = par6;
@@ -51,7 +51,7 @@ public class ItemSlimeArmor extends ItemArmor
 		
 		if (this.tickUntilSelfRepair <= 0)
 		{
-			if (itemStack.getItemDamage() > 0)
+			if (itemStack.getCurrentDurability() > 0)
 			{
 				itemStack.damageItem(-1, player);
 			}

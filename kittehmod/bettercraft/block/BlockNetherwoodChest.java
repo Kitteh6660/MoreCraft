@@ -17,6 +17,7 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -92,7 +93,7 @@ public class BlockNetherwoodChest extends BlockChest
 		}
 		if (p_149689_6_.hasDisplayName())
 		{
-			((TileEntityNetherwoodChest)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_)).func_145976_a(p_149689_6_.getDisplayName());
+			((TileEntityNetherwoodChest)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_)).getInventoryName(); //.func_145976_a(p_149689_6_.getDisplayName());
 		}
 	}
 	/**
@@ -102,20 +103,20 @@ public class BlockNetherwoodChest extends BlockChest
 	public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
 	{
 		super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
-		TileEntityNetherwoodChest tileentitychest = (TileEntityNetherwoodChest)p_149695_1_.getTileEntity(p_149695_2_, p_149695_3_, p_149695_4_);
-		if (tileentitychest != null)
+		TileEntityNetherwoodChest TileEntityNetherwoodChest = (TileEntityNetherwoodChest)p_149695_1_.getTileEntity(p_149695_2_, p_149695_3_, p_149695_4_);
+		if (TileEntityNetherwoodChest != null)
 		{
-			tileentitychest.updateContainingBlockInfo();
+			TileEntityNetherwoodChest.updateContainingBlockInfo();
 		}
 	}
-	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+	public void breakBlock(World p_149749_1_, int coordX, int coordY, int coordZ, Block p_149749_5_, int p_149749_6_)
 	{
-		TileEntityNetherwoodChest tileentitychest = (TileEntityNetherwoodChest)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
-		if (tileentitychest != null)
+		TileEntityNetherwoodChest TileEntityNetherwoodChest = (TileEntityNetherwoodChest)p_149749_1_.getTileEntity(coordX, coordY, coordZ);
+		if (TileEntityNetherwoodChest != null)
 		{
-			for (int i1 = 0; i1 < tileentitychest.getSizeInventory(); ++i1)
+			for (int i1 = 0; i1 < TileEntityNetherwoodChest.getSizeInventory(); ++i1)
 			{
-				ItemStack itemstack = tileentitychest.getStackInSlot(i1);
+				ItemStack itemstack = TileEntityNetherwoodChest.getStackInSlot(i1);
 				if (itemstack != null)
 				{
 					float f = this.field_149955_b.nextFloat() * 0.8F + 0.1F;
@@ -129,7 +130,7 @@ public class BlockNetherwoodChest extends BlockChest
 							j1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= j1;
-						entityitem = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + f), (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+						entityitem = new EntityItem(p_149749_1_, (double)((float)coordX + f), (double)((float)coordY + f1), (double)((float)coordZ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getCurrentDurability()));
 						float f3 = 0.05F;
 						entityitem.motionX = (double)((float)this.field_149955_b.nextGaussian() * f3);
 						entityitem.motionY = (double)((float)this.field_149955_b.nextGaussian() * f3 + 0.2F);
@@ -141,9 +142,9 @@ public class BlockNetherwoodChest extends BlockChest
 					}
 				}
 			}
-			p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
+			//p_149749_1_.func_147453_f(coordX, coordY, coordZ, p_149749_5_);
 		}
-		super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
+		super.breakBlock(p_149749_1_, coordX, coordY, coordZ, p_149749_5_, p_149749_6_);
 	}
 	
 	public IInventory func_149951_m(World p_149951_1_, int p_149951_2_, int p_149951_3_, int p_149951_4_)
@@ -220,14 +221,19 @@ public class BlockNetherwoodChest extends BlockChest
 	/**
 	 * Returns a new instance of a block's tile entity class. Called on placing the block.
 	 */
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+	@Override
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
-		TileEntityNetherwoodChest tileentitychest = new TileEntityNetherwoodChest();
-		return tileentitychest;
+		TileEntityNetherwoodChest TileEntityNetherwoodChest = new TileEntityNetherwoodChest();
+		return TileEntityNetherwoodChest;
 	}
+	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister p_149651_1_)
+	public void registerIcons(IIconRegister p_149651_1_)
 	{
 		this.blockIcon = p_149651_1_.registerIcon("bettercraft:NetherPlanks");
 	}
+	
+
 }

@@ -14,7 +14,7 @@ public class ItemEnderbrickSlab extends ItemSlab
     public ItemEnderbrickSlab(Block block)
     {
 	    super(block, (BlockSlab)BetterCraft.EndBrickSlab, (BlockSlab)BetterCraft.EndBrickSlabFull, false);
-	    this.setMaxDamage(0);
+	    this.setMaxDurability(0);
 	    this.setHasSubtypes(true);
     }
 }

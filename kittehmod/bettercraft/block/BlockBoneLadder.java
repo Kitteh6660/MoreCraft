@@ -2,27 +2,25 @@ package kittehmod.bettercraft.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockGlass;
+import net.minecraft.block.BlockLadder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 
-public class BlockSoulGlass extends BlockGlass
+public class BlockBoneLadder extends BlockLadder 
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon blockIcon;
 	
-    public BlockSoulGlass(Material par2Material, boolean par3)
-    {
-        super(par2Material, par3);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-    }
+	public BlockBoneLadder() {
+		super();
+	}
+	
     @Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("bettercraft:SoulGlass");
+		this.blockIcon = par1IconRegister.registerIcon("bettercraft:BoneLadder");
 	}
     
 	@SideOnly(Side.CLIENT)

@@ -9,13 +9,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockNetherLog extends Block
 {
 
-    private IIcon[] icons;
+    private IIcon[] icons = new IIcon[2];
 	
     public BlockNetherLog()
     {
@@ -30,10 +33,9 @@ public class BlockNetherLog extends Block
     {
     	return false;
     }
-    
-	@Override
+    @Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
 		this.icons = new IIcon[2];
 		this.icons[0] = par1IconRegister.registerIcon("bettercraft:Netherwood_top");
@@ -126,5 +128,11 @@ public class BlockNetherLog extends Block
         }
 
         return var10 | var11;
+    }
+    
+    @Override
+    public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    {
+        return false;
     }
 }

@@ -21,9 +21,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockNetherwoodCraftingTable extends BlockWorkbench
 {
     @SideOnly(Side.CLIENT)
-    private IIcon field_150035_a;
+    public IIcon textureTop;
     @SideOnly(Side.CLIENT)
-    private IIcon field_150034_b;
+    public IIcon textureFront;
+    @SideOnly(Side.CLIENT)
+    public IIcon textureSide;
     private static final String __OBFID = "CL_00000221";
     
 	public BlockNetherwoodCraftingTable() 
@@ -31,24 +33,34 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
 		super();
 		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
-	
-    /**
-     * Gets the block's texture. Args: side, meta
-     */
+	@Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
-        return p_149691_1_ == 1 ? this.field_150035_a : (p_149691_1_ == 0 ? BetterCraft.NetherPlanks.getBlockTextureFromSide(p_149691_1_) : (p_149691_1_ != 2 && p_149691_1_ != 4 ? this.blockIcon : this.field_150034_b));
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister p_149651_1_)
-    {
-        this.blockIcon = p_149651_1_.registerIcon(this.getTextureName() + "_side");
-        this.field_150035_a = p_149651_1_.registerIcon(this.getTextureName() + "_top");
-        this.field_150034_b = p_149651_1_.registerIcon(this.getTextureName() + "_front");
+        this.textureTop = par1IconRegister.registerIcon(this.getTextureName() + "_top");
+        this.textureFront = par1IconRegister.registerIcon(this.getTextureName() + "_front");
+        this.textureSide = par1IconRegister.registerIcon(this.getTextureName() + "_side");
     }
     
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int blockSide, int p_149691_2_)
+    {
+    	IIcon thisTexture;
+    	switch(blockSide) {
+	    	case 0:
+	    		return BetterCraft.NetherPlanks.getBlockTextureFromSide(blockSide);
+	    	case 1:
+	    		return this.textureTop;
+	    	case 2:
+	    	case 3:
+	    	case 4:
+	    		return this.textureSide;
+	    	case 5:
+	    		return this.textureFront;
+	    	default:
+	    		return BetterCraft.NetherPlanks.getBlockTextureFromSide(blockSide);	    		
+    	}
+    }
     /**
      * Called upon block activation (right click on the block.)
      */
@@ -62,7 +74,6 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         else
         {
         	player.openGui(BetterCraft.instance, 0, world, x, y, z);
-        	System.out.println("Opening GUI  " + x + ", " + y + ", " + z);
         	//player.displayGUIWorkbench(x, y, z);
             return true;
         }

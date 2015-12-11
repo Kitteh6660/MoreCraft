@@ -131,10 +131,10 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 			}
 		}
 	}
-	private boolean func_145977_a(int p_145977_1_, int p_145977_2_, int p_145977_3_)
+	private boolean func_145977_a(int coordX, int coordY, int coordZ)
 	{
-		Block block = this.worldObj.getBlock(p_145977_1_, p_145977_2_, p_145977_3_);
-		return block instanceof BlockNetherwoodChest && ((BlockNetherwoodChest)block).field_149956_a == this.func_145980_j();
+		Block block = this.worldObj.getBlock(coordX, coordY, coordZ);
+		return block instanceof BlockNetherwoodChest && ((BlockNetherwoodChest)block).chestType == this.func_145980_j();
 	}
 	public int func_145980_j()
 	{
@@ -144,7 +144,7 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 			{
 				return 0;
 			}
-			this.cachedChestType = ((BlockNetherwoodChest)this.getBlockType()).field_149956_a;
+			this.cachedChestType = ((BlockNetherwoodChest)this.getBlockType()).chestType;
 		}
 		return this.cachedChestType;
 	}

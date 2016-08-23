@@ -8,7 +8,7 @@ public class BlockBoneLadder extends BlockLadder
 	
 	public BlockBoneLadder() {
 		super();
-		this.func_149647_a(CreativeTabs.field_78031_c);
+		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
 	
 }

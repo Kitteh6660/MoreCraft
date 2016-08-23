@@ -9,7 +9,7 @@ public class BlockNormalSlabDouble extends BlockNormalSlab {
 	}
 	
     @Override
-    public final boolean func_176552_j() {
+    public final boolean isDouble() {
         return true;
     }
 }

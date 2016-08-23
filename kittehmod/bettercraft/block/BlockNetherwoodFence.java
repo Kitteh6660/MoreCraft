@@ -11,8 +11,8 @@ public class BlockNetherwoodFence extends BlockFence
 {
 	public BlockNetherwoodFence(String p_i45406_1_, Material material) 
 	{
-		super(Material.field_151575_d);
-		this.func_149647_a(CreativeTabs.field_78031_c);
+		super(Material.wood);
+		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
 
     @Override

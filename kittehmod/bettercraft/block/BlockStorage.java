@@ -17,7 +17,7 @@ public class BlockStorage extends Block
 		super(material);
 		if (this == MoreCraftBlocks.blaze_block || this == MoreCraftBlocks.ender_block) this.setHarvestLevel("pickaxe", 1);
 		if (this == MoreCraftBlocks.ruby_block) this.setHarvestLevel("pickaxe", 2);
-		func_149647_a(CreativeTabs.field_78030_b);
+		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@Override

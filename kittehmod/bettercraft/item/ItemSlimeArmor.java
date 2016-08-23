@@ -12,7 +12,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 public class ItemSlimeArmor extends ItemArmor
 {
 	public String armorNamePrefix;
@@ -25,9 +24,9 @@ public class ItemSlimeArmor extends ItemArmor
 	{
 	    super(par2EnumArmorMaterial, par3, par4);
 	    this.material = par2EnumArmorMaterial;
-	    par2EnumArmorMaterial.func_78044_b(par4);
-	    this.func_77656_e(par2EnumArmorMaterial.func_78046_a(par4));
-	    this.field_77777_bU = 1;
+	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
+	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	    repairMaterial = par6;
 	}
@@ -46,7 +45,7 @@ public class ItemSlimeArmor extends ItemArmor
 		
 		if (this.tickUntilRegen <= 0)
 		{
-			player.func_70691_i(1.0F);
+			player.heal(1.0F);
 			this.tickUntilRegen = 1200;
 		}
 		
@@ -61,9 +60,9 @@ public class ItemSlimeArmor extends ItemArmor
 		}
 	}
 	
-	public boolean func_82789_a(ItemStack par1ItemStack, ItemStack par2ItemStack) 
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
 	{
-		return repairMaterial == par2ItemStack.func_77973_b() ? true : super.func_82789_a(par1ItemStack, par2ItemStack);
+		return repairMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)

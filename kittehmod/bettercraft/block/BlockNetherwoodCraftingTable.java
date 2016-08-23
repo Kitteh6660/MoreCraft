@@ -26,16 +26,16 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
 	public BlockNetherwoodCraftingTable() 
 	{
 		super();
-		this.func_149647_a(CreativeTabs.field_78031_c);
+		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
 
     /**
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean func_180639_a(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (worldIn.field_72995_K)
+        if (worldIn.isRemote)
         {
             return true;
         }
@@ -43,8 +43,8 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         {
             //playerIn.displayGui(new WorkbenchGui(worldIn, pos));
         	//playerIn.displayGui(new BlockNetherwoodCraftingTable.InterfaceCraftingTable(worldIn, pos));
-        	FMLNetworkHandler.openGui(playerIn, MoreCraft.instance, GuiHandler.CRAFTING_GUI, worldIn, pos.func_177958_n(), pos.func_177956_o(), pos.func_177952_p());
-            playerIn.func_71029_a(StatList.field_181742_Z);
+        	FMLNetworkHandler.openGui(playerIn, MoreCraft.instance, GuiHandler.CRAFTING_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.triggerAchievement(StatList.field_181742_Z);
             return true;
         }
     }
@@ -70,7 +70,7 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         /**
          * Get the name of this object. For players this returns their username
          */
-        public String func_70005_c_()
+        public String getName()
         {
             return null;
         }
@@ -78,7 +78,7 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         /**
          * Returns true if this thing is named
          */
-        public boolean func_145818_k_()
+        public boolean hasCustomName()
         {
             return false;
         }
@@ -86,17 +86,17 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         /**
          * Get the formatted ChatComponent that will be used for the sender's username in chat
          */
-        public IChatComponent func_145748_c_()
+        public IChatComponent getDisplayName()
         {
-            return new ChatComponentTranslation(Blocks.field_150462_ai.func_149739_a() + ".name", new Object[0]);
+            return new ChatComponentTranslation(Blocks.crafting_table.getUnlocalizedName() + ".name", new Object[0]);
         }
 
-        public Container func_174876_a(InventoryPlayer playerInventory, EntityPlayer playerIn)
+        public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
         {
             return new ContainerWorkbench(playerInventory, this.world, this.position);
         }
 
-        public String func_174875_k()
+        public String getGuiID()
         {
             return "minecraft:crafting_table";
         }

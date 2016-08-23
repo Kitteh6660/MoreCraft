@@ -23,12 +23,12 @@ public class BlockMoreDoors extends BlockDoor
 		super(par2Material);
 		float f = 0.5F;
 		float f1 = 1.0F;
-		this.func_149676_a(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
+		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
 	}
 
 	@Override
     @SideOnly(Side.CLIENT)
-    public Item func_180665_b(World worldIn, BlockPos pos)
+    public Item getItem(World worldIn, BlockPos pos)
     {
         return this.getItem();
     }
@@ -39,17 +39,17 @@ public class BlockMoreDoors extends BlockDoor
  		       this == MoreCraftBlocks.netherwood_door ? MoreCraftItems.netherwood_door_item : 
     	       this == MoreCraftBlocks.glass_door ? MoreCraftItems.glass_door_item : 
         	   this == MoreCraftBlocks.bone_door ? MoreCraftItems.bone_door_item : 
-    				Items.field_179570_aq;
+    				Items.oak_door;
     }
 
     @Override
-	public Item func_180660_a(IBlockState state, Random rand, int fortune)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
         return this == MoreCraftBlocks.netherbrick_door ? MoreCraftItems.netherbrick_door_item : 
                this == MoreCraftBlocks.netherwood_door ? MoreCraftItems.netherwood_door_item : 
                this == MoreCraftBlocks.glass_door ? MoreCraftItems.glass_door_item : 
                this == MoreCraftBlocks.bone_door ? MoreCraftItems.bone_door_item : 
-            	    Items.field_179570_aq;
+            	    Items.oak_door;
 	}
 
 }

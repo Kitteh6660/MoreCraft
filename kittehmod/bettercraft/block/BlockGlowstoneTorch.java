@@ -14,17 +14,17 @@ public class BlockGlowstoneTorch extends BlockTorch {
 	
 	public BlockGlowstoneTorch() {
 		super();
-		this.func_149647_a(CreativeTabs.field_78031_c);
+		this.setCreativeTab(CreativeTabs.tabDecorations);
 	}
 	
 	@Override
-	public int func_149750_m() {
+	public int getLightValue() {
 		return 15;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_180655_c(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+	public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		//Glowstone torch doesn't emit particles.
 	}
 }

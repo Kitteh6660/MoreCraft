@@ -19,8 +19,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 //import net.minecraft.src.ModLoader; --Deprecated.
 //import cpw.mods.fml.common.network.NetworkMod;
 
@@ -84,15 +82,15 @@ public class MoreCraft
 		config.load();
 		//------
 		//Recipes
-		hardcoreRecipes = config.getBoolean("hardcoreRecipes", config.CATEGORY_GENERAL, false, "Disables certain recipes and make some recipes harder. \nï¿½4Restart required!ï¿½r");
-		sillyRecipes = config.getBoolean("sillyRecipes", config.CATEGORY_GENERAL, false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone. \nï¿½4Restart required!ï¿½r");
-		salvageRecipes = config.getBoolean("salvageRecipes", config.CATEGORY_GENERAL, true, "Enable or disable recipes involving dismantling items to get resources back. It also includes converting stairs and slabs back to blocks. \nï¿½4Restart required!ï¿½r");
+		hardcoreRecipes = config.getBoolean("hardcoreRecipes", config.CATEGORY_GENERAL, false, "Disables certain recipes and make some recipes harder. \n§4Restart required!§r");
+		sillyRecipes = config.getBoolean("sillyRecipes", config.CATEGORY_GENERAL, false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone. \n§4Restart required!§r");
+		salvageRecipes = config.getBoolean("salvageRecipes", config.CATEGORY_GENERAL, true, "Enable or disable recipes involving dismantling items to get resources back. It also includes converting stairs and slabs back to blocks. \n§4Restart required!§r");
 		//Mob Drops
-		overrideMobDrops = config.getBoolean("overrideMobDrops", config.CATEGORY_GENERAL, true, "Override drops of sheeps, squids, and spiders to drop the new items? You still can get the vanilla resources. \nï¿½2Doesn't require restart.ï¿½r");
-		endermanBlockDrops = config.getBoolean("endermanBlockDrops", config.CATEGORY_GENERAL, true, "Allow Endermen to drop carried blocks on death? \nï¿½2Doesn't require restart.ï¿½r");
-		mobHeadDrops = config.getBoolean("mobHeadDrops", config.CATEGORY_GENERAL, true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, and Skeletons) \nï¿½2Doesn't require restart.ï¿½r");
+		overrideMobDrops = config.getBoolean("overrideMobDrops", config.CATEGORY_GENERAL, true, "Override drops of sheeps, squids, and spiders to drop the new items? You still can get the vanilla resources. \n§2Doesn't require restart.§r");
+		endermanBlockDrops = config.getBoolean("endermanBlockDrops", config.CATEGORY_GENERAL, true, "Allow Endermen to drop carried blocks on death? \n§2Doesn't require restart.§r");
+		mobHeadDrops = config.getBoolean("mobHeadDrops", config.CATEGORY_GENERAL, true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, and Skeletons) \n§2Doesn't require restart.§r");
 		//Generation
-		generateNetherwoodTrees = config.getInt("generateNetherwoodTrees", config.CATEGORY_GENERAL, 16, 0, 32, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \nï¿½2Doesn't require restart.ï¿½r");
+		generateNetherwoodTrees = config.getInt("generateNetherwoodTrees", config.CATEGORY_GENERAL, 16, 0, 32, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r");
 		//------
 		config.save();
 		

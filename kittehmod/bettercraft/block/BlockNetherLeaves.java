@@ -42,14 +42,14 @@ public class BlockNetherLeaves extends BlockLeaves
 {	
     public BlockNetherLeaves()
     {
-    	this.field_150121_P = true;
-    	this.field_176238_O = true;
-    	this.func_180632_j(this.field_176227_L.func_177621_b().func_177226_a(field_176236_b, Boolean.valueOf(true)).func_177226_a(field_176237_a, Boolean.valueOf(true)));
+    	this.fancyGraphics = true;
+    	this.isTransparent = true;
+    	this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int func_149635_D()
+    public int getBlockColor()
     {
     	return 0xFFFFFF;
         //return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
@@ -57,14 +57,14 @@ public class BlockNetherLeaves extends BlockLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int func_180644_h(IBlockState state)
+    public int getRenderColor(IBlockState state)
     {
-    	return super.func_180644_h(state);
+    	return super.getRenderColor(state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int func_180662_a(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
     {
     	return 0xFFFFFF;
         //return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
@@ -72,52 +72,52 @@ public class BlockNetherLeaves extends BlockLeaves
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_180655_c(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    	super.func_180655_c(worldIn, pos, state, rand);
+    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+    	super.randomDisplayTick(worldIn, pos, state, rand);
     	//this.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
     }
     
 	@Override
-    public void func_180653_a(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        super.func_180653_a(worldIn, pos, state, chance, fortune);
+        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
     }
 
-    protected void func_176234_a(World worldIn, BlockPos pos, IBlockState state, int chance)
+    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-        if (worldIn.field_73012_v.nextInt(30) == 0)
+        if (worldIn.rand.nextInt(30) == 0)
         {
-            func_180635_a(worldIn, pos, new ItemStack(Items.field_151034_e, 1, 0));
+            spawnAsEntity(worldIn, pos, new ItemStack(Items.apple, 1, 0));
         }
     }
     
     @Override
-	public Item func_180660_a(IBlockState state, Random rand, int fortune)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-        return Item.func_150898_a(MoreCraftBlocks.netherwood_sapling);
+        return Item.getItemFromBlock(MoreCraftBlocks.netherwood_sapling);
 	}
     
     /**
      * Convert the given metadata into a BlockState for this Block
      */
-    public IBlockState func_176203_a(int meta)
+    public IBlockState getStateFromMeta(int meta)
     {
-        return this.func_176223_P().func_177226_a(field_176237_a, Boolean.valueOf((meta & 4) == 0)).func_177226_a(field_176236_b, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
     }
 
     /**
      * Convert the BlockState into the correct metadata value
      */
-    public int func_176201_c(IBlockState state)
+    public int getMetaFromState(IBlockState state)
     {
         int i = 0;
 
-        if (!((Boolean)state.func_177229_b(field_176237_a)).booleanValue())
+        if (!((Boolean)state.getValue(DECAYABLE)).booleanValue())
         {
             i |= 4;
         }
 
-        if (((Boolean)state.func_177229_b(field_176236_b)).booleanValue())
+        if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue())
         {
             i |= 8;
         }
@@ -125,27 +125,27 @@ public class BlockNetherLeaves extends BlockLeaves
         return i;
     }
 
-    public BlockPlanks.EnumType func_176233_b(int meta)
+    public BlockPlanks.EnumType getWoodType(int meta)
     {
-        return BlockPlanks.EnumType.func_176837_a((meta & 3) + 4);
+        return BlockPlanks.EnumType.byMetadata((meta & 3) + 4);
     }
 
-    protected BlockState func_180661_e()
+    protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {field_176236_b, field_176237_a});
+        return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE});
     }
 
-    public void func_180657_a(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
     {
         {
-            super.func_180657_a(worldIn, player, pos, state, te);
+            super.harvestBlock(worldIn, player, pos, state, te);
         }
     }
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
     {
-        IBlockState state = world.func_180495_p(pos);
+        IBlockState state = world.getBlockState(pos);
         return new java.util.ArrayList(java.util.Arrays.asList(new ItemStack(this, 1, 0)));
     }
     
@@ -153,9 +153,9 @@ public class BlockNetherLeaves extends BlockLeaves
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
     @Override
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
-        return !this.field_150121_P;
+        return !this.fancyGraphics;
     }
 
     /**
@@ -163,21 +163,21 @@ public class BlockNetherLeaves extends BlockLeaves
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_150122_b(boolean fancy)
+    public void setGraphicsLevel(boolean fancy)
     {
-    	this.field_176238_O = true;
-    	this.field_150121_P = true;
+    	this.isTransparent = true;
+    	this.fancyGraphics = true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer func_180664_k()
+    public EnumWorldBlockLayer getBlockLayer()
     {
-        return this.field_176238_O ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
+        return this.isTransparent ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
     }
 
     @Override
-    public boolean func_176214_u()
+    public boolean isVisuallyOpaque()
     {
         return false;
     }

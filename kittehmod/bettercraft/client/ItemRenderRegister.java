@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 public class ItemRenderRegister {
 
 	public static void reg(Item item) {
-	    Minecraft.func_71410_x().func_175599_af().func_175037_a().func_178086_a(item, 0, new ModelResourceLocation(MoreCraft.MODID + ":" + item.func_77658_a().substring(5), "inventory"));
+	    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(MoreCraft.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 	
 	public static void registerItemRenderer() {

@@ -16,7 +16,7 @@ public class BlockNormal extends Block
 	public BlockNormal(Material material) 
 	{
 		super(material);
-		func_149647_a(CreativeTabs.field_78030_b);
+		setCreativeTab(CreativeTabs.tabBlock);
 	}
 	
 	@Override

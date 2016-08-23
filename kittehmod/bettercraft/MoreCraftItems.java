@@ -24,28 +24,28 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class MoreCraftItems {
 
 	// -- FOOD -- \\
-    public static final Item cooked_flesh = (new ItemFood(8, 0.8F, true)).func_77844_a(Potion.field_76431_k.field_76415_H, 20, 0, 0.1F).func_77655_b("cooked_flesh");
-    public static final Item spider_raw = (new ItemFood(3, 0.3F, true)).func_77844_a(Potion.field_76436_u.field_76415_H, 5, 0, 0.5F).func_77844_a(Potion.field_76431_k.field_76415_H, 30, 0, 0.1F).func_77844_a(Potion.field_76440_q.field_76415_H, 30, 0, 0.1F).func_77655_b("spider_raw");
-    public static final Item spider_cooked = (new ItemFood(7, 0.7F, true)).func_77655_b("spider_cooked");
-    public static final Item apple_pie = (new ItemFood(8, 0.8F, false)).func_77844_a(Potion.field_76428_l.field_76415_H, 5, 0, 0.3F).func_77655_b("apple_pie");
-    public static final Item cake_slice = (new ItemFood(2, 0.3F, false)).func_77844_a(Potion.field_76424_c.field_76415_H, 10, 0, 0.25F).func_77655_b("cake_slice");
-    public static final Item squid_raw = (new ItemFood(3, 0.3F, false)).func_77844_a(Potion.field_76433_i.field_76415_H, 0, 0, 0.3F).func_77655_b("squid_raw");
-    public static final Item squid_cooked = (new ItemFood(6, 0.6F, false)).func_77655_b("squid_cooked");
-    public static final Item egg_cooked = (new ItemFood(6, 0.5F, false)).func_77655_b("egg_cooked");
-    public static final Item guardian_meat_raw = new ItemFood(3, 0.3F, false).func_77655_b("guardian_meat_raw");
-    public static final Item guardian_meat_cooked = new ItemFood(7, 0.7F, false).func_77844_a(Potion.field_76427_o.field_76415_H, 30, 0, 1.0F).func_77655_b("guardian_meat_cooked");
+    public static final Item cooked_flesh = (new ItemFood(8, 0.8F, true)).setPotionEffect(Potion.confusion.id, 20, 0, 0.1F).setUnlocalizedName("cooked_flesh");
+    public static final Item spider_raw = (new ItemFood(3, 0.3F, true)).setPotionEffect(Potion.poison.id, 5, 0, 0.5F).setPotionEffect(Potion.confusion.id, 30, 0, 0.1F).setPotionEffect(Potion.blindness.id, 30, 0, 0.1F).setUnlocalizedName("spider_raw");
+    public static final Item spider_cooked = (new ItemFood(7, 0.7F, true)).setUnlocalizedName("spider_cooked");
+    public static final Item apple_pie = (new ItemFood(8, 0.8F, false)).setPotionEffect(Potion.regeneration.id, 5, 0, 0.3F).setUnlocalizedName("apple_pie");
+    public static final Item cake_slice = (new ItemFood(2, 0.3F, false)).setPotionEffect(Potion.moveSpeed.id, 10, 0, 0.25F).setUnlocalizedName("cake_slice");
+    public static final Item squid_raw = (new ItemFood(3, 0.3F, false)).setPotionEffect(Potion.harm.id, 0, 0, 0.3F).setUnlocalizedName("squid_raw");
+    public static final Item squid_cooked = (new ItemFood(6, 0.6F, false)).setUnlocalizedName("squid_cooked");
+    public static final Item egg_cooked = (new ItemFood(6, 0.5F, false)).setUnlocalizedName("egg_cooked");
+    public static final Item guardian_meat_raw = new ItemFood(3, 0.3F, false).setUnlocalizedName("guardian_meat_raw");
+    public static final Item guardian_meat_cooked = new ItemFood(7, 0.7F, false).setPotionEffect(Potion.waterBreathing.id, 30, 0, 1.0F).setUnlocalizedName("guardian_meat_cooked");
     
     // -- MATERIALS -- \\
-    public static final Item ender_brick = (new Item()).func_77655_b("ender_brick").func_77637_a(CreativeTabs.field_78035_l);   
-    public static final Item ruby = new Item().func_77655_b("ruby").func_77637_a(CreativeTabs.field_78035_l);    
-    public static final Item wither_bone = new Item().func_77655_b("wither_bone").func_77637_a(CreativeTabs.field_78035_l);
+    public static final Item ender_brick = (new Item()).setUnlocalizedName("ender_brick").setCreativeTab(CreativeTabs.tabMaterials);   
+    public static final Item ruby = new Item().setUnlocalizedName("ruby").setCreativeTab(CreativeTabs.tabMaterials);    
+    public static final Item wither_bone = new Item().setUnlocalizedName("wither_bone").setCreativeTab(CreativeTabs.tabMaterials);
     //public static final Item guardian_scale = new Item().setUnlocalizedName("guardian_scale").setCreativeTab(CreativeTabs.tabMaterials);
     
 	// -- DOOR ITEMS -- \\
-    public static final Item netherbrick_door_item = (new ItemDoor(MoreCraftBlocks.netherbrick_door)).func_77655_b("netherbrick_door_item");
-    public static final Item netherwood_door_item = (new ItemDoor(MoreCraftBlocks.netherwood_door)).func_77655_b("netherwood_door_item");
-	public static final Item glass_door_item = (new ItemDoor(MoreCraftBlocks.glass_door)).func_77655_b("glass_door_item");
-    public static final Item bone_door_item = (new ItemDoor(MoreCraftBlocks.bone_door)).func_77655_b("bone_door_item");
+    public static final Item netherbrick_door_item = (new ItemDoor(MoreCraftBlocks.netherbrick_door)).setUnlocalizedName("netherbrick_door_item");
+    public static final Item netherwood_door_item = (new ItemDoor(MoreCraftBlocks.netherwood_door)).setUnlocalizedName("netherwood_door_item");
+	public static final Item glass_door_item = (new ItemDoor(MoreCraftBlocks.glass_door)).setUnlocalizedName("glass_door_item");
+    public static final Item bone_door_item = (new ItemDoor(MoreCraftBlocks.bone_door)).setUnlocalizedName("bone_door_item");
     
 	// -- HORSE ARMOUR -- \\ Not Active.
     /*public static final Item bone_horse_armor = (new ItemHorseArmor()).setUnlocalizedName("bone_horse_armor").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabMisc);
@@ -54,127 +54,127 @@ public class MoreCraftItems {
     public static final Item obsidian_horse_armor = (new ItemHorseArmor()).setUnlocalizedName("obsidian_horse_armor").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabMisc);*/
     
 	// -- TOOLS, WEAPONS, ARMOUR -- \\
-    public static final Item slime_helmet = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 0, "slime", Items.field_151123_aH).func_77655_b("slime_helmet");
-    public static final Item slime_chestplate = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 1, "slime", Items.field_151123_aH).func_77655_b("slime_chestplate");
-    public static final Item slime_leggings = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 2, "slime", Items.field_151123_aH).func_77655_b("slime_leggings");
-    public static final Item slime_boots = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 3, "slime", Items.field_151123_aH).func_77655_b("slime_boots");
+    public static final Item slime_helmet = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 0, "slime", Items.slime_ball).setUnlocalizedName("slime_helmet");
+    public static final Item slime_chestplate = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 1, "slime", Items.slime_ball).setUnlocalizedName("slime_chestplate");
+    public static final Item slime_leggings = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 2, "slime", Items.slime_ball).setUnlocalizedName("slime_leggings");
+    public static final Item slime_boots = new ItemSlimeArmor(MoreCraft.SLIME_A, 4, 3, "slime", Items.slime_ball).setUnlocalizedName("slime_boots");
     
-    public static final Item flesh_helmet = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 0, "flesh", Items.field_151078_bh).func_77655_b("flesh_helmet");
-    public static final Item flesh_chestplate = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 1, "flesh", Items.field_151078_bh).func_77655_b("flesh_chestplate");
-    public static final Item flesh_leggings = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 2, "flesh", Items.field_151078_bh).func_77655_b("flesh_leggings");
-    public static final Item flesh_boots = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 3, "flesh", Items.field_151078_bh).func_77655_b("flesh_boots");
+    public static final Item flesh_helmet = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 0, "flesh", Items.rotten_flesh).setUnlocalizedName("flesh_helmet");
+    public static final Item flesh_chestplate = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 1, "flesh", Items.rotten_flesh).setUnlocalizedName("flesh_chestplate");
+    public static final Item flesh_leggings = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 2, "flesh", Items.rotten_flesh).setUnlocalizedName("flesh_leggings");
+    public static final Item flesh_boots = new ItemNormalArmor(MoreCraft.FLESH_A, 4, 3, "flesh", Items.rotten_flesh).setUnlocalizedName("flesh_boots");
 	
-    public static final Item spidersilk_helmet = new ItemNormalArmor(MoreCraft.WEB_A, 4, 0, "cobweb", Item.func_150898_a(Blocks.field_150321_G)).func_77655_b("spidersilk_helmet");
-    public static final Item spidersilk_chestplate = new ItemNormalArmor(MoreCraft.WEB_A, 4, 1, "cobweb", Item.func_150898_a(Blocks.field_150321_G)).func_77655_b("spidersilk_chestplate");
-    public static final Item spidersilk_leggings = new ItemNormalArmor(MoreCraft.WEB_A, 4, 2, "cobweb", Item.func_150898_a(Blocks.field_150321_G)).func_77655_b("spidersilk_leggings");
-    public static final Item spidersilk_boots = new ItemNormalArmor(MoreCraft.WEB_A, 4, 3, "cobweb", Item.func_150898_a(Blocks.field_150321_G)).func_77655_b("spidersilk_boots");
+    public static final Item spidersilk_helmet = new ItemNormalArmor(MoreCraft.WEB_A, 4, 0, "cobweb", Item.getItemFromBlock(Blocks.web)).setUnlocalizedName("spidersilk_helmet");
+    public static final Item spidersilk_chestplate = new ItemNormalArmor(MoreCraft.WEB_A, 4, 1, "cobweb", Item.getItemFromBlock(Blocks.web)).setUnlocalizedName("spidersilk_chestplate");
+    public static final Item spidersilk_leggings = new ItemNormalArmor(MoreCraft.WEB_A, 4, 2, "cobweb", Item.getItemFromBlock(Blocks.web)).setUnlocalizedName("spidersilk_leggings");
+    public static final Item spidersilk_boots = new ItemNormalArmor(MoreCraft.WEB_A, 4, 3, "cobweb", Item.getItemFromBlock(Blocks.web)).setUnlocalizedName("spidersilk_boots");
     
-    public static final Item obsidian_helmet = new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 0, "obsidian", Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_helmet");
-    public static final Item obsidian_chestplate =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 1, "obsidian", Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_chestplate");
-    public static final Item obsidian_leggings =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 2, "obsidian", Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_leggings");
-    public static final Item obsidian_boots =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 3, "obsidian", Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_boots");
-    public static final Item obsidian_pickaxe = new ItemNormalPickaxe(MoreCraft.OBSIDIAN_T, Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_pickaxe");
-    public static final Item obsidian_axe = new ItemNormalAxe(MoreCraft.OBSIDIAN_T, Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_axe");
-    public static final Item obsidian_shovel = new ItemNormalSpade(MoreCraft.OBSIDIAN_T, Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_shovel");
-    public static final Item obsidian_hoe = new ItemNormalHoe(MoreCraft.OBSIDIAN_T, Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_hoe");
-    public static final Item obsidian_sword = new ItemNormalSword(MoreCraft.OBSIDIAN_T, Item.func_150898_a(Blocks.field_150343_Z)).func_77655_b("obsidian_sword");
+    public static final Item obsidian_helmet = new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 0, "obsidian", Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_helmet");
+    public static final Item obsidian_chestplate =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 1, "obsidian", Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_chestplate");
+    public static final Item obsidian_leggings =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 2, "obsidian", Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_leggings");
+    public static final Item obsidian_boots =  new ItemNormalArmor(MoreCraft.OBSIDIAN_A, 4, 3, "obsidian", Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_boots");
+    public static final Item obsidian_pickaxe = new ItemNormalPickaxe(MoreCraft.OBSIDIAN_T, Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_pickaxe");
+    public static final Item obsidian_axe = new ItemNormalAxe(MoreCraft.OBSIDIAN_T, Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_axe");
+    public static final Item obsidian_shovel = new ItemNormalSpade(MoreCraft.OBSIDIAN_T, Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_shovel");
+    public static final Item obsidian_hoe = new ItemNormalHoe(MoreCraft.OBSIDIAN_T, Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_hoe");
+    public static final Item obsidian_sword = new ItemNormalSword(MoreCraft.OBSIDIAN_T, Item.getItemFromBlock(Blocks.obsidian)).setUnlocalizedName("obsidian_sword");
     
-    public static final Item bone_helmet = new ItemNormalArmor(MoreCraft.BONE_A, 4, 0, "bone", Items.field_151103_aS).func_77655_b("bone_helmet");
-    public static final Item bone_chestplate = new ItemNormalArmor(MoreCraft.BONE_A, 4, 1, "bone", Items.field_151103_aS).func_77655_b("bone_chestplate");
-    public static final Item bone_leggings = new ItemNormalArmor(MoreCraft.BONE_A, 4, 2, "bone", Items.field_151103_aS).func_77655_b("bone_leggings");
-    public static final Item bone_boots = new ItemNormalArmor(MoreCraft.BONE_A, 4, 3, "bone", Items.field_151103_aS).func_77655_b("bone_boots");
-    public static final Item bone_pickaxe = new ItemNormalPickaxe(MoreCraft.BONE_T, Items.field_151103_aS).func_77655_b("bone_pickaxe");
-    public static final Item bone_axe = new ItemNormalAxe(MoreCraft.BONE_T, Items.field_151103_aS).func_77655_b("bone_axe");
-    public static final Item bone_shovel = new ItemNormalSpade(MoreCraft.BONE_T, Items.field_151103_aS).func_77655_b("bone_shovel");
-    public static final Item bone_hoe = new ItemNormalHoe(MoreCraft.BONE_T, Items.field_151103_aS).func_77655_b("bone_hoe");
-    public static final Item bone_sword = new ItemNormalSword(MoreCraft.BONE_T, Items.field_151103_aS).func_77655_b("bone_sword");
+    public static final Item bone_helmet = new ItemNormalArmor(MoreCraft.BONE_A, 4, 0, "bone", Items.bone).setUnlocalizedName("bone_helmet");
+    public static final Item bone_chestplate = new ItemNormalArmor(MoreCraft.BONE_A, 4, 1, "bone", Items.bone).setUnlocalizedName("bone_chestplate");
+    public static final Item bone_leggings = new ItemNormalArmor(MoreCraft.BONE_A, 4, 2, "bone", Items.bone).setUnlocalizedName("bone_leggings");
+    public static final Item bone_boots = new ItemNormalArmor(MoreCraft.BONE_A, 4, 3, "bone", Items.bone).setUnlocalizedName("bone_boots");
+    public static final Item bone_pickaxe = new ItemNormalPickaxe(MoreCraft.BONE_T, Items.bone).setUnlocalizedName("bone_pickaxe");
+    public static final Item bone_axe = new ItemNormalAxe(MoreCraft.BONE_T, Items.bone).setUnlocalizedName("bone_axe");
+    public static final Item bone_shovel = new ItemNormalSpade(MoreCraft.BONE_T, Items.bone).setUnlocalizedName("bone_shovel");
+    public static final Item bone_hoe = new ItemNormalHoe(MoreCraft.BONE_T, Items.bone).setUnlocalizedName("bone_hoe");
+    public static final Item bone_sword = new ItemNormalSword(MoreCraft.BONE_T, Items.bone).setUnlocalizedName("bone_sword");
     
-    public static final Item witherbone_helmet = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 0, "witherbone", wither_bone).func_77655_b("witherbone_helmet");
-    public static final Item witherbone_chestplate = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 1, "witherbone", wither_bone).func_77655_b("witherbone_chestplate");
-    public static final Item witherbone_leggings = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 2, "witherbone", wither_bone).func_77655_b("witherbone_leggings");
-    public static final Item witherbone_boots = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 3, "witherbone", wither_bone).func_77655_b("witherbone_boots");
-    public static final Item witherbone_pickaxe = new ItemNormalPickaxe(MoreCraft.WITHERBONE_T, wither_bone).func_77655_b("witherbone_pickaxe");
-    public static final Item witherbone_axe = new ItemNormalAxe(MoreCraft.WITHERBONE_T, wither_bone).func_77655_b("witherbone_axe");
-    public static final Item witherbone_shovel = new ItemNormalSpade(MoreCraft.WITHERBONE_T, wither_bone).func_77655_b("witherbone_shovel");
-    public static final Item witherbone_hoe = new ItemNormalHoe(MoreCraft.WITHERBONE_T, wither_bone).func_77655_b("witherbone_hoe");
-    public static final Item witherbone_sword = new ItemNormalSword(MoreCraft.WITHERBONE_T, wither_bone).func_77655_b("witherbone_sword");
+    public static final Item witherbone_helmet = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 0, "witherbone", wither_bone).setUnlocalizedName("witherbone_helmet");
+    public static final Item witherbone_chestplate = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 1, "witherbone", wither_bone).setUnlocalizedName("witherbone_chestplate");
+    public static final Item witherbone_leggings = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 2, "witherbone", wither_bone).setUnlocalizedName("witherbone_leggings");
+    public static final Item witherbone_boots = new ItemWitherArmor(MoreCraft.WITHERBONE_A, 4, 3, "witherbone", wither_bone).setUnlocalizedName("witherbone_boots");
+    public static final Item witherbone_pickaxe = new ItemNormalPickaxe(MoreCraft.WITHERBONE_T, wither_bone).setUnlocalizedName("witherbone_pickaxe");
+    public static final Item witherbone_axe = new ItemNormalAxe(MoreCraft.WITHERBONE_T, wither_bone).setUnlocalizedName("witherbone_axe");
+    public static final Item witherbone_shovel = new ItemNormalSpade(MoreCraft.WITHERBONE_T, wither_bone).setUnlocalizedName("witherbone_shovel");
+    public static final Item witherbone_hoe = new ItemNormalHoe(MoreCraft.WITHERBONE_T, wither_bone).setUnlocalizedName("witherbone_hoe");
+    public static final Item witherbone_sword = new ItemNormalSword(MoreCraft.WITHERBONE_T, wither_bone).setUnlocalizedName("witherbone_sword");
     
-    public static final Item emerald_helmet = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 0, "emerald", Items.field_151166_bC).func_77655_b("emerald_helmet");
-    public static final Item emerald_chestplate = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 1, "emerald", Items.field_151166_bC).func_77655_b("emerald_chestplate");
-    public static final Item emerald_leggings = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 2, "emerald", Items.field_151166_bC).func_77655_b("emerald_leggings");
-    public static final Item emerald_boots = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 3, "emerald", Items.field_151166_bC).func_77655_b("emerald_boots");
-    public static final Item emerald_pickaxe = new ItemNormalPickaxe(MoreCraft.EMERALD_T, Items.field_151166_bC).func_77655_b("emerald_pickaxe");
-    public static final Item emerald_axe = new ItemNormalAxe(MoreCraft.EMERALD_T, Items.field_151166_bC).func_77655_b("emerald_axe");
-    public static final Item emerald_shovel = new ItemNormalSpade(MoreCraft.EMERALD_T, Items.field_151166_bC).func_77655_b("emerald_shovel");
-    public static final Item emerald_hoe = new ItemNormalHoe(MoreCraft.EMERALD_T, Items.field_151166_bC).func_77655_b("emerald_hoe");
-    public static final Item emerald_sword = new ItemNormalSword(MoreCraft.EMERALD_T, Items.field_151166_bC).func_77655_b("emerald_sword");
+    public static final Item emerald_helmet = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 0, "emerald", Items.emerald).setUnlocalizedName("emerald_helmet");
+    public static final Item emerald_chestplate = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 1, "emerald", Items.emerald).setUnlocalizedName("emerald_chestplate");
+    public static final Item emerald_leggings = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 2, "emerald", Items.emerald).setUnlocalizedName("emerald_leggings");
+    public static final Item emerald_boots = new ItemNormalArmor(MoreCraft.EMERALD_A, 4, 3, "emerald", Items.emerald).setUnlocalizedName("emerald_boots");
+    public static final Item emerald_pickaxe = new ItemNormalPickaxe(MoreCraft.EMERALD_T, Items.emerald).setUnlocalizedName("emerald_pickaxe");
+    public static final Item emerald_axe = new ItemNormalAxe(MoreCraft.EMERALD_T, Items.emerald).setUnlocalizedName("emerald_axe");
+    public static final Item emerald_shovel = new ItemNormalSpade(MoreCraft.EMERALD_T, Items.emerald).setUnlocalizedName("emerald_shovel");
+    public static final Item emerald_hoe = new ItemNormalHoe(MoreCraft.EMERALD_T, Items.emerald).setUnlocalizedName("emerald_hoe");
+    public static final Item emerald_sword = new ItemNormalSword(MoreCraft.EMERALD_T, Items.emerald).setUnlocalizedName("emerald_sword");
     
-    public static final Item ruby_helmet = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 0, "ruby", ruby).func_77655_b("ruby_helmet");
-    public static final Item ruby_chestplate = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 1, "ruby", ruby).func_77655_b("ruby_chestplate");
-    public static final Item ruby_leggings = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 2, "ruby", ruby).func_77655_b("ruby_leggings");
-    public static final Item ruby_boots = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 3, "ruby", ruby).func_77655_b("ruby_boots");
-    public static final Item ruby_pickaxe = new ItemNormalPickaxe(MoreCraft.RUBY_T, ruby).func_77655_b("ruby_pickaxe");
-    public static final Item ruby_axe = new ItemNormalAxe(MoreCraft.RUBY_T, ruby).func_77655_b("ruby_axe");
-    public static final Item ruby_shovel = new ItemNormalSpade(MoreCraft.RUBY_T, ruby).func_77655_b("ruby_shovel");
-    public static final Item ruby_hoe = new ItemNormalHoe(MoreCraft.RUBY_T, ruby).func_77655_b("ruby_hoe");
-    public static final Item ruby_sword = new ItemNormalSword(MoreCraft.RUBY_T, ruby).func_77655_b("ruby_sword");
+    public static final Item ruby_helmet = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 0, "ruby", ruby).setUnlocalizedName("ruby_helmet");
+    public static final Item ruby_chestplate = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 1, "ruby", ruby).setUnlocalizedName("ruby_chestplate");
+    public static final Item ruby_leggings = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 2, "ruby", ruby).setUnlocalizedName("ruby_leggings");
+    public static final Item ruby_boots = new ItemNormalArmor(MoreCraft.RUBY_A, 4, 3, "ruby", ruby).setUnlocalizedName("ruby_boots");
+    public static final Item ruby_pickaxe = new ItemNormalPickaxe(MoreCraft.RUBY_T, ruby).setUnlocalizedName("ruby_pickaxe");
+    public static final Item ruby_axe = new ItemNormalAxe(MoreCraft.RUBY_T, ruby).setUnlocalizedName("ruby_axe");
+    public static final Item ruby_shovel = new ItemNormalSpade(MoreCraft.RUBY_T, ruby).setUnlocalizedName("ruby_shovel");
+    public static final Item ruby_hoe = new ItemNormalHoe(MoreCraft.RUBY_T, ruby).setUnlocalizedName("ruby_hoe");
+    public static final Item ruby_sword = new ItemNormalSword(MoreCraft.RUBY_T, ruby).setUnlocalizedName("ruby_sword");
     
-    public static final Item blaze_helmet = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 0, "blaze", Items.field_151072_bj).func_77655_b("blaze_helmet");
-    public static final Item blaze_chestplate = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 1, "blaze", Items.field_151072_bj).func_77655_b("blaze_chestplate");
-    public static final Item blaze_leggings = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 2, "blaze", Items.field_151072_bj).func_77655_b("blaze_leggings");
-    public static final Item blaze_boots = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 3, "blaze", Items.field_151072_bj).func_77655_b("blaze_boots");
-    public static final Item blaze_pickaxe = new ItemNormalPickaxe(MoreCraft.BLAZE_T, Items.field_151072_bj).func_77655_b("blaze_pickaxe");
-    public static final Item blaze_axe = new ItemNormalAxe(MoreCraft.BLAZE_T, Items.field_151072_bj).func_77655_b("blaze_axe");
-    public static final Item blaze_shovel = new ItemNormalSpade(MoreCraft.BLAZE_T, Items.field_151072_bj).func_77655_b("blaze_shovel");
-    public static final Item blaze_hoe = new ItemNormalHoe(MoreCraft.BLAZE_T, Items.field_151072_bj).func_77655_b("blaze_hoe");
-    public static final Item blaze_sword = new ItemNormalSword(MoreCraft.BLAZE_T, Items.field_151072_bj).func_77655_b("blaze_sword");
+    public static final Item blaze_helmet = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 0, "blaze", Items.blaze_rod).setUnlocalizedName("blaze_helmet");
+    public static final Item blaze_chestplate = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 1, "blaze", Items.blaze_rod).setUnlocalizedName("blaze_chestplate");
+    public static final Item blaze_leggings = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 2, "blaze", Items.blaze_rod).setUnlocalizedName("blaze_leggings");
+    public static final Item blaze_boots = new ItemBlazeArmor(MoreCraft.BLAZE_A, 4, 3, "blaze", Items.blaze_rod).setUnlocalizedName("blaze_boots");
+    public static final Item blaze_pickaxe = new ItemNormalPickaxe(MoreCraft.BLAZE_T, Items.blaze_rod).setUnlocalizedName("blaze_pickaxe");
+    public static final Item blaze_axe = new ItemNormalAxe(MoreCraft.BLAZE_T, Items.blaze_rod).setUnlocalizedName("blaze_axe");
+    public static final Item blaze_shovel = new ItemNormalSpade(MoreCraft.BLAZE_T, Items.blaze_rod).setUnlocalizedName("blaze_shovel");
+    public static final Item blaze_hoe = new ItemNormalHoe(MoreCraft.BLAZE_T, Items.blaze_rod).setUnlocalizedName("blaze_hoe");
+    public static final Item blaze_sword = new ItemNormalSword(MoreCraft.BLAZE_T, Items.blaze_rod).setUnlocalizedName("blaze_sword");
     
-    public static final Item ender_helmet = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 0, "ender", Items.field_151079_bi).func_77655_b("ender_helmet");
-    public static final Item ender_chestplate = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 1, "ender", Items.field_151079_bi).func_77655_b("ender_chestplate");
-    public static final Item ender_leggings = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 2, "ender", Items.field_151079_bi).func_77655_b("ender_leggings");
-    public static final Item ender_boots = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 3, "ender", Items.field_151079_bi).func_77655_b("ender_boots");
-    public static final Item ender_pickaxe = new ItemNormalPickaxe(MoreCraft.ENDER_T, Items.field_151079_bi).func_77655_b("ender_pickaxe");
-    public static final Item ender_axe = new ItemNormalAxe(MoreCraft.ENDER_T, Items.field_151079_bi).func_77655_b("ender_axe");
-    public static final Item ender_shovel = new ItemNormalSpade(MoreCraft.ENDER_T, Items.field_151079_bi).func_77655_b("ender_shovel");
-    public static final Item ender_hoe = new ItemNormalHoe(MoreCraft.ENDER_T, Items.field_151079_bi).func_77655_b("ender_hoe");
-    public static final Item ender_sword = new ItemNormalSword(MoreCraft.ENDER_T, Items.field_151079_bi).func_77655_b("ender_sword");
+    public static final Item ender_helmet = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 0, "ender", Items.ender_pearl).setUnlocalizedName("ender_helmet");
+    public static final Item ender_chestplate = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 1, "ender", Items.ender_pearl).setUnlocalizedName("ender_chestplate");
+    public static final Item ender_leggings = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 2, "ender", Items.ender_pearl).setUnlocalizedName("ender_leggings");
+    public static final Item ender_boots = new ItemNormalArmor(MoreCraft.ENDER_A, 4, 3, "ender", Items.ender_pearl).setUnlocalizedName("ender_boots");
+    public static final Item ender_pickaxe = new ItemNormalPickaxe(MoreCraft.ENDER_T, Items.ender_pearl).setUnlocalizedName("ender_pickaxe");
+    public static final Item ender_axe = new ItemNormalAxe(MoreCraft.ENDER_T, Items.ender_pearl).setUnlocalizedName("ender_axe");
+    public static final Item ender_shovel = new ItemNormalSpade(MoreCraft.ENDER_T, Items.ender_pearl).setUnlocalizedName("ender_shovel");
+    public static final Item ender_hoe = new ItemNormalHoe(MoreCraft.ENDER_T, Items.ender_pearl).setUnlocalizedName("ender_hoe");
+    public static final Item ender_sword = new ItemNormalSword(MoreCraft.ENDER_T, Items.ender_pearl).setUnlocalizedName("ender_sword");
     
-    public static final Item endstone_pickaxe = new ItemNormalPickaxe(MoreCraft.ENDSTONE_T, Item.func_150898_a(Blocks.field_150377_bs)).func_77655_b("endstone_pickaxe");
-    public static final Item endstone_axe = new ItemNormalAxe(MoreCraft.ENDSTONE_T, Item.func_150898_a(Blocks.field_150377_bs)).func_77655_b("endstone_axe");
-    public static final Item endstone_shovel = new ItemNormalSpade(MoreCraft.ENDSTONE_T, Item.func_150898_a(Blocks.field_150377_bs)).func_77655_b("endstone_shovel");
-    public static final Item endstone_hoe = new ItemNormalHoe(MoreCraft.ENDSTONE_T, Item.func_150898_a(Blocks.field_150377_bs)).func_77655_b("endstone_hoe");
-    public static final Item endstone_sword = new ItemNormalSword(MoreCraft.ENDSTONE_T, Item.func_150898_a(Blocks.field_150377_bs)).func_77655_b("endstone_sword");
+    public static final Item endstone_pickaxe = new ItemNormalPickaxe(MoreCraft.ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("endstone_pickaxe");
+    public static final Item endstone_axe = new ItemNormalAxe(MoreCraft.ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("endstone_axe");
+    public static final Item endstone_shovel = new ItemNormalSpade(MoreCraft.ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("endstone_shovel");
+    public static final Item endstone_hoe = new ItemNormalHoe(MoreCraft.ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("endstone_hoe");
+    public static final Item endstone_sword = new ItemNormalSword(MoreCraft.ENDSTONE_T, Item.getItemFromBlock(Blocks.end_stone)).setUnlocalizedName("endstone_sword");
     
-    public static final Item netherrack_pickaxe = new ItemNormalPickaxe(MoreCraft.NETHERRACK_T, Item.func_150898_a(Blocks.field_150424_aL)).func_77655_b("netherrack_pickaxe");
-    public static final Item netherrack_axe = new ItemNormalAxe(MoreCraft.NETHERRACK_T, Item.func_150898_a(Blocks.field_150424_aL)).func_77655_b("netherrack_axe");
-    public static final Item netherrack_shovel = new ItemNormalSpade(MoreCraft.NETHERRACK_T, Item.func_150898_a(Blocks.field_150424_aL)).func_77655_b("netherrack_shovel");
-    public static final Item netherrack_hoe = new ItemNormalHoe(MoreCraft.NETHERRACK_T, Item.func_150898_a(Blocks.field_150424_aL)).func_77655_b("netherrack_hoe");
-    public static final Item netherrack_sword = new ItemNormalSword(MoreCraft.NETHERRACK_T, Item.func_150898_a(Blocks.field_150424_aL)).func_77655_b("netherrack_sword");
+    public static final Item netherrack_pickaxe = new ItemNormalPickaxe(MoreCraft.NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("netherrack_pickaxe");
+    public static final Item netherrack_axe = new ItemNormalAxe(MoreCraft.NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("netherrack_axe");
+    public static final Item netherrack_shovel = new ItemNormalSpade(MoreCraft.NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("netherrack_shovel");
+    public static final Item netherrack_hoe = new ItemNormalHoe(MoreCraft.NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("netherrack_hoe");
+    public static final Item netherrack_sword = new ItemNormalSword(MoreCraft.NETHERRACK_T, Item.getItemFromBlock(Blocks.netherrack)).setUnlocalizedName("netherrack_sword");
     /*
     public static final Item guardian_helmet = new ItemNormalArmor(MoreCraft.GUARDIAN_A, 4, 0, "guardian", guardian_scale).setUnlocalizedName("guardian_helmet");
     public static final Item guardian_chestplate = new ItemNormalArmor(MoreCraft.GUARDIAN_A, 4, 1, "guardian", guardian_scale).setUnlocalizedName("guardian_chestplate");
     public static final Item guardian_leggings = new ItemNormalArmor(MoreCraft.GUARDIAN_A, 4, 2, "guardian", guardian_scale).setUnlocalizedName("guardian_leggings");
     public static final Item guardian_boots = new ItemNormalArmor(MoreCraft.GUARDIAN_A, 4, 3, "guardian", guardian_scale).setUnlocalizedName("guardian_boots");
      */
-    public static final Item bonelord_helmet = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 0, "necro", Items.field_151103_aS).func_77655_b("bonelord_helmet");
-    public static final Item bonelord_chestplate = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 1, "necro", Items.field_151103_aS).func_77655_b("bonelord_chestplate");
-    public static final Item bonelord_leggings = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 2, "necro", Items.field_151103_aS).func_77655_b("bonelord_leggings");
-    public static final Item bonelord_boots = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 3, "necro", Items.field_151103_aS).func_77655_b("bonelord_boots");
+    public static final Item bonelord_helmet = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 0, "necro", Items.bone).setUnlocalizedName("bonelord_helmet");
+    public static final Item bonelord_chestplate = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 1, "necro", Items.bone).setUnlocalizedName("bonelord_chestplate");
+    public static final Item bonelord_leggings = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 2, "necro", Items.bone).setUnlocalizedName("bonelord_leggings");
+    public static final Item bonelord_boots = new ItemBonelordArmor(MoreCraft.BONELORD_A, 4, 3, "necro", Items.bone).setUnlocalizedName("bonelord_boots");
     
-    public static final Item enderdragon_helmet = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 0, "enderdragon").func_77655_b("enderdragon_helmet");
-    public static final Item enderdragon_chestplate = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 1, "enderdragon").func_77655_b("enderdragon_chestplate");
-    public static final Item enderdragon_leggings = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 2, "enderdragon").func_77655_b("enderdragon_leggings");
-    public static final Item enderdragon_boots = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 3, "enderdragon").func_77655_b("enderdragon_boots");
+    public static final Item enderdragon_helmet = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 0, "enderdragon").setUnlocalizedName("enderdragon_helmet");
+    public static final Item enderdragon_chestplate = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 1, "enderdragon").setUnlocalizedName("enderdragon_chestplate");
+    public static final Item enderdragon_leggings = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 2, "enderdragon").setUnlocalizedName("enderdragon_leggings");
+    public static final Item enderdragon_boots = new ItemEnderdragonArmor(MoreCraft.ENDERDRAGON_A, 4, 3, "enderdragon").setUnlocalizedName("enderdragon_boots");
     
-    public static final Item bedrock_helmet = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 0, "bedrock", Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_helmet");
-    public static final Item bedrock_chestplate = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 1, "bedrock", Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_chestplate");
-    public static final Item bedrock_leggings = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 2, "bedrock", Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_leggings");
-    public static final Item bedrock_boots = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 3, "bedrock", Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_boots");  
-    public static final Item bedrock_pickaxe = new ItemNormalPickaxe(MoreCraft.BEDROCK_T, Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_pickaxe");
-    public static final Item bedrock_axe = new ItemNormalAxe(MoreCraft.BEDROCK_T, Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_axe");
-    public static final Item bedrock_shovel = new ItemNormalSpade(MoreCraft.BEDROCK_T, Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_shovel");
-    public static final Item bedrock_hoe = new ItemNormalHoe(MoreCraft.BEDROCK_T, Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_hoe");
-    public static final Item bedrock_sword = new ItemNormalSword(MoreCraft.BEDROCK_T, Item.func_150898_a(Blocks.field_150357_h)).func_77655_b("bedrock_sword");
+    public static final Item bedrock_helmet = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 0, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_helmet");
+    public static final Item bedrock_chestplate = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 1, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_chestplate");
+    public static final Item bedrock_leggings = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 2, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_leggings");
+    public static final Item bedrock_boots = new ItemNormalArmor(MoreCraft.BEDROCK_A, 4, 3, "bedrock", Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_boots");  
+    public static final Item bedrock_pickaxe = new ItemNormalPickaxe(MoreCraft.BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_pickaxe");
+    public static final Item bedrock_axe = new ItemNormalAxe(MoreCraft.BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_axe");
+    public static final Item bedrock_shovel = new ItemNormalSpade(MoreCraft.BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_shovel");
+    public static final Item bedrock_hoe = new ItemNormalHoe(MoreCraft.BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_hoe");
+    public static final Item bedrock_sword = new ItemNormalSword(MoreCraft.BEDROCK_T, Item.getItemFromBlock(Blocks.bedrock)).setUnlocalizedName("bedrock_sword");
     
     public static void registerItems() {
     	GameRegistry.registerItem(cooked_flesh, "cooked_flesh");

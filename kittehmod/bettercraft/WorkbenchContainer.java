@@ -23,12 +23,12 @@ public class WorkbenchContainer extends Container
         craftMatrix = new InventoryCrafting(this, 3, 3);
         craftResult = new InventoryCraftResult();
         worldObj = world;
-        this.func_75146_a(new SlotCrafting(inventoryplayer.field_70458_d, craftMatrix, craftResult, 0, 124, 35));
+        this.addSlotToContainer(new SlotCrafting(inventoryplayer.player, craftMatrix, craftResult, 0, 124, 35));
         for (int i = 0; i < 3; i++)
         {
             for (int l = 0; l < 3; l++)
             {
-                this.func_75146_a(new Slot(craftMatrix, l + i * 3, 30 + l * 18, 17 + i * 18));
+                this.addSlotToContainer(new Slot(craftMatrix, l + i * 3, 30 + l * 18, 17 + i * 18));
             }
         }
 
@@ -36,93 +36,93 @@ public class WorkbenchContainer extends Container
         {
             for (int row = 0; row < 9; row++)
             {
-                this.func_75146_a(new Slot(inventoryplayer, row + column * 9 + 9, 8 + row * 18, 84 + column * 18));
+                this.addSlotToContainer(new Slot(inventoryplayer, row + column * 9 + 9, 8 + row * 18, 84 + column * 18));
             }
         }
 
         for (int column = 0; column < 9; column++)
         {
-            this.func_75146_a(new Slot(inventoryplayer, column, 8 + column * 18, 142));
+            this.addSlotToContainer(new Slot(inventoryplayer, column, 8 + column * 18, 142));
         }
 
-        func_75130_a(craftMatrix);
+        onCraftMatrixChanged(craftMatrix);
     }
 
     @Override
-    public void func_75130_a (IInventory iinventory)
+    public void onCraftMatrixChanged (IInventory iinventory)
     {
-        craftResult.func_70299_a(0, CraftingManager.func_77594_a().func_82787_a(craftMatrix, worldObj));
+        craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
     }
 
     @Override
-    public void func_75134_a (EntityPlayer entityplayer)
+    public void onContainerClosed (EntityPlayer entityplayer)
     {
-        super.func_75134_a(entityplayer);
-        if (worldObj.field_72995_K)
+        super.onContainerClosed(entityplayer);
+        if (worldObj.isRemote)
         {
             return;
         }
         for (int i = 0; i < 9; i++)
         {
-            ItemStack itemstack = craftMatrix.func_70301_a(i);
+            ItemStack itemstack = craftMatrix.getStackInSlot(i);
             if (itemstack != null)
             {
-                entityplayer.func_70099_a(itemstack, 0);
+                entityplayer.entityDropItem(itemstack, 0);
             }
         }
     }
 
     @Override
-    public boolean func_75145_c (EntityPlayer entityplayer)
+    public boolean canInteractWith (EntityPlayer entityplayer)
     {
         return true;
     }
 
     @Override
-    public ItemStack func_82846_b (EntityPlayer entityplayer, int i)
+    public ItemStack transferStackInSlot (EntityPlayer entityplayer, int i)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot) field_75151_b.get(i);
-        if (slot != null && slot.func_75216_d())
+        Slot slot = (Slot) inventorySlots.get(i);
+        if (slot != null && slot.getHasStack())
         {
-            ItemStack itemstack1 = slot.func_75211_c();
-            itemstack = itemstack1.func_77946_l();
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
             if (i == 0)
             {
-                if (!func_75135_a(itemstack1, 10, 46, true))
+                if (!mergeItemStack(itemstack1, 10, 46, true))
                 {
                     return null;
                 }
             }
             else if (i >= 10 && i < 37)
             {
-                if (!func_75135_a(itemstack1, 37, 46, false))
+                if (!mergeItemStack(itemstack1, 37, 46, false))
                 {
                     return null;
                 }
             }
             else if (i >= 37 && i < 46)
             {
-                if (!func_75135_a(itemstack1, 10, 37, false))
+                if (!mergeItemStack(itemstack1, 10, 37, false))
                 {
                     return null;
                 }
             }
-            else if (!func_75135_a(itemstack1, 10, 46, false))
+            else if (!mergeItemStack(itemstack1, 10, 46, false))
             {
                 return null;
             }
-            if (itemstack1.field_77994_a == 0)
+            if (itemstack1.stackSize == 0)
             {
-                slot.func_75215_d(null);
+                slot.putStack(null);
             }
             else
             {
-                slot.func_75218_e();
+                slot.onSlotChanged();
             }
-            if (itemstack1.field_77994_a != itemstack.field_77994_a)
+            if (itemstack1.stackSize != itemstack.stackSize)
             {
-                slot.func_82870_a(entityplayer, itemstack1);
+                slot.onPickupFromSlot(entityplayer, itemstack1);
             }
             else
             {

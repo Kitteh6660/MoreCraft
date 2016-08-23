@@ -18,7 +18,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import net.minecraft.block.BlockSlab.EnumBlockHalf;
 public abstract class BlockNormalSlab extends BlockSlab 
 {
     private static final int HALF_META_BIT = 8;
@@ -26,12 +25,12 @@ public abstract class BlockNormalSlab extends BlockSlab
     public BlockNormalSlab(Material materialIn)
     {
         super(materialIn);
-        IBlockState iblockstate = this.field_176227_L.func_177621_b();
+        IBlockState iblockstate = this.blockState.getBaseState();
         
-        if (!this.func_176552_j())
+        if (!this.isDouble())
         {
-            iblockstate = iblockstate.func_177226_a(field_176554_a, BlockSlab.EnumBlockHalf.BOTTOM);
-            this.func_149647_a(CreativeTabs.field_78030_b);
+            iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+            this.setCreativeTab(CreativeTabs.tabBlock);
         }
     }
     
@@ -41,8 +40,8 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the unlocalized name.
      */
     @Override
-    public final String func_150002_b(final int metadata) {
-        return this.func_149739_a();
+    public final String getUnlocalizedName(final int metadata) {
+        return this.getUnlocalizedName();
     }
 
     /**
@@ -51,8 +50,8 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the variant value null.
      */
     @Override
-    public final Object func_176553_a(final ItemStack stack) {
-    	return BlockPlanks.EnumType.func_176837_a(stack.func_77960_j() & 7);
+    public final Object getVariant(final ItemStack stack) {
+    	return BlockPlanks.EnumType.byMetadata(stack.getMetadata() & 7);
     }
 
     /**
@@ -60,7 +59,7 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the variant property null.
      */
     @Override
-    public final IProperty func_176551_l() {
+    public final IProperty getVariantProperty() {
         return null;
     }
 
@@ -70,15 +69,15 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return a block state with the meta encoded as the variant property.
      */
     @Override
-    public final IBlockState func_176203_a(final int meta) {
-        IBlockState blockState = this.func_176223_P();
-        if (!this.func_176552_j()) {
+    public final IBlockState getStateFromMeta(final int meta) {
+        IBlockState blockState = this.getDefaultState();
+        if (!this.isDouble()) {
             EnumBlockHalf value = EnumBlockHalf.BOTTOM;
             if ((meta & HALF_META_BIT) != 0) {
                 value = EnumBlockHalf.TOP;
             }
 
-            blockState = blockState.func_177226_a(field_176554_a, value);
+            blockState = blockState.withProperty(HALF, value);
         }
 
         return blockState;
@@ -90,11 +89,11 @@ public abstract class BlockNormalSlab extends BlockSlab
      * Convert the BlockState into the correct metadata value
      */
     @Override
-    public int func_176201_c(IBlockState state)
+    public int getMetaFromState(IBlockState state)
     {
         int i = 0;
 
-        if (!this.func_176552_j() && state.func_177229_b(field_176554_a) == BlockSlab.EnumBlockHalf.TOP)
+        if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
         {
             i |= 8;
         }
@@ -108,7 +107,7 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the metadata or color value.
      */
     @Override
-    public final int func_180651_a(final IBlockState state) {
+    public final int damageDropped(final IBlockState state) {
         return 0;
     }
 
@@ -120,11 +119,11 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the half slab item.
      */
     @Override
-    public final Item func_180660_a(
+    public final Item getItemDropped(
         final IBlockState blockState,
         final java.util.Random random,
         final int unused) {
-        return Item.func_150898_a(this);
+        return Item.getItemFromBlock(this);
     }
 
     /**
@@ -135,8 +134,8 @@ public abstract class BlockNormalSlab extends BlockSlab
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public final net.minecraft.item.Item func_180665_b(final net.minecraft.world.World world, final net.minecraft.util.BlockPos blockPos) {
-        return Item.func_150898_a(this);
+    public final net.minecraft.item.Item getItem(final net.minecraft.world.World world, final net.minecraft.util.BlockPos blockPos) {
+        return Item.getItemFromBlock(this);
     }
 
     /**
@@ -144,11 +143,11 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the block state with properties defined.
      */
     @Override
-    protected final BlockState func_180661_e() {
-        if (this.func_176552_j()) {
+    protected final BlockState createBlockState() {
+        if (this.isDouble()) {
             return new BlockState(this, new IProperty[] {});
         } else {
-            return new BlockState(this, new IProperty[] {field_176554_a});
+            return new BlockState(this, new IProperty[] {HALF});
         }
     }
 

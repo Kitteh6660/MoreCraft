@@ -34,60 +34,60 @@ public class BlockNetherwoodChest extends BlockChest
 	/**
 	 * Called when the block is placed in the world.
 	 */
-    public void func_180633_a(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        EnumFacing enumfacing = EnumFacing.func_176731_b(MathHelper.func_76128_c((double)(placer.field_70177_z * 4.0F / 360.0F) + 0.5D) & 3).func_176734_d();
-        state = state.func_177226_a(field_176459_a, enumfacing);
-        BlockPos blockpos = pos.func_177978_c();
-        BlockPos blockpos1 = pos.func_177968_d();
-        BlockPos blockpos2 = pos.func_177976_e();
-        BlockPos blockpos3 = pos.func_177974_f();
-        boolean flag = this == worldIn.func_180495_p(blockpos).func_177230_c();
-        boolean flag1 = this == worldIn.func_180495_p(blockpos1).func_177230_c();
-        boolean flag2 = this == worldIn.func_180495_p(blockpos2).func_177230_c();
-        boolean flag3 = this == worldIn.func_180495_p(blockpos3).func_177230_c();
+        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
+        state = state.withProperty(FACING, enumfacing);
+        BlockPos blockpos = pos.north();
+        BlockPos blockpos1 = pos.south();
+        BlockPos blockpos2 = pos.west();
+        BlockPos blockpos3 = pos.east();
+        boolean flag = this == worldIn.getBlockState(blockpos).getBlock();
+        boolean flag1 = this == worldIn.getBlockState(blockpos1).getBlock();
+        boolean flag2 = this == worldIn.getBlockState(blockpos2).getBlock();
+        boolean flag3 = this == worldIn.getBlockState(blockpos3).getBlock();
 
         if (!flag && !flag1 && !flag2 && !flag3)
         {
-            worldIn.func_180501_a(pos, state, 3);
+            worldIn.setBlockState(pos, state, 3);
         }
-        else if (enumfacing.func_176740_k() != EnumFacing.Axis.X || !flag && !flag1)
+        else if (enumfacing.getAxis() != EnumFacing.Axis.X || !flag && !flag1)
         {
-            if (enumfacing.func_176740_k() == EnumFacing.Axis.Z && (flag2 || flag3))
+            if (enumfacing.getAxis() == EnumFacing.Axis.Z && (flag2 || flag3))
             {
                 if (flag2)
                 {
-                    worldIn.func_180501_a(blockpos2, state, 3);
+                    worldIn.setBlockState(blockpos2, state, 3);
                 }
                 else
                 {
-                    worldIn.func_180501_a(blockpos3, state, 3);
+                    worldIn.setBlockState(blockpos3, state, 3);
                 }
 
-                worldIn.func_180501_a(pos, state, 3);
+                worldIn.setBlockState(pos, state, 3);
             }
         }
         else
         {
             if (flag)
             {
-                worldIn.func_180501_a(blockpos, state, 3);
+                worldIn.setBlockState(blockpos, state, 3);
             }
             else
             {
-                worldIn.func_180501_a(blockpos1, state, 3);
+                worldIn.setBlockState(blockpos1, state, 3);
             }
 
-            worldIn.func_180501_a(pos, state, 3);
+            worldIn.setBlockState(pos, state, 3);
         }
 
-        if (stack.func_82837_s())
+        if (stack.hasDisplayName())
         {
-            TileEntity tileentity = worldIn.func_175625_s(pos);
+            TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityChest)
             {
-                ((TileEntityChest)tileentity).func_145976_a(stack.func_82833_r());
+                ((TileEntityChest)tileentity).setCustomName(stack.getDisplayName());
             }
         }
     }
@@ -95,24 +95,24 @@ public class BlockNetherwoodChest extends BlockChest
 	 * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
 	 * their own) Args: x, y, z, neighbor Block
 	 */
-    public void func_176204_a(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
-        super.func_176204_a(worldIn, pos, state, neighborBlock);
-        TileEntity tileentity = worldIn.func_175625_s(pos);
+        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof TileEntityNetherwoodChest)
         {
-            tileentity.func_145836_u();
+            tileentity.updateContainingBlockInfo();
         }
     }
 
     private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
     {
-        for (Entity entity : worldIn.func_72872_a(EntityOcelot.class, new AxisAlignedBB((double)pos.func_177958_n(), (double)(pos.func_177956_o() + 1), (double)pos.func_177952_p(), (double)(pos.func_177958_n() + 1), (double)(pos.func_177956_o() + 2), (double)(pos.func_177952_p() + 1))))
+        for (Entity entity : worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))))
         {
             EntityOcelot entityocelot = (EntityOcelot)entity;
 
-            if (entityocelot.func_70906_o())
+            if (entityocelot.isSitting())
             {
                 return true;
             }
@@ -125,7 +125,7 @@ public class BlockNetherwoodChest extends BlockChest
 	 * Returns a new instance of a block's tile entity class. Called on placing the block.
 	 */
 	@Override
-	public TileEntity func_149915_a(World world, int p_149915_2_)
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		TileEntityNetherwoodChest TileEntityNetherwoodChest = new TileEntityNetherwoodChest();
 		return TileEntityNetherwoodChest;

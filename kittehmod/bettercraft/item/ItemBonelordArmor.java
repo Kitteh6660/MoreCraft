@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 public class ItemBonelordArmor extends ItemArmor
 {
 	public String armorNamePrefix;
@@ -18,9 +17,9 @@ public class ItemBonelordArmor extends ItemArmor
 	{
 	    super(par2EnumArmorMaterial, par3, par4);
 	    this.material = par2EnumArmorMaterial;
-	    par2EnumArmorMaterial.func_78044_b(par4);
-	    this.func_77656_e(par2EnumArmorMaterial.func_78046_a(par4));
-	    this.field_77777_bU = 1;
+	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
+	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	    repairMaterial = par6;
 	}
@@ -30,14 +29,14 @@ public class ItemBonelordArmor extends ItemArmor
     	return MoreCraft.BONELORD_A;
     }
 	
-    public EnumRarity func_77613_e(ItemStack par1ItemStack)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
     {
         return EnumRarity.UNCOMMON;
     }
     
-	public boolean func_82789_a(ItemStack par1ItemStack, ItemStack par2ItemStack) 
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
 	{
-		return repairMaterial == par2ItemStack.func_77973_b() ? true : super.func_82789_a(par1ItemStack, par2ItemStack);
+		return repairMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
     
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)

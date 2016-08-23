@@ -15,8 +15,8 @@ public class BlockNormalStairs extends BlockStairs
 {
 	public BlockNormalStairs(IBlockState modelState) {
 		super(modelState);
-	    this.field_149783_u = true;
-		this.func_149647_a(CreativeTabs.field_78030_b);
+	    this.useNeighborBrightness = true;
+		this.setCreativeTab(CreativeTabs.tabBlock);
 	}
 	
 	@Override

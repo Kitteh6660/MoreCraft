@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-import net.minecraft.item.Item.ToolMaterial;
 public class ItemNormalSpade extends ItemSpade
 {
 	public ToolMaterial material;
@@ -23,32 +22,32 @@ public class ItemNormalSpade extends ItemSpade
 		repairMaterial = par3RepairMaterial;
 	}
 	
-    public EnumRarity func_77613_e(ItemStack par1ItemStack)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-    	if (par1ItemStack.func_77973_b().equals(MoreCraftItems.witherbone_shovel)) {
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.witherbone_shovel)) {
     		return MoreCraft.LEGENDARY;
     	}
-    	if (par1ItemStack.func_77973_b().equals(MoreCraftItems.blaze_shovel)) {
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.blaze_shovel)) {
     		return EnumRarity.UNCOMMON;
     	}
         return EnumRarity.COMMON;
     }
 	
-	public boolean func_82789_a(ItemStack par1ItemStack, ItemStack par2ItemStack) 
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
 	{
-		return repairMaterial == par2ItemStack.func_77973_b() ? true : super.func_82789_a(par1ItemStack, par2ItemStack);
+		return repairMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
 
-    public boolean func_77644_a(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-    	if (par1ItemStack.func_77973_b().equals(MoreCraftItems.witherbone_shovel)) { 
-	        par1ItemStack.func_77972_a(2, par3EntityLivingBase);
-	        ((EntityLivingBase)par2EntityLivingBase).func_70690_d(new PotionEffect(Potion.field_82731_v.field_76415_H, 200));
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.witherbone_shovel)) { 
+	        par1ItemStack.damageItem(2, par3EntityLivingBase);
+	        ((EntityLivingBase)par2EntityLivingBase).addPotionEffect(new PotionEffect(Potion.wither.id, 200));
 	        return true;
     	}
-    	if (par1ItemStack.func_77973_b().equals(MoreCraftItems.blaze_shovel)) { 
-            par1ItemStack.func_77972_a(2, par3EntityLivingBase);
-            ((EntityLivingBase)par2EntityLivingBase).func_70015_d(4);
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.blaze_shovel)) { 
+            par1ItemStack.damageItem(2, par3EntityLivingBase);
+            ((EntityLivingBase)par2EntityLivingBase).setFire(4);
             return true;
     	}
     	return true;

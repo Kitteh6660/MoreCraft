@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 public class ItemEnderdragonArmor extends ItemArmor
 {
 	public String armorNamePrefix;
@@ -23,9 +22,9 @@ public class ItemEnderdragonArmor extends ItemArmor
 	{
 	    super(par2EnumArmorMaterial, par3, par4);
 	    this.material = par2EnumArmorMaterial;
-	    par2EnumArmorMaterial.func_78044_b(par4);
-	    this.func_77656_e(par2EnumArmorMaterial.func_78046_a(par4));
-	    this.field_77777_bU = 1;
+	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
+	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
+	    this.maxStackSize = 1;
 	    armorNamePrefix = armornamePrefix;
 	}
 
@@ -34,7 +33,7 @@ public class ItemEnderdragonArmor extends ItemArmor
     	return MoreCraft.ENDERDRAGON_A;
     }
 	
-    public EnumRarity func_77613_e(ItemStack par1ItemStack)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
     {
         return EnumRarity.EPIC;
     }
@@ -59,37 +58,37 @@ public class ItemEnderdragonArmor extends ItemArmor
 		ModelBiped armorModel = ClientProxy.armorModels.get(this);
 
 		if (armorModel != null) {
-			armorModel.field_78116_c.field_78806_j = armorSlot == 0;
-			armorModel.field_178720_f.field_78806_j = false;
-			armorModel.field_78115_e.field_78806_j = armorSlot == 1 || armorSlot == 2;
-			armorModel.field_178723_h.field_78806_j = armorSlot == 1;
-			armorModel.field_178724_i.field_78806_j = armorSlot == 1;
-			armorModel.field_178721_j.field_78806_j = armorSlot == 2 || armorSlot == 3;
-			armorModel.field_178722_k.field_78806_j = armorSlot == 2 || armorSlot == 3;
+			armorModel.bipedHead.showModel = armorSlot == 0;
+			armorModel.bipedHeadwear.showModel = false;
+			armorModel.bipedBody.showModel = armorSlot == 1 || armorSlot == 2;
+			armorModel.bipedRightArm.showModel = armorSlot == 1;
+			armorModel.bipedLeftArm.showModel = armorSlot == 1;
+			armorModel.bipedRightLeg.showModel = armorSlot == 2 || armorSlot == 3;
+			armorModel.bipedLeftLeg.showModel = armorSlot == 2 || armorSlot == 3;
 			
-			armorModel.field_78117_n = entityLiving.func_70093_af();
-			armorModel.field_78093_q = entityLiving.func_70115_ae();
-			armorModel.field_78091_s = entityLiving.func_70631_g_();
+			armorModel.isSneak = entityLiving.isSneaking();
+			armorModel.isRiding = entityLiving.isRiding();
+			armorModel.isChild = entityLiving.isChild();
 			
-			armorModel.field_78120_m = 0;
-			armorModel.field_78118_o = false;
+			armorModel.heldItemRight = 0;
+			armorModel.aimedBow = false;
 
 			EntityPlayer player = (EntityPlayer)entityLiving;
 
-			ItemStack held_item = player.func_71124_b(0);
+			ItemStack held_item = player.getEquipmentInSlot(0);
 
 			if (held_item != null)
 			{
-				armorModel.field_78120_m = 1;
+				armorModel.heldItemRight = 1;
 
-				if (player.func_71052_bv() > 0)
+				if (player.getItemInUseCount() > 0)
 				{
-					EnumAction enumaction = held_item.func_77975_n();
+					EnumAction enumaction = held_item.getItemUseAction();
 
 					if (enumaction == EnumAction.BOW) {
-						armorModel.field_78118_o = true;
+						armorModel.aimedBow = true;
 					} else if (enumaction == EnumAction.BLOCK) {
-						armorModel.field_78120_m = 3;
+						armorModel.heldItemRight = 3;
 					}
 				}
 			}

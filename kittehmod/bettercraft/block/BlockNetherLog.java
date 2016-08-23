@@ -24,23 +24,23 @@ public class BlockNetherLog extends BlockLog
 {
     public BlockNetherLog()
     {
-    	this.func_180632_j(this.field_176227_L.func_177621_b().func_177226_a(field_176299_a, BlockLog.EnumAxis.Y));
+    	this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
     }
 
-    public void func_180663_b(World worldIn, BlockPos pos, IBlockState state)
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         int i = 4;
         int j = i + 1;
 
-        if (worldIn.func_175707_a(pos.func_177982_a(-j, -j, -j), pos.func_177982_a(j, j, j)))
+        if (worldIn.isAreaLoaded(pos.add(-j, -j, -j), pos.add(j, j, j)))
         {
-            for (BlockPos blockpos : BlockPos.func_177980_a(pos.func_177982_a(-i, -i, -i), pos.func_177982_a(i, i, i)))
+            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
-                IBlockState iblockstate = worldIn.func_180495_p(blockpos);
+                IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-                if (iblockstate.func_177230_c().isLeaves(worldIn, blockpos))
+                if (iblockstate.getBlock().isLeaves(worldIn, blockpos))
                 {
-                    iblockstate.func_177230_c().beginLeavesDecay(worldIn, blockpos);
+                    iblockstate.getBlock().beginLeavesDecay(worldIn, blockpos);
                 }
             }
         }
@@ -49,7 +49,7 @@ public class BlockNetherLog extends BlockLog
     /**
      * Returns the quantity of items to drop on block destruction.
      */
-    public int func_149745_a(Random par1Random)
+    public int quantityDropped(Random par1Random)
     {
         return 1;
     }
@@ -66,11 +66,11 @@ public class BlockNetherLog extends BlockLog
      * Convert the BlockState into the correct metadata value
      */
     @SuppressWarnings("incomplete-switch")
-    public int func_176201_c(IBlockState state)
+    public int getMetaFromState(IBlockState state)
     {
         int i = 0;
 
-        switch ((BlockLog.EnumAxis)state.func_177229_b(field_176299_a))
+        switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
         {
             case X:
                 i |= 4;
@@ -85,18 +85,18 @@ public class BlockNetherLog extends BlockLog
         return i;
     }
 
-    protected BlockState func_180661_e()
+    protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {field_176299_a});
+        return new BlockState(this, new IProperty[] {LOG_AXIS});
     }
     
     /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
-    public IBlockState func_180642_a(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return super.func_180642_a(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).func_177226_a(field_176299_a, BlockLog.EnumAxis.func_176870_a(facing.func_176740_k()));
+        return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
     }
 
     @Override public boolean canSustainLeaves(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
@@ -136,7 +136,7 @@ public class BlockNetherLog extends BlockLog
             }
         }
 
-        public String func_176610_l()
+        public String getName()
         {
             return this.name;
         }

@@ -11,8 +11,8 @@ public class BlockNetherWood extends Block
 {
 	public BlockNetherWood()
 	{
-        super(Material.field_151575_d);
-        this.func_149647_a(CreativeTabs.field_78030_b);
+        super(Material.wood);
+        this.setCreativeTab(CreativeTabs.tabBlock);
     }
 	
     @Override

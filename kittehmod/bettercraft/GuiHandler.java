@@ -13,7 +13,7 @@ public class GuiHandler implements IGuiHandler
 	{
 		if(ID == CRAFTING_GUI)
 		{
-			return new WorkbenchContainer(player.field_71071_by, world);
+			return new WorkbenchContainer(player.inventory, world);
 		}
 		return null;
 	}
@@ -23,7 +23,7 @@ public class GuiHandler implements IGuiHandler
 	{
 		if(ID == CRAFTING_GUI)
 		{
-			return new WorkbenchGui(player.field_71071_by, world);
+			return new WorkbenchGui(player.inventory, world);
 		}
 		return null;
 	}

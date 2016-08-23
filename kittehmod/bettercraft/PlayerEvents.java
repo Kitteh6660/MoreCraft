@@ -19,8 +19,8 @@ public class PlayerEvents
 	public void UseBonemeal(BonemealEvent event) 
 	{
 		if (event.block == MoreCraftBlocks.netherwood_sapling) {
-			if (!event.world.field_72995_K) {
-				((BlockNetherSapling) MoreCraftBlocks.netherwood_sapling).grow(event.world, event.pos, null, event.world.field_73012_v);
+			if (!event.world.isRemote) {
+				((BlockNetherSapling) MoreCraftBlocks.netherwood_sapling).grow(event.world, event.pos, null, event.world.rand);
 			}
 			event.setResult(Result.ALLOW);// allow the bonemeal consumption and prevent other possible effects
 		}

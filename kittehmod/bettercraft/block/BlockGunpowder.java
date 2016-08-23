@@ -10,7 +10,7 @@ public class BlockGunpowder extends BlockFalling
 {
 	public BlockGunpowder()
 	{
-		super(Material.field_151595_p);
+		super(Material.sand);
 	}
 
     @Override

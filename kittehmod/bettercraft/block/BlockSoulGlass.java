@@ -13,7 +13,7 @@ public class BlockSoulGlass extends BlockGlass
     public BlockSoulGlass(Material par2Material, boolean par3)
     {
         super(par2Material, par3);
-        this.func_149647_a(CreativeTabs.field_78030_b);
+        this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
 }

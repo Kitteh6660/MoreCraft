@@ -10,8 +10,8 @@ import net.minecraft.item.Item;
 public class BlockRenderRegister {
 
 	public static void reg(Block block) {
-		if (!block.func_149739_a().contains("door")) {
-			Minecraft.func_71410_x().func_175599_af().func_175037_a().func_178086_a(Item.func_150898_a(block), 0, new ModelResourceLocation(MoreCraft.MODID + ":" + block.func_149739_a().substring(5), "inventory"));
+		if (!block.getUnlocalizedName().contains("door")) {
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(MoreCraft.MODID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 		}
 	}
 	

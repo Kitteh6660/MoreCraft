@@ -32,29 +32,29 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
 	}
 	
-    public void func_180535_a(TileEntityNetherwoodChest te, double x, double y, double z, float partialTicks, int destroyStage)
+    public void renderTileEntityAt(TileEntityNetherwoodChest te, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179143_c(515);
-        GlStateManager.func_179132_a(true);
+        GlStateManager.enableDepth();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
         int i;
 
-        if (!te.func_145830_o())
+        if (!te.hasWorldObj())
         {
             i = 0;
         }
         else
         {
-            Block block = te.func_145838_q();
-            i = te.func_145832_p();
+            Block block = te.getBlockType();
+            i = te.getBlockMetadata();
 
             if (block instanceof BlockChest && i == 0)
             {
-                ((BlockChest)block).func_176455_e(te.func_145831_w(), te.func_174877_v(), te.func_145831_w().func_180495_p(te.func_174877_v()));
-                i = te.func_145832_p();
+                ((BlockChest)block).checkForSurroundingChests(te.getWorld(), te.getPos(), te.getWorld().getBlockState(te.getPos()));
+                i = te.getBlockMetadata();
             }
 
-            te.func_145979_i();
+            te.checkForAdjacentChests();
         }
 
         if (te.adjacentChestZNeg == null && te.adjacentChestXNeg == null)
@@ -67,14 +67,14 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
                 if (destroyStage >= 0)
                 {
-                    this.func_147499_a(field_178460_a[destroyStage]);
-                    GlStateManager.func_179128_n(5890);
-                    GlStateManager.func_179094_E();
-                    GlStateManager.func_179152_a(4.0F, 4.0F, 1.0F);
-                    GlStateManager.func_179109_b(0.0625F, 0.0625F, 0.0625F);
-                    GlStateManager.func_179128_n(5888);
+                    this.bindTexture(DESTROY_STAGES[destroyStage]);
+                    GlStateManager.matrixMode(5890);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(4.0F, 4.0F, 1.0F);
+                    GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+                    GlStateManager.matrixMode(5888);
                 }
-                this.func_147499_a(textureSingle);
+                this.bindTexture(textureSingle);
             }
             else
             {
@@ -82,27 +82,27 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
                 if (destroyStage >= 0)
                 {
-                    this.func_147499_a(field_178460_a[destroyStage]);
-                    GlStateManager.func_179128_n(5890);
-                    GlStateManager.func_179094_E();
-                    GlStateManager.func_179152_a(8.0F, 4.0F, 1.0F);
-                    GlStateManager.func_179109_b(0.0625F, 0.0625F, 0.0625F);
-                    GlStateManager.func_179128_n(5888);
+                    this.bindTexture(DESTROY_STAGES[destroyStage]);
+                    GlStateManager.matrixMode(5890);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(8.0F, 4.0F, 1.0F);
+                    GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+                    GlStateManager.matrixMode(5888);
                 }
-                this.func_147499_a(textureDouble);
+                this.bindTexture(textureDouble);
             }
 
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179091_B();
+            GlStateManager.pushMatrix();
+            GlStateManager.enableRescaleNormal();
 
             if (destroyStage < 0)
             {
-                GlStateManager.func_179131_c(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             }
 
-            GlStateManager.func_179109_b((float)x, (float)y + 1.0F, (float)z + 1.0F);
-            GlStateManager.func_179152_a(1.0F, -1.0F, -1.0F);
-            GlStateManager.func_179109_b(0.5F, 0.5F, 0.5F);
+            GlStateManager.translate((float)x, (float)y + 1.0F, (float)z + 1.0F);
+            GlStateManager.scale(1.0F, -1.0F, -1.0F);
+            GlStateManager.translate(0.5F, 0.5F, 0.5F);
             int j = 0;
 
             if (i == 2)
@@ -127,21 +127,21 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
             if (i == 2 && te.adjacentChestXPos != null)
             {
-                GlStateManager.func_179109_b(1.0F, 0.0F, 0.0F);
+                GlStateManager.translate(1.0F, 0.0F, 0.0F);
             }
 
             if (i == 5 && te.adjacentChestZPos != null)
             {
-                GlStateManager.func_179109_b(0.0F, 0.0F, -1.0F);
+                GlStateManager.translate(0.0F, 0.0F, -1.0F);
             }
 
-            GlStateManager.func_179114_b((float)j, 0.0F, 1.0F, 0.0F);
-            GlStateManager.func_179109_b(-0.5F, -0.5F, -0.5F);
-            float f = te.field_145986_n + (te.field_145989_m - te.field_145986_n) * partialTicks;
+            GlStateManager.rotate((float)j, 0.0F, 1.0F, 0.0F);
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+            float f = te.prevLidAngle + (te.lidAngle - te.prevLidAngle) * partialTicks;
 
             if (te.adjacentChestZNeg != null)
             {
-                float f1 = te.adjacentChestZNeg.field_145986_n + (te.adjacentChestZNeg.field_145989_m - te.adjacentChestZNeg.field_145986_n) * partialTicks;
+                float f1 = te.adjacentChestZNeg.prevLidAngle + (te.adjacentChestZNeg.lidAngle - te.adjacentChestZNeg.prevLidAngle) * partialTicks;
 
                 if (f1 > f)
                 {
@@ -151,7 +151,7 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
             if (te.adjacentChestXNeg != null)
             {
-                float f2 = te.adjacentChestXNeg.field_145986_n + (te.adjacentChestXNeg.field_145989_m - te.adjacentChestXNeg.field_145986_n) * partialTicks;
+                float f2 = te.adjacentChestXNeg.prevLidAngle + (te.adjacentChestXNeg.lidAngle - te.adjacentChestXNeg.prevLidAngle) * partialTicks;
 
                 if (f2 > f)
                 {
@@ -161,17 +161,17 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 
             f = 1.0F - f;
             f = 1.0F - f * f * f;
-            modelchest.field_78234_a.field_78795_f = -(f * (float)Math.PI / 2.0F);
-            modelchest.func_78231_a();
-            GlStateManager.func_179101_C();
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179131_c(1.0F, 1.0F, 1.0F, 1.0F);
+            modelchest.chestLid.rotateAngleX = -(f * (float)Math.PI / 2.0F);
+            modelchest.renderAll();
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.popMatrix();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
             if (destroyStage >= 0)
             {
-                GlStateManager.func_179128_n(5890);
-                GlStateManager.func_179121_F();
-                GlStateManager.func_179128_n(5888);
+                GlStateManager.matrixMode(5890);
+                GlStateManager.popMatrix();
+                GlStateManager.matrixMode(5888);
             }
         }
     }

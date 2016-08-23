@@ -30,49 +30,49 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class MoreCraftBlocks {
 	//--LIST OF BLOCKS--\\
     //Doors & Gates
-    public static final Block netherbrick_door = new BlockMoreDoors(Material.field_151576_e).func_149711_c(5.0F).func_149752_b(20.0F).func_149672_a(Block.field_149769_e).func_149663_c("netherbrick_door");
-	public static final Block netherwood_door = new BlockMoreDoors(Material.field_151575_d).func_149711_c(2.5F).func_149752_b(7.5F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_door");
-	public static final Block glass_door = new BlockMoreDoors(Material.field_151592_s).func_149711_c(1.0F).func_149752_b(3.0F).func_149672_a(Block.field_149778_k).func_149663_c("glass_door");
-	public static final Block bone_door = new BlockMoreDoors(Material.field_151576_e).func_149711_c(2.5F).func_149752_b(7.5F).func_149672_a(Block.field_149766_f).func_149663_c("bone_door");
-    public static final Block netherbrick_fence_gate = new BlockFenceGate(BlockPlanks.EnumType.OAK).func_149711_c(2.0F).func_149752_b(20.0F).func_149672_a(Block.field_149769_e).func_149663_c("netherbrick_fence_gate");
-    public static final Block netherwood_fence_gate = new BlockFenceGate(BlockPlanks.EnumType.SPRUCE).func_149711_c(2.0F).func_149752_b(20.0F).func_149672_a(Block.field_149769_e).func_149663_c("netherwood_fence_gate");
+    public static final Block netherbrick_door = new BlockMoreDoors(Material.rock).setHardness(5.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("netherbrick_door");
+	public static final Block netherwood_door = new BlockMoreDoors(Material.wood).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_door");
+	public static final Block glass_door = new BlockMoreDoors(Material.glass).setHardness(1.0F).setResistance(3.0F).setStepSound(Block.soundTypeGlass).setUnlocalizedName("glass_door");
+	public static final Block bone_door = new BlockMoreDoors(Material.rock).setHardness(2.5F).setResistance(7.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("bone_door");
+    public static final Block netherbrick_fence_gate = new BlockFenceGate(BlockPlanks.EnumType.OAK).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("netherbrick_fence_gate");
+    public static final Block netherwood_fence_gate = new BlockFenceGate(BlockPlanks.EnumType.SPRUCE).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("netherwood_fence_gate");
 
     //Ores
-    public static final Block ruby_ore = new BlockOreRuby(Material.field_151576_e).func_149711_c(4.0F).func_149752_b(2.0F).func_149672_a(Block.field_149769_e).func_149663_c("ruby_ore");
+    public static final Block ruby_ore = new BlockOreRuby(Material.rock).setHardness(4.0F).setResistance(2.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("ruby_ore");
    
     //Storage Blocks
-    public static final Block bone_block = new BlockStorage(Material.field_151576_e).func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149769_e).func_149663_c("bone_block");
-    public static final Block flesh_block = new BlockStorage(Material.field_151580_n).func_149711_c(1.0F).func_149752_b(2.0F).func_149672_a(Block.field_149775_l).func_149663_c("flesh_block");
-    public static final Block ruby_block = new BlockStorage(Material.field_151576_e).func_149711_c(6.0F).func_149752_b(10.0F).func_149672_a(Block.field_149777_j).func_149663_c("ruby_block");
-    public static final Block blaze_block = new BlockBlazeBlock().func_149711_c(10.0F).func_149752_b(15.0F).func_149672_a(Block.field_149777_j).func_149715_a(1.0F).func_149663_c("blaze_block");
-    public static final Block ender_block = new BlockStorage(Material.field_151576_e).func_149711_c(2.0F).func_149752_b(10.0F).func_149672_a(Block.field_149769_e).func_149663_c("ender_block");
-    public static final Block gunpowder_block = new BlockGunpowder().func_149711_c(0.5F).func_149752_b(5.0F).func_149672_a(Block.field_149769_e).func_149663_c("gunpowder_block");
+    public static final Block bone_block = new BlockStorage(Material.rock).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("bone_block");
+    public static final Block flesh_block = new BlockStorage(Material.cloth).setHardness(1.0F).setResistance(2.0F).setStepSound(Block.soundTypeCloth).setUnlocalizedName("flesh_block");
+    public static final Block ruby_block = new BlockStorage(Material.rock).setHardness(6.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setUnlocalizedName("ruby_block");
+    public static final Block blaze_block = new BlockBlazeBlock().setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setUnlocalizedName("blaze_block");
+    public static final Block ender_block = new BlockStorage(Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("ender_block");
+    public static final Block gunpowder_block = new BlockGunpowder().setHardness(0.5F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("gunpowder_block");
     
     //Netherwood
-    public static final Block netherwood_log = new BlockNetherLog().func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_log");
-    public static final Block netherwood_planks = new BlockNetherWood().func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_planks");
-    public static final BlockNetherLeaves netherwood_leaves = (BlockNetherLeaves) new BlockNetherLeaves().func_149711_c(0.2F).func_149713_g(1).func_149672_a(Block.field_149779_h).func_149663_c("netherwood_leaves");   
-    public static final Block netherwood_sapling = new BlockNetherSapling().func_149711_c(0F).func_149752_b(1.0F).func_149672_a(Block.field_149779_h).func_149663_c("netherwood_sapling");
-    public static final Block netherwood_stairs = new BlockNormalStairs(netherwood_planks.func_176223_P()).func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_stairs");
-    public static final Block netherwood_slab = new BlockNormalSlabHalf(Material.field_151575_d).func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_slab");
-    public static final Block netherwood_slab_full = new BlockNormalSlabDouble(Material.field_151575_d).func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_slab");
-    public static final BlockNetherwoodChest netherwood_chest = (BlockNetherwoodChest)(new BlockNetherwoodChest(0)).func_149711_c(2.5F).func_149752_b(7.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_chest");    
-    public static final Block netherwood_crafting_table = new BlockNetherwoodCraftingTable().func_149711_c(3.0F).func_149752_b(8.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_crafting_table");
-    public static final Block netherwood_fence = new BlockFence(Material.field_151575_d).func_149711_c(2.0F).func_149752_b(20.0F).func_149672_a(Block.field_149766_f).func_149663_c("netherwood_fence");
+    public static final Block netherwood_log = new BlockNetherLog().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_log");
+    public static final Block netherwood_planks = new BlockNetherWood().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_planks");
+    public static final BlockNetherLeaves netherwood_leaves = (BlockNetherLeaves) new BlockNetherLeaves().setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setUnlocalizedName("netherwood_leaves");   
+    public static final Block netherwood_sapling = new BlockNetherSapling().setHardness(0F).setResistance(1.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("netherwood_sapling");
+    public static final Block netherwood_stairs = new BlockNormalStairs(netherwood_planks.getDefaultState()).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_stairs");
+    public static final Block netherwood_slab = new BlockNormalSlabHalf(Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_slab");
+    public static final Block netherwood_slab_full = new BlockNormalSlabDouble(Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_slab");
+    public static final BlockNetherwoodChest netherwood_chest = (BlockNetherwoodChest)(new BlockNetherwoodChest(0)).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_chest");    
+    public static final Block netherwood_crafting_table = new BlockNetherwoodCraftingTable().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_crafting_table");
+    public static final Block netherwood_fence = new BlockFence(Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("netherwood_fence");
 
     //Ender Bricks
-    public static final Block enderbrick_block = new BlockNormal(Material.field_151576_e).func_149711_c(10.0F).func_149752_b(15.0F).func_149672_a(Block.field_149769_e).func_149663_c("enderbrick_block");
-    public static final Block enderbrick_stairs = new BlockNormalStairs(enderbrick_block.func_176223_P()).func_149711_c(10.0F).func_149752_b(15.0F).func_149672_a(Block.field_149769_e).func_149663_c("enderbrick_stairs");
-    public static final Block enderbrick_slab = new BlockNormalSlabHalf(Material.field_151576_e).func_149711_c(10.0F).func_149752_b(15.0F).func_149672_a(Block.field_149769_e).func_149663_c("enderbrick_slab");
-    public static final Block enderbrick_slab_full = new BlockNormalSlabDouble(Material.field_151576_e).func_149711_c(10.0F).func_149752_b(15.0F).func_149672_a(Block.field_149769_e).func_149663_c("enderbrick_slab");
+    public static final Block enderbrick_block = new BlockNormal(Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("enderbrick_block");
+    public static final Block enderbrick_stairs = new BlockNormalStairs(enderbrick_block.getDefaultState()).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("enderbrick_stairs");
+    public static final Block enderbrick_slab = new BlockNormalSlabHalf(Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("enderbrick_slab");
+    public static final Block enderbrick_slab_full = new BlockNormalSlabDouble(Material.rock).setHardness(10.0F).setResistance(15.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("enderbrick_slab");
     
     //Others
-    public static final Block stone_stairs = new BlockNormalStairs(Blocks.field_150348_b.func_176223_P()).func_149711_c(1.5F).func_149752_b(10.0F).func_149672_a(Block.field_149769_e).func_149663_c("stone_stairs");
-    public static final Block soul_glass = new BlockSoulGlass(Material.field_151592_s, false).func_149711_c(0.5F).func_149752_b(15.0F).func_149672_a(Block.field_149778_k).func_149663_c("soul_glass");
-    public static final Block soul_glass_pane = new BlockMorePanes(Material.field_151592_s, false).func_149711_c(0.5F).func_149752_b(15.0F).func_149672_a(Block.field_149778_k).func_149663_c("soul_glass_pane");
-    public static final Block bone_ladder = new BlockBoneLadder().func_149711_c(1.5F).func_149752_b(10.0F).func_149672_a(Block.field_149769_e).func_149663_c("bone_ladder");
-    public static final Block glowstone_torch = new BlockGlowstoneTorch().func_149663_c("glowstone_torch");
-    public static final Block bedrock_brick = new BlockNormal(Material.field_151576_e).func_149722_s().func_149752_b(5.0F).func_149672_a(Block.field_149769_e).func_149663_c("bedrock_brick");    
+    public static final Block stone_stairs = new BlockNormalStairs(Blocks.stone.getDefaultState()).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("stone_stairs");
+    public static final Block soul_glass = new BlockSoulGlass(Material.glass, false).setHardness(0.5F).setResistance(15.0F).setStepSound(Block.soundTypeGlass).setUnlocalizedName("soul_glass");
+    public static final Block soul_glass_pane = new BlockMorePanes(Material.glass, false).setHardness(0.5F).setResistance(15.0F).setStepSound(Block.soundTypeGlass).setUnlocalizedName("soul_glass_pane");
+    public static final Block bone_ladder = new BlockBoneLadder().setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("bone_ladder");
+    public static final Block glowstone_torch = new BlockGlowstoneTorch().setUnlocalizedName("glowstone_torch");
+    public static final Block bedrock_brick = new BlockNormal(Material.rock).setBlockUnbreakable().setResistance(5.0F).setStepSound(Block.soundTypeStone).setUnlocalizedName("bedrock_brick");    
 
     public static void registerBlocks() {
     	GameRegistry.registerBlock(netherbrick_door, "netherbrick_door");

@@ -18,14 +18,14 @@ public class ItemNewDoor extends ItemDoor {
     {
     	super(block);
         this.block = block;
-        this.func_77637_a(CreativeTabs.field_78028_d);
+        this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 	
     /**
      * Called when a Block is right-clicked with this Item
      */
     @Override
-    public boolean func_180614_a(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (side != EnumFacing.UP)
         {
@@ -33,26 +33,26 @@ public class ItemNewDoor extends ItemDoor {
         }
         else
         {
-            IBlockState iblockstate = worldIn.func_180495_p(pos);
-            Block block = iblockstate.func_177230_c();
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
 
-            if (!block.func_176200_f(worldIn, pos))
+            if (!block.isReplaceable(worldIn, pos))
             {
-                pos = pos.func_177972_a(side);
+                pos = pos.offset(side);
             }
 
-            if (!playerIn.func_175151_a(pos, side, stack))
+            if (!playerIn.canPlayerEdit(pos, side, stack))
             {
                 return false;
             }
-            else if (!this.block.func_176196_c(worldIn, pos))
+            else if (!this.block.canPlaceBlockAt(worldIn, pos))
             {
                 return false;
             }
             else
             {
-                func_179235_a(worldIn, pos, EnumFacing.func_176733_a((double)playerIn.field_70177_z), this.block);
-                --stack.field_77994_a;
+                placeDoor(worldIn, pos, EnumFacing.fromAngle((double)playerIn.rotationYaw), this.block);
+                --stack.stackSize;
                 return true;
             }
         }

@@ -16,7 +16,7 @@ public class MoreCraftGenerator implements IWorldGenerator
 {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch(world.field_73011_w.func_177502_q()){
+        switch(world.provider.getDimensionId()){
         case -1:
             generateNether(world, random, chunkX * 16, chunkZ * 16);
             break;
@@ -44,8 +44,8 @@ public class MoreCraftGenerator implements IWorldGenerator
         	
         	BlockPos pos = new BlockPos(firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         	
-        	WorldGenerator rubyOreGen = new WorldGenMinable(MoreCraftBlocks.ruby_ore.func_176223_P(), 4);
-        	rubyOreGen.func_180709_b(worldIn, rand, pos);
+        	WorldGenerator rubyOreGen = new WorldGenMinable(MoreCraftBlocks.ruby_ore.getDefaultState(), 4);
+        	rubyOreGen.generate(worldIn, rand, pos);
         	//System.out.println("Generated ruby ore!");
         }
 	}
@@ -64,15 +64,15 @@ public class MoreCraftGenerator implements IWorldGenerator
         	BlockPos pos = new BlockPos(firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         	
         	for (int i = 1; i < 5; i++) { //Shift generation towards available air, attempt up to 5 times per tree.
-        		if (worldIn.func_180495_p(new BlockPos(pos.func_177982_a(0, 1, 0))) != Blocks.field_150350_a.func_176223_P()) {
-        			pos = new BlockPos(pos.func_177958_n(), pos.func_177956_o() + 1, pos.func_177952_p());
+        		if (worldIn.getBlockState(new BlockPos(pos.add(0, 1, 0))) != Blocks.air.getDefaultState()) {
+        			pos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
         		}
         		else {
         			break;
         		}
         	}
         	for (int i = 1; i < 5; i++) { //Check if the 4 blocks above are air eligible.
-        		if (worldIn.func_180495_p(new BlockPos(pos.func_177958_n(), pos.func_177956_o() + i, pos.func_177952_p())) != Blocks.field_150350_a.func_176223_P()) {
+        		if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() + i, pos.getZ())) != Blocks.air.getDefaultState()) {
         			eligible = false;
         		}
         	}
@@ -81,16 +81,16 @@ public class MoreCraftGenerator implements IWorldGenerator
         		continue;
         	}
         	
-        	if (worldIn.func_180495_p(new BlockPos(pos)) == Blocks.field_150424_aL.func_176223_P() || worldIn.func_180495_p(new BlockPos(pos)) == Blocks.field_150425_aM.func_176223_P())
+        	if (worldIn.getBlockState(new BlockPos(pos)) == Blocks.netherrack.getDefaultState() || worldIn.getBlockState(new BlockPos(pos)) == Blocks.soul_sand.getDefaultState())
         	{
-        		worldIn.func_180501_a(pos, Blocks.field_150425_aM.func_176223_P(), 2);
-        		WorldGenerator netherTree = new WorldGenNetherTrees(true, 4, MoreCraftBlocks.netherwood_log.func_176223_P(), MoreCraftBlocks.netherwood_leaves.func_176223_P(), false);
+        		worldIn.setBlockState(pos, Blocks.soul_sand.getDefaultState(), 2);
+        		WorldGenerator netherTree = new WorldGenNetherTrees(true, 4, MoreCraftBlocks.netherwood_log.getDefaultState(), MoreCraftBlocks.netherwood_leaves.getDefaultState(), false);
         		
         		//IBlockState iblockstate = Blocks.air.getDefaultState();
         		//worldIn.setBlockState(pos, iblockstate, 2);
         		
         		//System.out.println("Generating...");
-        		if (!netherTree.func_180709_b(worldIn, rand, pos.func_177982_a(0, 1, 0))) {
+        		if (!netherTree.generate(worldIn, rand, pos.add(0, 1, 0))) {
         			//System.out.println("Unable to generate tree.");
         		}
         	}

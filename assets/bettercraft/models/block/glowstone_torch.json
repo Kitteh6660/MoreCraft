@@ -1,0 +1,6 @@
+{
+    "parent": "block/torch",
+    "textures": {
+        "torch": "bettercraft:blocks/glowstone_torch"
+    }
+}

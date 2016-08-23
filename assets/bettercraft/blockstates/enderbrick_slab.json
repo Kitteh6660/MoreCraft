@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "bettercraft:enderbrick_slab_half" },
+        "half=top": { "model": "bettercraft:enderbrick_slab_upper" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "bettercraft:blocks/enderbrick_block",
+        "top": "bettercraft:blocks/enderbrick_block",
+        "side": "bettercraft:blocks/enderbrick_block"
+    }
+}

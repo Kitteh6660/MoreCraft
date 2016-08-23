@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "bettercraft:blocks/glass_door_lower",
+        "top": "bettercraft:blocks/glass_door_upper"
+    }
+}

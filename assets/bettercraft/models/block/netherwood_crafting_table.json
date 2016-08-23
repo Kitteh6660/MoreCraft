@@ -1,0 +1,11 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+        "down": "bettercraft:blocks/netherwood_planks",
+        "up": "bettercraft:blocks/netherwood_crafting_table_top",
+        "north": "bettercraft:blocks/netherwood_crafting_table_front",
+        "east": "bettercraft:blocks/netherwood_crafting_table_side",
+        "south": "bettercraft:blocks/netherwood_crafting_table_side",
+        "west": "bettercraft:blocks/netherwood_crafting_table_front"
+	}
+}

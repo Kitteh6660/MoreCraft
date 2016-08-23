@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_ne",
+    "textures": {
+        "texture": "bettercraft:blocks/netherwood_planks"
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"half=bottom": { "model": "bettercraft:netherwood_slab_half" },
+        "half=top": { "model": "bettercraft:netherwood_slab_upper" }
+	}
+}

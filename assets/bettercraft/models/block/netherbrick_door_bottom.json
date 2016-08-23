@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "bettercraft:blocks/netherbrick_door_lower",
+        "top": "bettercraft:blocks/netherbrick_door_upper"
+    }
+}

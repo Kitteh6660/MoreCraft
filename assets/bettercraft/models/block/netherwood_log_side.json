@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "bettercraft:blocks/netherwood_log_top",
+        "side": "bettercraft:blocks/netherwood_log_side"
+    }
+}

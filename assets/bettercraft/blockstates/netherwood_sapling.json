@@ -1,0 +1,6 @@
+{
+	"variants": {
+    	"stage=0": { "model": "bettercraft:netherwood_sapling" },
+        "stage=1": { "model": "bettercraft:netherwood_sapling" }
+	}
+}

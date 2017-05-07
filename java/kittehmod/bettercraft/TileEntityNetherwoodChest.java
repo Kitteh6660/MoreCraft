@@ -134,7 +134,7 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 	private boolean func_145977_a(int coordX, int coordY, int coordZ)
 	{
 		Block block = this.worldObj.getBlock(coordX, coordY, coordZ);
-		return block instanceof BlockNetherwoodChest && ((BlockNetherwoodChest)block).field_149956_a == this.func_145980_j();
+		return block instanceof BlockNetherwoodChest;
 	}
 	public int func_145980_j()
 	{
@@ -144,7 +144,7 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 			{
 				return 0;
 			}
-			this.cachedChestType = ((BlockNetherwoodChest)this.getBlockType()).field_149956_a;
+			this.cachedChestType = 0;
 		}
 		return this.cachedChestType;
 	}

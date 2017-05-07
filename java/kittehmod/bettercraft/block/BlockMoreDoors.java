@@ -116,12 +116,20 @@ public class BlockMoreDoors extends BlockDoor
 
     public Item getItem(World par1World, int par2, int par3, int par4)
     {
-    	return this == BetterCraft.doorNether ? BetterCraft.NetherBrickDoor : this == BetterCraft.doorGlass ? BetterCraft.GlassDoor : this == BetterCraft.doorNetherwood ? BetterCraft.NetherwoodDoor : Items.wooden_door;
+    	return this == BetterCraft.doorNether ? BetterCraft.NetherBrickDoor : 
+    			this == BetterCraft.doorGlass ? BetterCraft.GlassDoor : 
+    			this == BetterCraft.doorNetherwood ? BetterCraft.NetherwoodDoor : 
+    			this == BetterCraft.doorBone ? BetterCraft.BoneDoor : 
+    				Items.wooden_door;
     }
 
 	public Item getItemDropped(int par1, Random par2Random, int par3) 
 	{
-        return (par1 & 8) != 0 ? null : (this == BetterCraft.doorNether ? BetterCraft.NetherBrickDoor : this == BetterCraft.doorGlass ? BetterCraft.GlassDoor : this == BetterCraft.doorNetherwood ? BetterCraft.NetherwoodDoor : null);
+        return (par1 & 8) != 0 ? null : (this == BetterCraft.doorNether ? BetterCraft.NetherBrickDoor : 
+        	this == BetterCraft.doorGlass ? BetterCraft.GlassDoor : 
+        	this == BetterCraft.doorNetherwood ? BetterCraft.NetherwoodDoor : 
+        	this == BetterCraft.doorBone ? BetterCraft.BoneDoor : 
+        		null);
 	}
 
 }

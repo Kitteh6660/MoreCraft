@@ -68,7 +68,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class BetterCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "2.7.4";
+    public static final String VERSION = "2.7.6";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -143,7 +143,7 @@ public class BetterCraft
     public static final Block NetherWoodStairs = new BlockNormalStairs(NetherPlanks, 0).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("stairsNetherwood").setBlockTextureName("bettercraft:NetherPlanksStair");
     public static final Block NetherWoodSlab = new BlockNormalSlab(false, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("slabNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
     public static final Block NetherWoodSlabFull = new BlockNormalSlab(true, Material.wood).setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("slabNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
-    public static final BlockNetherwoodChest NetherWoodChest = (BlockNetherwoodChest)(new BlockNetherwoodChest(0)).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundTypeWood).setBlockName("chestNetherwood").setCreativeTab(CreativeTabs.tabDecorations);    
+    public static final BlockNetherwoodChest NetherWoodChest = (BlockNetherwoodChest)(new BlockNetherwoodChest()).setHardness(2.5F).setResistance(7.0F).setStepSound(Block.soundTypeWood).setBlockName("chestNetherwood").setCreativeTab(CreativeTabs.tabDecorations);    
     public static final Block NetherWoodCraftingTable = new BlockNetherwoodCraftingTable().setHardness(3.0F).setResistance(8.0F).setStepSound(Block.soundTypeWood).setBlockName("netherwoodWorkbench").setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("bettercraft:Netherwood_crafting_table");
     //public static final Block netherwood_fence = new BlockNetherwoodFence("bettercraft:NetherPlanks", Material.wood).setHardness(2.0F).setResistance(20.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceNetherwood").setBlockTextureName("bettercraft:NetherPlanks");
 
@@ -566,6 +566,7 @@ public class BetterCraft
 		//MinecraftForge.setBlockHarvestLevel(RubyOre, "pickaxe", 2);
 		//MinecraftForge.setBlockHarvestLevel(RubyBlock, "pickaxe", 2);           
 
+    	oreRegistration();
         
         //Smelt and process items.
         GameRegistry.addSmelting(ruby, new ItemStack(RubyOre), 3.0F);
@@ -766,26 +767,27 @@ public class BetterCraft
 	        GameRegistry.addRecipe(new ItemStack(Items.diamond_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.diamond, 'C', Blocks.wool});
         }
 		/*Nether wood planks recipes*/
-		GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"B", "B", 'B', NetherPlanks});
-		GameRegistry.addRecipe(new ItemStack(NetherWoodCraftingTable, 1), new Object[] {"BB", "BB", 'B', NetherPlanks});
+		/*GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"B", "B", 'B', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.trapdoor, 2), new Object[] {"###", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_button, 1), new Object[] {"#", '#', NetherPlanks});
-		GameRegistry.addRecipe(new ItemStack(NetherWoodChest, 1), new Object[] {"###", "# #", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Blocks.jukebox, 1), new Object[] {"###", "#D#", "###", '#', NetherPlanks, 'D', Items.diamond});
 		GameRegistry.addRecipe(new ItemStack(Blocks.noteblock, 1), new Object[] {"###", "#R#", "###", '#', NetherPlanks, 'R', Items.redstone});
 		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_pressure_plate, 1), new Object[] {"##", '#', NetherPlanks});
 
-		GameRegistry.addRecipe(new ItemStack(NetherwoodDoor, 1), new Object[] {"##", "##", "##", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Items.boat, 1), new Object[] {"# #", "###", '#', NetherPlanks});
 		GameRegistry.addRecipe(new ItemStack(Items.sign, 3), new Object[] {"###", "###", "S", '#', NetherPlanks, 'S', Items.stick});
 
-		GameRegistry.addRecipe(new ItemStack(NetherWoodSlab, 6), new Object[] {"###", '#', NetherPlanks});
 		
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_sword, 1), new Object[] {"#", "#", "S", '#', NetherPlanks, 'S', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_pickaxe, 1), new Object[] {"###", " S ", " S ", '#', NetherPlanks, 'S', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe, 1), new Object[] {"##", "#S", " S", '#', NetherPlanks, 'S', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(Items.wooden_shovel, 1), new Object[] {"#", "S", "S", '#', NetherPlanks, 'S', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_hoe, 1), new Object[] {"##", " S", " S", '#', NetherPlanks, 'S', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_hoe, 1), new Object[] {"##", " S", " S", '#', NetherPlanks, 'S', Items.stick});*/
+
+		GameRegistry.addRecipe(new ItemStack(NetherWoodSlab, 6), new Object[] {"###", '#', NetherPlanks});
+		GameRegistry.addRecipe(new ItemStack(NetherWoodCraftingTable, 1), new Object[] {"BB", "BB", 'B', NetherPlanks});
+		GameRegistry.addRecipe(new ItemStack(NetherWoodChest, 1), new Object[] {"###", "# #", "###", '#', NetherPlanks});
+		GameRegistry.addRecipe(new ItemStack(NetherwoodDoor, 1), new Object[] {"##", "##", "##", '#', NetherPlanks});
 
         //Food recipes
         GameRegistry.addShapelessRecipe(new ItemStack(cakeSlice, 6), new Object[] {Items.cake});
@@ -883,35 +885,36 @@ public class BetterCraft
 	
     public static void oreRegistration()
     {
-            //|--| Register blocks to Ore Dictionary |--|\\
-    	
-    		//ruby ores and blocks
-    		OreDictionary.registerOre("oreRuby", RubyOre);
-    		OreDictionary.registerOre("blockRuby", RubyBlock);
-    		
-    		//Netherwood
-    		OreDictionary.registerOre("logNetherwood", NetherLog);
-    		OreDictionary.registerOre("plankNetherwood", NetherPlanks);
-    		OreDictionary.registerOre("leavesNetherwood", NetherLeaves);
-    		OreDictionary.registerOre("saplingNetherwood", NetherSapling);
-    		OreDictionary.registerOre("chestNetherwood", NetherWoodChest);
-    		
-    		//Ender Bricks block
-    		OreDictionary.registerOre("blockEnderBricks", EndBrickBlock);
-    		
-    		//Blocks made from vanilla resources.
-    		OreDictionary.registerOre("blockFlesh", FleshBlock);
-    		OreDictionary.registerOre("blockBones", BoneBlock);
-    		OreDictionary.registerOre("blockSlime", SlimeBlock);
-    		OreDictionary.registerOre("blockGunpowder", GunpowderBlock);
-    		OreDictionary.registerOre("blockBlaze", BlazeBlock);
-    		OreDictionary.registerOre("blockEnder", EnderBlock);
-    		
-    		//|--| Register items to Ore Dictionary |--|\\
-            OreDictionary.registerOre("gemRuby", ruby);
-            OreDictionary.registerOre("witherBone", witherBone);
-            OreDictionary.registerOre("brickEnder", EnderBrick);
-            
+        //|--| Register blocks to Ore Dictionary |--|\\
+	
+		//ruby ores and blocks
+		OreDictionary.registerOre("oreRuby", RubyOre);
+		OreDictionary.registerOre("blockRuby", RubyBlock);
+		
+		//Netherwood
+		OreDictionary.registerOre("treeWood", NetherLog);
+		OreDictionary.registerOre("plankWood", NetherPlanks);
+		OreDictionary.registerOre("treeLeaves", NetherLeaves);
+		OreDictionary.registerOre("treeSapling", NetherSapling);
+		
+		//Ender Bricks block
+		OreDictionary.registerOre("blockEnderBricks", EndBrickBlock);
+		
+		//Blocks made from vanilla resources.
+		OreDictionary.registerOre("blockFlesh", FleshBlock);
+		OreDictionary.registerOre("blockBones", BoneBlock);
+		OreDictionary.registerOre("blockSlime", SlimeBlock);
+		OreDictionary.registerOre("blockGunpowder", GunpowderBlock);
+		OreDictionary.registerOre("blockBlaze", BlazeBlock);
+		OreDictionary.registerOre("blockEnder", EnderBlock);
+		
+		OreDictionary.registerOre("torchGlowstone", GlowstoneTorch);
+		
+		//|--| Register items to Ore Dictionary |--|\\
+        OreDictionary.registerOre("gemRuby", ruby);
+        OreDictionary.registerOre("witherBone", witherBone);
+        OreDictionary.registerOre("brickEnder", EnderBrick);
+        
     }
 
     public static void syncConfig() {

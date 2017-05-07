@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy
 	{
 		// This is for rendering entities and so forth later on
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new TileEntityNetherwoodChestRenderer());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BetterCraft.NetherWoodChest), new ItemNetherwoodChestRenderer());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BetterCraft.NetherWoodChest), new ItemNetherwoodChestRenderer(new TileEntityNetherwoodChestRenderer(), new TileEntityNetherwoodChest()));
 		
 		ModelEnderdragonArmor enderdragon_armor = new ModelEnderdragonArmor(1F);
 		ModelEnderdragonLegs enderdragon_legs = new ModelEnderdragonLegs(0.5F);

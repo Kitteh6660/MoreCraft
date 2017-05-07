@@ -35,6 +35,7 @@ public class BlockNetherBrickFenceGate extends BlockFenceGate
     {
         super();
         this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setBlockName("gateNetherBrick");
     }
 
     /**

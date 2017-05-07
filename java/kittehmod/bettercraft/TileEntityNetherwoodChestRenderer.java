@@ -23,17 +23,13 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 {
 	private static final ResourceLocation textureDouble = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
 	private static final ResourceLocation textureSingle = new ResourceLocation("bettercraft:textures/entity/chest/netherwood.png");
-	private ModelChest field_147510_h = new ModelChest();
-	private ModelChest field_147511_i = new ModelLargeChest();
-	private boolean field_147509_j;
+	private ModelChest modelSingle = new ModelChest();
+	private ModelChest modelDouble = new ModelLargeChest();
+
 	private static final String __OBFID = "CL_00000965";
 	public TileEntityNetherwoodChestRenderer()
 	{
-		Calendar calendar = Calendar.getInstance();
-		if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26)
-		{
-			this.field_147509_j = true;
-		}
+
 	}
 	
 	public void renderTileEntityAt(TileEntityNetherwoodChest p_147502_1_, double p_147502_2_, double p_147502_4_, double p_147502_6_, float p_147502_8_)
@@ -66,12 +62,12 @@ public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer
 			ModelChest modelchest;
 			if (p_147502_1_.adjacentChestXPos == null && p_147502_1_.adjacentChestZPos == null)
 			{
-				modelchest = this.field_147510_h;
+				modelchest = this.modelSingle;
 				this.bindTexture(textureSingle);
 			}
 			else
 			{
-				modelchest = this.field_147511_i;
+				modelchest = this.modelDouble;
 				this.bindTexture(textureDouble);
 			}
 			GL11.glPushMatrix();

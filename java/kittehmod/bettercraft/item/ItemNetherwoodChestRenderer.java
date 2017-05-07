@@ -1,17 +1,23 @@
 package kittehmod.bettercraft.item;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 
 public class ItemNetherwoodChestRenderer implements IItemRenderer 
 {
-	private ModelChest chestModel;
+	 TileEntitySpecialRenderer render;
+	 private TileEntity tileentity;
 	
-	public ItemNetherwoodChestRenderer() {
-		chestModel = new ModelChest();
+	public ItemNetherwoodChestRenderer(TileEntitySpecialRenderer render, TileEntity tileentity) {
+		 this.render = render;
+		 this.tileentity = tileentity;
 	}
 	
 	@Override
@@ -26,7 +32,12 @@ public class ItemNetherwoodChestRenderer implements IItemRenderer
 	
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityNetherwoodChest(), 0.0D, 0.0D, 0.0D, 0.0F);
+		if (type == IItemRenderer.ItemRenderType.ENTITY) {
+			GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
+		}
+		GL11.glScalef(1.4F, 1.4F, 1.4F);
+		this.render.renderTileEntityAt(tileentity, 0.0D, 0.0D, 0.0D, 0.0F);
+		//TileEntityRendererDispatcher.instance.renderTileEntityAt(tileentity, 0.0D, 0.0D, 0.0D, 0.0F);
 	}
 	
 }

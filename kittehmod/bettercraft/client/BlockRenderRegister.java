@@ -9,8 +9,18 @@ import net.minecraft.item.Item;
 
 public class BlockRenderRegister {
 
+	private static boolean shouldHaveInventoryModel(Block block) {
+		if (block.getUnlocalizedName().contains("door")) {
+			return false;
+		}
+		if (block == MoreCraftBlocks.netherwood_slab_full || block == MoreCraftBlocks.enderbrick_slab_full) {
+			return false;
+		}
+		return true;
+	}
+	
 	public static void reg(Block block) {
-		if (!block.getUnlocalizedName().contains("door")) {
+		if (shouldHaveInventoryModel(block)) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(MoreCraft.MODID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 		}
 	}

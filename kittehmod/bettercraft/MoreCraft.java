@@ -1,6 +1,7 @@
 package kittehmod.bettercraft;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlowerPot.EnumFlowerType;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -26,7 +27,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "2.8";
+    public static final String VERSION = "2.8.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -46,7 +47,9 @@ public class MoreCraft
 	public static Integer generateNetherwoodTrees; //Enables Netherwood trees generation.
 	
 	public static EnumRarity LEGENDARY = EnumHelper.addRarity("Legendary", EnumChatFormatting.GOLD, "Legendary");
-
+	
+	public static EnumFlowerType NETHER_SAPLING = EnumHelper.addEnum(EnumFlowerType.class, "NETHERWOOD_SAPLING", "netherwood_sapling");
+	
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);
     public static ToolMaterial OBSIDIAN_T = EnumHelper.addToolMaterial("ObsidianT", 3, 16, 14.0F, 4, 15);
@@ -107,7 +110,7 @@ public class MoreCraft
     	GameRegistry.registerTileEntity(TileEntityNetherwoodChest.class, "tileentitynetherchest");
         GameRegistry.registerWorldGenerator(new MoreCraftGenerator(), 1);
         proxy.registerRenderers();
-        
+        oreRegistration();
         MoreCraftRecipes.registerRecipes();
 		MinecraftForge.EVENT_BUS.register(new MobDrop());
 		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
@@ -121,30 +124,29 @@ public class MoreCraft
         //|--| Register blocks to Ore Dictionary |--|\\
 	
 		//ruby ores and blocks
-		OreDictionary.registerOre("ruby_ore", MoreCraftBlocks.ruby_ore);
-		OreDictionary.registerOre("ruby_block", MoreCraftBlocks.ruby_block);
+		OreDictionary.registerOre("oreRuby", MoreCraftBlocks.ruby_ore);
+		OreDictionary.registerOre("blockRuby", MoreCraftBlocks.ruby_block);
 		
 		//Netherwood
-		OreDictionary.registerOre("netherwood_log", MoreCraftBlocks.netherwood_log);
-		OreDictionary.registerOre("netherwood_planks", MoreCraftBlocks.netherwood_planks);
-		OreDictionary.registerOre("netherwood_leaves", MoreCraftBlocks.netherwood_leaves);
-		OreDictionary.registerOre("netherwood_sapling", MoreCraftBlocks.netherwood_sapling);
-		OreDictionary.registerOre("netherwood_chest", MoreCraftBlocks.netherwood_chest);
+		OreDictionary.registerOre("treeWood", MoreCraftBlocks.netherwood_log);
+		OreDictionary.registerOre("plankWood", MoreCraftBlocks.netherwood_planks);
+		OreDictionary.registerOre("treeLeaves", MoreCraftBlocks.netherwood_leaves);
+		OreDictionary.registerOre("treeSapling", MoreCraftBlocks.netherwood_sapling);
 		
 		//Ender Bricks block
-		OreDictionary.registerOre("enderbrick_block", MoreCraftBlocks.enderbrick_block);
+		OreDictionary.registerOre("blockEnderBrick", MoreCraftBlocks.enderbrick_block);
 		
 		//Blocks made from vanilla resources.
-		OreDictionary.registerOre("flesh_block", MoreCraftBlocks.flesh_block);
-		OreDictionary.registerOre("bone_block", MoreCraftBlocks.bone_block);
-		OreDictionary.registerOre("gunpowder_block", MoreCraftBlocks.gunpowder_block);
-		OreDictionary.registerOre("blaze_block", MoreCraftBlocks.blaze_block);
-		OreDictionary.registerOre("ender_block", MoreCraftBlocks.ender_block);
+		OreDictionary.registerOre("blockFlesh", MoreCraftBlocks.flesh_block);
+		OreDictionary.registerOre("blockBone", MoreCraftBlocks.bone_block);
+		OreDictionary.registerOre("blockGunpowder", MoreCraftBlocks.gunpowder_block);
+		OreDictionary.registerOre("blockBlaze", MoreCraftBlocks.blaze_block);
+		OreDictionary.registerOre("blockEnder", MoreCraftBlocks.ender_block);
 		
 		//|--| Register items to Ore Dictionary |--|\\
-        OreDictionary.registerOre("ruby_gem", MoreCraftItems.ruby);
-        OreDictionary.registerOre("wither_bone", MoreCraftItems.wither_bone);
-        OreDictionary.registerOre("ender_brick", MoreCraftItems.ender_brick);
+        OreDictionary.registerOre("gemRuby", MoreCraftItems.ruby);
+        OreDictionary.registerOre("boneWither", MoreCraftItems.wither_bone);
+        OreDictionary.registerOre("brickEnder", MoreCraftItems.ender_brick);
         
     }
 

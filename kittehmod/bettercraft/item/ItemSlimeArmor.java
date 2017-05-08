@@ -51,11 +51,7 @@ public class ItemSlimeArmor extends ItemArmor
 		
 		if (this.tickUntilSelfRepair <= 0)
 		{
-			//TODO: Update this code to work.
-			/*if (itemStack.getDurability() > 0)
-			{
-				itemStack.damageItem(-1, player);
-			}*/
+			itemStack.damageItem(-1, player);
 			this.tickUntilSelfRepair = 200;
 		}
 	}

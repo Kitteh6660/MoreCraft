@@ -202,29 +202,13 @@ public class MoreCraftRecipes {
 	        GameRegistry.addRecipe(new ItemStack(Items.diamond_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.diamond, 'C', Blocks.wool});
 	    }
 		/*Nether wood planks recipes*/
-		GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"B", "B", 'B', MoreCraftBlocks.netherwood_planks});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_crafting_table, 1), new Object[] {"BB", "BB", 'B', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(Blocks.trapdoor, 2), new Object[] {"###", "###", '#', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_button, 1), new Object[] {"#", '#', MoreCraftBlocks.netherwood_planks});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_chest, 1), new Object[] {"###", "# #", "###", '#', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(Blocks.jukebox, 1), new Object[] {"###", "#D#", "###", '#', MoreCraftBlocks.netherwood_planks, 'D', Items.diamond});
-		GameRegistry.addRecipe(new ItemStack(Blocks.noteblock, 1), new Object[] {"###", "#R#", "###", '#', MoreCraftBlocks.netherwood_planks, 'R', Items.redstone});
-		GameRegistry.addRecipe(new ItemStack(Blocks.wooden_pressure_plate, 1), new Object[] {"##", '#', MoreCraftBlocks.netherwood_planks});
-	
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherwood_door_item, 3), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.netherwood_planks});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_fence_gate, 1), new Object[] {"I#I", "I#I", '#', MoreCraftBlocks.netherwood_planks, 'I', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_fence, 3), new Object[] {"#I#", "#I#", '#', MoreCraftBlocks.netherwood_planks, 'I', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.boat, 1), new Object[] {"# #", "###", '#', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(Items.sign, 3), new Object[] {"###", "###", "S", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-	
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_slab, 6), new Object[] {"###", '#', MoreCraftBlocks.netherwood_planks});
 		
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_sword, 1), new Object[] {"#", "#", "S", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_pickaxe, 1), new Object[] {"###", " S ", " S ", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe, 1), new Object[] {"##", "#S", " S", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_shovel, 1), new Object[] {"#", "S", "S", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_hoe, 1), new Object[] {"##", " S", " S", '#', MoreCraftBlocks.netherwood_planks, 'S', Items.stick});
-	
 	    //Food recipes
 	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.cake_slice, 6), new Object[] {Items.cake});
 	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.apple_pie, 1), new Object[] {Items.egg, Items.apple, Items.sugar});

@@ -1,5 +1,6 @@
 {
 	"variants": {
-		"normal": { "model": "bettercraft:netherwood_slab_full" }
+		"variant=false": { "model": "bettercraft:netherwood_slab_full" },
+        "variant=true": { "model": "bettercraft:enderbrick_slab_full" }
 	}
 }

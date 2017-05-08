@@ -9,7 +9,7 @@ public class BlockNormalSlabDouble extends BlockNormalSlab {
 	}
 	
     @Override
-    public final boolean isDouble() {
+    public boolean isDouble() {
         return true;
     }
 }

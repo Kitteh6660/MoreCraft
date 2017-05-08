@@ -6,26 +6,35 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockNormalSlab extends BlockSlab 
 {
+    /**
+     * The property used for the variant.
+     * Needed for interactions with ItemSlab.
+     */
+    private static final PropertyBool VARIANT_PROPERTY = PropertyBool.create("variant");    
     private static final int HALF_META_BIT = 8;
     
     public BlockNormalSlab(Material materialIn)
     {
         super(materialIn);
         IBlockState iblockstate = this.blockState.getBaseState();
+        this.useNeighborBrightness = !this.isDouble();
         
         if (!this.isDouble())
         {
@@ -50,8 +59,8 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the variant value null.
      */
     @Override
-    public final Object getVariant(final ItemStack stack) {
-    	return BlockPlanks.EnumType.byMetadata(stack.getMetadata() & 7);
+    public final Object getVariant(final ItemStack itemStack) {
+    	return false; //BlockPlanks.EnumType.byMetadata(stack.getMetadata() & 7);
     }
 
     /**
@@ -60,7 +69,7 @@ public abstract class BlockNormalSlab extends BlockSlab
      */
     @Override
     public final IProperty getVariantProperty() {
-        return null;
+        return VARIANT_PROPERTY;
     }
 
     /**
@@ -71,6 +80,7 @@ public abstract class BlockNormalSlab extends BlockSlab
     @Override
     public final IBlockState getStateFromMeta(final int meta) {
         IBlockState blockState = this.getDefaultState();
+        blockState = blockState.withProperty(VARIANT_PROPERTY, false);
         if (!this.isDouble()) {
             EnumBlockHalf value = EnumBlockHalf.BOTTOM;
             if ((meta & HALF_META_BIT) != 0) {
@@ -82,23 +92,23 @@ public abstract class BlockNormalSlab extends BlockSlab
 
         return blockState;
     }
-
-
     
     /**
-     * Convert the BlockState into the correct metadata value
+     * Gets the metadata value from a block state.
+     * @param state the block state.
+     * @return the metadata or color value.
      */
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        int i = 0;
-
-        if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
-        {
-            i |= 8;
+    public final int getMetaFromState(final IBlockState state) {
+        if (this.isDouble()) {
+           return 0;
         }
 
-        return i;
+        if ((EnumBlockHalf) state.getValue(HALF) == EnumBlockHalf.TOP) {
+            return HALF_META_BIT;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -119,11 +129,8 @@ public abstract class BlockNormalSlab extends BlockSlab
      * @return the half slab item.
      */
     @Override
-    public final Item getItemDropped(
-        final IBlockState blockState,
-        final java.util.Random random,
-        final int unused) {
-        return Item.getItemFromBlock(this);
+    public final Item getItemDropped(IBlockState blockState, java.util.Random random, int unused) {
+    	return this.getItem();
     }
 
     /**
@@ -134,10 +141,20 @@ public abstract class BlockNormalSlab extends BlockSlab
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public final net.minecraft.item.Item getItem(final net.minecraft.world.World world, final net.minecraft.util.BlockPos blockPos) {
-        return Item.getItemFromBlock(this);
+    public final Item getItem(World world, BlockPos blockPos) {
+    	return this.getItem();
     }
 
+    private final Item getItem() {
+    	if (this == MoreCraftBlocks.enderbrick_slab || this == MoreCraftBlocks.enderbrick_slab_full) {
+    		return Item.getItemFromBlock(MoreCraftBlocks.enderbrick_slab);
+    	}
+    	else if (this == MoreCraftBlocks.netherwood_slab || this == MoreCraftBlocks.netherwood_slab_full) {
+    		return Item.getItemFromBlock(MoreCraftBlocks.netherwood_slab);
+    	}
+        return Item.getItemFromBlock(Blocks.stone_slab);
+    }
+    
     /**
      * Creates the block state object.
      * @return the block state with properties defined.
@@ -145,12 +162,25 @@ public abstract class BlockNormalSlab extends BlockSlab
     @Override
     protected final BlockState createBlockState() {
         if (this.isDouble()) {
-            return new BlockState(this, new IProperty[] {});
+            return new BlockState(this, new IProperty[] {VARIANT_PROPERTY});
         } else {
-            return new BlockState(this, new IProperty[] {HALF});
+            return new BlockState(this, new IProperty[] {VARIANT_PROPERTY, HALF});
         }
     }
-
+    
+    /**
+     * Gets the ID of the block.
+     * @param isDoubleStacked override the isDouble() method.
+     * @return the unique block id.
+     */
+    private String innerGetId(final boolean isDoubleStacked) {
+        String result = this.getUnlocalizedName();
+        if (isDoubleStacked) {
+            result += "_full";
+        }
+        return result;
+    }
+    
 	@Override
 	public boolean canEntityDestroy(IBlockAccess world, BlockPos pos, Entity entity) {
 	    if (entity instanceof EntityDragon) {
@@ -158,4 +188,5 @@ public abstract class BlockNormalSlab extends BlockSlab
 	    }
 	    return true;
 	}
+	
 }

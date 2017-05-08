@@ -3,16 +3,20 @@ package kittehmod.bettercraft.block;
 import java.util.Iterator;
 import java.util.Random;
 
+import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -26,9 +30,9 @@ import net.minecraft.world.World;
 public class BlockNetherwoodChest extends BlockChest 
 {
 	private final Random field_149955_b = new Random();
-	public BlockNetherwoodChest(int par1) 
+	public BlockNetherwoodChest() 
 	{
-		super(par1);
+		super(2); //The reason it's at 2 is to not interfere with how vanilla chests render.
 	}
 	
 	/**
@@ -106,6 +110,16 @@ public class BlockNetherwoodChest extends BlockChest
         }
     }
 
+    private boolean isBlocked(World worldIn, BlockPos pos)
+    {
+        return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
+    }
+
+    private boolean isBelowSolidBlock(World worldIn, BlockPos pos)
+    {
+        return worldIn.isSideSolid(pos.up(), EnumFacing.DOWN, false);
+    }
+    
     private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
     {
         for (Entity entity : worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))))
@@ -119,6 +133,10 @@ public class BlockNetherwoodChest extends BlockChest
         }
 
         return false;
+    }
+    
+    public static void registerInventoryModel(Item item, String id, int metadata) {
+    	Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, metadata, new ModelResourceLocation(MoreCraft.MODID + id, "inventory"));
     }
     
 	/**

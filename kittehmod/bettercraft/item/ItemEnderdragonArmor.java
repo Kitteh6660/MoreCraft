@@ -73,15 +73,17 @@ public class ItemEnderdragonArmor extends ItemArmor
 			armorModel.heldItemRight = 0;
 			armorModel.aimedBow = false;
 
-			EntityPlayer player = (EntityPlayer)entityLiving;
-
-			ItemStack held_item = player.getEquipmentInSlot(0);
+			EntityPlayer player = null;
+			ItemStack held_item = entityLiving.getEquipmentInSlot(0);
+			if (entityLiving.equals(EntityPlayer.class)) {
+				player = (EntityPlayer)entityLiving;
+			}
 
 			if (held_item != null)
 			{
 				armorModel.heldItemRight = 1;
 
-				if (player.getItemInUseCount() > 0)
+				if (player != null && player.getItemInUseCount() > 0)
 				{
 					EnumAction enumaction = held_item.getItemUseAction();
 

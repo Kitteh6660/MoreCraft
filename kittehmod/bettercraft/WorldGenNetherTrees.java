@@ -4,26 +4,24 @@ import java.util.Random;
 
 import kittehmod.bettercraft.block.BlockNetherLeaves;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
 
 public class WorldGenNetherTrees extends WorldGenAbstractTree
 {
-    private static final IBlockState field_181653_a = MoreCraftBlocks.netherwood_log.getDefaultState();
-    private static final IBlockState field_181654_b = MoreCraftBlocks.netherwood_leaves.getDefaultState().withProperty(BlockNetherLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState DEFAULT_TRUNK = MoreCraftBlocks.NETHERWOOD_LOG.getDefaultState();
+    private static final IBlockState DEFAULT_LEAF = MoreCraftBlocks.NETHERWOOD_LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -35,7 +33,7 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
 
     public WorldGenNetherTrees(boolean p_i2027_1_)
     {
-        this(p_i2027_1_, 4, field_181653_a, field_181654_b, false);
+    	this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
     }
 
     public WorldGenNetherTrees(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)
@@ -76,7 +74,7 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
                     {
                         if (j >= 0 && j < 256)
                         {
-                            if (!this.isReplaceable(worldIn,blockpos$mutableblockpos.set(l, j, i1)))
+                            if (!this.isReplaceable(worldIn,blockpos$mutableblockpos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -95,13 +93,11 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
             }
             else
             {
-                BlockPos down = position.down();
-                Block block1 = worldIn.getBlockState(down).getBlock();
-                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (IPlantable)MoreCraftBlocks.netherwood_sapling);
+                IBlockState state = worldIn.getBlockState(position.down());
 
-                if (isSoil && position.getY() < 256 - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (IPlantable) MoreCraftBlocks.NETHERWOOD_SAPLING) && position.getY() < worldIn.getHeight() - i - 1)
                 {
-                    block1.onPlantGrow(worldIn, down, position);
+                    //this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
                     int l2 = 0;
 
@@ -121,9 +117,9 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
                                 if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
                                 {
                                     BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    Block block = worldIn.getBlockState(blockpos).getBlock();
+                                    state = worldIn.getBlockState(blockpos);
 
-                                    if (block.isAir(worldIn, blockpos) || block.isLeaves(worldIn, blockpos) || block.getMaterial() == Material.vine)
+                                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE)
                                     {
                                         this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
                                     }
@@ -131,18 +127,17 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
                             }
                         }
                     }
-
+                    
                     for (int j3 = 0; j3 < i; ++j3)
                     {
                         BlockPos upN = position.up(j3);
-                        Block block2 = worldIn.getBlockState(upN).getBlock();
+                        state = worldIn.getBlockState(upN);
 
-                        if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN) || block2.getMaterial() == Material.vine)
+                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE)
                         {
                             this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
                         }
                     }
-
                     if (this.vinesGrow)
                     {
                         for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; ++k3)
@@ -155,7 +150,7 @@ public class WorldGenNetherTrees extends WorldGenAbstractTree
                             {
                                 for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; ++i5)
                                 {
-                                    blockpos$mutableblockpos1.set(l4, k3, i5);
+                                    blockpos$mutableblockpos1.setPos(l4, k3, i5);
                                 }
                             }
                         }

@@ -12,7 +12,7 @@ public class ItemNetherwoodChestRenderer extends TileEntityItemStackRenderer {
     public void renderByItem(ItemStack itemStack) {
         Block block = Block.getBlockFromItem(itemStack.getItem());
         //Your custom block
-        if (block == MoreCraftBlocks.netherwood_chest) {
+        if (block == MoreCraftBlocks.NETHERWOOD_CHEST) {
             TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityNetherwoodChest(), 0.0D, 0.0D, 0.0D, 0.0F);
         } else {
         //for minecraft to render its own tile entities such as the chest

@@ -6,18 +6,29 @@ import kittehmod.bettercraft.MoreCraftBlocks;
 import kittehmod.bettercraft.WorldGenNetherTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenBirchTree;
+import net.minecraft.world.gen.feature.WorldGenCanopyTree;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
+import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
+import net.minecraft.world.gen.feature.WorldGenSavannaTree;
+import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -29,15 +40,15 @@ public class BlockNetherSapling extends BlockBush implements IGrowable
 	public BlockNetherSapling() 
 	{
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
-		float f = 0.4F;
-		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
+		this.setCreativeTab(CreativeTabs.DECORATIONS);
+		this.setSoundType(SoundType.GROUND);
 	}
 
 	@Override
-	protected boolean canPlaceBlockOn(Block ground)
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		return ground == Blocks.grass || ground == Blocks.dirt || ground == Blocks.farmland || ground == Blocks.soul_sand; // Makes this grow on grass.
+        IBlockState soil = worldIn.getBlockState(pos.down());
+        return super.canPlaceBlockAt(worldIn, pos) && soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
 	}
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
@@ -68,21 +79,54 @@ public class BlockNetherSapling extends BlockBush implements IGrowable
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-    	
-        WorldGenerator netherTree = new WorldGenNetherTrees(true, 4, MoreCraftBlocks.netherwood_log.getDefaultState(), MoreCraftBlocks.netherwood_leaves.getDefaultState(), false);
+        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenNetherTrees(true);
+        int i = 0;
+        int j = 0;
+        boolean flag = false;
 
-        IBlockState iblockstate2 = Blocks.air.getDefaultState();
-        worldIn.setBlockState(pos, iblockstate2, 4);
+        IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
-        if (!netherTree.generate(worldIn, rand, pos.add(0, 0, 0))) {
-            worldIn.setBlockState(pos, state, 4);
+        if (flag)
+        {
+            worldIn.setBlockState(pos.add(i, 0, j), iblockstate2, 4);
+            worldIn.setBlockState(pos.add(i + 1, 0, j), iblockstate2, 4);
+            worldIn.setBlockState(pos.add(i, 0, j + 1), iblockstate2, 4);
+            worldIn.setBlockState(pos.add(i + 1, 0, j + 1), iblockstate2, 4);
+        }
+        else
+        {
+            worldIn.setBlockState(pos, iblockstate2, 4);
+        }
+
+        if (!worldgenerator.generate(worldIn, rand, pos.add(i, 0, j)))
+        {
+            if (flag)
+            {
+                worldIn.setBlockState(pos.add(i, 0, j), state, 4);
+                worldIn.setBlockState(pos.add(i + 1, 0, j), state, 4);
+                worldIn.setBlockState(pos.add(i, 0, j + 1), state, 4);
+                worldIn.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
+            }
+            else
+            {
+                worldIn.setBlockState(pos, state, 4);
+            }
         }
     }
 
-    /*private boolean func_181624_a(World p_181624_1_, BlockPos p_181624_2_, int p_181624_3_, int p_181624_4_, BlockPlanks.EnumType p_181624_5_)
+    /*private boolean isTwoByTwoOfType(World worldIn, BlockPos pos, int p_181624_3_, int p_181624_4_, BlockPlanks.EnumType type)
     {
-        return this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_, 0, p_181624_4_), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_ + 1, 0, p_181624_4_), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_, 0, p_181624_4_ + 1), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_ + 1, 0, p_181624_4_ + 1), p_181624_5_);
+        return this.isTypeAt(worldIn, pos.add(p_181624_3_, 0, p_181624_4_), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_ + 1, 0, p_181624_4_), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_, 0, p_181624_4_ + 1), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_ + 1, 0, p_181624_4_ + 1), type);
     }*/
+    
+    /**
+     * Return true if the block can sustain a Bush
+     */
+    @Override
+    protected boolean canSustainBush(IBlockState state)
+    {
+        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND || state.getBlock() == Blocks.SOUL_SAND;
+    }
     
     /**
      * Whether this IGrowable can grow
@@ -126,9 +170,9 @@ public class BlockNetherSapling extends BlockBush implements IGrowable
     }
 
     
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {STAGE});
+        return new BlockStateContainer(this, new IProperty[] {STAGE});
     }
     
 }

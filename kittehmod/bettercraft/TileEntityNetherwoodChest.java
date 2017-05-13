@@ -1,20 +1,18 @@
 package kittehmod.bettercraft;
 
+import kittehmod.bettercraft.block.BlockNetherwoodChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import kittehmod.bettercraft.block.BlockNetherwoodChest;
+import net.minecraft.util.math.BlockPos;
 
 public class TileEntityNetherwoodChest extends TileEntityChest
 {
 	private String customName;
-	private int cachedChestType;
+	private BlockNetherwoodChest.Type cachedChestType;
 	private ItemStack[] chestContents = new ItemStack[36];
 	/**
 	 * Contains the chest tile located adjacent to this one (if any)
@@ -53,42 +51,54 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 		this.customName = p_145976_1_;
 	}
 
-	private void func_145978_a(TileEntityNetherwoodChest p_145978_1_, int p_145978_2_)
-	{
-		if (p_145978_1_.isInvalid())
-		{
-			this.adjacentChestChecked = false;
-		}
-		else if (this.adjacentChestChecked)
-		{
-			switch (p_145978_2_)
-			{
-			case 0:
-				if (this.adjacentChestZPos != p_145978_1_)
-				{
-					this.adjacentChestChecked = false;
-				}
-				break;
-			case 1:
-				if (this.adjacentChestXNeg != p_145978_1_)
-				{
-					this.adjacentChestChecked = false;
-				}
-				break;
-			case 2:
-				if (this.adjacentChestZNeg != p_145978_1_)
-				{
-					this.adjacentChestChecked = false;
-				}
-				break;
-			case 3:
-				if (this.adjacentChestXPos != p_145978_1_)
-				{
-					this.adjacentChestChecked = false;
-				}
-			}
-		}
-	}
+    @SuppressWarnings("incomplete-switch")
+    private void setNeighbor(TileEntityNetherwoodChest chestTe, EnumFacing side)
+    {
+        if (chestTe.isInvalid())
+        {
+            this.adjacentChestChecked = false;
+        }
+        else if (this.adjacentChestChecked)
+        {
+            switch (side)
+            {
+                case NORTH:
+
+                    if (this.adjacentChestZNeg != chestTe)
+                    {
+                        this.adjacentChestChecked = false;
+                    }
+
+                    break;
+                case SOUTH:
+
+                    if (this.adjacentChestZPos != chestTe)
+                    {
+                        this.adjacentChestChecked = false;
+                    }
+
+                    break;
+                case EAST:
+
+                    if (this.adjacentChestXPos != chestTe)
+                    {
+                        this.adjacentChestChecked = false;
+                    }
+
+                    break;
+                case WEST:
+
+                    if (this.adjacentChestXNeg != chestTe)
+                    {
+                        this.adjacentChestChecked = false;
+                    }
+            }
+        }
+    }
+    
+    /**
+     * Performs the check for adjacent chests to determine if this chest is double or not.
+     */
     public void checkForAdjacentChests()
     {
         if (!this.adjacentChestChecked)
@@ -129,7 +139,7 @@ public class TileEntityNetherwoodChest extends TileEntityChest
         else
         {
             Block block = this.worldObj.getBlockState(posIn).getBlock();
-            return block instanceof BlockNetherwoodChest && ((BlockNetherwoodChest)block).chestType == this.getChestType();
+            return block instanceof BlockNetherwoodChest/* && ((BlockNetherwoodChest)block).chestType == this.getChestType()*/;
         }
     }
     

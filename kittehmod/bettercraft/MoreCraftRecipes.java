@@ -11,319 +11,319 @@ public class MoreCraftRecipes {
 	
 	public static void registerRecipes() {	    
 	    //--Bone Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_helmet, 1), new Object[] {"KKK", "K K", 'K', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_boots, 1), new Object[] {"K K", "K K", 'K', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_shovel, 1), new Object[] {"K", "S", "S", 'K', Items.bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_hoe, 1), new Object[] {"KK", " S", " S", 'K', Items.bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_sword, 1), new Object[] {"K", "K", "S", 'K', Items.bone, 'S', Items.stick}); 
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_HELMET, 1), new Object[] {"KKK", "K K", 'K', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_BOOTS, 1), new Object[] {"K K", "K K", 'K', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Items.BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_HOE, 1), new Object[] {"KK", " S", " S", 'K', Items.BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_SWORD, 1), new Object[] {"K", "K", "S", 'K', Items.BONE, 'S', Items.STICK}); 
 	    
 	    //--Wither Bone Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_helmet, 1), new Object[] {"KKK", "K K", 'K', MoreCraftItems.wither_bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', MoreCraftItems.wither_bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', MoreCraftItems.wither_bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_boots, 1), new Object[] {"K K", "K K", 'K', MoreCraftItems.wither_bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', MoreCraftItems.wither_bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', MoreCraftItems.wither_bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_shovel, 1), new Object[] {"K", "S", "S", 'K', MoreCraftItems.wither_bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_hoe, 1), new Object[] {"KK", " S", " S", 'K', MoreCraftItems.wither_bone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_sword, 1), new Object[] {"K", "K", "S", 'K', MoreCraftItems.wither_bone, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_HELMET, 1), new Object[] {"KKK", "K K", 'K', MoreCraftItems.WITHER_BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', MoreCraftItems.WITHER_BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', MoreCraftItems.WITHER_BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_BOOTS, 1), new Object[] {"K K", "K K", 'K', MoreCraftItems.WITHER_BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', MoreCraftItems.WITHER_BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', MoreCraftItems.WITHER_BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', MoreCraftItems.WITHER_BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_HOE, 1), new Object[] {"KK", " S", " S", 'K', MoreCraftItems.WITHER_BONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHERBONE_SWORD, 1), new Object[] {"K", "K", "S", 'K', MoreCraftItems.WITHER_BONE, 'S', Items.STICK});
 	    
 	    //--Obsidian Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_helmet, 1), new Object[] {"KKK", "K K", 'K', Blocks.obsidian});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Blocks.obsidian});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Blocks.obsidian});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_boots, 1), new Object[] {"K K", "K K", 'K', Blocks.obsidian});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.obsidian, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.obsidian, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_shovel, 1), new Object[] {"K", "S", "S", 'K', Blocks.obsidian, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_hoe, 1), new Object[] {"KK", " S", " S", 'K', Blocks.obsidian, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.obsidian_sword, 1), new Object[] {"K", "K", "S", 'K', Blocks.obsidian, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_HELMET, 1), new Object[] {"KKK", "K K", 'K', Blocks.OBSIDIAN});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Blocks.OBSIDIAN});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Blocks.OBSIDIAN});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_BOOTS, 1), new Object[] {"K K", "K K", 'K', Blocks.OBSIDIAN});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.OBSIDIAN, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.OBSIDIAN, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Blocks.OBSIDIAN, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_HOE, 1), new Object[] {"KK", " S", " S", 'K', Blocks.OBSIDIAN, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.OBSIDIAN_SWORD, 1), new Object[] {"K", "K", "S", 'K', Blocks.OBSIDIAN, 'S', Items.STICK});
 	
 	    //--Emerald Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_helmet, 1), new Object[] {"KKK", "K K", 'K', Items.emerald});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.emerald});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.emerald});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_boots, 1), new Object[] {"K K", "K K", 'K', Items.emerald});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.emerald, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.emerald, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_shovel, 1), new Object[] {"K", "S", "S", 'K', Items.emerald, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_hoe, 1), new Object[] {"KK", " S", " S", 'K', Items.emerald, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.emerald_sword, 1), new Object[] {"K", "K", "S", 'K', Items.emerald, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_HELMET, 1), new Object[] {"KKK", "K K", 'K', Items.EMERALD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.EMERALD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.EMERALD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_BOOTS, 1), new Object[] {"K K", "K K", 'K', Items.EMERALD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.EMERALD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.EMERALD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Items.EMERALD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_HOE, 1), new Object[] {"KK", " S", " S", 'K', Items.EMERALD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.EMERALD_SWORD, 1), new Object[] {"K", "K", "S", 'K', Items.EMERALD, 'S', Items.STICK});
 	
 	    //--Ruby Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_helmet, 1), new Object[] {"KKK", "K K", 'K', MoreCraftItems.ruby});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', MoreCraftItems.ruby});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', MoreCraftItems.ruby});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_boots, 1), new Object[] {"K K", "K K", 'K', MoreCraftItems.ruby});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', MoreCraftItems.ruby, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', MoreCraftItems.ruby, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_shovel, 1), new Object[] {"K", "S", "S", 'K', MoreCraftItems.ruby, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_hoe, 1), new Object[] {"KK", " S", " S", 'K', MoreCraftItems.ruby, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby_sword, 1), new Object[] {"K", "K", "S", 'K', MoreCraftItems.ruby, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_HELMET, 1), new Object[] {"KKK", "K K", 'K', MoreCraftItems.RUBY});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', MoreCraftItems.RUBY});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', MoreCraftItems.RUBY});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_BOOTS, 1), new Object[] {"K K", "K K", 'K', MoreCraftItems.RUBY});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', MoreCraftItems.RUBY, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', MoreCraftItems.RUBY, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', MoreCraftItems.RUBY, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_HOE, 1), new Object[] {"KK", " S", " S", 'K', MoreCraftItems.RUBY, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY_SWORD, 1), new Object[] {"K", "K", "S", 'K', MoreCraftItems.RUBY, 'S', Items.STICK});
 	    
 	    //--Blaze Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_helmet, 1), new Object[] {"KKK", "K K", 'K', Items.blaze_rod});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.blaze_rod});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.blaze_rod});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_boots, 1), new Object[] {"K K", "K K", 'K', Items.blaze_rod});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.blaze_rod, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.blaze_rod, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_shovel, 1), new Object[] {"K", "S", "S", 'K', Items.blaze_rod, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_hoe, 1), new Object[] {"KK", " S", " S", 'K', Items.blaze_rod, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.blaze_sword, 1), new Object[] {"K", "K", "S", 'K', Items.blaze_rod, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_HELMET, 1), new Object[] {"KKK", "K K", 'K', Items.BLAZE_ROD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.BLAZE_ROD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.BLAZE_ROD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_BOOTS, 1), new Object[] {"K K", "K K", 'K', Items.BLAZE_ROD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.BLAZE_ROD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.BLAZE_ROD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Items.BLAZE_ROD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_HOE, 1), new Object[] {"KK", " S", " S", 'K', Items.BLAZE_ROD, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BLAZE_SWORD, 1), new Object[] {"K", "K", "S", 'K', Items.BLAZE_ROD, 'S', Items.STICK});
 	
 	    //--Ender Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_helmet, 1), new Object[] {"KKK", "K K", 'K', Items.ender_pearl});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.ender_pearl});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.ender_pearl});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_boots, 1), new Object[] {"K K", "K K", 'K', Items.ender_pearl});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.ender_pearl, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.ender_pearl, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_shovel, 1), new Object[] {"K", "S", "S", 'K', Items.ender_pearl, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_hoe, 1), new Object[] {"KK", " S", " S", 'K', Items.ender_pearl, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_sword, 1), new Object[] {"K", "K", "S", 'K', Items.ender_pearl, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_HELMET, 1), new Object[] {"KKK", "K K", 'K', Items.ENDER_PEARL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Items.ENDER_PEARL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Items.ENDER_PEARL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_BOOTS, 1), new Object[] {"K K", "K K", 'K', Items.ENDER_PEARL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Items.ENDER_PEARL, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Items.ENDER_PEARL, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Items.ENDER_PEARL, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_HOE, 1), new Object[] {"KK", " S", " S", 'K', Items.ENDER_PEARL, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_SWORD, 1), new Object[] {"K", "K", "S", 'K', Items.ENDER_PEARL, 'S', Items.STICK});
 	    
 	    //--Endstone Tools--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.end_stone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.end_stone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_shovel, 1), new Object[] {"K", "S", "S", 'K', Blocks.end_stone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_hoe, 1), new Object[] {"KK", " S", " S", 'K', Blocks.end_stone, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ender_sword, 1), new Object[] {"K", "K", "S", 'K', Blocks.end_stone, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.END_STONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.END_STONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Blocks.END_STONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_HOE, 1), new Object[] {"KK", " S", " S", 'K', Blocks.END_STONE, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDER_SWORD, 1), new Object[] {"K", "K", "S", 'K', Blocks.END_STONE, 'S', Items.STICK});
 	
 	    //--Netherrack Tools--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherrack_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.netherrack, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherrack_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.netherrack, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherrack_shovel, 1), new Object[] {"K", "S", "S", 'K', Blocks.netherrack, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherrack_hoe, 1), new Object[] {"KK", " S", " S", 'K', Blocks.netherrack, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherrack_sword, 1), new Object[] {"K", "K", "S", 'K', Blocks.netherrack, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERRACK_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.NETHERRACK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERRACK_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.NETHERRACK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERRACK_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Blocks.NETHERRACK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERRACK_HOE, 1), new Object[] {"KK", " S", " S", 'K', Blocks.NETHERRACK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERRACK_SWORD, 1), new Object[] {"K", "K", "S", 'K', Blocks.NETHERRACK, 'S', Items.STICK});
 	
 	    //--Slime Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.slime_helmet, 1), new Object[] {"###", "# #", '#', Items.slime_ball});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.slime_chestplate, 1), new Object[] {"# #", "###", "###", '#', Items.slime_ball});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.slime_leggings, 1), new Object[] {"###", "# #", "# #", '#', Items.slime_ball});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.slime_boots, 1), new Object[] {"# #", "# #", '#', Items.slime_ball});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SLIME_HELMET, 1), new Object[] {"###", "# #", '#', Items.SLIME_BALL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SLIME_CHESTPLATE, 1), new Object[] {"# #", "###", "###", '#', Items.SLIME_BALL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SLIME_LEGGINGS, 1), new Object[] {"###", "# #", "# #", '#', Items.SLIME_BALL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SLIME_BOOTS, 1), new Object[] {"# #", "# #", '#', Items.SLIME_BALL});
 	    
 	    //--Rotten Flesh Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.flesh_helmet, 1), new Object[] {"###", "# #", '#', Items.rotten_flesh});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.flesh_chestplate, 1), new Object[] {"# #", "###", "###", '#', Items.rotten_flesh});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.flesh_leggings, 1), new Object[] {"###", "# #", "# #", '#', Items.rotten_flesh});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.flesh_boots, 1), new Object[] {"# #", "# #", '#', Items.rotten_flesh});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.FLESH_HELMET, 1), new Object[] {"###", "# #", '#', Items.ROTTEN_FLESH});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.FLESH_CHESTPLATE, 1), new Object[] {"# #", "###", "###", '#', Items.ROTTEN_FLESH});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.FLESH_LEGGINGS, 1), new Object[] {"###", "# #", "# #", '#', Items.ROTTEN_FLESH});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.FLESH_BOOTS, 1), new Object[] {"# #", "# #", '#', Items.ROTTEN_FLESH});
 	    
 	    //--Spider Silk Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.spidersilk_helmet, 1), new Object[] {"###", "# #", '#', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.spidersilk_chestplate, 1), new Object[] {"# #", "###", "###", '#', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.spidersilk_leggings, 1), new Object[] {"###", "# #", "# #", '#', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.spidersilk_boots, 1), new Object[] {"# #", "# #", '#', Blocks.web});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SPIDERSILK_HELMET, 1), new Object[] {"###", "# #", '#', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SPIDERSILK_CHESTPLATE, 1), new Object[] {"# #", "###", "###", '#', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SPIDERSILK_LEGGINGS, 1), new Object[] {"###", "# #", "# #", '#', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.SPIDERSILK_BOOTS, 1), new Object[] {"# #", "# #", '#', Blocks.WEB});
 	
 	    //--Necro Armour--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bonelord_helmet, 1), new Object[] {"BBB", "C C", 'B', Items.bone, 'C', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bonelord_chestplate, 1), new Object[] {"B B", "CCC", "BBB", 'B', Items.bone, 'C', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bonelord_leggings, 1), new Object[] {"BBB", "C C", "B B", 'B', Items.bone, 'C', Blocks.web});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bonelord_boots, 1), new Object[] {"C C", "B B", 'B', Items.bone, 'C', Blocks.web});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONELORD_HELMET, 1), new Object[] {"BBB", "C C", 'B', Items.BONE, 'C', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONELORD_CHESTPLATE, 1), new Object[] {"B B", "CCC", "BBB", 'B', Items.BONE, 'C', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONELORD_LEGGINGS, 1), new Object[] {"BBB", "C C", "B B", 'B', Items.BONE, 'C', Blocks.WEB});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONELORD_BOOTS, 1), new Object[] {"C C", "B B", 'B', Items.BONE, 'C', Blocks.WEB});
 	
-	    //--Guardian Tools/Armor--\\
-	    /*GameRegistry.addRecipe(new ItemStack(MoreCraftItems.guardian_helmet, 1), new Object[] {"KKK", "K K", 'K', MoreCraftItems.guardian_scale});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.guardian_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', MoreCraftItems.guardian_scale});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.guardian_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', MoreCraftItems.guardian_scale});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.guardian_boots, 1), new Object[] {"K K", "K K", 'K', MoreCraftItems.guardian_scale});
-	    */
+	    //--Enderdragon Armour--\\
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDERDRAGON_HELMET, 1), new Object[] {"###", "# #", '#', MoreCraftItems.ENDERDRAGON_SCALES});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDERDRAGON_CHESTPLATE, 1), new Object[] {"# #", "###", "###", '#', MoreCraftItems.ENDERDRAGON_SCALES});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDERDRAGON_LEGGINGS, 1), new Object[] {"###", "# #", "# #", '#', MoreCraftItems.ENDERDRAGON_SCALES});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ENDERDRAGON_BOOTS, 1), new Object[] {"# #", "# #", '#', MoreCraftItems.ENDERDRAGON_SCALES});
+	    
 	    //--Bedrock Tools/Armor--\\
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_helmet, 1), new Object[] {"KKK", "K K", 'K', Blocks.bedrock});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_chestplate, 1), new Object[] {"K K", "KKK", "KKK", 'K', Blocks.bedrock});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_leggings, 1), new Object[] {"KKK", "K K", "K K", 'K', Blocks.bedrock});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_boots, 1), new Object[] {"K K", "K K", 'K', Blocks.bedrock});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_pickaxe, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.bedrock, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_axe, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.bedrock, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_shovel, 1), new Object[] {"K", "S", "S", 'K', Blocks.bedrock, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_hoe, 1), new Object[] {"KK", " S", " S", 'K', Blocks.bedrock, 'S', Items.stick});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bedrock_sword, 1), new Object[] {"K", "K", "S", 'K', Blocks.bedrock, 'S', Items.stick});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_HELMET, 1), new Object[] {"KKK", "K K", 'K', Blocks.BEDROCK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_CHESTPLATE, 1), new Object[] {"K K", "KKK", "KKK", 'K', Blocks.BEDROCK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_LEGGINGS, 1), new Object[] {"KKK", "K K", "K K", 'K', Blocks.BEDROCK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_BOOTS, 1), new Object[] {"K K", "K K", 'K', Blocks.BEDROCK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_PICKAXE, 1), new Object[] {"KKK", " S ", " S ", 'K', Blocks.BEDROCK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_AXE, 1), new Object[] {"KK ", "KS ", " S ", 'K', Blocks.BEDROCK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_SHOVEL, 1), new Object[] {"K", "S", "S", 'K', Blocks.BEDROCK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_HOE, 1), new Object[] {"KK", " S", " S", 'K', Blocks.BEDROCK, 'S', Items.STICK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_SWORD, 1), new Object[] {"K", "K", "S", 'K', Blocks.BEDROCK, 'S', Items.STICK});
 	    
 	    
 	    //--Block Recipes--\\
 	    
 	    // Items into Storage Blocks
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.bone_block, 1), new Object[] {"###","###","###",'#', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.flesh_block, 1), new Object[] {"###","###","###",'#', Items.rotten_flesh});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ruby_block, 1), new Object[] {"###","###","###",'#', MoreCraftItems.ruby});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.blaze_block, 1), new Object[] {"###","###","###",'#', Items.blaze_rod});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ender_block, 1), new Object[] {"###","###","###",'#', Items.ender_pearl});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.gunpowder_block, 1), new Object[] {"###","###","###",'#', Items.gunpowder});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BONE_BLOCK, 1), new Object[] {"###","###","###",'#', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.FLESH_BLOCK, 1), new Object[] {"###","###","###",'#', Items.ROTTEN_FLESH});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.RUBY_BLOCK, 1), new Object[] {"###","###","###",'#', MoreCraftItems.RUBY});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BLAZE_BLOCK, 1), new Object[] {"###","###","###",'#', Items.BLAZE_ROD});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDER_BLOCK, 1), new Object[] {"###","###","###",'#', Items.ENDER_PEARL});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.GUNPOWDER_BLOCK, 1), new Object[] {"###","###","###",'#', Items.GUNPOWDER});
 	
 	    // Storage Blocks into Items
-	    GameRegistry.addRecipe(new ItemStack(Items.bone, 9), new Object[] {"B",'B', MoreCraftBlocks.bone_block});
-	    GameRegistry.addRecipe(new ItemStack(Items.rotten_flesh, 9), new Object[] {"B",'B', MoreCraftBlocks.flesh_block});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.ruby, 9), new Object[] {"B",'B', MoreCraftBlocks.ruby_block});
-	    GameRegistry.addRecipe(new ItemStack(Items.blaze_rod, 9), new Object[] {"B",'B', MoreCraftBlocks.blaze_block});
-	    GameRegistry.addRecipe(new ItemStack(Items.ender_pearl, 9), new Object[] {"B",'B', MoreCraftBlocks.ender_block});
-	    GameRegistry.addRecipe(new ItemStack(Items.gunpowder, 9), new Object[] {"B",'B', MoreCraftBlocks.gunpowder_block});
+	    GameRegistry.addRecipe(new ItemStack(Items.BONE, 9), new Object[] {"B",'B', MoreCraftBlocks.BONE_BLOCK});
+	    GameRegistry.addRecipe(new ItemStack(Items.ROTTEN_FLESH, 9), new Object[] {"B",'B', MoreCraftBlocks.FLESH_BLOCK});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY, 9), new Object[] {"B",'B', MoreCraftBlocks.RUBY_BLOCK});
+	    GameRegistry.addRecipe(new ItemStack(Items.BLAZE_ROD, 9), new Object[] {"B",'B', MoreCraftBlocks.BLAZE_BLOCK});
+	    GameRegistry.addRecipe(new ItemStack(Items.ENDER_PEARL, 9), new Object[] {"B",'B', MoreCraftBlocks.ENDER_BLOCK});
+	    GameRegistry.addRecipe(new ItemStack(Items.GUNPOWDER, 9), new Object[] {"B",'B', MoreCraftBlocks.GUNPOWDER_BLOCK});
 	    
 	    // Decorative Blocks
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.enderbrick_block, 1), new Object[] {"##","##",'#', MoreCraftItems.ender_brick});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.bone_ladder, 3), new Object[] {"# #", "###", "# #", '#', Items.bone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.glowstone_torch, 1), new Object[] {"G", "S", 'G', Items.glowstone_dust, 'S', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BONE_LADDER, 3), new Object[] {"# #", "###", "# #", '#', Items.BONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.GLOWSTONE_TORCH, 1), new Object[] {"G", "S", 'G', Items.GLOWSTONE_DUST, 'S', Items.STICK});
 	
 	    // Slabs and Stairs
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.enderbrick_stairs, 4), new Object[] {"  #"," ##","###",'#', MoreCraftBlocks.enderbrick_block});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.stone_stairs, 4), new Object[] {"  #"," ##","###",'#', Blocks.stone});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_stairs, 4), new Object[] {"  #"," ##","###",'#', MoreCraftBlocks.netherwood_planks});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.END_BRICKS});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_STAIRS, 4), new Object[] {"  #"," ##","###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.STONE_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.STONE});
 	
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.enderbrick_slab, 6), new Object[] {"###",'#', MoreCraftBlocks.enderbrick_block});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_slab, 6), new Object[] {"###",'#', MoreCraftBlocks.netherwood_planks});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 6), new Object[] {"###",'#', Blocks.END_BRICKS});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 6), new Object[] {"###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
 	
 	    // Convert Logs to Planks
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_planks, 4), new Object[] {"#", '#', MoreCraftBlocks.netherwood_log});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 4), new Object[] {"#", '#', MoreCraftBlocks.NETHERWOOD_LOG});
 	
 	    //--IMPORTANT RECIPES--\\
-	    if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"S S", " S ", "S S", 'S', Items.string});
-	    else GameRegistry.addRecipe(new ItemStack(Blocks.web, 1), new Object[] {"SSS", "SSS", "SSS", 'S', Items.string}); //If hardcore recipes are enabled, take 9 strings to make 1 cobweb.
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.wither_bone, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Items.coal, 'B', Items.bone, 'N', Items.nether_star});
-		GameRegistry.addRecipe(new ItemStack(Blocks.anvil, 1, 1), new Object[] {"III", "IAI", "III", 'I', Items.iron_ingot, 'A', new ItemStack(Blocks.anvil, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(Blocks.anvil, 1, 0), new Object[] {"III", "IAI", "III", 'I', Items.iron_ingot, 'A', new ItemStack(Blocks.anvil, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(Items.saddle, 1), new Object[] {"LLL", "LSL", "I I", 'I', Items.iron_ingot, 'L', Items.leather, 'S', Items.string});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherbrick_door_item, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.nether_brick});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.glass_door_item, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.glass});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.bone_door_item, 3), new Object[] {"BB", "BB", "BB", 'B', Items.bone});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherbrick_fence_gate, 1), new Object[] {"#B#", "#B#", 'B', Blocks.nether_brick, '#', Items.netherbrick});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.bedrock_brick, 4), new Object[] {"##", "##", '#', Blocks.bedrock});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.soul_glass_pane, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.soul_glass});
-		GameRegistry.addRecipe(new ItemStack(Items.glass_bottle, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.soul_glass});
+	    if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Blocks.WEB, 1), new Object[] {"S S", " S ", "S S", 'S', Items.STRING});
+	    else GameRegistry.addRecipe(new ItemStack(Blocks.WEB, 1), new Object[] {"SSS", "SSS", "SSS", 'S', Items.STRING}); //If hardcore recipes are enabled, take 9 strings to make 1 cobweb.
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.WITHER_BONE, 4), new Object[] {"OBO", "BNB", "OBO", 'O', Items.COAL, 'B', Items.BONE, 'N', Items.NETHER_STAR});
+		GameRegistry.addRecipe(new ItemStack(Blocks.ANVIL, 1, 1), new Object[] {"III", "IAI", "III", 'I', Items.IRON_INGOT, 'A', new ItemStack(Blocks.ANVIL, 1, 2)});
+		GameRegistry.addRecipe(new ItemStack(Blocks.ANVIL, 1, 0), new Object[] {"III", "IAI", "III", 'I', Items.IRON_INGOT, 'A', new ItemStack(Blocks.ANVIL, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(Items.SADDLE, 1), new Object[] {"LLL", "LSL", "I I", 'I', Items.IRON_INGOT, 'L', Items.LEATHER, 'S', Items.STRING});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERBRICK_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.NETHER_BRICK});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Items.BONE});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERBRICK_FENCE_GATE, 1), new Object[] {"#B#", "#B#", 'B', Blocks.NETHER_BRICK, '#', Items.NETHERBRICK});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BEDROCK_BRICK, 4), new Object[] {"##", "##", '#', Blocks.BEDROCK});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.SOUL_GLASS});
 		//Needed because otherwise, these vanilla items would be unobtainable.
-	    GameRegistry.addShapelessRecipe(new ItemStack(Items.spider_eye, 1), new Object[] {MoreCraftItems.spider_raw});
-	    GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 0), new Object[] {MoreCraftItems.squid_raw});
+	    GameRegistry.addShapelessRecipe(new ItemStack(Items.SPIDER_EYE, 1), new Object[] {MoreCraftItems.SPIDER_RAW});
+	    GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 0), new Object[] {MoreCraftItems.SQUID_RAW});
 		
 		/*Horse Armour*/
 	    if (!MoreCraft.hardcoreRecipes) {
-	        GameRegistry.addRecipe(new ItemStack(Items.iron_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.iron_ingot, 'C', Blocks.wool});
-	        GameRegistry.addRecipe(new ItemStack(Items.golden_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.gold_ingot, 'C', Blocks.wool});
-	        GameRegistry.addRecipe(new ItemStack(Items.diamond_horse_armor, 1), new Object[] {"  #", "#C#", "###", '#', Items.diamond, 'C', Blocks.wool});
+	        GameRegistry.addRecipe(new ItemStack(Items.IRON_HORSE_ARMOR, 1), new Object[] {"  #", "#C#", "###", '#', Items.IRON_INGOT, 'C', Blocks.WOOL});
+	        GameRegistry.addRecipe(new ItemStack(Items.GOLDEN_HORSE_ARMOR, 1), new Object[] {"  #", "#C#", "###", '#', Items.GOLD_INGOT, 'C', Blocks.WOOL});
+	        GameRegistry.addRecipe(new ItemStack(Items.DIAMOND_HORSE_ARMOR, 1), new Object[] {"  #", "#C#", "###", '#', Items.DIAMOND, 'C', Blocks.WOOL});
 	    }
 		/*Nether wood planks recipes*/
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_crafting_table, 1), new Object[] {"BB", "BB", 'B', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_chest, 1), new Object[] {"###", "# #", "###", '#', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.netherwood_door_item, 3), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.netherwood_planks});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_fence_gate, 1), new Object[] {"I#I", "I#I", '#', MoreCraftBlocks.netherwood_planks, 'I', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_fence, 3), new Object[] {"#I#", "#I#", '#', MoreCraftBlocks.netherwood_planks, 'I', Items.stick});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_slab, 6), new Object[] {"###", '#', MoreCraftBlocks.netherwood_planks});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERWOOD_BOAT, 1), new Object[] {"# #", "###", '#', MoreCraftBlocks.NETHERWOOD_PLANKS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_CRAFTING_TABLE, 1), new Object[] {"BB", "BB", 'B', MoreCraftBlocks.NETHERWOOD_PLANKS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_CHEST, 1), new Object[] {"###", "# #", "###", '#', MoreCraftBlocks.NETHERWOOD_PLANKS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERWOOD_DOOR, 3), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.NETHERWOOD_PLANKS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_FENCE_GATE, 1), new Object[] {"I#I", "I#I", '#', MoreCraftBlocks.NETHERWOOD_PLANKS, 'I', Items.STICK});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_FENCE, 3), new Object[] {"#I#", "#I#", '#', MoreCraftBlocks.NETHERWOOD_PLANKS, 'I', Items.STICK});	
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 6), new Object[] {"###", '#', MoreCraftBlocks.NETHERWOOD_PLANKS});
 		
 	    //Food recipes
-	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.cake_slice, 6), new Object[] {Items.cake});
-	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.apple_pie, 1), new Object[] {Items.egg, Items.apple, Items.sugar});
+	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.CAKE_SLICE, 6), new Object[] {Items.CAKE});
+	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.APPLE_PIE, 1), new Object[] {Items.EGG, Items.APPLE, Items.SUGAR});
+	    if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 1), new Object[] {"###", "#A#", "###", '#', Blocks.GOLD_BLOCK, 'A', Items.APPLE});
 	    
 	    /*Rotten flesh recipes, used as substitute for leather.*/
 	    if (!MoreCraft.hardcoreRecipes) {
-	        GameRegistry.addRecipe(new ItemStack(Items.item_frame, 1), new Object[] {"SSS", "SFS", "SSS", 'S', Items.stick, 'F', Items.rotten_flesh});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.book, 1), new Object[] {Items.paper, Items.paper, Items.paper, Items.rotten_flesh});
+	        GameRegistry.addRecipe(new ItemStack(Items.ITEM_FRAME, 1), new Object[] {"SSS", "SFS", "SSS", 'S', Items.STICK, 'F', Items.ROTTEN_FLESH});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.BOOK, 1), new Object[] {Items.PAPER, Items.PAPER, Items.PAPER, Items.ROTTEN_FLESH});
 	    }
 	    /*Silly recipes.*/
 	    if (MoreCraft.sillyRecipes) {
-	        GameRegistry.addRecipe(new ItemStack(Blocks.bedrock, 1), new Object[] {"BS", 'B', Items.bed, 'S', Blocks.stone});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.BEDROCK, 1), new Object[] {"BS", 'B', Items.BED, 'S', Blocks.STONE});
 	    }
 	    
 	    // ~ --DISMANTLE/SALVAGE RECIPES-- ~ \\
 	    
 	    //--Convert slabs and stairs to full blocks--\\
 	    if (MoreCraft.salvageRecipes) {
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.oak_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.spruce_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.birch_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.jungle_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.acacia_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.dark_oak_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), new Object[] {"SS", "SS", 'S', Blocks.sandstone_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 6), new Object[] {"SS", "SS", 'S', Blocks.brick_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 6), new Object[] {"SS", "SS", 'S', Blocks.stone_brick_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 6), new Object[] {"SS", "SS", 'S', Blocks.nether_brick_stairs});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.quartz_block, 6), new Object[] {"SS", "SS", 'S', Blocks.quartz_stairs}); //--Quartz stairs to quartz blocks.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.stone_stairs}); //--Smooth Stone stairs to smooth stone blocks.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.red_sandstone, 6), new Object[] {"SS", "SS", 'S', Blocks.red_sandstone_stairs});
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.enderbrick_block, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.enderbrick_stairs}); //--Ender Brick stairs to ender brick blocks.
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_planks, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.netherwood_stairs});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.OAK_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.SPRUCE_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.BIRCH_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.JUNGLE_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.ACACIA_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.DARK_OAK_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.SANDSTONE_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.BRICK_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.STONEBRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_BRICK_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.NETHER_BRICK_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.QUARTZ_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.QUARTZ_STAIRS}); //--Quartz stairs to quartz blocks.
+	        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.STONE_STAIRS}); //--Smooth Stone stairs to smooth stone blocks.
+	        GameRegistry.addRecipe(new ItemStack(Blocks.RED_SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.RED_SANDSTONE_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PURPUR_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.PURPUR_STAIRS});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.ENDSTONE_BRICK_STAIRS}); //--Ender Brick stairs to ender brick blocks.
+	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.NETHERWOOD_STAIRS});
 	
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 0)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 1)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 2)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 3)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 4)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.wooden_slab, 1, 5)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 3)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.stone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 0)});
-	        //GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 1)}); //Already in vanilla.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.brick_block, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 4)});
-	        //GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 5)}); //Already in vanilla.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab, 1, 6)});
-	        //GameRegistry.addRecipe(new ItemStack(Blocks.red_sandstone, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.stone_slab2, 1, 0)}); //Already in vanilla.
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.enderbrick_block, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.enderbrick_slab, 1, 0)});
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.netherwood_planks, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.netherwood_slab, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 1)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 2)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 3)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 4)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 5)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 3)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 0)});
+
+	        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 4)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 6)});
+	        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 1, 0)});
+	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 1, 0)});
 	    }
 	    
 	    //--Dismantling objects--\\
 	    if (MoreCraft.salvageRecipes) {
 	    	//Items
-	        GameRegistry.addRecipe(new ItemStack(Items.stick, 1), new Object[] {"AA", "AA", 'A', Items.arrow});
+	        GameRegistry.addRecipe(new ItemStack(Items.STICK, 1), new Object[] {"AA", "AA", 'A', Items.ARROW});
 
 	        //Blocks
 	        //Fences
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.oak_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.spruce_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.birch_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.jungle_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.dark_oak_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.acacia_fence});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {MoreCraftBlocks.netherwood_fence});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.OAK_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.SPRUCE_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.BIRCH_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.JUNGLE_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.DARK_OAK_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.ACACIA_FENCE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {MoreCraftBlocks.NETHERWOOD_FENCE});
 	        //Fence Gates
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.oak_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.spruce_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.birch_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.jungle_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.dark_oak_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {Blocks.acacia_fence_gate});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 6), new Object[] {MoreCraftBlocks.netherwood_fence_gate});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.OAK_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.SPRUCE_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.BIRCH_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.JUNGLE_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.DARK_OAK_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {Blocks.ACACIA_FENCE_GATE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 6), new Object[] {MoreCraftBlocks.NETHERWOOD_FENCE_GATE});
 	        //Doors
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.oak_door});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.spruce_door});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.birch_door});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.jungle_door});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.dark_oak_door});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.acacia_door});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.OAK_DOOR});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.SPRUCE_DOOR});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.BIRCH_DOOR});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.JUNGLE_DOOR});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.DARK_OAK_DOOR});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.ACACIA_DOOR});
 	        
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Items.boat});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2), new Object[] {Items.sign});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3), new Object[] {Items.bow});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 8), new Object[] {Blocks.chest});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 3), new Object[] {Blocks.trapdoor});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4), new Object[] {Items.BOAT});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 2), new Object[] {Items.SIGN});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 3), new Object[] {Items.BOW});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 8), new Object[] {Blocks.CHEST});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 3), new Object[] {Blocks.TRAPDOOR});
 
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 1), new Object[] {Blocks.lever});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 2), new Object[] {Blocks.ladder});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4), new Object[] {Blocks.crafting_table});
-	        GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 4), new Object[] {Blocks.quartz_block});
-	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.netherwood_planks, 8), new Object[] {MoreCraftBlocks.netherwood_chest});
-	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.netherwood_planks, 4), new Object[] {MoreCraftBlocks.netherwood_crafting_table});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.COBBLESTONE, 1), new Object[] {Blocks.LEVER});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), new Object[] {Blocks.LADDER});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4), new Object[] {Blocks.CRAFTING_TABLE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 4), new Object[] {Blocks.QUARTZ_BLOCK});
+	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 8), new Object[] {MoreCraftBlocks.NETHERWOOD_CHEST});
+	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 4), new Object[] {MoreCraftBlocks.NETHERWOOD_CRAFTING_TABLE});
 	    }
 	    
 	    // ~ --FURNACE RECIPES -- ~ \\
 	
 	    //--Procession--\\
-	    GameRegistry.addSmelting(MoreCraftBlocks.ruby_ore, new ItemStack(MoreCraftItems.ruby), 2.0F);
-	    GameRegistry.addSmelting(Blocks.end_stone, new ItemStack(MoreCraftItems.ender_brick), 1.0F); 
-	    GameRegistry.addSmelting(Blocks.soul_sand, new ItemStack(MoreCraftBlocks.soul_glass), 0.5F); 
+	    GameRegistry.addSmelting(MoreCraftBlocks.RUBY_ORE, new ItemStack(MoreCraftItems.RUBY), 2.0F);
+	    //GameRegistry.addSmelting(Blocks.END_STONE, new ItemStack(MoreCraftItems.ender_brick), 1.0F); 
+	    GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(MoreCraftBlocks.SOUL_GLASS), 0.5F); 
 	    
 	    //--Cooking food--\\
-	    GameRegistry.addSmelting(Items.rotten_flesh, new ItemStack(MoreCraftItems.cooked_flesh), 1.0F);
-	    GameRegistry.addSmelting(MoreCraftItems.spider_raw, new ItemStack(MoreCraftItems.spider_cooked), 1.0F);
-	    GameRegistry.addSmelting(MoreCraftItems.squid_raw, new ItemStack(MoreCraftItems.squid_cooked), 1.0F);
-	    GameRegistry.addSmelting(MoreCraftItems.guardian_meat_raw, new ItemStack(MoreCraftItems.guardian_meat_cooked), 1.0F);
-	    GameRegistry.addSmelting(Items.egg, new ItemStack(MoreCraftItems.egg_cooked), 1.0F);
+	    GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(MoreCraftItems.COOKED_FLESH), 1.0F);
+	    GameRegistry.addSmelting(MoreCraftItems.SPIDER_RAW, new ItemStack(MoreCraftItems.SPIDER_COOKED), 1.0F);
+	    GameRegistry.addSmelting(MoreCraftItems.SQUID_RAW, new ItemStack(MoreCraftItems.SQUID_COOKED), 1.0F);
+	    GameRegistry.addSmelting(MoreCraftItems.GUARDIAN_MEAT_RAW, new ItemStack(MoreCraftItems.GUARDIAN_MEAT_COOKED), 1.0F);
+	    GameRegistry.addSmelting(Items.EGG, new ItemStack(MoreCraftItems.EGG_COOKED), 1.0F);
 		
 	    //--Melting down--\\
 	    if (MoreCraft.salvageRecipes) {
-	        GameRegistry.addSmelting(Items.iron_door, new ItemStack(Items.iron_ingot, 2), 0.5F);
-	        GameRegistry.addSmelting(Items.minecart, new ItemStack(Items.iron_ingot, 5), 0.5F);
-	        GameRegistry.addSmelting(Items.cauldron, new ItemStack(Items.iron_ingot, 7), 0.5F);
+	        GameRegistry.addSmelting(Items.IRON_DOOR, new ItemStack(Items.IRON_INGOT, 2), 0.5F);
+	        GameRegistry.addSmelting(Items.MINECART, new ItemStack(Items.IRON_INGOT, 5), 0.5F);
+	        GameRegistry.addSmelting(Items.CAULDRON, new ItemStack(Items.IRON_INGOT, 7), 0.5F);
 	    }
 	}
 }

@@ -1,7 +1,8 @@
-package kittehmod.bettercraft;
+package kittehmod.bettercraft.client;
 
 import java.util.Calendar;
 
+import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -20,14 +21,14 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 @SideOnly(Side.CLIENT)	
-public class TileEntityNetherwoodChestRenderer extends TileEntitySpecialRenderer<TileEntityNetherwoodChest>
+public class RenderNetherwoodChest extends TileEntitySpecialRenderer<TileEntityNetherwoodChest>
 {
 	private static final ResourceLocation textureDouble = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
 	private static final ResourceLocation textureSingle = new ResourceLocation("bettercraft:textures/entity/chest/netherwood.png");
 	private ModelChest simpleChest = new ModelChest();
 	private ModelChest largeChest = new ModelLargeChest();
 
-	public TileEntityNetherwoodChestRenderer()
+	public RenderNetherwoodChest()
 	{
 
 	}

@@ -1,6 +1,14 @@
 package kittehmod.bettercraft.item;
 
+import kittehmod.bettercraft.MoreCraft;
+import kittehmod.bettercraft.MoreCraftItems;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -11,23 +19,33 @@ public class ItemNormalArmor extends ItemArmor
 	public ArmorMaterial material;
 	public Item repairMaterial;
 
-	public ItemNormalArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix, Item par6)
+	public ItemNormalArmor(ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
-	    super(par2EnumArmorMaterial, par3, par4);
-	    this.material = par2EnumArmorMaterial;
-	    //this.setCreativeTab(CreativeTabs.tabCombat); 
-	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
-	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
-	    this.maxStackSize = 1;
-	    armorNamePrefix = armornamePrefix;
-	    repairMaterial = par6;
+		super(materialIn, renderIndexIn, equipmentSlotIn);
+        this.setMaxDamage(materialIn.getDurability(equipmentSlotIn));
+        this.setCreativeTab(CreativeTabs.COMBAT);
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
 	}
 
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+    	if (this.material == MoreCraft.WITHERBONE_A) {
+    		return MoreCraft.LEGENDARY;
+    	}
+    	if (this.material == MoreCraft.ENDERDRAGON_A) {
+    		return EnumRarity.EPIC;
+    	}
+    	if (this.material == MoreCraft.BLAZE_A || this.material == MoreCraft.BONELORD_A) {
+    		return par1ItemStack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.UNCOMMON;
+    	}
+        return par1ItemStack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.COMMON;
+    }
+	
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
 	{
 		return repairMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
-	
+
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
 

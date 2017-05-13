@@ -2,7 +2,9 @@ package kittehmod.bettercraft.item;
 
 import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.MoreCraftItems;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
@@ -15,22 +17,21 @@ public class ItemNormalHoe extends ItemHoe
 	public ToolMaterial material;
 	public Item repairMaterial;
 	
-	public ItemNormalHoe(ToolMaterial material, Item par3RepairMaterial) 
+	public ItemNormalHoe(Item.ToolMaterial material) 
 	{
 		super(material);
-		//setCreativeTab(CreativeTabs.tabTools);
-		repairMaterial = par3RepairMaterial;
+		this.material = material;
 	}
 	
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-    	if (par1ItemStack.getItem().equals(MoreCraftItems.witherbone_hoe)) {
+    	if (this.material == MoreCraft.WITHERBONE_T) {
     		return MoreCraft.LEGENDARY;
     	}
-    	if (par1ItemStack.getItem().equals(MoreCraftItems.blaze_hoe)) {
-    		return EnumRarity.UNCOMMON;
+    	if (this.material == MoreCraft.BLAZE_T) {
+    		return par1ItemStack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.UNCOMMON;
     	}
-        return EnumRarity.COMMON;
+        return par1ItemStack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.COMMON;
     }
 	
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
@@ -40,13 +41,12 @@ public class ItemNormalHoe extends ItemHoe
 	
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-    	if (par1ItemStack.getItem().equals(MoreCraftItems.witherbone_hoe)) { 
-	        par1ItemStack.damageItem(0, par3EntityLivingBase);
-	        ((EntityLivingBase)par2EntityLivingBase).addPotionEffect(new PotionEffect(Potion.wither.id, 200));
+        par1ItemStack.damageItem(0, par3EntityLivingBase);
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.WITHERBONE_HOE)) { 
+	        ((EntityLivingBase)par2EntityLivingBase).addPotionEffect(new PotionEffect(MobEffects.WITHER, 200));
 	        return true;
     	}
-    	if (par1ItemStack.getItem().equals(MoreCraftItems.blaze_hoe)) { 
-            par1ItemStack.damageItem(0, par3EntityLivingBase);
+    	if (par1ItemStack.getItem().equals(MoreCraftItems.BLAZE_HOE)) { 
             ((EntityLivingBase)par2EntityLivingBase).setFire(4);
             return true;
     	}

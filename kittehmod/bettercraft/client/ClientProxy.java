@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import kittehmod.bettercraft.CommonProxy;
-import kittehmod.bettercraft.MoreCraftBlocks;
 import kittehmod.bettercraft.MoreCraftItems;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
+import kittehmod.bettercraft.entity.EntityNetherwoodBoat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.model.ModelBoat;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
@@ -22,22 +24,24 @@ public class ClientProxy extends CommonProxy
 
 	@Override
 	public void registerRenderers()
-	{	
+	{
 		ItemRenderRegister.registerItemRenderer();
 		BlockRenderRegister.registerBlockRenderer();
 		
 		// This is for rendering entities and so forth later on
 		TileEntityItemStackRenderer.instance = new ItemNetherwoodChestRenderer();
-		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MoreCraftBlocks.netherwood_chest), 0, new ModelResourceLocation("bettercraft:netherwood_chest", "inventory"));
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new TileEntityNetherwoodChestRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new RenderNetherwoodChest());
 
+
+		//RenderingRegistry.registerEntityRenderingHandler(EntityNetherwoodBoat.class, Minecraft.getMinecraft().getRenderManager());
+		
 		ModelEnderdragonArmor enderdragon_armor = new ModelEnderdragonArmor(1F);
 		ModelEnderdragonLegs enderdragon_legs = new ModelEnderdragonLegs(0.5F);
 		
-		armorModels.put(MoreCraftItems.enderdragon_helmet, enderdragon_armor);
-		armorModels.put(MoreCraftItems.enderdragon_chestplate, enderdragon_armor);
-		armorModels.put(MoreCraftItems.enderdragon_leggings, enderdragon_legs);
-		armorModels.put(MoreCraftItems.enderdragon_boots, enderdragon_armor);
+		armorModels.put(MoreCraftItems.ENDERDRAGON_HELMET, enderdragon_armor);
+		armorModels.put(MoreCraftItems.ENDERDRAGON_CHESTPLATE, enderdragon_armor);
+		armorModels.put(MoreCraftItems.ENDERDRAGON_LEGGINGS, enderdragon_legs);
+		armorModels.put(MoreCraftItems.ENDERDRAGON_BOOTS, enderdragon_armor);
 	}
-
+	
 }

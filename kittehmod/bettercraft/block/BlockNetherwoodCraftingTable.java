@@ -1,8 +1,11 @@
 package kittehmod.bettercraft.block;
 
+import javax.annotation.Nullable;
+
 import kittehmod.bettercraft.GuiHandler;
 import kittehmod.bettercraft.MoreCraft;
 import net.minecraft.block.BlockWorkbench;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,11 +13,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerWorkbench;
+import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
@@ -26,14 +31,15 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
 	public BlockNetherwoodCraftingTable() 
 	{
 		super();
-		this.setCreativeTab(CreativeTabs.tabDecorations);
+		this.setCreativeTab(CreativeTabs.DECORATIONS);
+		this.setSoundType(SoundType.WOOD);
 	}
 
     /**
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -44,7 +50,7 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
             //playerIn.displayGui(new WorkbenchGui(worldIn, pos));
         	//playerIn.displayGui(new BlockNetherwoodCraftingTable.InterfaceCraftingTable(worldIn, pos));
         	FMLNetworkHandler.openGui(playerIn, MoreCraft.instance, GuiHandler.CRAFTING_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            playerIn.triggerAchievement(StatList.field_181742_Z);
+        	playerIn.addStat(StatList.CRAFTING_TABLE_INTERACTION);
             return true;
         }
     }
@@ -86,9 +92,9 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
         /**
          * Get the formatted ChatComponent that will be used for the sender's username in chat
          */
-        public IChatComponent getDisplayName()
+        public ITextComponent getDisplayName()
         {
-            return new ChatComponentTranslation(Blocks.crafting_table.getUnlocalizedName() + ".name", new Object[0]);
+            return new TextComponentTranslation(Blocks.CRAFTING_TABLE.getUnlocalizedName() + ".name", new Object[0]);
         }
 
         public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

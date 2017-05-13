@@ -1,8 +1,6 @@
 {
     "variants": {
-        "half=bottom,variant=false": { "model": "bettercraft:enderbrick_slab_half" },
-        "half=top,variant=false": { "model": "bettercraft:enderbrick_slab_upper" },
-        "half=bottom,variant=true": { "model": "bettercraft:enderbrick_slab_half" },
-        "half=top,variant=true": { "model": "bettercraft:enderbrick_slab_upper" }
+        "half=bottom,variant=default": { "model": "bettercraft:enderbrick_slab_half" },
+        "half=top,variant=default": { "model": "bettercraft:enderbrick_slab_upper" }
     }
 }

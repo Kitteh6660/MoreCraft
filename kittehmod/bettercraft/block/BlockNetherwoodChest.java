@@ -7,9 +7,10 @@ import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -21,18 +22,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockNetherwoodChest extends BlockChest 
-{
+{	
 	private final Random field_149955_b = new Random();
 	public BlockNetherwoodChest() 
 	{
-		super(2); //The reason it's at 2 is to not interfere with how vanilla chests render.
+		super(null); //The reason it's at null is to not interfere with how vanilla chests render.
 	}
 	
 	/**
@@ -95,16 +96,163 @@ public class BlockNetherwoodChest extends BlockChest
             }
         }
     }
-	/**
-	 * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
-	 * their own) Args: x, y, z, neighbor Block
-	 */
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    
+    @Override
+    public IBlockState checkForSurroundingChests(World worldIn, BlockPos pos, IBlockState state)
     {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
+        if (worldIn.isRemote)
+        {
+            return state;
+        }
+        else
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos.north());
+            IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
+            IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
+            IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
+            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+
+            if (iblockstate.getBlock() != this && iblockstate1.getBlock() != this)
+            {
+                boolean flag = iblockstate.isFullBlock();
+                boolean flag1 = iblockstate1.isFullBlock();
+
+                if (iblockstate2.getBlock() == this || iblockstate3.getBlock() == this)
+                {
+                    BlockPos blockpos1 = iblockstate2.getBlock() == this ? pos.west() : pos.east();
+                    IBlockState iblockstate7 = worldIn.getBlockState(blockpos1.north());
+                    IBlockState iblockstate6 = worldIn.getBlockState(blockpos1.south());
+                    enumfacing = EnumFacing.SOUTH;
+                    EnumFacing enumfacing2;
+
+                    if (iblockstate2.getBlock() == this)
+                    {
+                        enumfacing2 = (EnumFacing)iblockstate2.getValue(FACING);
+                    }
+                    else
+                    {
+                        enumfacing2 = (EnumFacing)iblockstate3.getValue(FACING);
+                    }
+
+                    if (enumfacing2 == EnumFacing.NORTH)
+                    {
+                        enumfacing = EnumFacing.NORTH;
+                    }
+
+                    if ((flag || iblockstate7.isFullBlock()) && !flag1 && !iblockstate6.isFullBlock())
+                    {
+                        enumfacing = EnumFacing.SOUTH;
+                    }
+
+                    if ((flag1 || iblockstate6.isFullBlock()) && !flag && !iblockstate7.isFullBlock())
+                    {
+                        enumfacing = EnumFacing.NORTH;
+                    }
+                }
+            }
+            else
+            {
+                BlockPos blockpos = iblockstate.getBlock() == this ? pos.north() : pos.south();
+                IBlockState iblockstate4 = worldIn.getBlockState(blockpos.west());
+                IBlockState iblockstate5 = worldIn.getBlockState(blockpos.east());
+                enumfacing = EnumFacing.EAST;
+                EnumFacing enumfacing1;
+
+                if (iblockstate.getBlock() == this)
+                {
+                    enumfacing1 = (EnumFacing)iblockstate.getValue(FACING);
+                }
+                else
+                {
+                    enumfacing1 = (EnumFacing)iblockstate1.getValue(FACING);
+                }
+
+                if (enumfacing1 == EnumFacing.WEST)
+                {
+                    enumfacing = EnumFacing.WEST;
+                }
+
+                if ((iblockstate2.isFullBlock() || iblockstate4.isFullBlock()) && !iblockstate3.isFullBlock() && !iblockstate5.isFullBlock())
+                {
+                    enumfacing = EnumFacing.EAST;
+                }
+
+                if ((iblockstate3.isFullBlock() || iblockstate5.isFullBlock()) && !iblockstate2.isFullBlock() && !iblockstate4.isFullBlock())
+                {
+                    enumfacing = EnumFacing.WEST;
+                }
+            }
+
+            state = state.withProperty(FACING, enumfacing);
+            worldIn.setBlockState(pos, state, 3);
+            return state;
+        }
+    }
+    
+    @Override
+    public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state)
+    {
+        EnumFacing enumfacing = null;
+
+        for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL)
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos.offset(enumfacing1));
+
+            if (iblockstate.getBlock() == this)
+            {
+                return state;
+            }
+
+            if (iblockstate.isFullBlock())
+            {
+                if (enumfacing != null)
+                {
+                    enumfacing = null;
+                    break;
+                }
+
+                enumfacing = enumfacing1;
+            }
+        }
+
+        if (enumfacing != null)
+        {
+            return state.withProperty(FACING, enumfacing.getOpposite());
+        }
+        else
+        {
+            EnumFacing enumfacing2 = (EnumFacing)state.getValue(FACING);
+
+            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
+            {
+                enumfacing2 = enumfacing2.getOpposite();
+            }
+
+            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
+            {
+                enumfacing2 = enumfacing2.rotateY();
+            }
+
+            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
+            {
+                enumfacing2 = enumfacing2.getOpposite();
+            }
+
+            return state.withProperty(FACING, enumfacing2);
+        }
+    }
+    
+    /**
+     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
+     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
+     * block, etc.
+     */
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+    {
+        super.neighborChanged(state, worldIn, pos, blockIn);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityNetherwoodChest)
+        if (tileentity instanceof TileEntityChest)
         {
             tileentity.updateContainingBlockInfo();
         }
@@ -148,5 +296,5 @@ public class BlockNetherwoodChest extends BlockChest
 		TileEntityNetherwoodChest TileEntityNetherwoodChest = new TileEntityNetherwoodChest();
 		return TileEntityNetherwoodChest;
 	}
-
+	
 }

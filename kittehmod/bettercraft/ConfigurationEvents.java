@@ -9,7 +9,7 @@ public class ConfigurationEvents {
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{
 		System.out.println("Attempt to sync.");
-	    if(eventArgs.modID.equals("bettercraft")) MoreCraft.syncConfig();
+	    if(eventArgs.getModID().equals("bettercraft")) MoreCraft.syncConfig();
 	}
 }
 

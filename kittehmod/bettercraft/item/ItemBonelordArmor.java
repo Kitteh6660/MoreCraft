@@ -2,6 +2,7 @@ package kittehmod.bettercraft.item;
 
 import kittehmod.bettercraft.MoreCraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -13,15 +14,9 @@ public class ItemBonelordArmor extends ItemArmor
 	public ArmorMaterial material;
 	public Item repairMaterial;
 
-	public ItemBonelordArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix, Item par6)
+	public ItemBonelordArmor(ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
-	    super(par2EnumArmorMaterial, par3, par4);
-	    this.material = par2EnumArmorMaterial;
-	    par2EnumArmorMaterial.getDamageReductionAmount(par4);
-	    this.setMaxDamage(par2EnumArmorMaterial.getDurability(par4));
-	    this.maxStackSize = 1;
-	    armorNamePrefix = armornamePrefix;
-	    repairMaterial = par6;
+	    super(materialIn, renderIndexIn, equipmentSlotIn);
 	}
 	
     public ArmorMaterial getArmorMaterial(ItemStack par1ItemStack)

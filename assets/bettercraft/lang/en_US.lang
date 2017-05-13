@@ -18,9 +18,8 @@ tile.netherwood_fence_gate.name=Netherwood Fence Gate
 tile.netherwood_chest.name=Netherwood Chest
 tile.netherwood_crafting_table.name=Netherwood Crafting Table
 
-tile.enderbrick_block.name=Ender Brick
-tile.enderbrick_stairs.name=Ender Brick Stairs
-tile.enderbrick_slab.name=Ender Brick Slab
+tile.enderbrick_stairs.name=End Stone Brick Stairs
+tile.enderbrick_slab.name=End Stone Brick Slab
 
 tile.stone_stairs.name=Stone Stairs
 tile.bedrock_brick.name=Bedrock Bricks
@@ -39,15 +38,17 @@ item.squid_cooked.name=Calamari
 item.egg_cooked.name=Fried Egg
 item.guardian_meat_raw.name=Raw Guardian Meat
 item.guardian_meat_cooked.name=Cooked Guardian Meat
+item.nether_apple.name=Nether Apple
 
 item.wither_bone.name=Wither Bone
-item.ender_brick.name=Ender Brick
-item.guardian_scale.name=Guardian Scales
+item.enderdragon_scales.name=Enderdragon Scales
 
-item.netherbrick_door_item.name=Nether Brick Door
-item.netherwood_door_item.name=Netherwood Door
-item.glass_door_item.name=Glass Door
-item.bone_door_item.name=Bone Door
+item.netherwood_boat.name=Netherwood Boat
+
+item.netherbrick_door.name=Nether Brick Door
+item.netherwood_door.name=Netherwood Door
+item.glass_door.name=Glass Door
+item.bone_door.name=Bone Door
 tile.netherbrick_fence_gate.name=Nether Brick Fence Gate
 tile.netherwood_fence_gate.name=Netherwood Fence Gate
 

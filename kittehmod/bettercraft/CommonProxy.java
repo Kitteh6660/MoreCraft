@@ -1,5 +1,8 @@
 package kittehmod.bettercraft;
 
+import net.minecraftforge.fml.client.config.GuiConfigEntries.IConfigEntry;
+import net.minecraftforge.fml.client.config.GuiConfigEntries.NumberSliderEntry;
+
 
 public class CommonProxy 
 {
@@ -18,4 +21,9 @@ public class CommonProxy
     {
         return 0; 
     }
+	
+	public Class<? extends IConfigEntry> getSliderClass()
+	{
+		return NumberSliderEntry.class;
+	}
 }

@@ -1,65 +1,74 @@
 package kittehmod.bettercraft.block;
 
+import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
 
 import kittehmod.bettercraft.MoreCraftBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockRotatedPillar;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.BlockPos;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockNetherLog extends BlockLog
 {
+    public static final PropertyEnum<BlockPlanks.EnumType> VARIANT = PropertyEnum.<BlockPlanks.EnumType>create("variant", BlockPlanks.EnumType.class, new Predicate<BlockPlanks.EnumType>()
+    {
+        public boolean apply(@Nullable BlockPlanks.EnumType p_apply_1_)
+        {
+            return p_apply_1_.getMetadata() < 4;
+        }
+    });
+
     public BlockNetherLog()
     {
-    	this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
     }
 
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta(int meta)
     {
-        int i = 4;
-        int j = i + 1;
+        IBlockState iblockstate = this.getDefaultState();
 
-        if (worldIn.isAreaLoaded(pos.add(-j, -j, -j), pos.add(j, j, j)))
+        switch (meta & 12)
         {
-            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-i, -i, -i), pos.add(i, i, i)))
-            {
-                IBlockState iblockstate = worldIn.getBlockState(blockpos);
-
-                if (iblockstate.getBlock().isLeaves(worldIn, blockpos))
-                {
-                    iblockstate.getBlock().beginLeavesDecay(worldIn, blockpos);
-                }
-            }
+            case 0:
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
+                break;
+            case 4:
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
+                break;
+            case 8:
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
+                break;
+            default:
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
         }
-    }
-    
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
-    public int quantityDropped(Random par1Random)
-    {
-        return 1;
-    }
-    
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
-    public Block idDropped(int par1, Random par2Random, int par3)
-    {
-        return MoreCraftBlocks.netherwood_log;
+
+        return iblockstate;
     }
 
     /**
@@ -69,6 +78,7 @@ public class BlockNetherLog extends BlockLog
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
+        i = i | 0;
 
         switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
         {
@@ -85,61 +95,23 @@ public class BlockNetherLog extends BlockLog
         return i;
     }
 
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {LOG_AXIS});
+        return new BlockStateContainer(this, new IProperty[] {LOG_AXIS});
     }
-    
+
+    protected ItemStack createStackedBlock(IBlockState state)
+    {
+        return new ItemStack(Item.getItemFromBlock(this), 1, ((BlockPlanks.EnumType)state.getValue(VARIANT)).getMetadata());
+    }
+
     /**
-     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
-     * IBlockstate
+     * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
+     * returns the metadata of the dropped item based on the old metadata of the block.
      */
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public int damageDropped(IBlockState state)
     {
-        return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
-    }
-
-    @Override public boolean canSustainLeaves(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
-    @Override public boolean isWood(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
-
-    public static enum EnumAxis implements IStringSerializable
-    {
-        X("x"),
-        Y("y"),
-        Z("z"),
-        NONE("none");
-
-        private final String name;
-
-        private EnumAxis(String name)
-        {
-            this.name = name;
-        }
-
-        public String toString()
-        {
-            return this.name;
-        }
-
-        public static EnumAxis fromFacingAxis(EnumFacing.Axis axis)
-        {
-            switch (axis)
-            {
-                case X:
-                    return X;
-                case Y:
-                    return Y;
-                case Z:
-                    return Z;
-                default:
-                    return NONE;
-            }
-        }
-
-        public String getName()
-        {
-            return this.name;
-        }
+        return 0;
     }
     
     @Override

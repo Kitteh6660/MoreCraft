@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_se",
-    "textures": {
-        "edge": "bettercraft:blocks/soul_glass_pane_top",
-        "pane": "bettercraft:blocks/soul_glass"
-    }
-}

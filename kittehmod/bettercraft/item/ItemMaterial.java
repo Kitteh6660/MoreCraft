@@ -10,7 +10,7 @@ public class ItemMaterial extends Item
 	{
 		super();
 		setMaxStackSize(64);
-		setCreativeTab(CreativeTabs.tabMaterials);
+		setCreativeTab(CreativeTabs.MATERIALS);
 	}
 
 }

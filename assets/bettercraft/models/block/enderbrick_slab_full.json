@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "bettercraft:blocks/enderbrick_block"
+		"all": "minecraft:blocks/end_bricks"
 	}
 }

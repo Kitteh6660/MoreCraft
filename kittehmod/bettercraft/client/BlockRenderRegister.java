@@ -4,7 +4,7 @@ import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.MoreCraftBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 
 public class BlockRenderRegister {
@@ -13,7 +13,7 @@ public class BlockRenderRegister {
 		if (block.getUnlocalizedName().contains("door")) {
 			return false;
 		}
-		if (block == MoreCraftBlocks.netherwood_slab_full || block == MoreCraftBlocks.enderbrick_slab_full) {
+		if (block == MoreCraftBlocks.NETHERWOOD_SLAB_FULL || block == MoreCraftBlocks.ENDSTONE_BRICK_SLAB_FULL) {
 			return false;
 		}
 		return true;
@@ -27,44 +27,43 @@ public class BlockRenderRegister {
 	
 	public static void registerBlockRenderer() {
 		//Blocks
-		reg(MoreCraftBlocks.netherbrick_door);
-		reg(MoreCraftBlocks.netherwood_door);
-		reg(MoreCraftBlocks.bone_door);
-		reg(MoreCraftBlocks.glass_door);
-		reg(MoreCraftBlocks.netherbrick_fence_gate);
-		reg(MoreCraftBlocks.netherwood_fence_gate);
+		reg(MoreCraftBlocks.NETHERBRICK_DOOR);
+		reg(MoreCraftBlocks.NETHERWOOD_DOOR);
+		reg(MoreCraftBlocks.BONE_DOOR);
+		reg(MoreCraftBlocks.GLASS_DOOR);
+		reg(MoreCraftBlocks.NETHERBRICK_FENCE_GATE);
+		reg(MoreCraftBlocks.NETHERWOOD_FENCE_GATE);
 		
-    	reg(MoreCraftBlocks.bone_block);
-    	reg(MoreCraftBlocks.flesh_block);
-    	reg(MoreCraftBlocks.ruby_block);
-    	reg(MoreCraftBlocks.blaze_block);
-    	reg(MoreCraftBlocks.ender_block);
-    	reg(MoreCraftBlocks.gunpowder_block);
+    	reg(MoreCraftBlocks.BONE_BLOCK);
+    	reg(MoreCraftBlocks.FLESH_BLOCK);
+    	reg(MoreCraftBlocks.RUBY_BLOCK);
+    	reg(MoreCraftBlocks.BLAZE_BLOCK);
+    	reg(MoreCraftBlocks.ENDER_BLOCK);
+    	reg(MoreCraftBlocks.GUNPOWDER_BLOCK);
 
-    	reg(MoreCraftBlocks.ruby_ore);
+    	reg(MoreCraftBlocks.RUBY_ORE);
     	
-    	reg(MoreCraftBlocks.netherwood_log);
-    	reg(MoreCraftBlocks.netherwood_planks);
-    	reg(MoreCraftBlocks.netherwood_leaves);
-    	reg(MoreCraftBlocks.netherwood_sapling);
-    	reg(MoreCraftBlocks.netherwood_stairs);
-    	reg(MoreCraftBlocks.netherwood_slab);
-    	reg(MoreCraftBlocks.netherwood_slab_full);
-    	reg(MoreCraftBlocks.netherwood_chest);
-    	reg(MoreCraftBlocks.netherwood_crafting_table);
-    	reg(MoreCraftBlocks.netherwood_fence);
+    	reg(MoreCraftBlocks.NETHERWOOD_LOG);
+    	reg(MoreCraftBlocks.NETHERWOOD_PLANKS);
+    	reg(MoreCraftBlocks.NETHERWOOD_LEAVES);
+    	reg(MoreCraftBlocks.NETHERWOOD_SAPLING);
+    	reg(MoreCraftBlocks.NETHERWOOD_STAIRS);
+    	reg(MoreCraftBlocks.NETHERWOOD_SLAB);
+    	//reg(MoreCraftBlocks.netherwood_slab_full);
+    	reg(MoreCraftBlocks.NETHERWOOD_CHEST);
+    	reg(MoreCraftBlocks.NETHERWOOD_CRAFTING_TABLE);
+    	reg(MoreCraftBlocks.NETHERWOOD_FENCE);
     	
-    	reg(MoreCraftBlocks.enderbrick_block);
-    	reg(MoreCraftBlocks.enderbrick_stairs);
-    	reg(MoreCraftBlocks.enderbrick_slab);
-    	reg(MoreCraftBlocks.enderbrick_slab_full);
+    	reg(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS);
+    	reg(MoreCraftBlocks.ENDSTONE_BRICK_SLAB);
+    	//reg(MoreCraftBlocks.enderbrick_slab_full);
     	
-    	reg(MoreCraftBlocks.stone_stairs);
-    	reg(MoreCraftBlocks.soul_glass);
-    	reg(MoreCraftBlocks.soul_glass_pane);
-    	reg(MoreCraftBlocks.bone_ladder);
-    	reg(MoreCraftBlocks.glowstone_torch);
-    	reg(MoreCraftBlocks.bedrock_brick);
+    	reg(MoreCraftBlocks.STONE_STAIRS);
+    	reg(MoreCraftBlocks.SOUL_GLASS);
+    	reg(MoreCraftBlocks.SOUL_GLASS_PANE);
+    	reg(MoreCraftBlocks.BONE_LADDER);
+    	reg(MoreCraftBlocks.GLOWSTONE_TORCH);
+    	reg(MoreCraftBlocks.BEDROCK_BRICK);
 	}
 	
 }

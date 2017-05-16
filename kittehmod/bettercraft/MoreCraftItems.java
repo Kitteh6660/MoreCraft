@@ -300,12 +300,7 @@ public class MoreCraftItems {
     	GameRegistry.registerItem(NETHERRACK_SHOVEL, "netherrack_shovel");
     	GameRegistry.registerItem(NETHERRACK_HOE, "netherrack_hoe");
     	GameRegistry.registerItem(NETHERRACK_SWORD, "netherrack_sword");
-    	/*
-    	GameRegistry.registerItem(guardian_helmet, "guardian_helmet");
-    	GameRegistry.registerItem(guardian_chestplate, "guardian_chestplate");
-    	GameRegistry.registerItem(guardian_leggings, "guardian_leggings");
-    	GameRegistry.registerItem(guardian_boots, "guardian_boots");*/
-    	
+
     	GameRegistry.registerItem(BONELORD_HELMET, "bonelord_helmet");
     	GameRegistry.registerItem(BONELORD_CHESTPLATE, "bonelord_chestplate");
     	GameRegistry.registerItem(BONELORD_LEGGINGS, "bonelord_leggings");

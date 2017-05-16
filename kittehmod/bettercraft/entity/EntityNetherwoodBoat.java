@@ -456,7 +456,7 @@ public class EntityNetherwoodBoat extends EntityBoat
 
                     for (int i2 = i1; i2 < j1; ++i2)
                     {
-                        blockpos$pooledmutableblockpos.set(l1, k1, i2);
+                        blockpos$pooledmutableblockpos.setPos(l1, k1, i2);
                         IBlockState iblockstate = this.worldObj.getBlockState(blockpos$pooledmutableblockpos);
 
                         if (iblockstate.getMaterial() == Material.WATER || iblockstate.getMaterial() == Material.LAVA)
@@ -515,7 +515,7 @@ public class EntityNetherwoodBoat extends EntityBoat
                         {
                             if (j2 <= 0 || k2 != k && k2 != l - 1)
                             {
-                                blockpos$pooledmutableblockpos.set(l1, k2, i2);
+                                blockpos$pooledmutableblockpos.setPos(l1, k2, i2);
                                 IBlockState iblockstate = this.worldObj.getBlockState(blockpos$pooledmutableblockpos);
                                 iblockstate.addCollisionBoxToList(this.worldObj, blockpos$pooledmutableblockpos, axisalignedbb1, list, this);
 
@@ -561,7 +561,7 @@ public class EntityNetherwoodBoat extends EntityBoat
                 {
                     for (int i2 = i1; i2 < j1; ++i2)
                     {
-                        blockpos$pooledmutableblockpos.set(k1, l1, i2);
+                        blockpos$pooledmutableblockpos.setPos(k1, l1, i2);
                         IBlockState iblockstate = this.worldObj.getBlockState(blockpos$pooledmutableblockpos);
 
                         if (iblockstate.getMaterial() == Material.WATER || iblockstate.getMaterial() == Material.LAVA)
@@ -607,7 +607,7 @@ public class EntityNetherwoodBoat extends EntityBoat
                 {
                     for (int i2 = i1; i2 < j1; ++i2)
                     {
-                        blockpos$pooledmutableblockpos.set(k1, l1, i2);
+                        blockpos$pooledmutableblockpos.setPos(k1, l1, i2);
                         IBlockState iblockstate = this.worldObj.getBlockState(blockpos$pooledmutableblockpos);
 
                         if ((iblockstate.getMaterial() == Material.WATER || iblockstate.getMaterial() == Material.LAVA) && d0 < (double)getLiquidHeight(iblockstate, this.worldObj, blockpos$pooledmutableblockpos))
@@ -710,8 +710,6 @@ public class EntityNetherwoodBoat extends EntityBoat
                 double d4 = 0.75D;
                 this.motionY *= 0.75D;
             }
-        	//TODO: Remove when done debugging
-        	//System.out.println("DEBUG: status " + this.status +  "  motionY " + this.motionY + "  waterLevel " + this.waterLevel);
         }
     }
 
@@ -817,6 +815,25 @@ public class EntityNetherwoodBoat extends EntityBoat
         this.applyYawToEntity(entityToUpdate);
     }
 
+    /**
+     * (abstract) Protected helper method to write subclass entity data to NBT.
+     */
+    protected void writeEntityToNBT(NBTTagCompound compound)
+    {
+        //compound.setString("Type", this.getBoatType().getName());
+    }
+
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    protected void readEntityFromNBT(NBTTagCompound compound)
+    {
+        //if (compound.hasKey("Type", 8))
+        //{
+        //    this.setBoatType(EntityBoat.Type.getTypeFromString(compound.getString("Type")));
+        //}
+    }
+    
     public boolean processInitialInteract(EntityPlayer player, @Nullable ItemStack stack, EnumHand hand)
     {
         if (!this.worldObj.isRemote && !player.isSneaking() && this.outOfControlTicks < 60.0F)
@@ -961,16 +978,5 @@ public class EntityNetherwoodBoat extends EntityBoat
         IN_AIR;
     }
 
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

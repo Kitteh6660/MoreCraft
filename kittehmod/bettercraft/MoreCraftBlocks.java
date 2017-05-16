@@ -43,7 +43,6 @@ public class MoreCraftBlocks {
     public static final Block RUBY_ORE = new BlockOreRuby(Material.ROCK).setHardness(4.0F).setResistance(2.0F).setUnlocalizedName("ruby_ore");
    
     //Storage Blocks
-    public static final Block BONE_BLOCK = new BlockStorage(Material.ROCK).setSoundType(SoundType.STONE).setHardness(3.0F).setResistance(8.0F).setUnlocalizedName("bone_block");
     public static final Block FLESH_BLOCK = new BlockStorage(Material.CLOTH).setSoundType(SoundType.CLOTH).setHardness(1.0F).setResistance(2.0F).setUnlocalizedName("flesh_block");
     public static final Block RUBY_BLOCK = new BlockStorage(Material.ROCK).setSoundType(SoundType.METAL).setHardness(6.0F).setResistance(10.0F).setUnlocalizedName("ruby_block");
     public static final Block BLAZE_BLOCK = new BlockBlazeBlock().setHardness(10.0F).setResistance(15.0F).setLightLevel(1.0F).setUnlocalizedName("blaze_block");
@@ -85,7 +84,6 @@ public class MoreCraftBlocks {
     	
     	GameRegistry.registerBlock(RUBY_ORE, "ruby_ore");
     	
-    	GameRegistry.registerBlock(BONE_BLOCK, "bone_block");
     	GameRegistry.registerBlock(FLESH_BLOCK, "flesh_block");
     	GameRegistry.registerBlock(RUBY_BLOCK, "ruby_block");
     	GameRegistry.registerBlock(BLAZE_BLOCK, "blaze_block");

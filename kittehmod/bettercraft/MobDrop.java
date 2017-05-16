@@ -9,6 +9,7 @@ import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
@@ -62,7 +63,7 @@ public class MobDrop
         
         if (event.getEntityLiving() instanceof EntitySkeleton && MoreCraft.mobHeadDrops)
         {
-        	if (((EntitySkeleton) event.getEntityLiving()).getSkeletonType() == 0)
+        	if (((EntitySkeleton) event.getEntityLiving()).getSkeletonType() == SkeletonType.NORMAL)
         	{
         		if (event.getSource().getDamageType().equals("player")) { //Checks for Damage Type.
         			rand = Math.random();

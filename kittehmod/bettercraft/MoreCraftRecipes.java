@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import kittehmod.bettercraft.MoreCraftItems;
 import kittehmod.bettercraft.MoreCraftBlocks;
 
@@ -146,7 +147,6 @@ public class MoreCraftRecipes {
 	    //--Block Recipes--\\
 	    
 	    // Items into Storage Blocks
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BONE_BLOCK, 1), new Object[] {"###","###","###",'#', Items.BONE});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.FLESH_BLOCK, 1), new Object[] {"###","###","###",'#', Items.ROTTEN_FLESH});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.RUBY_BLOCK, 1), new Object[] {"###","###","###",'#', MoreCraftItems.RUBY});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BLAZE_BLOCK, 1), new Object[] {"###","###","###",'#', Items.BLAZE_ROD});
@@ -154,7 +154,6 @@ public class MoreCraftRecipes {
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.GUNPOWDER_BLOCK, 1), new Object[] {"###","###","###",'#', Items.GUNPOWDER});
 	
 	    // Storage Blocks into Items
-	    GameRegistry.addRecipe(new ItemStack(Items.BONE, 9), new Object[] {"B",'B', MoreCraftBlocks.BONE_BLOCK});
 	    GameRegistry.addRecipe(new ItemStack(Items.ROTTEN_FLESH, 9), new Object[] {"B",'B', MoreCraftBlocks.FLESH_BLOCK});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.RUBY, 9), new Object[] {"B",'B', MoreCraftBlocks.RUBY_BLOCK});
 	    GameRegistry.addRecipe(new ItemStack(Items.BLAZE_ROD, 9), new Object[] {"B",'B', MoreCraftBlocks.BLAZE_BLOCK});
@@ -188,8 +187,13 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Items.BONE});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERBRICK_FENCE_GATE, 1), new Object[] {"#B#", "#B#", 'B', Blocks.NETHER_BRICK, '#', Items.NETHERBRICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BEDROCK_BRICK, 4), new Object[] {"##", "##", '#', Blocks.BEDROCK});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
+		//Soul Glass as substitute for regular glass
+		GameRegistry.addRecipe(new ItemStack(Blocks.BEACON, 1), new Object[] {"###", "#N#", "OOO", '#', MoreCraftBlocks.SOUL_GLASS, 'N', Items.NETHER_STAR, 'O', Blocks.OBSIDIAN});
+		GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.DAYLIGHT_DETECTOR, "###", "CCC", "SSS", '#', MoreCraftBlocks.SOUL_GLASS, 'C', Items.QUARTZ, 'S', "slabWood"));
+		GameRegistry.addRecipe(new ItemStack(Items.END_CRYSTAL, 1), new Object[] {"###", "#E#", "#T#", '#', MoreCraftBlocks.SOUL_GLASS, 'E', Items.ENDER_EYE, 'T', Items.GHAST_TEAR});
 		GameRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 1), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
 		//Needed because otherwise, these vanilla items would be unobtainable.
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.SPIDER_EYE, 1), new Object[] {MoreCraftItems.SPIDER_RAW});
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 0), new Object[] {MoreCraftItems.SQUID_RAW});

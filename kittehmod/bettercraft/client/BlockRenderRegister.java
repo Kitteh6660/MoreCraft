@@ -34,7 +34,6 @@ public class BlockRenderRegister {
 		reg(MoreCraftBlocks.NETHERBRICK_FENCE_GATE);
 		reg(MoreCraftBlocks.NETHERWOOD_FENCE_GATE);
 		
-    	reg(MoreCraftBlocks.BONE_BLOCK);
     	reg(MoreCraftBlocks.FLESH_BLOCK);
     	reg(MoreCraftBlocks.RUBY_BLOCK);
     	reg(MoreCraftBlocks.BLAZE_BLOCK);

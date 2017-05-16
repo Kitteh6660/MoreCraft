@@ -40,7 +40,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "2.9.1";
+    public static final String VERSION = "3.0.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -143,22 +143,25 @@ public class MoreCraft
     {
         //|--| Register blocks to Ore Dictionary |--|\\
 	
-		//ruby ores and blocks
+		OreDictionary.registerOre("blockGlass", MoreCraftBlocks.SOUL_GLASS);
+		OreDictionary.registerOre("blockGlassColorless", MoreCraftBlocks.SOUL_GLASS);
+		OreDictionary.registerOre("paneGlass", MoreCraftBlocks.SOUL_GLASS_PANE);
+		OreDictionary.registerOre("paneGlassColorless", MoreCraftBlocks.SOUL_GLASS_PANE);
+    	
+    	//Ruby ores and blocks
 		OreDictionary.registerOre("oreRuby", MoreCraftBlocks.RUBY_ORE);
 		OreDictionary.registerOre("blockRuby", MoreCraftBlocks.RUBY_BLOCK);
 		
 		//Netherwood
 		OreDictionary.registerOre("treeWood", MoreCraftBlocks.NETHERWOOD_LOG);
 		OreDictionary.registerOre("plankWood", MoreCraftBlocks.NETHERWOOD_PLANKS);
+		OreDictionary.registerOre("stairWood", MoreCraftBlocks.NETHERWOOD_STAIRS);
+		OreDictionary.registerOre("slabWood", MoreCraftBlocks.NETHERWOOD_SLAB);
 		OreDictionary.registerOre("treeLeaves", MoreCraftBlocks.NETHERWOOD_LEAVES);
 		OreDictionary.registerOre("treeSapling", MoreCraftBlocks.NETHERWOOD_SAPLING);
 		
-		//Ender Bricks block
-		//OreDictionary.registerOre("blockEnderBrick", MoreCraftBlocks.enderbrick_block);
-		
 		//Blocks made from vanilla resources.
 		OreDictionary.registerOre("blockFlesh", MoreCraftBlocks.FLESH_BLOCK);
-		OreDictionary.registerOre("blockBone", MoreCraftBlocks.BONE_BLOCK);
 		OreDictionary.registerOre("blockGunpowder", MoreCraftBlocks.GUNPOWDER_BLOCK);
 		OreDictionary.registerOre("blockBlaze", MoreCraftBlocks.BLAZE_BLOCK);
 		OreDictionary.registerOre("blockEnder", MoreCraftBlocks.ENDER_BLOCK);

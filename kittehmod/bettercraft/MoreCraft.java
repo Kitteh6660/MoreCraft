@@ -40,7 +40,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "2.9";
+    public static final String VERSION = "2.9.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")

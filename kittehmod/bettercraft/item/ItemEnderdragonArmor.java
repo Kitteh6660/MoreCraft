@@ -11,6 +11,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -69,10 +70,12 @@ public class ItemEnderdragonArmor extends ItemArmor
 			armorModel.rightArmPose = ModelBiped.ArmPose.EMPTY;
 			//armorModel.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
-			EntityPlayer player = (EntityPlayer)entityLiving;
-
-			ItemStack held_item = player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-
+			EntityPlayer player = null;
+			ItemStack held_item = entityLiving.getHeldItem(EnumHand.MAIN_HAND);
+			if (entityLiving.equals(EntityPlayer.class)) {
+				player = (EntityPlayer)entityLiving;
+			}
+			
 			if (held_item != null)
 			{
 				armorModel.rightArmPose = ModelBiped.ArmPose.ITEM;

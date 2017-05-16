@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
@@ -25,11 +26,8 @@ import java.util.Set;
 
 public class ItemNormalAxe extends ItemAxe 
 {
-	private String toolClass;
-	// A holder object for the tool material
-	private ToolMaterial material = null;
-	// This is a list of 
-	private static Set<Block> blocks = null;
+	public ToolMaterial material;
+	public Item repairMaterial;
 	
 	/**
 	 * This initializes the ItemAxeCustom object.
@@ -37,6 +35,7 @@ public class ItemNormalAxe extends ItemAxe
 	 */
 	public ItemNormalAxe(ToolMaterial material, float damage, float speed) {
 		super(material, damage - 1, speed - 4);
+		this.material = material;
 	}
 	
     public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -50,6 +49,11 @@ public class ItemNormalAxe extends ItemAxe
         return par1ItemStack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.COMMON;
     }
 
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
+	{
+		return repairMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+	}
+    
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
         par1ItemStack.damageItem(2, par3EntityLivingBase);

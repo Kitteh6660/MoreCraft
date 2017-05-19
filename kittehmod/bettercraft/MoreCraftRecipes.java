@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import kittehmod.bettercraft.MoreCraftItems;
 import kittehmod.bettercraft.MoreCraftBlocks;
 
@@ -168,7 +169,7 @@ public class MoreCraftRecipes {
 	    // Slabs and Stairs
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.END_BRICKS});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_STAIRS, 4), new Object[] {"  #"," ##","###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.STONE_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.STONE});
+	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.STONE_STAIRS, 4), new Object[] {"  #"," ##","###",'#', new ItemStack(Blocks.STONE, 1, 0)});
 	
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 6), new Object[] {"###",'#', Blocks.END_BRICKS});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 6), new Object[] {"###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
@@ -188,8 +189,13 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Items.BONE});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERBRICK_FENCE_GATE, 1), new Object[] {"#B#", "#B#", 'B', Blocks.NETHER_BRICK, '#', Items.NETHERBRICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BEDROCK_BRICK, 4), new Object[] {"##", "##", '#', Blocks.BEDROCK});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
+		//Soul Glass as substitute for regular glass
+		GameRegistry.addRecipe(new ItemStack(Blocks.BEACON, 1), new Object[] {"###", "#N#", "OOO", '#', MoreCraftBlocks.SOUL_GLASS, 'N', Items.NETHER_STAR, 'O', Blocks.OBSIDIAN});
+		GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.DAYLIGHT_DETECTOR, "###", "CCC", "SSS", '#', MoreCraftBlocks.SOUL_GLASS, 'C', Items.QUARTZ, 'S', "slabWood"));
+		GameRegistry.addRecipe(new ItemStack(Items.END_CRYSTAL, 1), new Object[] {"###", "#E#", "#T#", '#', MoreCraftBlocks.SOUL_GLASS, 'E', Items.ENDER_EYE, 'T', Items.GHAST_TEAR});
 		GameRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 1), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
 		//Needed because otherwise, these vanilla items would be unobtainable.
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.SPIDER_EYE, 1), new Object[] {MoreCraftItems.SPIDER_RAW});
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 0), new Object[] {MoreCraftItems.SQUID_RAW});

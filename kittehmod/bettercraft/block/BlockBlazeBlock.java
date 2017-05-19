@@ -16,9 +16,10 @@ public class BlockBlazeBlock extends Block
 		this.setSoundType(SoundType.METAL);
 	}
     
-    public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
+	@Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
     {
-        par5Entity.setFire(4);
+		entityIn.setFire(4);
     }
 
 }

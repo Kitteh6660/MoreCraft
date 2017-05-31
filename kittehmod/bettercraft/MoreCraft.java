@@ -1,11 +1,5 @@
 package kittehmod.bettercraft;
 
-import kittehmod.bettercraft.client.RenderNetherwoodBoat;
-import kittehmod.bettercraft.entity.EntityNetherwoodBoat;
-import net.minecraft.block.BlockChest;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,8 +13,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -30,13 +22,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-//import net.minecraft.src.ModLoader; --Deprecated.
-//import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(name = "MoreCraft", modid = MoreCraft.MODID, version = MoreCraft.VERSION, guiFactory = "kittehmod.bettercraft.ConfigurationGuiFactory"/*, dependencies = "after:malisisdoors"*/)
 public class MoreCraft 
@@ -117,6 +104,8 @@ public class MoreCraft
 		MoreCraftBlocks.registerBlocks();
 		MoreCraftItems.registerItems();
 		MoreCraftEntities.registerEntities();
+		
+		proxy.registerRenderersPreInit();
 	}
 
 	@EventHandler
@@ -127,7 +116,7 @@ public class MoreCraft
         oreRegistration();
         setRepairMaterials();
         MoreCraftRecipes.registerRecipes();
-        proxy.registerRenderers();
+		proxy.registerRenderers();       
 
         GameRegistry.registerWorldGenerator(new MoreCraftGenerator(), 1);		
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());

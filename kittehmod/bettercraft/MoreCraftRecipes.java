@@ -5,8 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import kittehmod.bettercraft.MoreCraftItems;
-import kittehmod.bettercraft.MoreCraftBlocks;
 
 public class MoreCraftRecipes {
 	

@@ -1,6 +1,5 @@
 package kittehmod.bettercraft.block;
 
-import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.MoreCraftBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

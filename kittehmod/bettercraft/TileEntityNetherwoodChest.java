@@ -2,7 +2,6 @@ package kittehmod.bettercraft;
 
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;

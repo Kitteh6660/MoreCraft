@@ -2,14 +2,12 @@ package kittehmod.bettercraft.item;
 
 import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.MoreCraftItems;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
 public class ItemNormalHoe extends ItemHoe

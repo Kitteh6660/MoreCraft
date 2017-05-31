@@ -1,35 +1,20 @@
 package kittehmod.bettercraft.block;
 
-import java.util.List;
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
-import com.google.common.base.Predicate;
-
-import kittehmod.bettercraft.MoreCraftBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockRotatedPillar;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.google.common.base.Predicate;
 
 public class BlockNetherLog extends BlockLog
 {

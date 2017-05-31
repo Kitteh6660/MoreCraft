@@ -5,8 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import kittehmod.bettercraft.MoreCraftItems;
-import kittehmod.bettercraft.MoreCraftBlocks;
 
 public class MoreCraftRecipes {
 	
@@ -182,6 +180,7 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(Blocks.ANVIL, 1, 1), new Object[] {"III", "IAI", "III", 'I', Items.IRON_INGOT, 'A', new ItemStack(Blocks.ANVIL, 1, 2)});
 		GameRegistry.addRecipe(new ItemStack(Blocks.ANVIL, 1, 0), new Object[] {"III", "IAI", "III", 'I', Items.IRON_INGOT, 'A', new ItemStack(Blocks.ANVIL, 1, 1)});
 		GameRegistry.addRecipe(new ItemStack(Items.SADDLE, 1), new Object[] {"LLL", "LSL", "I I", 'I', Items.IRON_INGOT, 'L', Items.LEATHER, 'S', Items.STRING});
+		if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Items.NAME_TAG, 1), new Object[] {"  S", " P ", "P  ", 'S', Items.STRING, 'P', Items.PAPER});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.NETHERBRICK_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.NETHER_BRICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Blocks.GLASS});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Items.BONE});

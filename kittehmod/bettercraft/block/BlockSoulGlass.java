@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockSoulGlass extends BlockGlass
 {
-	@SideOnly(Side.CLIENT)
 	
     public BlockSoulGlass(Material par2Material, boolean par3)
     {

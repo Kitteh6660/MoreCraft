@@ -32,6 +32,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 //import net.minecraft.src.ModLoader; --Deprecated.
 //import cpw.mods.fml.common.network.NetworkMod;
@@ -40,7 +42,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "2.9.2";
+    public static final String VERSION = "2.9.3";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -104,18 +106,13 @@ public class MoreCraft
 		overrideMobDrops = (boolean) config.get(config.CATEGORY_GENERAL, "overrideMobDrops", true, "Override drops of squids and spiders to drop the new items? You still can get the vanilla resources. \n§2Doesn't require restart.§r").getBoolean();
 		mobHeadDrops = (boolean) config.get(config.CATEGORY_GENERAL, "mobHeadDrops", true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, Skeletons, and Enderdragons) \n§2Doesn't require restart.§r").getBoolean();
 		//Generation
-		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "generateNetherwoodTrees", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 32).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();;
+		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "generateNetherwoodTrees", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 32).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();
 		//------
 		config.save();
 		
 		MoreCraftBlocks.registerBlocks();
 		MoreCraftItems.registerItems();
 		MoreCraftEntities.registerEntities();
-		
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityNetherwoodBoat.class, new IRenderFactory() {
-			@Override public Render<? super EntityNetherwoodBoat> createRenderFor(RenderManager manager) { return new RenderNetherwoodBoat(manager); }	
-		});
 	}
 
 	@EventHandler
@@ -201,7 +198,7 @@ public class MoreCraft
     }
     
     public static void syncConfig() {
-    	System.out.println("Syncing...");
+    	//System.out.println("Syncing...");
     	//Recipes
         hardcoreRecipes = config.getBoolean("hardcoreRecipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "");
         sillyRecipes = config.getBoolean("sillyRecipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "");

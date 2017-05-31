@@ -1,12 +1,9 @@
 package kittehmod.bettercraft.item;
 
 import kittehmod.bettercraft.MoreCraft;
-import kittehmod.bettercraft.MoreCraftItems;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;

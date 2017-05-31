@@ -7,9 +7,7 @@ import kittehmod.bettercraft.CommonProxy;
 import kittehmod.bettercraft.MoreCraftItems;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import kittehmod.bettercraft.entity.EntityNetherwoodBoat;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
@@ -25,6 +23,14 @@ public class ClientProxy extends CommonProxy
 	public static final Map<Item, ModelBiped> armorModels = new HashMap<Item, ModelBiped>();
 
 	@Override
+	public void registerRenderersPreInit()
+	{
+		RenderingRegistry.registerEntityRenderingHandler(EntityNetherwoodBoat.class, new IRenderFactory() {
+			@Override public Render<? super EntityNetherwoodBoat> createRenderFor(RenderManager manager) { return new RenderNetherwoodBoat(manager); }	
+		});
+	}
+	
+	@Override
 	public void registerRenderers()
 	{
 		ItemRenderRegister.registerItemRenderer();
@@ -33,11 +39,6 @@ public class ClientProxy extends CommonProxy
 		// This is for rendering entities and so forth later on
 		TileEntityItemStackRenderer.instance = new ItemNetherwoodChestRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new RenderNetherwoodChest());
-
-
-		RenderingRegistry.registerEntityRenderingHandler(EntityNetherwoodBoat.class, new IRenderFactory() {
-			@Override public Render<? super EntityNetherwoodBoat> createRenderFor(RenderManager manager) { return new RenderNetherwoodBoat(manager); }	
-		});
 		
 		ModelEnderdragonArmor enderdragon_armor = new ModelEnderdragonArmor(1F);
 		ModelEnderdragonLegs enderdragon_legs = new ModelEnderdragonLegs(0.5F);

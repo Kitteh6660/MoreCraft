@@ -927,6 +927,12 @@ public class EntityNetherwoodBoat extends EntityBoat
         return ((Integer)this.dataManager.get(FORWARD_DIRECTION)).intValue();
     }
 
+    @Override
+    public EntityBoat.Type getBoatType()
+    {
+        return EntityBoat.Type.byId(0);
+    }
+    
     protected boolean canFitPassenger(Entity passenger)
     {
         return this.getPassengers().size() < 2;

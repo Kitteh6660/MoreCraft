@@ -3,26 +3,12 @@ package kittehmod.bettercraft.item;
 import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.MoreCraftItems;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 public class ItemNormalAxe extends ItemAxe 
 {

@@ -187,6 +187,10 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERBRICK_FENCE_GATE, 1), new Object[] {"#B#", "#B#", 'B', Blocks.NETHER_BRICK, '#', Items.NETHERBRICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BEDROCK_BRICK, 4), new Object[] {"##", "##", '#', Blocks.BEDROCK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_CHEST_TRAPPED, 1), new Object[] {"CH", 'C', MoreCraftBlocks.NETHERWOOD_CHEST, 'H', Blocks.TRIPWIRE_HOOK});
+		if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Items.ELYTRA, 1), new Object[] {"SES", "PLP", "F F", 'S', Items.STRING, 'E', Items.EMERALD, 'P', Items.PAPER, 'L', Items.LEATHER, 'F', Items.FEATHER});
+		else GameRegistry.addRecipe(new ItemStack(Items.ELYTRA, 1), new Object[] {"SES", "PLP", "F F", 'S', Items.STRING, 'E', Items.ENDER_PEARL, 'P', Items.PAPER, 'L', Items.LEATHER_CHESTPLATE, 'F', Items.FEATHER});
+		if (!MoreCraft.hardcoreRecipes) GameRegistry.addRecipe(new ItemStack(Items.TOTEM, 1), new Object[] {"EGE", "ANA", "DGD", 'E', Items.EMERALD, 'G', Items.GOLD_INGOT, 'A', new ItemStack(Items.GOLDEN_APPLE, 1, 1), 'N', Items.NETHER_STAR, 'D', Items.DIAMOND});
+		else GameRegistry.addRecipe(new ItemStack(Items.TOTEM, 1), new Object[] {"EGE", "ANA", "DGD", 'E', Blocks.EMERALD_BLOCK, 'G', Blocks.GOLD_BLOCK, 'A', new ItemStack(Items.GOLDEN_APPLE, 1, 1), 'N', Items.NETHER_STAR, 'D', Blocks.DIAMOND_BLOCK});
 		//Needed because otherwise, these vanilla items would be unobtainable.
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.SPIDER_EYE, 1), new Object[] {MoreCraftItems.SPIDER_RAW});
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 0), new Object[] {MoreCraftItems.SQUID_RAW});
@@ -309,6 +313,7 @@ public class MoreCraftRecipes {
 	        GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 4), new Object[] {Blocks.QUARTZ_BLOCK});
 	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 8), new Object[] {MoreCraftBlocks.NETHERWOOD_CHEST});
 	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 4), new Object[] {MoreCraftBlocks.NETHERWOOD_CRAFTING_TABLE});
+	        GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 2), new Object[] {MoreCraftItems.NETHERWOOD_DOOR});
 	    }
 	    
 	    // ~ --FURNACE RECIPES -- ~ \\

@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ItemBonelordArmor extends ItemArmor
+public class ItemBonelordArmor extends ItemNormalArmor
 {
 	public String armorNamePrefix;
 	public ArmorMaterial material;

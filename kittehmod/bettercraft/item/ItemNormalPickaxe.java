@@ -50,4 +50,5 @@ public class ItemNormalPickaxe extends ItemPickaxe
     	}
     	return true;
     }
+    
 }

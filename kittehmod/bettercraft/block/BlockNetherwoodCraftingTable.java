@@ -1,7 +1,5 @@
 package kittehmod.bettercraft.block;
 
-import javax.annotation.Nullable;
-
 import kittehmod.bettercraft.GuiHandler;
 import kittehmod.bettercraft.MoreCraft;
 import net.minecraft.block.BlockWorkbench;
@@ -13,7 +11,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerWorkbench;
-import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -39,7 +36,7 @@ public class BlockNetherwoodCraftingTable extends BlockWorkbench
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {

@@ -29,12 +29,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "3.0.3";
+    public static final String VERSION = "3.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
 	public static MoreCraft instance;
-
+	
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "kittehmod.bettercraft.client.ClientProxy", serverSide = "kittehmod.bettercraft.CommonProxy")
 	public static CommonProxy proxy;
@@ -48,8 +48,6 @@ public class MoreCraft
 	public static Integer generateNetherwoodTrees; //Enables Netherwood trees generation.
 	
 	public static EnumRarity LEGENDARY = EnumHelper.addRarity("Legendary", TextFormatting.GOLD, "Legendary");
-	
-	//public static BlockChest.Type NETHERWOOD_CHEST = EnumHelper.addEnum(BlockChest.Type.class, "NETHER", "nether", 2);
 	
     public static ToolMaterial BONE_T = EnumHelper.addToolMaterial("BoneT", 1, 100, 4.0F, 1, 15);
     public static ToolMaterial WITHERBONE_T = EnumHelper.addToolMaterial("WitherBoneT", 3, 6248, 12.0F, 4, 22);
@@ -85,15 +83,14 @@ public class MoreCraft
 		config.load();
 		//------
 		//Recipes
-		hardcoreRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "hardcoreRecipes", false, "Disables certain recipes and make some recipes harder. \n§4Restart required!§r").getBoolean();
-		sillyRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "sillyRecipes", false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone. \n§4Restart required!§r").getBoolean();
-		salvageRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "salvageRecipes", true, "Enable or disable recipes involving dismantling items to get resources back. It also includes converting stairs and slabs back to blocks. \n§4Restart required!§r").getBoolean();
-		
+		hardcoreRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "Hardcore Recipes", false, "Disables certain recipes and make some recipes harder. \n§4Restart required!§r").getBoolean();
+		sillyRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "Silly Recipes", false, "Enable or disable silly recipes such as crafting a bedrock using a bed and a stone. \n§4Restart required!§r").getBoolean();
+		salvageRecipes = (boolean) config.get(config.CATEGORY_GENERAL, "Salvage Recipes", true, "Enable or disable recipes involving dismantling items to get resources back. It also includes converting stairs and slabs back to blocks. \n§4Restart required!§r").getBoolean();
 		//Mob Drops
-		overrideMobDrops = (boolean) config.get(config.CATEGORY_GENERAL, "overrideMobDrops", true, "Override drops of squids and spiders to drop the new items? You still can get the vanilla resources. \n§2Doesn't require restart.§r").getBoolean();
-		mobHeadDrops = (boolean) config.get(config.CATEGORY_GENERAL, "mobHeadDrops", true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, Skeletons, and Enderdragons) \n§2Doesn't require restart.§r").getBoolean();
+		overrideMobDrops = (boolean) config.get(config.CATEGORY_GENERAL, "Override Mob Drops", true, "Override drops of squids and spiders to drop the new items? You still can get the vanilla resources. \n§2Doesn't require restart.§r").getBoolean();
+		mobHeadDrops = (boolean) config.get(config.CATEGORY_GENERAL, "Mob Head Drops", true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, Skeletons, and Enderdragons) \n§2Doesn't require restart.§r").getBoolean();
 		//Generation
-		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "generateNetherwoodTrees", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 32).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();
+		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "Netherwood Gen Freq", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 32).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();;
 		//------
 		config.save();
 		
@@ -111,8 +108,7 @@ public class MoreCraft
 	{
         oreRegistration();
         setRepairMaterials();
-        MoreCraftRecipes.registerRecipes();
-		proxy.registerRenderers();       
+        proxy.registerRenderers();
 
         GameRegistry.registerWorldGenerator(new MoreCraftGenerator(), 1);		
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
@@ -124,6 +120,14 @@ public class MoreCraft
 		Blocks.MOB_SPAWNER.setCreativeTab(CreativeTabs.MISC);
 		Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
     }
+    
+	@EventHandler
+	// used in 1.6.2
+	// @PostInit // used in 1.5.2
+	public void postInit(FMLPostInitializationEvent event) 
+	{
+        MoreCraftRecipes.registerRecipes();
+	}
 	
     public static void oreRegistration()
     {
@@ -170,44 +174,21 @@ public class MoreCraft
         NETHERRACK_T.setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.NETHERRACK)));
         ENDSTONE_T.setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.END_STONE)));
         BEDROCK_T.setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.BEDROCK)));
-        
-        SLIME_A.customCraftingMaterial = Items.SLIME_BALL;
-        FLESH_A.customCraftingMaterial = Items.ROTTEN_FLESH;
-        WEB_A.customCraftingMaterial = Item.getItemFromBlock(Blocks.WEB);
-        BONE_A.customCraftingMaterial = Items.BONE;
-        WITHERBONE_A.customCraftingMaterial = MoreCraftItems.WITHER_BONE;
-        OBSIDIAN_A.customCraftingMaterial = Item.getItemFromBlock(Blocks.OBSIDIAN);
-        EMERALD_A.customCraftingMaterial = Items.EMERALD;
-        RUBY_A.customCraftingMaterial = MoreCraftItems.RUBY;
-        ENDER_A.customCraftingMaterial = Items.ENDER_PEARL;
-        BLAZE_A.customCraftingMaterial = Items.BLAZE_ROD;
-        BONELORD_A.customCraftingMaterial = Items.BONE;
-        ENDERDRAGON_A.customCraftingMaterial = MoreCraftItems.ENDERDRAGON_SCALES;
-        BEDROCK_A.customCraftingMaterial = Item.getItemFromBlock(Blocks.BEDROCK);
     }
     
     public static void syncConfig() {
-    	//System.out.println("Syncing...");
+    	System.out.println("Syncing...");
     	//Recipes
-        hardcoreRecipes = config.getBoolean("hardcoreRecipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "");
-        sillyRecipes = config.getBoolean("sillyRecipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "");
-        salvageRecipes = config.getBoolean("salvageRecipes", Configuration.CATEGORY_GENERAL, salvageRecipes, "");
+        hardcoreRecipes = config.getBoolean("Hardcore Recipes", Configuration.CATEGORY_GENERAL, hardcoreRecipes, "");
+        sillyRecipes = config.getBoolean("Silly Recipes", Configuration.CATEGORY_GENERAL, sillyRecipes, "");
+        salvageRecipes = config.getBoolean("Salvage Recipes", Configuration.CATEGORY_GENERAL, salvageRecipes, "");
         //Mob Drops
-        overrideMobDrops = config.getBoolean("overrideMobDrops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "");
-        mobHeadDrops = config.getBoolean("mobHeadDrops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "");
+        overrideMobDrops = config.getBoolean("Override Mob Drops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "");
+        mobHeadDrops = config.getBoolean("Mob Head Drops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "");
         //Generation
-        generateNetherwoodTrees = config.getInt("generateNetherwoodTrees", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, 0, 32, "");
-
-        if(config.hasChanged())
-            config.save();
+        generateNetherwoodTrees = config.getInt("Netherwood Gen Freq", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, 0, 32, "");
+       
+        if(config.hasChanged()) config.save();
     }
-    
-	@EventHandler
-	// used in 1.6.2
-	// @PostInit // used in 1.5.2
-	public void postInit(FMLPostInitializationEvent event) 
-	{
-		// Stub Method
-	}
 	
 }

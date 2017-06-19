@@ -39,7 +39,8 @@ public class ClientProxy extends CommonProxy
 		// This is for rendering entities and so forth later on
 		TileEntityItemStackRenderer.instance = new ItemNetherwoodChestRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherwoodChest.class, new RenderNetherwoodChest());
-		
+
+
 		ModelEnderdragonArmor enderdragon_armor = new ModelEnderdragonArmor(1F);
 		ModelEnderdragonLegs enderdragon_legs = new ModelEnderdragonLegs(0.5F);
 		

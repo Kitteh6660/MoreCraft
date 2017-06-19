@@ -1,7 +1,5 @@
 package kittehmod.bettercraft.block;
 
-import java.util.Random;
-
 import kittehmod.bettercraft.MoreCraft;
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import net.minecraft.block.Block;
@@ -9,6 +7,7 @@ import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
@@ -20,14 +19,19 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockNetherwoodChest extends BlockChest 
 {	
-	private final Random field_149955_b = new Random();
-	public BlockNetherwoodChest() 
+    /** 0 : Normal chest, 1 : Trapped chest */
+    public final BlockNetherwoodChest.Type chestType;
+    
+	public BlockNetherwoodChest(BlockNetherwoodChest.Type chestTypeIn) 
 	{
-		super(null); //The reason it's at null is to not interfere with how vanilla chests render.
+		super(null);
+		this.chestType = chestTypeIn;
+        this.setCreativeTab(chestTypeIn == BlockNetherwoodChest.Type.TRAP ? CreativeTabs.REDSTONE : CreativeTabs.DECORATIONS);
 	}
 	
 	/**
@@ -35,7 +39,7 @@ public class BlockNetherwoodChest extends BlockChest
 	 */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
+    	EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor((double)(placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
         state = state.withProperty(FACING, enumfacing);
         BlockPos blockpos = pos.north();
         BlockPos blockpos1 = pos.south();
@@ -241,9 +245,9 @@ public class BlockNetherwoodChest extends BlockChest
      * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
      * block, etc.
      */
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        super.neighborChanged(state, worldIn, pos, blockIn);
+    	super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof TileEntityChest)
@@ -291,4 +295,42 @@ public class BlockNetherwoodChest extends BlockChest
 		return TileEntityNetherwoodChest;
 	}
 	
+    /**
+     * Can this block provide power. Only wire currently seems to have this change based on its state.
+     */
+    public boolean canProvidePower(IBlockState state)
+    {
+        return this.chestType == BlockNetherwoodChest.Type.TRAP;
+    }
+
+    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        if (!blockState.canProvidePower())
+        {
+            return 0;
+        }
+        else
+        {
+            int i = 0;
+            TileEntity tileentity = blockAccess.getTileEntity(pos);
+
+            if (tileentity instanceof TileEntityChest)
+            {
+                i = ((TileEntityChest)tileentity).numPlayersUsing;
+            }
+
+            return MathHelper.clamp(i, 0, 15);
+        }
+    }
+
+    public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP ? blockState.getWeakPower(blockAccess, pos, side) : 0;
+    }
+	
+    public static enum Type
+    {
+        BASIC,
+        TRAP;
+    }
 }

@@ -10,7 +10,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockOreRuby extends Block 
@@ -73,7 +72,7 @@ public class BlockOreRuby extends Block
         if (this.getItemDropped(state, rand, fortune) != Item.getItemFromBlock(this))
         {
             int i = 0;
-            i = MathHelper.getRandomIntegerInRange(rand, 2, 5);
+            i = 2 + (int)(Math.random() * 4);
             return i;
         }
         return 0;

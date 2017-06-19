@@ -48,14 +48,13 @@ public class BlockRenderRegister {
     	reg(MoreCraftBlocks.NETHERWOOD_SAPLING);
     	reg(MoreCraftBlocks.NETHERWOOD_STAIRS);
     	reg(MoreCraftBlocks.NETHERWOOD_SLAB);
-    	//reg(MoreCraftBlocks.netherwood_slab_full);
     	reg(MoreCraftBlocks.NETHERWOOD_CHEST);
+    	reg(MoreCraftBlocks.NETHERWOOD_CHEST_TRAPPED);
     	reg(MoreCraftBlocks.NETHERWOOD_CRAFTING_TABLE);
     	reg(MoreCraftBlocks.NETHERWOOD_FENCE);
     	
     	reg(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS);
     	reg(MoreCraftBlocks.ENDSTONE_BRICK_SLAB);
-    	//reg(MoreCraftBlocks.enderbrick_slab_full);
     	
     	reg(MoreCraftBlocks.STONE_STAIRS);
     	reg(MoreCraftBlocks.SOUL_GLASS);

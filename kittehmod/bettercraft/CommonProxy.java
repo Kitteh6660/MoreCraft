@@ -6,11 +6,10 @@ import net.minecraftforge.fml.client.config.GuiConfigEntries.IConfigEntry;
 
 public class CommonProxy 
 {
-
 	// Client stuff
-	public void registerRenderers() {}
 	public void registerRenderersPreInit() {}
-		
+	public void registerRenderers() {}
+	
 	@Nullable
 	public Class<? extends IConfigEntry> getSliderClass()
 	{

@@ -3,6 +3,7 @@ package kittehmod.bettercraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -141,7 +142,6 @@ public class MoreCraftRecipes {
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_HOE, 1), new Object[] {"KK", " S", " S", 'K', Blocks.BEDROCK, 'S', Items.STICK});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BEDROCK_SWORD, 1), new Object[] {"K", "K", "S", 'K', Blocks.BEDROCK, 'S', Items.STICK});
 	    
-	    
 	    //--Block Recipes--\\
 	    
 	    // Items into Storage Blocks
@@ -163,11 +163,11 @@ public class MoreCraftRecipes {
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.GLOWSTONE_TORCH, 1), new Object[] {"G", "S", 'G', Items.GLOWSTONE_DUST, 'S', Items.STICK});
 	
 	    // Slabs and Stairs
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.END_BRICKS});
+	    if (!Loader.isModLoaded("quark")) GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.END_BRICKS});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_STAIRS, 4), new Object[] {"  #"," ##","###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.STONE_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.STONE});
+	    if (!Loader.isModLoaded("quark")) GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.STONE_STAIRS, 4), new Object[] {"  #"," ##","###",'#', Blocks.STONE});
 	
-	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 6), new Object[] {"###",'#', Blocks.END_BRICKS});
+	    if (!Loader.isModLoaded("quark")) GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 6), new Object[] {"###",'#', Blocks.END_BRICKS});
 	    GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 6), new Object[] {"###",'#', MoreCraftBlocks.NETHERWOOD_PLANKS});
 	
 	    // Convert Logs to Planks
@@ -186,13 +186,7 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.BONE_DOOR, 3), new Object[] {"BB", "BB", "BB", 'B', Items.BONE});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERBRICK_FENCE_GATE, 1), new Object[] {"#B#", "#B#", 'B', Blocks.NETHER_BRICK, '#', Items.NETHERBRICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.BEDROCK_BRICK, 4), new Object[] {"##", "##", '#', Blocks.BEDROCK});
-		//Soul Glass as substitute for regular glass
-		GameRegistry.addRecipe(new ItemStack(Blocks.BEACON, 1), new Object[] {"###", "#N#", "OOO", '#', MoreCraftBlocks.SOUL_GLASS, 'N', Items.NETHER_STAR, 'O', Blocks.OBSIDIAN});
-		GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.DAYLIGHT_DETECTOR, "###", "CCC", "SSS", '#', MoreCraftBlocks.SOUL_GLASS, 'C', Items.QUARTZ, 'S', "slabWood"));
-		GameRegistry.addRecipe(new ItemStack(Items.END_CRYSTAL, 1), new Object[] {"###", "#E#", "#T#", '#', MoreCraftBlocks.SOUL_GLASS, 'E', Items.ENDER_EYE, 'T', Items.GHAST_TEAR});
-		GameRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.SOUL_GLASS});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 1), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.SOUL_GLASS});
-		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_CHEST_TRAPPED, 1), new Object[] {"CH", 'C', MoreCraftBlocks.NETHERWOOD_CHEST, 'H', Blocks.TRIPWIRE_HOOK});
 		//Needed because otherwise, these vanilla items would be unobtainable.
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.SPIDER_EYE, 1), new Object[] {MoreCraftItems.SPIDER_RAW});
 	    GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 0), new Object[] {MoreCraftItems.SQUID_RAW});
@@ -211,7 +205,14 @@ public class MoreCraftRecipes {
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_FENCE_GATE, 1), new Object[] {"I#I", "I#I", '#', MoreCraftBlocks.NETHERWOOD_PLANKS, 'I', Items.STICK});
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_FENCE, 3), new Object[] {"#I#", "#I#", '#', MoreCraftBlocks.NETHERWOOD_PLANKS, 'I', Items.STICK});	
 		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 6), new Object[] {"###", '#', MoreCraftBlocks.NETHERWOOD_PLANKS});
-		
+		/*Soul Glass as substitute for regular glass*/
+		GameRegistry.addRecipe(new ItemStack(Blocks.BEACON, 1), new Object[] {"###", "#N#", "OOO", '#', MoreCraftBlocks.SOUL_GLASS, 'N', Items.NETHER_STAR, 'O', Blocks.OBSIDIAN});
+		GameRegistry.addRecipe(new ShapedOreRecipe(Blocks.DAYLIGHT_DETECTOR, "###", "CCC", "SSS", '#', MoreCraftBlocks.SOUL_GLASS, 'C', Items.QUARTZ, 'S', "slabWood"));
+		GameRegistry.addRecipe(new ItemStack(Items.END_CRYSTAL, 1), new Object[] {"###", "#E#", "#T#", '#', MoreCraftBlocks.SOUL_GLASS, 'E', Items.ENDER_EYE, 'T', Items.GHAST_TEAR});
+		GameRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), new Object[] {"# #", " # ", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftItems.GLASS_DOOR, 1), new Object[] {"##", "##", "##", '#', MoreCraftBlocks.SOUL_GLASS});
+		GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.SOUL_GLASS_PANE, 16), new Object[] {"###", "###", '#', MoreCraftBlocks.SOUL_GLASS});
+
 	    //Food recipes
 	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.CAKE_SLICE, 6), new Object[] {Items.CAKE});
 	    GameRegistry.addShapelessRecipe(new ItemStack(MoreCraftItems.APPLE_PIE, 1), new Object[] {Items.EGG, Items.APPLE, Items.SUGAR});
@@ -231,37 +232,39 @@ public class MoreCraftRecipes {
 	    
 	    //--Convert slabs and stairs to full blocks--\\
 	    if (MoreCraft.salvageRecipes) {
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.OAK_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.SPRUCE_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.BIRCH_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.JUNGLE_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.ACACIA_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.DARK_OAK_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.SANDSTONE_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.BRICK_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.STONEBRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_BRICK_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.NETHER_BRICK_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.QUARTZ_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.QUARTZ_STAIRS}); //--Quartz stairs to quartz blocks.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.STONE_STAIRS}); //--Smooth Stone stairs to smooth stone blocks.
-	        GameRegistry.addRecipe(new ItemStack(Blocks.RED_SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.RED_SANDSTONE_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PURPUR_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.PURPUR_STAIRS});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.ENDSTONE_BRICK_STAIRS}); //--Ender Brick stairs to ender brick blocks.
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.NETHERWOOD_STAIRS});
-	
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 0)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 1)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 2)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 3)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 4)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 5)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 3)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 0)});
-
-	        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 4)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 6)});
-	        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 1, 0)});
-	        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 1, 0)});
+	    	if (!Loader.isModLoaded("quark")) {
+	    		//Stairs
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 0), new Object[] {"SS", "SS", 'S', Blocks.OAK_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 1), new Object[] {"SS", "SS", 'S', Blocks.SPRUCE_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 2), new Object[] {"SS", "SS", 'S', Blocks.BIRCH_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 3), new Object[] {"SS", "SS", 'S', Blocks.JUNGLE_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 4), new Object[] {"SS", "SS", 'S', Blocks.ACACIA_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 6, 5), new Object[] {"SS", "SS", 'S', Blocks.DARK_OAK_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.SANDSTONE_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.BRICK_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.STONEBRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.STONE_BRICK_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 6), new Object[] {"SS", "SS", 'S', Blocks.NETHER_BRICK_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.QUARTZ_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.QUARTZ_STAIRS}); //--Quartz stairs to quartz blocks.
+		        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.STONE_STAIRS}); //--Smooth Stone stairs to smooth stone blocks.
+		        GameRegistry.addRecipe(new ItemStack(Blocks.RED_SANDSTONE, 6), new Object[] {"SS", "SS", 'S', Blocks.RED_SANDSTONE_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PURPUR_BLOCK, 6), new Object[] {"SS", "SS", 'S', Blocks.PURPUR_STAIRS});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.ENDSTONE_BRICK_STAIRS}); //--Ender Brick stairs to ender brick blocks.
+		        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 6), new Object[] {"SS", "SS", 'S', MoreCraftBlocks.NETHERWOOD_STAIRS});
+		        //Slabs
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 0), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 0)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 1)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 2), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 2)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 3), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 3)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 4), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 4)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.PLANKS, 1, 5), new Object[] {"#", "#", '#', new ItemStack(Blocks.WOODEN_SLAB, 1, 5)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.COBBLESTONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 3)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.STONE, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 0)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.BRICK_BLOCK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 4)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.NETHER_BRICK, 1), new Object[] {"#", "#", '#', new ItemStack(Blocks.STONE_SLAB, 1, 6)});
+		        GameRegistry.addRecipe(new ItemStack(Blocks.END_BRICKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.ENDSTONE_BRICK_SLAB, 1, 0)});
+		        GameRegistry.addRecipe(new ItemStack(MoreCraftBlocks.NETHERWOOD_PLANKS, 1), new Object[] {"#", "#", '#', new ItemStack(MoreCraftBlocks.NETHERWOOD_SLAB, 1, 0)});
+	    	}
 	    }
 	    
 	    //--Dismantling objects--\\
@@ -312,7 +315,6 @@ public class MoreCraftRecipes {
 	
 	    //--Procession--\\
 	    GameRegistry.addSmelting(MoreCraftBlocks.RUBY_ORE, new ItemStack(MoreCraftItems.RUBY), 2.0F);
-	    //GameRegistry.addSmelting(Blocks.END_STONE, new ItemStack(MoreCraftItems.ender_brick), 1.0F); 
 	    GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(MoreCraftBlocks.SOUL_GLASS), 0.5F); 
 	    
 	    //--Cooking food--\\

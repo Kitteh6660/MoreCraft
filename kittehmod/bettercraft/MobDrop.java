@@ -8,15 +8,12 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityStray;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.SkeletonType;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -63,7 +60,7 @@ public class MobDrop
         
         if (event.getEntityLiving() instanceof EntitySkeleton && MoreCraft.mobHeadDrops)
         {
-        	if (((EntitySkeleton) event.getEntityLiving()).getSkeletonType() == SkeletonType.NORMAL)
+        	if (event.getEntityLiving() instanceof EntitySkeleton || event.getEntityLiving() instanceof EntityStray)
         	{
         		if (event.getSource().getDamageType().equals("player")) { //Checks for Damage Type.
         			rand = Math.random();

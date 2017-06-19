@@ -116,7 +116,7 @@ public class TileEntityNetherwoodChest extends TileEntityChest
 
         if (this.isChestAt(blockpos))
         {
-            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+            TileEntity tileentity = this.world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityChest)
             {
@@ -131,19 +131,19 @@ public class TileEntityNetherwoodChest extends TileEntityChest
     
     private boolean isChestAt(BlockPos posIn)
     {
-        if (this.worldObj == null)
+        if (this.world == null)
         {
             return false;
         }
         else
         {
-            Block block = this.worldObj.getBlockState(posIn).getBlock();
-            return block instanceof BlockNetherwoodChest/* && ((BlockNetherwoodChest)block).chestType == this.getChestType()*/;
+            Block block = this.world.getBlockState(posIn).getBlock();
+            return block instanceof BlockNetherwoodChest && ((BlockNetherwoodChest)block).chestType == this.getNetherChestType();
         }
     }
     
     @SuppressWarnings("incomplete-switch")
-	private void func_174910_a(TileEntityChest chestTe, EnumFacing side)
+	private void func_174910_a(TileEntityNetherwoodChest chestTe, EnumFacing side)
     {
         if (chestTe.isInvalid())
         {
@@ -185,6 +185,21 @@ public class TileEntityNetherwoodChest extends TileEntityChest
                     }
             }
         }
+    }
+    
+    public BlockNetherwoodChest.Type getNetherChestType()
+    {
+        if (this.cachedChestType == null)
+        {
+            if (this.world == null || !(this.getBlockType() instanceof BlockNetherwoodChest))
+            {
+                return BlockNetherwoodChest.Type.BASIC;
+            }
+
+            this.cachedChestType = ((BlockNetherwoodChest)this.getBlockType()).chestType;
+        }
+
+        return this.cachedChestType;
     }
     
 }

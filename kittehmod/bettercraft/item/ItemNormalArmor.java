@@ -55,4 +55,5 @@ public class ItemNormalArmor extends ItemArmor
 			return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_1.png";
 		}
 	}
+	
 }

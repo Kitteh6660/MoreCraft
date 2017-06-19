@@ -67,7 +67,7 @@ public class PlayerEvents
 	public void LavaBoatAntiHurt(LivingAttackEvent event)
 	{
 		if (event.getEntityLiving().getRidingEntity() instanceof EntityNetherwoodBoat) {
-			if (event.getSource().equals(DamageSource.onFire) || event.getSource().equals(DamageSource.inFire) || event.getSource().equals(DamageSource.lava)) {
+			if (event.getSource().equals(DamageSource.ON_FIRE) || event.getSource().equals(DamageSource.IN_FIRE) || event.getSource().equals(DamageSource.LAVA)) {
 				event.setCanceled(true);
 				event.getEntityLiving().extinguish();
 			}

@@ -1,7 +1,5 @@
 package kittehmod.bettercraft.client;
 
-import java.util.Calendar;
-
 import kittehmod.bettercraft.TileEntityNetherwoodChest;
 import kittehmod.bettercraft.block.BlockNetherwoodChest;
 import net.minecraft.block.Block;
@@ -10,21 +8,17 @@ import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 @SideOnly(Side.CLIENT)	
 public class RenderNetherwoodChest extends TileEntitySpecialRenderer<TileEntityNetherwoodChest>
 {
-	private static final ResourceLocation textureDouble = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
-	private static final ResourceLocation textureSingle = new ResourceLocation("bettercraft:textures/entity/chest/netherwood.png");
+	private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_single.png");
+	private static final ResourceLocation TEXTURE_TRAPPED = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_single_trapped.png");
+	private static final ResourceLocation TEXTURE_NORMAL_DOUBLE = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double.png");
+	private static final ResourceLocation TEXTURE_TRAPPED_DOUBLE = new ResourceLocation("bettercraft:textures/entity/chest/netherwood_double_trapped.png");
 	private ModelChest simpleChest = new ModelChest();
 	private ModelChest largeChest = new ModelLargeChest();
 
@@ -40,7 +34,7 @@ public class RenderNetherwoodChest extends TileEntitySpecialRenderer<TileEntityN
         GlStateManager.depthMask(true);
         int i;
 
-        if (!te.hasWorldObj())
+        if (!te.hasWorld())
         {
             i = 0;
         }
@@ -75,7 +69,14 @@ public class RenderNetherwoodChest extends TileEntitySpecialRenderer<TileEntityN
                     GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
                     GlStateManager.matrixMode(5888);
                 }
-                this.bindTexture(textureSingle);
+                if (te.getNetherChestType() == BlockNetherwoodChest.Type.TRAP)
+                {
+                    this.bindTexture(TEXTURE_TRAPPED);
+                }
+                else
+                {
+                    this.bindTexture(TEXTURE_NORMAL);
+                }
             }
             else
             {
@@ -90,7 +91,14 @@ public class RenderNetherwoodChest extends TileEntitySpecialRenderer<TileEntityN
                     GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
                     GlStateManager.matrixMode(5888);
                 }
-                this.bindTexture(textureDouble);
+                if (te.getNetherChestType() == BlockNetherwoodChest.Type.TRAP)
+                {
+                    this.bindTexture(TEXTURE_TRAPPED_DOUBLE);
+                }
+                else
+                {
+                    this.bindTexture(TEXTURE_NORMAL_DOUBLE);
+                }
             }
 
             GlStateManager.pushMatrix();

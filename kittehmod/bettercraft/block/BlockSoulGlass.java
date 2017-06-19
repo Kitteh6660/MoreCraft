@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockSoulGlass extends BlockGlass
 {
-	
     public BlockSoulGlass(Material par2Material, boolean par3)
     {
         super(par2Material, par3);

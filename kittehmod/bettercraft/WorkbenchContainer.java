@@ -16,13 +16,13 @@ public class WorkbenchContainer extends Container
 {
     public InventoryCrafting craftMatrix;
     public IInventory craftResult;
-    private World worldObj;
+    private World world;
 
     public WorkbenchContainer(InventoryPlayer inventoryplayer, World world)
     {
         craftMatrix = new InventoryCrafting(this, 3, 3);
         craftResult = new InventoryCraftResult();
-        worldObj = world;
+        this.world = world;
         this.addSlotToContainer(new SlotCrafting(inventoryplayer.player, craftMatrix, craftResult, 0, 124, 35));
         for (int i = 0; i < 3; i++)
         {
@@ -51,14 +51,14 @@ public class WorkbenchContainer extends Container
     @Override
     public void onCraftMatrixChanged (IInventory iinventory)
     {
-        craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
+        craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, world));
     }
 
     @Override
     public void onContainerClosed (EntityPlayer entityplayer)
     {
         super.onContainerClosed(entityplayer);
-        if (worldObj.isRemote)
+        if (world.isRemote)
         {
             return;
         }
@@ -79,56 +79,68 @@ public class WorkbenchContainer extends Container
     }
 
     @Override
-    public ItemStack transferStackInSlot (EntityPlayer entityplayer, int i)
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
-        ItemStack itemstack = null;
-        Slot slot = (Slot) inventorySlots.get(i);
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = (Slot)this.inventorySlots.get(index);
+
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
-            if (i == 0)
+
+            if (index == 0)
             {
-                if (!mergeItemStack(itemstack1, 10, 46, true))
+                itemstack1.getItem().onCreated(itemstack1, this.world, playerIn);
+
+                if (!this.mergeItemStack(itemstack1, 10, 46, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onSlotChange(itemstack1, itemstack);
+            }
+            else if (index >= 10 && index < 37)
+            {
+                if (!this.mergeItemStack(itemstack1, 37, 46, false))
+                {
+                    return ItemStack.EMPTY;
                 }
             }
-            else if (i >= 10 && i < 37)
+            else if (index >= 37 && index < 46)
             {
-                if (!mergeItemStack(itemstack1, 37, 46, false))
+                if (!this.mergeItemStack(itemstack1, 10, 37, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
-            else if (i >= 37 && i < 46)
+            else if (!this.mergeItemStack(itemstack1, 10, 46, false))
             {
-                if (!mergeItemStack(itemstack1, 10, 37, false))
-                {
-                    return null;
-                }
+                return ItemStack.EMPTY;
             }
-            else if (!mergeItemStack(itemstack1, 10, 46, false))
+
+            if (itemstack1.isEmpty())
             {
-                return null;
-            }
-            if (itemstack1.stackSize == 0)
-            {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
-            if (itemstack1.stackSize != itemstack.stackSize)
+
+            if (itemstack1.getCount() == itemstack.getCount())
             {
-                slot.onPickupFromSlot(entityplayer, itemstack1);
+                return ItemStack.EMPTY;
             }
-            else
+
+            ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+
+            if (index == 0)
             {
-                return null;
+                playerIn.dropItem(itemstack2, false);
             }
         }
+
         return itemstack;
     }
 }

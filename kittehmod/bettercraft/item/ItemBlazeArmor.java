@@ -10,7 +10,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemBlazeArmor extends ItemArmor
+public class ItemBlazeArmor extends ItemNormalArmor
 {
 	public String armorNamePrefix;
 	public ArmorMaterial material;

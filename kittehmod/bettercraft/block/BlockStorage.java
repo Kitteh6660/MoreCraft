@@ -19,7 +19,7 @@ public class BlockStorage extends Block
 		super(material);
 		if (this == MoreCraftBlocks.BLAZE_BLOCK || this == MoreCraftBlocks.ENDER_BLOCK) this.setHarvestLevel("pickaxe", 1);
 		if (this == MoreCraftBlocks.RUBY_BLOCK) this.setHarvestLevel("pickaxe", 2);
-		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
     /**

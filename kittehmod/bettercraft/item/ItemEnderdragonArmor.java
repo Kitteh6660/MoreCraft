@@ -5,7 +5,6 @@ import kittehmod.bettercraft.client.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
@@ -69,17 +68,13 @@ public class ItemEnderdragonArmor extends ItemArmor
 			armorModel.rightArmPose = ModelBiped.ArmPose.EMPTY;
 			//armorModel.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
-			EntityPlayer player = null;
 			ItemStack held_item = entityLiving.getHeldItemMainhand();
-			if (entityLiving.equals(EntityPlayer.class)) {
-				player = (EntityPlayer)entityLiving;
-			}
 			
 			if (held_item != null)
 			{
 				armorModel.rightArmPose = ModelBiped.ArmPose.ITEM;
 
-				if (player.getItemInUseCount() > 0)
+				if (entityLiving.getItemInUseCount() > 0)
 				{
 					EnumAction enumaction = held_item.getItemUseAction();
 

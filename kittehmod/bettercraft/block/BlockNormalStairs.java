@@ -10,13 +10,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.common.Loader;
 
 public class BlockNormalStairs extends BlockStairs 
 {
 	public BlockNormalStairs(IBlockState modelState) {
 		super(modelState);
 	    this.useNeighborBrightness = true;
-		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	    this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	    if (this == MoreCraftBlocks.STONE_STAIRS && Loader.isModLoaded("quark")) {
+	    	this.setCreativeTab(null);
+	    }
 	}
 	
     /**

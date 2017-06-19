@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "bettercraft:blocks/netherwood_planks",
+        "all": "bettercraft:blocks/netherwood_planks"
+    }
+}

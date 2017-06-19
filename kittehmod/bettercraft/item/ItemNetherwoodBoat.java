@@ -32,14 +32,15 @@ public class ItemNetherwoodBoat extends Item
     /**
      * Called when the equipped item is right clicked.
      */
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
+        ItemStack itemstack = playerIn.getHeldItem(handIn);
         float f = 1.0F;
-        float f1 = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * f;
-        float f2 = playerIn.prevRotationYaw + (playerIn.rotationYaw - playerIn.prevRotationYaw) * f;
-        double d0 = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double)f;
-        double d1 = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * (double)f + (double)playerIn.getEyeHeight();
-        double d2 = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * (double)f;
+        float f1 = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * 1.0F;
+        float f2 = playerIn.prevRotationYaw + (playerIn.rotationYaw - playerIn.prevRotationYaw) * 1.0F;
+        double d0 = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * 1.0D;
+        double d1 = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * 1.0D + (double)playerIn.getEyeHeight();
+        double d2 = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * 1.0D;
         Vec3d vec3d = new Vec3d(d0, d1, d2);
         float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
         float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
@@ -48,18 +49,18 @@ public class ItemNetherwoodBoat extends Item
         float f7 = f4 * f5;
         float f8 = f3 * f5;
         double d3 = 5.0D;
-        Vec3d vec3d1 = vec3d.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+        Vec3d vec3d1 = vec3d.addVector((double)f7 * 5.0D, (double)f6 * 5.0D, (double)f8 * 5.0D);
         RayTraceResult raytraceresult = worldIn.rayTraceBlocks(vec3d, vec3d1, true);
 
         if (raytraceresult == null)
         {
-            return new ActionResult(EnumActionResult.PASS, itemStackIn);
+            return new ActionResult(EnumActionResult.PASS, itemstack);
         }
         else
         {
-            Vec3d vec3d2 = playerIn.getLook(f);
+            Vec3d vec3d2 = playerIn.getLook(1.0F);
             boolean flag = false;
-            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec3d2.xCoord * d3, vec3d2.yCoord * d3, vec3d2.zCoord * d3).expandXyz(1.0D));
+            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec3d2.xCoord * 5.0D, vec3d2.yCoord * 5.0D, vec3d2.zCoord * 5.0D).expandXyz(1.0D));
 
             for (int i = 0; i < list.size(); ++i)
             {
@@ -78,37 +79,38 @@ public class ItemNetherwoodBoat extends Item
 
             if (flag)
             {
-                return new ActionResult(EnumActionResult.PASS, itemStackIn);
+                return new ActionResult(EnumActionResult.PASS, itemstack);
             }
             else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
             {
-                return new ActionResult(EnumActionResult.PASS, itemStackIn);
+                return new ActionResult(EnumActionResult.PASS, itemstack);
             }
             else
             {
                 Block block = worldIn.getBlockState(raytraceresult.getBlockPos()).getBlock();
-                boolean flag1 = block == Blocks.WATER || block == Blocks.FLOWING_WATER || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA;
+                boolean flag1 = block == Blocks.WATER || block == Blocks.FLOWING_WATER;
                 EntityNetherwoodBoat entityboat = new EntityNetherwoodBoat(worldIn, raytraceresult.hitVec.xCoord, flag1 ? raytraceresult.hitVec.yCoord - 0.12D : raytraceresult.hitVec.yCoord, raytraceresult.hitVec.zCoord);
+                //entityboat.setBoatType(this.type);
                 entityboat.rotationYaw = playerIn.rotationYaw;
 
                 if (!worldIn.getCollisionBoxes(entityboat, entityboat.getEntityBoundingBox().expandXyz(-0.1D)).isEmpty())
                 {
-                    return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+                    return new ActionResult(EnumActionResult.FAIL, itemstack);
                 }
                 else
                 {
                     if (!worldIn.isRemote)
                     {
-                        worldIn.spawnEntityInWorld(entityboat);
+                        worldIn.spawnEntity(entityboat);
                     }
 
                     if (!playerIn.capabilities.isCreativeMode)
                     {
-                        --itemStackIn.stackSize;
+                        itemstack.shrink(1);
                     }
 
                     playerIn.addStat(StatList.getObjectUseStats(this));
-                    return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+                    return new ActionResult(EnumActionResult.SUCCESS, itemstack);
                 }
             }
         }

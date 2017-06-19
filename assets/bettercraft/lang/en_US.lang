@@ -16,6 +16,7 @@ tile.netherwood_slab.name=Netherwood Slab
 tile.netherwood_fence.name=Netherwood Fence
 tile.netherwood_fence_gate.name=Netherwood Fence Gate
 tile.netherwood_chest.name=Netherwood Chest
+tile.netherwood_chest_trap.name=Netherwood Trapped Chest
 tile.netherwood_crafting_table.name=Netherwood Crafting Table
 
 tile.enderbrick_stairs.name=End Stone Brick Stairs

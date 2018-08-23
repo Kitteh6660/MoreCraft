@@ -29,7 +29,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "bettercraft";
-    public static final String VERSION = "3.1";
+    public static final String VERSION = "3.1.1";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("bettercraft")
@@ -61,18 +61,18 @@ public class MoreCraft
     public static ToolMaterial BEDROCK_T = EnumHelper.addToolMaterial("BedrockT", 3, -1, 20.0F, 5, 30);
     
     public static ArmorMaterial SLIME_A = EnumHelper.addArmorMaterial("SlimeA", "bettercraft:slime", 8, new int[] { 2, 3, 2, 2 }, 20, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
-    public static ArmorMaterial FLESH_A = EnumHelper.addArmorMaterial("FleshA", "bettercraft:flesh", 4, new int[] { 1, 3, 2, 1 }, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
+    public static ArmorMaterial FLESH_A = EnumHelper.addArmorMaterial("FleshA", "bettercraft:flesh", 4, new int[] { 1, 2, 3, 1 }, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
     public static ArmorMaterial WEB_A = EnumHelper.addArmorMaterial("WebA", "bettercraft:spidersilk", 24, new int[] { 2, 3, 3, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
-    public static ArmorMaterial BONE_A = EnumHelper.addArmorMaterial("BoneA", "bettercraft:bone", 12, new int[] { 2, 5, 3, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
-    public static ArmorMaterial WITHERBONE_A = EnumHelper.addArmorMaterial("WitherBoneA", "bettercraft:witherbone", 132, new int[] { 3, 8, 6, 3 }, 16, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F);
-    public static ArmorMaterial OBSIDIAN_A = EnumHelper.addArmorMaterial("ObsidianA", "bettercraft:obsidian", 3, new int[] { 4, 8, 6, 4 }, 28, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
-    public static ArmorMaterial EMERALD_A = EnumHelper.addArmorMaterial("EmeraldA", "bettercraft:emerald", 28, new int[] { 3, 7, 5, 3 }, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
-    public static ArmorMaterial RUBY_A = EnumHelper.addArmorMaterial("RubyA", "bettercraft:ruby", 20, new int[] { 2, 6, 5, 2 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F);
-    public static ArmorMaterial ENDER_A = EnumHelper.addArmorMaterial("EnderA", "bettercraft:ender", 15, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+    public static ArmorMaterial BONE_A = EnumHelper.addArmorMaterial("BoneA", "bettercraft:bone", 12, new int[] { 2, 3, 5, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+    public static ArmorMaterial WITHERBONE_A = EnumHelper.addArmorMaterial("WitherBoneA", "bettercraft:witherbone", 132, new int[] { 3, 6, 8, 3 }, 16, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F);
+    public static ArmorMaterial OBSIDIAN_A = EnumHelper.addArmorMaterial("ObsidianA", "bettercraft:obsidian", 3, new int[] { 4, 6, 8, 4 }, 28, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
+    public static ArmorMaterial EMERALD_A = EnumHelper.addArmorMaterial("EmeraldA", "bettercraft:emerald", 28, new int[] { 3, 5, 7, 3 }, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
+    public static ArmorMaterial RUBY_A = EnumHelper.addArmorMaterial("RubyA", "bettercraft:ruby", 20, new int[] { 2, 5, 6, 2 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F);
+    public static ArmorMaterial ENDER_A = EnumHelper.addArmorMaterial("EnderA", "bettercraft:ender", 15, new int[] { 3, 5, 6, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static ArmorMaterial BLAZE_A = EnumHelper.addArmorMaterial("BlazeA", "bettercraft:blaze", 10, new int[] { 3, 5, 5, 3 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static ArmorMaterial BONELORD_A = EnumHelper.addArmorMaterial("BoneLordA", "bettercraft:bonelord", 20, new int[] { 3, 6, 6, 3 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F);
-    public static ArmorMaterial ENDERDRAGON_A = EnumHelper.addArmorMaterial("DragonScaleA", "bettercraft:enderdragon", 128, new int[] { 4, 8, 6, 4 }, 30, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F);
-    public static ArmorMaterial BEDROCK_A = EnumHelper.addArmorMaterial("BedrockA", "bettercraft:bedrock", 99999999, new int[] { 5, 8, 6, 5 }, 30, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static ArmorMaterial ENDERDRAGON_A = EnumHelper.addArmorMaterial("DragonScaleA", "bettercraft:enderdragon", 128, new int[] { 4, 6, 8, 4 }, 30, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F);
+    public static ArmorMaterial BEDROCK_A = EnumHelper.addArmorMaterial("BedrockA", "bettercraft:bedrock", 99999999, new int[] { 5, 6, 8, 5 }, 30, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
 	@EventHandler
 	// used in 1.6.2

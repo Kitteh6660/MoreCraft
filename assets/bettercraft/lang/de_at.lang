@@ -1,0 +1,177 @@
+tile.bone_block.name=Knochenblock
+tile.flesh_block.name=Block des verfaulten Fleisches
+tile.blaze_block.name=Lodernder Block
+tile.ender_block.name=Block der Ender-Perle
+tile.gunpowder_block.name=Block Schießpulver
+
+tile.ruby_ore.name=Rubin-Erz
+tile.ruby_block.name=Block von Rubin
+
+tile.netherwood_log.name=Nether Holz Log
+tile.netherwood_leaves.name=Nether Holz Blätter
+tile.netherwood_sapling.name=Nether Holz Bäumchen
+tile.netherwood_planks.name=Nether Holzplanken
+tile.netherwood_stairs.name=Nether Holz Treppen
+tile.netherwood_slab.name=Nether Holzplatte
+tile.netherwood_fence.name=Nether Holzzaun
+tile.netherwood_chest.name=Nether Holz Brust
+tile.netherwood_chest_trap.name=Nether Holz gefangen Brust
+tile.netherwood_crafting_table.name=Basteltisch aus Netherholz
+
+tile.enderbrick_stairs.name=Endstein-Ziegelstein-Treppen
+tile.enderbrick_slab.name=Endstein Brick Slab
+
+tile.stone_stairs.name=Steintreppen
+tile.bedrock_brick.name=Bedrock Ziegel
+tile.soul_glass.name=Seelenglas
+tile.soul_glass_pane.name=Seele Glasscheibe
+tile.bone_ladder.name=Knochenleiter
+tile.glowstone_torch.name=Leuchtstein Fackel
+
+item.cooked_flesh.name=Gekochtes Fleisch
+item.spider_raw.name=Spinne
+item.spider_cooked.name=Gebratene Spinne
+item.apple_pie.name=Apfelkuchen
+item.cake_slice.name=Kuchen-Scheibe
+item.squid_raw.name=Tintenfisch
+item.squid_cooked.name=Calamari
+item.egg_cooked.name=Spiegelei
+item.guardian_meat_raw.name=Rohes Wächter-Fleisch
+item.guardian_meat_cooked.name=Gekochtes Wächterfleisch
+item.nether_apple.name=Nether Apfel
+
+item.ruby.name=Rubin
+item.wither_bone.name=Verdorrter Knochen
+item.enderdragon_scales.name=Ender Drachenschuppe
+
+item.netherwood_boat.name=Nether Holzboot
+
+item.netherbrick_door.name=Nether Backstein Tür
+item.netherwood_door.name=Nether Holztür
+item.glass_door.name=Glastür
+item.bone_door.name=Knochentür
+tile.netherbrick_fence_gate.name=Nether Ziegelstein Zaun Tor
+tile.netherwood_fence_gate.name=Nether Holz Zaun Tor
+
+item.slime_helmet.name=Schleim Helm
+item.slime_chestplate.name=Schleim Brustplatte
+item.slime_leggings.name=Schleim Gamaschen
+item.slime_boots.name=Schleim Stiefel
+
+item.flesh_helmet.name=Fleisch Helm
+item.flesh_chestplate.name=Fleisch Brustplatte
+item.flesh_leggings.name=Fleisch Gamaschen
+item.flesh_boots.name=Fleisch Stiefel
+
+item.spidersilk_helmet.name=Spinnenseide Helm
+item.spidersilk_chestplate.name=Spinnenseide Brustplatte
+item.spidersilk_leggings.name=Spinnenseide Gamaschen
+item.spidersilk_boots.name=Spinnenseide Stiefel
+
+item.obsidian_helmet.name=Obsidian Helm
+item.obsidian_chestplate.name=Obsidian Brustplatte
+item.obsidian_leggings.name=Obsidian Gamaschen
+item.obsidian_boots.name=Obsidian Stiefel
+item.obsidian_pickaxe.name=Obsidian Spitzhacke
+item.obsidian_axe.name=Obsidian Axt
+item.obsidian_shovel.name=Obsidian Schaufel
+item.obsidian_hoe.name=Obsidian Hacke
+item.obsidian_sword.name=Obsidian Schwert
+
+item.bone_helmet.name=Knochen Helm
+item.bone_chestplate.name=Knochen Brustplatte
+item.bone_leggings.name=Knochen Gamaschen
+item.bone_boots.name=Knochen Stiefel
+item.bone_pickaxe.name=Knochen Spitzhacke
+item.bone_axe.name=Knochen Axt
+item.bone_shovel.name=Knochen Schaufel
+item.bone_hoe.name=Knochen Hacke
+item.bone_sword.name=Knochen Schwert
+
+item.witherbone_helmet.name=Verdorrter Knochen Helm
+item.witherbone_chestplate.name=Verdorrter Knochen Brustplatte
+item.witherbone_leggings.name=Verdorrter Knochen Gamaschen
+item.witherbone_boots.name=Verdorrter Knochen Stiefel
+item.witherbone_pickaxe.name=Verdorrter Knochen Spitzhacke
+item.witherbone_axe.name=Verdorrter Knochen Axt
+item.witherbone_shovel.name=Verdorrter Knochen Schaufel
+item.witherbone_hoe.name=Verdorrter Knochen Hacke
+item.witherbone_sword.name=Verdorrter Knochen Schwert
+
+item.emerald_helmet.name=Smaragd Helm
+item.emerald_chestplate.name=Smaragd Brustplatte
+item.emerald_leggings.name=Smaragd Gamaschen
+item.emerald_boots.name=Smaragd Stiefel
+item.emerald_pickaxe.name=Smaragd Spitzhacke
+item.emerald_axe.name=Smaragd Axt
+item.emerald_shovel.name=Smaragd Schaufel
+item.emerald_hoe.name=Smaragd Hacke
+item.emerald_sword.name=Smaragd Schwert
+
+item.ruby_helmet.name=Rubin Helm
+item.ruby_chestplate.name=Rubin Brustplatte
+item.ruby_leggings.name=Rubin Gamaschen
+item.ruby_boots.name=Rubin Stiefel
+item.ruby_pickaxe.name=Rubin Spitzhacke
+item.ruby_axe.name=Rubin Axt
+item.ruby_shovel.name=Rubin Schaufel
+item.ruby_hoe.name=Rubin Hacke
+item.ruby_sword.name=Rubin Schwert
+
+item.blaze_helmet.name=Blaze Helm
+item.blaze_chestplate.name=Blaze Brustplatte
+item.blaze_leggings.name=Blaze Gamaschen
+item.blaze_boots.name=Blaze Stiefel
+item.blaze_pickaxe.name=Blaze Spitzhacke
+item.blaze_axe.name=Blaze Axt
+item.blaze_shovel.name=Blaze Schaufel
+item.blaze_hoe.name=Blaze Hacke
+item.blaze_sword.name=Blaze Schwert
+
+item.ender_helmet.name=Ender Helm
+item.ender_chestplate.name=Ender Brustplatte
+item.ender_leggings.name=Ender Gamaschen
+item.ender_boots.name=Ender Stiefel
+item.ender_pickaxe.name=Ender Spitzhacke
+item.ender_axe.name=Ender Axt
+item.ender_shovel.name=Ender Schaufel
+item.ender_hoe.name=Ender Hacke
+item.ender_sword.name=Ender Schwert
+
+item.netherrack_pickaxe.name=Netherrack Spitzhacke
+item.netherrack_axe.name=Netherrack Axt
+item.netherrack_shovel.name=Netherrack Schaufel
+item.netherrack_hoe.name=Netherrack Hacke
+item.netherrack_sword.name=Netherrack Schwert
+
+item.endstone_pickaxe.name=Endstein Spitzhacke
+item.endstone_axe.name=Endstein Axt
+item.endstone_shovel.name=Endstein Schaufel
+item.endstone_hoe.name=Endstein Hacke
+item.endstone_sword.name=Endstein Schwert
+
+item.guardian_helmet.name=Wächter Helm
+item.guardian_chestplate.name=Wächter Brustplatte
+item.guardian_leggings.name=Wächter Gamaschen
+item.guardian_boots.name=Wächter Stiefel
+
+item.bonelord_helmet.name=Knochender Lord Helm
+item.bonelord_chestplate.name=Knochender Lord Brustplatte
+item.bonelord_leggings.name=Knochender Lord Gamaschen
+item.bonelord_boots.name=Bone Knochender Stiefel
+
+item.enderdragon_helmet.name=Ender Drachenschuppe Helm
+item.enderdragon_chestplate.name=Ender Drachenschuppe Brustplatte
+item.enderdragon_leggings.name=Ender Drachenschuppe Gamaschen
+item.enderdragon_boots.name=Ender Drachenschuppe Stiefel
+
+item.bedrock_helmet.name=Bedrock Helm
+item.bedrock_chestplate.name=Bedrock Brustplatte
+item.bedrock_leggings.name=Bedrock Gamaschen
+item.bedrock_boots.name=Bedrock Stiefel
+item.bedrock_pickaxe.name=Bedrock Spitzhacke
+item.bedrock_axe.name=Bedrock Axt
+item.bedrock_shovel.name=Bedrock Schaufel
+item.bedrock_hoe.name=Bedrock Hacke
+item.bedrock_sword.name=Bedrock Schwert
+

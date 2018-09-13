@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X#X",
+    "#$#",
+    "X#X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    },
+    "X": {
+      "item": "minecraft:coal",
+      "data": 0
+    },
+    "$": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "morecraft:wither_bone",
+    "count": 4
+  }
+}

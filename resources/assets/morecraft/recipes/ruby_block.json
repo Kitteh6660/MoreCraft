@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:ruby"
+    }
+  },
+  "result": {
+    "item": "morecraft:ruby_block"
+  }
+}

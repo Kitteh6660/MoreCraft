@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "item": "morecraft:slime_chestplate"
+  }
+}

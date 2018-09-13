@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:nether_brick"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherbrick_door",
+    "count": 3
+  }
+}

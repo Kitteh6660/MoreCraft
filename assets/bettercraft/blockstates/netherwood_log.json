@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "normal": { "model": "bettercraft:netherwood_log" },
-        "axis=y": { "model": "bettercraft:netherwood_log" },
-        "axis=z": { "model": "bettercraft:netherwood_log", "x": 90 },
-        "axis=x": { "model": "bettercraft:netherwood_log", "x": 90, "y": 90 },
-        "axis=none": { "model": "bettercraft:netherwood_bark" }
-    }
-}

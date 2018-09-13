@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "morecraft",
+      "name": "MoreCraft",
+      "description": "The ultimate mod that expands a lot on Minecraft without out-of-place stuff. Adds many blocks, tools, armour, foods, and crafting recipes. Also makes the Nether a bit more interesting.",
+      "version": "3.2b1",
+      "mcversion": "1.12.2",
+      "url": "http://www.minecraftforum.net/topic/1820703-morecraft/",
+      "updateUrl": "",
+      "authorList": ["Kitteh6660"],
+      "credits": "MuscleMan1234 for the ruby tools textures and some people for the inspiration.",
+      "logoFile": "MoreCraftBanner.png",
+      "screenshots": [],
+      "dependencies": []
+    }
+]

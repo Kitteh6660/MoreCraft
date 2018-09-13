@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "type": "morecraft:quark_installed",
+      "value": "false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "morecraft:stone_stairs",
+    "count": 4
+  }
+}

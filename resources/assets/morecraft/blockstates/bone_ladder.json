@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "morecraft:bone_ladder" },
+        "facing=east":  { "model": "morecraft:bone_ladder", "y": 90 },
+        "facing=south": { "model": "morecraft:bone_ladder", "y": 180 },
+        "facing=west":  { "model": "morecraft:bone_ladder", "y": 270 }
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"half=bottom,variant=default": { "model": "morecraft:netherwood_slab_half" },
+        "half=top,variant=default": { "model": "morecraft:netherwood_slab_upper" }
+	}
+}

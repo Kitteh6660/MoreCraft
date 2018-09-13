@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "morecraft:enderdragon_scales"
+    }
+  },
+  "result": {
+    "item": "morecraft:enderdragon_chestplate"
+  }
+}

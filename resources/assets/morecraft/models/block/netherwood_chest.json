@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "morecraft:blocks/netherwood_planks",
+        "all": "morecraft:blocks/netherwood_planks"
+    }
+}

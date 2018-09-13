@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    {
+      "type": "morecraft:hardcore_recipes",
+      "value": "false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#$#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gold_block"
+    },
+    "$": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "minecraft:golden_apple",
+    "data": 1
+  }
+}

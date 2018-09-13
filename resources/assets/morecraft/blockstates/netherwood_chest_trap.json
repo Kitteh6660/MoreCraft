@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "normal": { "model": "morecraft:netherwood_chest" },
+        "facing=north": { "model": "morecraft:netherwood_chest"},
+        "facing=east": { "model": "morecraft:netherwood_chest", "y": 90 },
+        "facing=south": { "model": "morecraft:netherwood_chest", "y": 180 },
+        "facing=west": { "model": "morecraft:netherwood_chest", "y": 270 }
+    }
+}

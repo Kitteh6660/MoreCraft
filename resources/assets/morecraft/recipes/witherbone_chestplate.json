@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "morecraft:wither_bone"
+    }
+  },
+  "result": {
+    "item": "morecraft:witherbone_chestplate"
+  }
+}

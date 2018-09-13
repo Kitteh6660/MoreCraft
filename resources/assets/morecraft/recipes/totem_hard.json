@@ -1,0 +1,35 @@
+{
+  "conditions": [
+    {
+      "type": "morecraft:hardcore_recipes",
+      "value": "true"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EGE",
+    "ANA",
+    "DGD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "E": {
+      "item": "minecraft:emerald_block"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "A": {
+      "item": "minecraft:golden_apple",
+      "data": 1
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "minecraft:totem_of_undying"
+  }
+}

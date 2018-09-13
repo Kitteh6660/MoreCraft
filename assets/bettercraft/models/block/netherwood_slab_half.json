@@ -1,8 +1,0 @@
-{
-	"parent": "block/half_slab",
-	"textures": {
-        "bottom": "bettercraft:blocks/netherwood_planks",
-        "top": "bettercraft:blocks/netherwood_planks",
-        "side": "bettercraft:blocks/netherwood_planks"
-	}
-}

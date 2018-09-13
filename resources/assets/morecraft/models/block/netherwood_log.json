@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "morecraft:blocks/netherwood_log_top",
+        "side": "morecraft:blocks/netherwood_log_side"
+    }
+}

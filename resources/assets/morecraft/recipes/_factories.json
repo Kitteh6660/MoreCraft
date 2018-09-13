@@ -1,0 +1,10 @@
+{
+
+    "conditions": {
+        "hardcore_recipes": "kittehmod.morecraft.crafting.HardcoreRecipeConditionFactory",
+        "salvage_recipes": "kittehmod.morecraft.crafting.SalvageRecipeConditionFactory",
+        "silly_recipes": "kittehmod.morecraft.crafting.SillyRecipeConditionFactory",
+        
+        "quark_installed": "kittehmod.morecraft.crafting.QuarkModConditionFactory"
+    }
+}

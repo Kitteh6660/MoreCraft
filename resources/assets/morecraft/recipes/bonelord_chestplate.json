@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "###",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:bone"
+    },
+    "#": {
+      "item": "minecraft:web"
+    }
+  },
+  "result": {
+    "item": "morecraft:bonelord_chestplate"
+  }
+}

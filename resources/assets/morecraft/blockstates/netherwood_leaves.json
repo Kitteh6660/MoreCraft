@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"check_decay=false,decayable=false": { "model": "morecraft:netherwood_leaves" },
+        "check_decay=false,decayable=true": { "model": "morecraft:netherwood_leaves" },
+        "check_decay=true,decayable=false": { "model": "morecraft:netherwood_leaves" },
+        "check_decay=true,decayable=true": { "model": "morecraft:netherwood_leaves" }
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "morecraft:wither_bone"
+    }
+  },
+  "result": {
+    "item": "morecraft:witherbone_pickaxe"
+  }
+}

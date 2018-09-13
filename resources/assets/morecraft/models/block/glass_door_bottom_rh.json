@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom_rh",
+    "textures": {
+        "bottom": "morecraft:blocks/glass_door_lower",
+        "top": "morecraft:blocks/glass_door_upper"
+    }
+}

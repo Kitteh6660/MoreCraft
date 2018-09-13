@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "morecraft:ruby"
+    }
+  },
+  "result": {
+    "item": "morecraft:ruby_shovel"
+  }
+}

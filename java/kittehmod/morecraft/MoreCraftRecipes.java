@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class MoreCraftRecipes {
@@ -140,5 +141,10 @@ public class MoreCraftRecipes {
 	        GameRegistry.addSmelting(Items.CAULDRON, new ItemStack(Items.IRON_INGOT, 7), 0.5F);
 	    }
 	}
-	
+	public static void fixRecipes() {
+		IForgeRegistryModifiable registry = (IForgeRegistryModifiable)ForgeRegistries.RECIPES;
+		IForgeRegistryEntry recipe = registry.getValue(new ResourceLocation("minecraft:chest"));
+		registry.remove(recipe.getRegistryName());
+		//registry.add(-1, recipe);
+	}	
 }

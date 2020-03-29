@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class RecipeHelper {
@@ -93,9 +95,9 @@ public class RecipeHelper {
 	@SubscribeEvent
 	public void CraftEvent(ItemCraftedEvent event)
 	{
+		if (event.craftMatrix.getName() != "container.crafting") return; //If this isn't vanilla crafting, SKIP.
 		World world = event.player.getEntityWorld();
 		InventoryCrafting matrix = (InventoryCrafting)event.craftMatrix;
-		countItemInGrid(matrix, Item.getItemFromBlock(MoreCraftBlocks.NETHERWOOD_PLANKS));
 		if (event.crafting.getItem() == Item.getItemFromBlock(Blocks.CHEST) && countItemInGrid(matrix, Item.getItemFromBlock(MoreCraftBlocks.NETHERWOOD_PLANKS)) == 8) {
 			processCrafting(event, event.player, matrix, Item.getItemFromBlock(Blocks.CHEST), Item.getItemFromBlock(MoreCraftBlocks.NETHERWOOD_CHEST), Item.getItemFromBlock(MoreCraftBlocks.NETHERWOOD_PLANKS));
 		}

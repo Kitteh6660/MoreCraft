@@ -66,6 +66,6 @@
         "facing=west,half=upper,hinge=right,open=true,powered=true":  { "model": "morecraft:bone_door_top", "y": 90 },
         "facing=north,half=upper,hinge=right,open=true,powered=true": { "model": "morecraft:bone_door_top", "y": 180 },
         
-        "inventory":  { "model": "morecraft:bone_door_bottom" }
+        "inventory":  { "model": "morecraft:item/bone_door" }
     }
 }

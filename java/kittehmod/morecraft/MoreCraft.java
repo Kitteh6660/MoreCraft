@@ -30,7 +30,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "3.2";
+    public static final String VERSION = "3.2b3";
 	
 	// The instance of your mod that Forge uses.
 	@Instance("morecraft")
@@ -127,6 +127,7 @@ public class MoreCraft
 	public void postInit(FMLPostInitializationEvent event) 
 	{
         MoreCraftRecipes.registerRecipes();
+        //MoreCraftRecipes.fixRecipes();
 	}
 	
     public static void oreRegistration()

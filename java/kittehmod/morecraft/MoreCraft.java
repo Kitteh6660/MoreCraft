@@ -91,7 +91,7 @@ public class MoreCraft
 		overrideMobDrops = (boolean) config.get(config.CATEGORY_GENERAL, "Override Mob Drops", true, "Override drops of squids and spiders to drop the new items? You still can get the vanilla resources. \n§2Doesn't require restart.§r").getBoolean();
 		mobHeadDrops = (boolean) config.get(config.CATEGORY_GENERAL, "Mob Head Drops", true, "Should mobs rarely drop head when killed? \n(Note: Applies to Creepers, Zombies, Skeletons, and Enderdragons) \n§2Doesn't require restart.§r").getBoolean();
 		//Generation
-		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "Netherwood Gen Freq", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 32).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();
+		generateNetherwoodTrees = (int) config.get(config.CATEGORY_GENERAL, "Netherwood Gen Freq", 16, "The amount of Netherwood trees to attempt to generate per chunk. This only affects new chunks. \n§2Doesn't require restart.§r", 0, 50).setConfigEntryClass(MoreCraft.proxy.getSliderClass()).getInt();
 		//------
 		config.save();
 		
@@ -186,7 +186,7 @@ public class MoreCraft
         overrideMobDrops = config.getBoolean("Override Mob Drops", Configuration.CATEGORY_GENERAL, overrideMobDrops, "");
         mobHeadDrops = config.getBoolean("Mob Head Drops", Configuration.CATEGORY_GENERAL, mobHeadDrops, "");
         //Generation
-        generateNetherwoodTrees = config.getInt("Netherwood Gen Freq", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, 0, 32, "");
+        generateNetherwoodTrees = config.getInt("Netherwood Gen Freq", Configuration.CATEGORY_GENERAL, generateNetherwoodTrees, 0, 50, "");
        
         if(config.hasChanged()) config.save();
     }

@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSlimeArmor extends ItemArmor
 {
@@ -28,6 +30,7 @@ public class ItemSlimeArmor extends ItemArmor
 	}
 	
 	@Override
+	@SideOnly(Side.SERVER)
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
 

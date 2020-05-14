@@ -1,13 +1,11 @@
-package kittehmod.morecraft.crafting;
+/*package kittehmod.morecraft.crafting;
 
 import java.util.function.BooleanSupplier;
 
 import com.google.gson.JsonObject;
 
 import kittehmod.morecraft.MoreCraft;
-import net.minecraft.util.JsonUtils;
-import net.minecraftforge.common.crafting.IConditionFactory;
-import net.minecraftforge.common.crafting.JsonContext;
+import net.minecraftforge.common.util.JsonUtils;
 
 public class SalvageRecipeConditionFactory implements IConditionFactory {
 	@Override
@@ -16,3 +14,4 @@ public class SalvageRecipeConditionFactory implements IConditionFactory {
 		return () -> MoreCraft.salvageRecipes == value;
 	}
 }
+*/

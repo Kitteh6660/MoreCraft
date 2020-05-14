@@ -1,17 +1,17 @@
-package kittehmod.morecraft.item;
+/*package kittehmod.morecraft.item;
 
 import kittehmod.morecraft.MoreCraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ItemSlimeArmor extends ItemArmor
+public class ItemSlimeArmor extends ArmorItem
 {
 	public String armorNamePrefix;
 	public ArmorMaterial material;
@@ -19,7 +19,7 @@ public class ItemSlimeArmor extends ItemArmor
 	public int tickUntilSelfRepair = 200;
 	public int tickUntilRegen = 200;
 
-	public ItemSlimeArmor(ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
+	public ItemSlimeArmor(ArmorItem.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 	    super(materialIn, renderIndexIn, equipmentSlotIn);
 	}
@@ -29,9 +29,9 @@ public class ItemSlimeArmor extends ItemArmor
 		return MoreCraft.SLIME_A;
 	}
 	
-	@Override
-	@SideOnly(Side.SERVER)
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
+	/*@Override
+	@OnlyIn(Dist.CLIENT)
+	public void onArmorTick(World world, PlayerEntity player, ItemStack itemStack) 
 	{
 
 		this.tickUntilRegen--;
@@ -48,7 +48,7 @@ public class ItemSlimeArmor extends ItemArmor
 			itemStack.damageItem(-1, player);
 			this.tickUntilSelfRepair = 200;
 		}
-	}
+	}* /
 	
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) 
 	{
@@ -67,4 +67,4 @@ public class ItemSlimeArmor extends ItemArmor
 			return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_1.png";
 		}
 	}
-}
+}*/

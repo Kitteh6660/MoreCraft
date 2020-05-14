@@ -1,4 +1,4 @@
-package kittehmod.morecraft.crafting;
+/*package kittehmod.morecraft.crafting;
 
 import java.util.function.BooleanSupplier;
 
@@ -16,3 +16,4 @@ public class SillyRecipeConditionFactory implements IConditionFactory {
 		return () -> MoreCraft.sillyRecipes == value;
 	}
 }
+*/

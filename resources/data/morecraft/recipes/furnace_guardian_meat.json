@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "morecraft:raw_guardian_meat"
+  },
+  "result": "morecraft:cooked_guardian_meat",
+  "experience": 1.0,
+  "cookingtime": 200
+}

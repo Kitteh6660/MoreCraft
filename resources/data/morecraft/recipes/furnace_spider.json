@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "morecraft:raw_spider"
+  },
+  "result": "morecraft:cooked_spider",
+  "experience": 1.0,
+  "cookingtime": 200
+}

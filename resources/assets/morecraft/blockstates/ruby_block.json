@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "morecraft:ruby_block" }
+        "": { "model": "morecraft:block/ruby_block" }
     }
 }

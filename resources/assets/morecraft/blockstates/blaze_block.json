@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "morecraft:blaze_block" }
+		"": { "model": "morecraft:block/blaze_block" }
 	}
 }

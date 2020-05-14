@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:bone"
+    },
+    "#": {
+      "item": "minecraft:cobweb"
+    }
+  },
+  "result": {
+    "item": "morecraft:bonelord_boots"
+  }
+}

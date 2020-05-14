@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "morecraft:bedrock_brick" }
+		"": { "model": "morecraft:block/bedrock_brick" }
 	}
 }

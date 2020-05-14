@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "morecraft:raw_spider"
+    }
+  ],
+  "result": {
+    "item": "minecraft:spider_eye",
+    "count": 2
+  }
+}

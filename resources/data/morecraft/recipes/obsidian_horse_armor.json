@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X$X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:obsidian"
+    },
+    "$": [
+    {
+      "item": "minecraft:leather"
+    }
+    ]
+  },
+  "result": {
+    "item": "morecraft:obsidian_horse_armor"
+  }
+}

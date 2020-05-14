@@ -1,6 +1,0 @@
-{
-	"variants": {
-		"variant=default": { "model": "morecraft:enderbrick_slab_full" },
-		"inventory":  { "model": "morecraft:enderbrick_slab_full" }
-	}
-}

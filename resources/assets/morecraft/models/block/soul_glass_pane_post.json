@@ -1,5 +1,5 @@
 {
-    "parent": "block/pane_post",
+    "parent": "block/template_glass_pane_post",
     "textures": {
         "edge": "morecraft:blocks/soul_glass_pane_top",
         "pane": "morecraft:blocks/soul_glass"

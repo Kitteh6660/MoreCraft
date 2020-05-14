@@ -1,20 +1,19 @@
-package kittehmod.morecraft.item;
+/*package kittehmod.morecraft.item;
 
 import kittehmod.morecraft.MoreCraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 
-public class ItemWitherArmor extends ItemNormalArmor
+public class ItemWitherArmor extends ArmorItem
 {
 	public String armorNamePrefix;
 	public ArmorMaterial material;
 	public Item repairMaterial;
 	
-	public ItemWitherArmor(ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
+	public ItemWitherArmor(ArmorItem.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 	    super(materialIn, renderIndexIn, equipmentSlotIn);
 	}
@@ -24,7 +23,7 @@ public class ItemWitherArmor extends ItemNormalArmor
     	return MoreCraft.WITHERBONE_A;
     }
 	
-    public EnumRarity getRarity(ItemStack par1ItemStack)
+    public Rarity getRarity(ItemStack par1ItemStack)
     {
         return MoreCraft.LEGENDARY;
     }
@@ -46,4 +45,4 @@ public class ItemWitherArmor extends ItemNormalArmor
 			return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_1.png";
 		}
 	}
-}
+}*/

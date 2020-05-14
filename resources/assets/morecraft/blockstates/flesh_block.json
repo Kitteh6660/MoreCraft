@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "morecraft:flesh_block" }
+		"": { "model": "morecraft:block/flesh_block" }
 	}
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X$X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:emerald"
+    },
+    "$": [
+    {
+      "item": "minecraft:leather"
+    }
+    ]
+  },
+  "result": {
+    "item": "morecraft:emerald_horse_armor"
+  }
+}

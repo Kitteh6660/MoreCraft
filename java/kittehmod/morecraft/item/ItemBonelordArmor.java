@@ -1,11 +1,8 @@
-package kittehmod.morecraft.item;
+/*package kittehmod.morecraft.item;
 
 import kittehmod.morecraft.MoreCraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class ItemBonelordArmor extends ItemNormalArmor
@@ -46,4 +43,4 @@ public class ItemBonelordArmor extends ItemNormalArmor
 			return "bettercraft:textures/models/armor/" + armorNamePrefix + "_layer_1.png";
 		}
 	}
-}
+}*/

@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=up": { "model": "morecraft:block/glowstone_torch" },
+        "facing=east": { "model": "morecraft:block/glowstone_torch_wall" },
+        "facing=south": { "model": "morecraft:block/glowstone_torch_wall", "y": 90 },
+        "facing=west": { "model": "morecraft:block/glowstone_torch_wall", "y": 180 },
+        "facing=north": { "model": "morecraft:block/glowstone_torch_wall", "y": 270 }
+    }
+}

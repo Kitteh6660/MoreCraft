@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    " $ "
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_planks"
+    },
+    "$": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_sign",
+    "count": 3
+  }
+}

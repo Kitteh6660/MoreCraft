@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:netherwood_log",
+    "morecraft:netherwood_wood",
+    "morecraft:stripped_netherwood_log",
+    "morecraft:stripped_netherwood_wood"
+  ]
+}

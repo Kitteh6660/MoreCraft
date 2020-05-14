@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "morecraft:block/netherwood_wood" },
+        "axis=z": { "model": "morecraft:block/netherwood_wood", "x": 90 },
+        "axis=x": { "model": "morecraft:block/netherwood_wood", "x": 90, "y": 90 }
+    }
+}

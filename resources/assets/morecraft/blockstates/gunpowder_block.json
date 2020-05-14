@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "morecraft:gunpowder_block" }
+		"": { "model": "morecraft:block/gunpowder_block" }
 	}
 }

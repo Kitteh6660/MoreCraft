@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "morecraft:raw_squid"
+    }
+  ],
+  "result": {
+    "item": "minecraft:ink_sac",
+    "count": 2
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "morecraft:netherwood_logs"
+    }
+  ],
+  "result": {
+    "item": "morecraft:netherwood_planks",
+    "count": 4
+  }
+}

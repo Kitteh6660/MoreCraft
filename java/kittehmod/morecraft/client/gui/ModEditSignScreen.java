@@ -2,14 +2,13 @@ package kittehmod.morecraft.client.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.NetherwoodStandingSignBlock;
 import kittehmod.morecraft.block.NetherwoodWallSignBlock;
 import kittehmod.morecraft.network.ModUpdateSignPacket;
+import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -42,9 +41,6 @@ public class ModEditSignScreen extends Screen {
       this.inputUtil = new TextInputUtil(this.minecraft, () -> {
          return this.tileSign.getText(this.editLine).getString();
       }, (input) -> {
-    	  //MorecraftPacketHandler.sendToServerSync(msg);
-    	  //ModUpdateSignPacket msg = new ModUpdateSignPacket(this.tileSign.getPos(), this.tileSign.getText(0), this.tileSign.getText(1), this.tileSign.getText(2), this.tileSign.getText(3));
-    	  //MorecraftPacketHandler.sendTo(msg, minecraft.player.getServer());
     	  this.tileSign.setText(this.editLine, new StringTextComponent(input));
       }, 90);
    }
@@ -52,11 +48,11 @@ public class ModEditSignScreen extends Screen {
    public void removed() {
       this.minecraft.keyboardListener.enableRepeatEvents(false);
       ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
-      MoreCraft.LOGGER.info("Getting connection and attempting to send.");
       if (clientplaynethandler != null) {
-    	  MoreCraft.LOGGER.info("Sending packet with texts:\n" + this.tileSign.getText(0) + "\n" + this.tileSign.getText(1) + "\n" + this.tileSign.getText(2) + "\n" + this.tileSign.getText(3));
-    	  ModUpdateSignPacket msg = new ModUpdateSignPacket(this.tileSign.getPos(), this.tileSign.getText(0), this.tileSign.getText(1), this.tileSign.getText(2), this.tileSign.getText(3));
-    	  MorecraftPacketHandler.sendToServerSync(msg);
+    	  ModUpdateSignPacket msg1 = new ModUpdateSignPacket(this.tileSign.getPos(), this.tileSign.getText(0), this.tileSign.getText(1), this.tileSign.getText(2), this.tileSign.getText(3));
+    	  MorecraftPacketHandler.sendToServer(msg1);
+    	  ModUpdateTileEntityPacket msg2 = new ModUpdateTileEntityPacket(this.tileSign.getPos(), this.tileSign.write(this.tileSign.getUpdateTag()));
+    	  MorecraftPacketHandler.sendToServer(msg2);
     	  //clientplaynethandler.sendPacket(new CUpdateSignPacket(this.tileSign.getPos(), this.tileSign.getText(0), this.tileSign.getText(1), this.tileSign.getText(2), this.tileSign.getText(3)));
       }
       this.tileSign.setEditable(true);
@@ -126,7 +122,4 @@ public class ModEditSignScreen extends Screen {
       super.render(p_render_1_, p_render_2_, p_render_3_);
    }
    
-	public static void open(NetherwoodSignTileEntity tileEntity) {
-	   Minecraft.getInstance().displayGuiScreen(new ModEditSignScreen(tileEntity));
-	}
 }

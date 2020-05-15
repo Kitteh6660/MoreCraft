@@ -6,8 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.GlassBlock;
-import net.minecraft.block.OreBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
@@ -37,13 +38,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F, 4.0F).sound(SoundType.WOOD)));
 
     //Ores
-    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new ModOreBlock(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(3.0F, 3.0F)));
    
     //Storage Blocks
     public static final RegistryObject<Block> FLESH_BLOCK = BLOCKS.register("flesh_block", () -> new Block(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> BLAZE_BLOCK = BLOCKS.register("blaze_block", () -> new BlazeBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).lightValue(15).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new Block(Block.Properties.create(Material.GLASS).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> BLAZE_BLOCK = BLOCKS.register("blaze_block", () -> new BlazeBlock(Block.Properties.create(Material.IRON).harvestLevel(1).hardnessAndResistance(5.0F, 6.0F).lightValue(15).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestLevel(1).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Block> GUNPOWDER_BLOCK = BLOCKS.register("gunpowder_block", () -> new FallingBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F, 2.0F).sound(SoundType.SAND)));
     
     //Netherwood
@@ -63,6 +64,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_TRAPDOOR = BLOCKS.register("netherwood_trapdoor", () -> new ModTrapDoorBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 4.0F).sound(SoundType.WOOD))); //new BlockFence(Material.WOOD, MapColor.OBSIDIAN).setHardness(2.0F).setResistance(20.0F).setUnlocalizedName("netherwood_fence").setRegistryName("netherwood_fence");
     public static final RegistryObject<Block> NETHERWOOD_SIGN = BLOCKS.register("netherwood_sign", () -> new NetherwoodStandingSignBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD))); //new ModSlabBlock.Half(Material.WOOD).setSoundType(SoundType.WOOD).setHardness(3.0F).setResistance(8.0F).setUnlocalizedName("netherwood_slab").setRegistryName("netherwood_slab");
     public static final RegistryObject<Block> NETHERWOOD_WALL_SIGN = BLOCKS.register("netherwood_wall_sign", () -> new NetherwoodWallSignBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD))); //new ModSlabBlock.Half(Material.WOOD).setSoundType(SoundType.WOOD).setHardness(3.0F).setResistance(8.0F).setUnlocalizedName("netherwood_slab").setRegistryName("netherwood_slab");
+    public static final RegistryObject<Block> NETHERWOOD_BUTTON = BLOCKS.register("netherwood_button", () -> new ModButtonBlock(true, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD))); //new ModSlabBlock.Half(Material.WOOD).setSoundType(SoundType.WOOD).setHardness(3.0F).setResistance(8.0F).setUnlocalizedName("netherwood_slab").setRegistryName("netherwood_slab");
+    public static final RegistryObject<Block> NETHERWOOD_PRESSURE_PLATE = BLOCKS.register("netherwood_pressure_plate", () -> new ModPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD))); //new ModSlabBlock.Half(Material.WOOD).setSoundType(SoundType.WOOD).setHardness(3.0F).setResistance(8.0F).setUnlocalizedName("netherwood_slab").setRegistryName("netherwood_slab");
 
     //Heads
     public static final RegistryObject<Block> SPIDER_HEAD = BLOCKS.register("spider_head", () -> new ModSkullBlock(ModSkullBlock.Types.SPIDER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(1.0F))); //new SoulGlassBlock(Material.GLASS, false).setHardness(0.5F).setResistance(15.0F).setUnlocalizedName("soul_glass").setRegistryName("soul_glass");
@@ -84,6 +87,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> GLOWSTONE_TORCH = BLOCKS.register("glowstone_torch", () -> new GlowstoneTorchBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).lightValue(15).sound(SoundType.WOOD))); // new GlowstoneTorchBlock().setUnlocalizedName("glowstone_torch").setLightLevel(1.0F).setRegistryName("glowstone_torch");
     public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).lightValue(15).sound(SoundType.WOOD))); // new GlowstoneTorchBlock().setUnlocalizedName("glowstone_torch").setLightLevel(1.0F).setRegistryName("glowstone_torch");
     public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(-1F, 3600000F).sound(SoundType.STONE))); //new ModBlock(Material.ROCK).setSoundType(SoundType.STONE).setBlockUnbreakable().setResistance(6000000.0F).setUnlocalizedName("bedrock_brick").setRegistryName("bedrock_brick");    
+    @SuppressWarnings("deprecation")
+	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(NETHERWOOD_SAPLING.get(), Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
 
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

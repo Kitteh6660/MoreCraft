@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_planks"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_pressure_plate"
+  }
+}

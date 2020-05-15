@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "morecraft:block/netherwood_pressure_plate" },
+        "powered=true": { "model": "morecraft:block/netherwood_pressure_plate_down" }
+    }
+}

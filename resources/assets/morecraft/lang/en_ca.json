@@ -22,12 +22,20 @@
 "block.morecraft.netherwood_trapped_chest": "Netherwood Trapped Chest",
 "block.morecraft.netherwood_crafting_table": "Netherwood Crafting Table",
 "block.morecraft.netherwood_sign": "Netherwood Sign",
+"block.morecraft.netherwood_button": "Netherwood Button",
+"block.morecraft.netherwood_pressure_plate": "Netherwood Pressure Plate",
 
 "block.morecraft.bedrock_brick": "Bedrock Bricks",
 "block.morecraft.soul_glass": "Soul Glass",
 "block.morecraft.soul_glass_pane": "Soul Glass Pane",
 "block.morecraft.bone_ladder": "Bone Ladder",
 "block.morecraft.glowstone_torch": "Glowstone Torch",
+
+"block.morecraft.spider_head": "Spider Head",
+"block.morecraft.cave_spider_head": "Cave Spider Head",
+"block.morecraft.zombie_pigman_head": "Zombie Pigman Head",
+"block.morecraft.blaze_head": "Blaze Head",
+"block.morecraft.enderman_head": "Enderman Head",
 
 "item.morecraft.cooked_flesh": "Cooked Flesh",
 "item.morecraft.raw_spider": "Spider",

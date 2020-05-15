@@ -10,7 +10,6 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.item.UseAction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,11 +28,6 @@ public class EnderdragonArmorItem extends ArmorItem
     	return ModArmorMaterial.ENDERDRAGON;
     }
 	
-    public Rarity getRarity(ItemStack par1ItemStack)
-    {
-        return Rarity.EPIC;
-    }
-    
     @Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
     {

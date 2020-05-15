@@ -29,7 +29,7 @@ public class MorecraftPacketHandler {
 	private static int index;
 	
 	public static void register() {
-		//registerMessage(ModSignGUIPacket.class, ModSignGUIPacket::encode, ModSignGUIPacket::new,  ModSignGUIPacket::handle);
+		registerMessage(ModSignGUIPacket.class, ModSignGUIPacket::encode, ModSignGUIPacket::decode,  ModSignGUIPacket::handle);
 		registerMessage(ModUpdateSignPacket.class, ModUpdateSignPacket::encode, ModUpdateSignPacket::decode, ModUpdateSignPacket.Handler::handle);
 		registerMessage(ModUpdateTileEntityPacket.class, ModUpdateTileEntityPacket::encode, ModUpdateTileEntityPacket::decode, ModUpdateTileEntityPacket.Handler::handle);
 	}
@@ -65,6 +65,7 @@ public class MorecraftPacketHandler {
 	 */
 	public static void sendTo(Object msg, ServerPlayerEntity player)
 	{
+		MoreCraft.LOGGER.info("Sending to " + player);
 		if (!(player instanceof FakePlayer))
 		{
 			HANDLER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);

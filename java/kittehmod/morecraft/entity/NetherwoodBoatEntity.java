@@ -582,7 +582,6 @@ public class NetherwoodBoatEntity extends BoatEntity
      * Update the boat's speed, based on momentum.
      */
     private void updateMotion() {
-       double d0 = (double)-0.04F;
        double d1 = this.hasNoGravity() ? 0.0D : (double)-0.04F;
        double d2 = 0.0D;
        this.momentum = 0.05F;

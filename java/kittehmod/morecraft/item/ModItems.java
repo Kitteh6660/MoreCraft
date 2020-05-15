@@ -41,6 +41,8 @@ public class ModItems {
 	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new BlockItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> NETHERWOOD_CHEST = ITEMS.register("netherwood_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST.get(), new Item.Properties().group(ItemGroup.DECORATIONS).setTEISR(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> NETHERWOOD_TRAPPED_CHEST = ITEMS.register("netherwood_trapped_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST_TRAPPED.get(), new Item.Properties().group(ItemGroup.REDSTONE).setTEISR(() -> ModItemStackTileEntityRenderer::new)));
+	public static final RegistryObject<Item> NETHERWOOD_BUTTON = ITEMS.register("netherwood_button", () -> new BlockItem(ModBlocks.NETHERWOOD_BUTTON.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
+	public static final RegistryObject<Item> NETHERWOOD_PRESSURE_PLATE = ITEMS.register("netherwood_pressure_plate", () -> new BlockItem(ModBlocks.NETHERWOOD_PRESSURE_PLATE.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
 
 	public static final RegistryObject<Item> RUBY_ORE = ITEMS.register("ruby_ore", () -> new BlockItem(ModBlocks.RUBY_ORE.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
@@ -146,7 +148,7 @@ public class ModItems {
     public static final RegistryObject<Item> WITHERBONE_AXE = ITEMS.register("witherbone_axe", () -> new AxeItem(ModItemTier.WITHERBONE, 7.0F, -3.2F, new Item.Properties().group(ItemGroup.TOOLS)));
     public static final RegistryObject<Item> WITHERBONE_SHOVEL = ITEMS.register("witherbone_shovel", () -> new ShovelItem(ModItemTier.WITHERBONE, 1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)));
     public static final RegistryObject<Item> WITHERBONE_HOE = ITEMS.register("witherbone_hoe", () -> new HoeItem(ModItemTier.WITHERBONE, -2.0F, new Item.Properties().group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> WITHERBONE_SWORD = ITEMS.register("witherbone_sword", () -> new SwordItem(ModItemTier.WITHERBONE, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> WITHERBONE_SWORD = ITEMS.register("witherbone_sword", () -> new WitherSwordItem(ModItemTier.WITHERBONE, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)));
     
     public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet", () -> new ModArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> EMERALD_CHESTPLATE = ITEMS.register("emerald_chestplate", () -> new ModArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
@@ -178,15 +180,15 @@ public class ModItems {
     public static final RegistryObject<Item> ENDER_HOE = ITEMS.register("ender_hoe", () -> new HoeItem(ModItemTier.ENDER, -2.0F, new Item.Properties().group(ItemGroup.TOOLS)));
     public static final RegistryObject<Item> ENDER_SWORD = ITEMS.register("ender_sword", () -> new SwordItem(ModItemTier.ENDER, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)));
     
-    public static final RegistryObject<Item> BLAZE_HELMET = ITEMS.register("blaze_helmet", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BLAZE_CHESTPLATE = ITEMS.register("blaze_chestplate", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BLAZE_LEGGINGS = ITEMS.register("blaze_leggings", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BLAZE_BOOTS = ITEMS.register("blaze_boots", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BLAZE_PICKAXE = ITEMS.register("blaze_pickaxe", () -> new PickaxeItem(ModItemTier.BLAZE, 1, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> BLAZE_AXE = ITEMS.register("blaze_axe", () -> new AxeItem(ModItemTier.BLAZE, 7.0F, -3.2F, new Item.Properties().group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> BLAZE_SHOVEL = ITEMS.register("blaze_shovel", () -> new ShovelItem(ModItemTier.BLAZE, 1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> BLAZE_HOE = ITEMS.register("blaze_hoe", () -> new HoeItem(ModItemTier.BLAZE, -2.0F, new Item.Properties().group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> BLAZE_SWORD = ITEMS.register("blaze_sword", () -> new SwordItem(ModItemTier.BLAZE, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> BLAZE_HELMET = ITEMS.register("blaze_helmet", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_CHESTPLATE = ITEMS.register("blaze_chestplate", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_LEGGINGS = ITEMS.register("blaze_leggings", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_BOOTS = ITEMS.register("blaze_boots", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_PICKAXE = ITEMS.register("blaze_pickaxe", () -> new PickaxeItem(ModItemTier.BLAZE, 1, -2.8F, new Item.Properties().group(ItemGroup.TOOLS).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_AXE = ITEMS.register("blaze_axe", () -> new AxeItem(ModItemTier.BLAZE, 7.0F, -3.2F, new Item.Properties().group(ItemGroup.TOOLS).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_SHOVEL = ITEMS.register("blaze_shovel", () -> new ShovelItem(ModItemTier.BLAZE, 1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_HOE = ITEMS.register("blaze_hoe", () -> new HoeItem(ModItemTier.BLAZE, -2.0F, new Item.Properties().group(ItemGroup.TOOLS).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_SWORD = ITEMS.register("blaze_sword", () -> new BlazeSwordItem(ModItemTier.BLAZE, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
     
     public static final RegistryObject<Item> ENDSTONE_PICKAXE = ITEMS.register("endstone_pickaxe", () -> new PickaxeItem(ModItemTier.ENDSTONE, 1, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)));//new ItemNormalPickaxe(MoreCraft.ENDSTONE_T).setUnlocalizedName("endstone_pickaxe").setRegistryName("endstone_pickaxe");
     public static final RegistryObject<Item> ENDSTONE_AXE = ITEMS.register("endstone_axe", () -> new AxeItem(ModItemTier.ENDSTONE, 7.0F, -3.2F, new Item.Properties().group(ItemGroup.TOOLS)));// (new Item.Properties()).group(ItemGroup.TOOLS)))//new ItemNormalAxe(MoreCraft.ENDSTONE_T, 9, 0.8F).setUnlocalizedName("endstone_axe").setRegistryName("endstone_axe");
@@ -200,15 +202,15 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERRACK_HOE = ITEMS.register("netherrack_hoe", () -> new HoeItem(ModItemTier.NETHERRACK, -2.0F, new Item.Properties().group(ItemGroup.TOOLS))); //new ItemNormalHoe(MoreCraft.NETHERRACK_T).setUnlocalizedName("netherrack_hoe").setRegistryName("netherrack_hoe");
     public static final RegistryObject<Item> NETHERRACK_SWORD = ITEMS.register("netherrack_sword", () -> new SwordItem(ModItemTier.NETHERRACK, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT))); //new ItemNormalSword(MoreCraft.NETHERRACK_T).setUnlocalizedName("netherrack_sword").setRegistryName("netherrack_sword");
 
-    public static final RegistryObject<Item> BONELORD_HELMET = ITEMS.register("bonelord_helmet", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BONELORD_CHESTPLATE = ITEMS.register("bonelord_chestplate", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BONELORD_LEGGINGS = ITEMS.register("bonelord_leggings", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> BONELORD_BOOTS = ITEMS.register("bonelord_boots", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> BONELORD_HELMET = ITEMS.register("bonelord_helmet", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BONELORD_CHESTPLATE = ITEMS.register("bonelord_chestplate", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BONELORD_LEGGINGS = ITEMS.register("bonelord_leggings", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BONELORD_BOOTS = ITEMS.register("bonelord_boots", () -> new ModArmorItem(ModArmorMaterial.BONELORD, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
     
-    public static final RegistryObject<Item> ENDERDRAGON_HELMET = ITEMS.register("enderdragon_helmet", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERDRAGON_CHESTPLATE = ITEMS.register("enderdragon_chestplate", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERDRAGON_LEGGINGS = ITEMS.register("enderdragon_leggings", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERDRAGON_BOOTS = ITEMS.register("enderdragon_boots", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERDRAGON_HELMET = ITEMS.register("enderdragon_helmet", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ENDERDRAGON_CHESTPLATE = ITEMS.register("enderdragon_chestplate", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ENDERDRAGON_LEGGINGS = ITEMS.register("enderdragon_leggings", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ENDERDRAGON_BOOTS = ITEMS.register("enderdragon_boots", () -> new EnderdragonArmorItem(ModArmorMaterial.ENDERDRAGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
     
     public static final RegistryObject<Item> BEDROCK_HELMET = ITEMS.register("bedrock_helmet", () -> new ModArmorItem(ModArmorMaterial.BEDROCK, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> BEDROCK_CHESTPLATE = ITEMS.register("bedrock_chestplate", () -> new ModArmorItem(ModArmorMaterial.BEDROCK, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));

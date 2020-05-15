@@ -8,7 +8,6 @@ import kittehmod.morecraft.client.ModSkullTileEntityRenderer;
 import kittehmod.morecraft.client.NetherwoodBoatRenderFactory;
 import kittehmod.morecraft.client.NetherwoodChestTileEntityRenderer;
 import kittehmod.morecraft.client.NetherwoodSignTileEntityRenderer;
-import kittehmod.morecraft.client.gui.GuiHandler;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.NetherwoodBoatEntity;
 import kittehmod.morecraft.item.ModItems;
@@ -34,13 +33,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.fml.network.NetworkRegistry;
 
 @Mod(MoreCraft.MODID)
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.0dev";
+    public static final String VERSION = "4.0a2";
 	
     //public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     

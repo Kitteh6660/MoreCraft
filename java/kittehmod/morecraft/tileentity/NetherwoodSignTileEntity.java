@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.command.CommandSource;
@@ -55,16 +54,14 @@ public class NetherwoodSignTileEntity extends TileEntity {
 	   @Override
 	   public CompoundNBT write(CompoundNBT compound) {
 	      super.write(compound);
-
 	      for(int i = 0; i < 4; ++i) {
-	         String s = ITextComponent.Serializer.toJson(this.signText[i]);
-	         compound.putString("Text" + (i + 1), s);
+		 		String s = ITextComponent.Serializer.toJson(this.signText[i]);
+		 		compound.putString("Text" + (i + 1), s);
 	      }
-
 	      compound.putString("Color", this.textColor.getTranslationKey());
 	      return compound;
 	   }
-
+	   
 	   @Override
 	   public void read(CompoundNBT compound) {
 	      this.isEditable = false;
@@ -130,10 +127,8 @@ public class NetherwoodSignTileEntity extends TileEntity {
 	   
 	   @Override
 	   public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		   MoreCraft.LOGGER.info("On data packet, attempting sync.");
-		   CompoundNBT tag = pkt.getNbtCompound();
 		    //Handle your Data
-		   MorecraftPacketHandler.sendToServerSync(new ModUpdateTileEntityPacket(this.pos, tag));
+		   MorecraftPacketHandler.sendToServerSync(new ModUpdateTileEntityPacket(this.pos, this.getUpdateTag()));
 		}
 
 	   /**

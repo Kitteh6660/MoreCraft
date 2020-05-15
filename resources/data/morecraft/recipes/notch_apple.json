@@ -1,10 +1,4 @@
 {
-  "conditions": [
-    {
-      "type": "morecraft:hardcore_recipes",
-      "value": "false"
-    }
-  ],
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",

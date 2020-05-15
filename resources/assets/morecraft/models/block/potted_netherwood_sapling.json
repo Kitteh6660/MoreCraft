@@ -1,0 +1,6 @@
+{
+    "parent": "block/flower_pot_cross",
+    "textures": {
+        "plant": "morecraft:blocks/netherwood_sapling"
+    }
+}

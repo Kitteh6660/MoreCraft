@@ -2,30 +2,38 @@ package kittehmod.morecraft.network;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.client.gui.ModEditSignScreen;
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.client.gui.ModEditSignHandler;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ModSignGUIPacket {
 	
-	private final TileEntity tileentity;
+	private final BlockPos pos;
 	
-    public ModSignGUIPacket(TileEntity tileEntityIn) {
-    	this.tileentity = tileEntityIn;
+    public ModSignGUIPacket(BlockPos pos) {
+    	this.pos = pos;
     }
     
-    public void encode(ModSignGUIPacket pkt, PacketBuffer buf) {}
-    
-    private TileEntity getTileEntity() {
-    	return this.tileentity;
+    public static void encode(ModSignGUIPacket pkt, PacketBuffer buf) {
+    	buf.writeBlockPos(pkt.pos);
     }
     
-    public void handle(final ModUpdateSignPacket message, Supplier<NetworkEvent.Context> context) {
-    	context.get().enqueueWork(
-    		() -> new ModEditSignScreen((NetherwoodSignTileEntity)this.getTileEntity())
-    	);
+    public static ModSignGUIPacket decode(PacketBuffer buf) {
+    	return new ModSignGUIPacket(buf.readBlockPos());
+    }
+    
+    public static void handle(final ModSignGUIPacket message, Supplier<NetworkEvent.Context> context) {
+    	context.get().enqueueWork(() -> {
+    		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
+    			//GUI is client-side only.
+    		}
+    		else {
+    			ModEditSignHandler.deliverPacket(message.pos, context);
+    		}
+    		
+    	});
     	context.get().setPacketHandled(true);
     }
 	

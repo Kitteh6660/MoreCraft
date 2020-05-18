@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:rotten_flesh"
+  },
+  "result": "morecraft:cooked_flesh",
+  "experience": 0.35,
+  "cookingtime": 200
+}

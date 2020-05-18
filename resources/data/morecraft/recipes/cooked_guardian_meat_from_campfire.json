@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "morecraft:raw_guardian_meat"
+  },
+  "result": "morecraft:cooked_guardian_meat",
+  "experience": 0.35,
+  "cookingtime": 600
+}

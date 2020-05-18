@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:smoking",
   "ingredient": {
     "item": "morecraft:raw_squid"
   },
   "result": "morecraft:cooked_squid",
-  "experience": 1.0,
-  "cookingtime": 200
+  "experience": 0.35,
+  "cookingtime": 100
 }

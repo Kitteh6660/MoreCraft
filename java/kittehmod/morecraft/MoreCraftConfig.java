@@ -42,7 +42,7 @@ public class MoreCraftConfig {
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
 		
-        COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
+        /*COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
         hardcoreRecipes = COMMON_BUILDER
                 .comment("Hardcore Recipes\n" + "Default: False")
@@ -56,7 +56,7 @@ public class MoreCraftConfig {
                 .comment("Salvage Recipes (Not Yet Re-Implemented)\n" + "Default: True")
                 .define("salvage_recipes", true);
 
-        COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();*/
         
         COMMON_BUILDER.push(SUBCATEGORY_DROPS);
         

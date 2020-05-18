@@ -6,18 +6,26 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
- 
-public class BlazeSwordItem extends SwordItem {
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 
+public class ModSwordItem extends SwordItem {
+	
 	public IItemTier material;
-
-	public BlazeSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder)
+	
+	public ModSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder)
 	{
 	    super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
 	
+	@Override
 	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		target.setFire(4);
+		if (this.getTier() == ModItemTier.BLAZE) {
+			target.setFire(4);
+		}
+		else if (this.getTier() == ModItemTier.WITHERBONE) {
+			target.addPotionEffect(new EffectInstance(Effects.WITHER, 100, 0));
+		}
 		stack.damageItem(1, attacker, (p_220045_0_) -> {
 			p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
 		});

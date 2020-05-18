@@ -1,7 +1,10 @@
 package kittehmod.morecraft;
 
 import kittehmod.morecraft.entity.NetherwoodBoatEntity;
+import kittehmod.morecraft.network.ModBoatDismountPacket;
+import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -27,8 +30,10 @@ public class PlayerEvents
 	public void LavaBoatDismount(EntityMountEvent event)
 	{
 		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherwoodBoatEntity) {
-			//MoreCraft.LOGGER.info("Entity has dismounted.");
 			event.getEntityMounting().extinguish();
+			if (event.getEntityMounting() instanceof PlayerEntity) {
+				MorecraftPacketHandler.sendToServer(new ModBoatDismountPacket());
+			}
 			event.setResult(Result.ALLOW);
 		}
 	}

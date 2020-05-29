@@ -7,7 +7,7 @@ import net.minecraft.world.IBlockReader;
 
 public class ModSkullBlock extends SkullBlock {
 
-	protected ModSkullBlock(ModSkullBlock.ISkullType type, Properties properties) {
+	protected ModSkullBlock(SkullBlock.ISkullType type, Properties properties) {
 		super(type, properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(ROTATION, Integer.valueOf(0)));
 	}
@@ -17,7 +17,7 @@ public class ModSkullBlock extends SkullBlock {
 		return new ModSkullTileEntity();
 	}
 	   
-	public static enum Types implements ModSkullBlock.ISkullType {
+	public static enum Types implements SkullBlock.ISkullType {
 		SPIDER,
 		CAVE_SPIDER,
 		BLAZE,

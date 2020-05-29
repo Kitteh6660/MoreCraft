@@ -826,7 +826,7 @@ public class NetherwoodBoatEntity extends BoatEntity
     }*/
 
     protected boolean canFitPassenger(Entity passenger) {
-       return this.getPassengers().size() < 2 && !this.areEyesInFluid(FluidTags.WATER);
+       return this.getPassengers().size() < 2 && !this.areEyesInFluid(FluidTags.WATER) && !this.areEyesInFluid(FluidTags.LAVA);
     }
 
     /**

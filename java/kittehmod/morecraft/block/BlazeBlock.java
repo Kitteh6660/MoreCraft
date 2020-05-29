@@ -1,6 +1,7 @@
 package kittehmod.morecraft.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,4 +19,9 @@ public class BlazeBlock extends Block
 		entityIn.setFire(4);
     }
 
+	@Override
+	public int getHarvestLevel(BlockState state) {
+		return 1;
+	}
+	
 }

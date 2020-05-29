@@ -3,6 +3,7 @@ package kittehmod.morecraft.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.OreBlock;
 import net.minecraft.util.math.MathHelper;
 
@@ -21,4 +22,13 @@ public class ModOreBlock extends OreBlock {
 		}
 	}
 
+	@Override
+	public int getHarvestLevel(BlockState state) {
+		if (this == ModBlocks.RUBY_ORE.get()) {
+			return 2;
+		} else {
+			return 0;
+		}
+	}
+	
 }

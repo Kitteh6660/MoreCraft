@@ -13,6 +13,7 @@ import kittehmod.morecraft.block.ModWallSkullBlock;
 import kittehmod.morecraft.tileentity.ModSkullTileEntity;
 import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SkullBlock;
 import net.minecraft.client.renderer.entity.model.GenericHeadModel;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -26,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileEntity> {
 
 	   public static ModSkullTileEntityRenderer instance;
-	   private static final Map<ModSkullBlock.ISkullType, GenericHeadModel> MODELS = Util.make(Maps.newHashMap(), (p_209262_0_) -> {
+	   private static final Map<SkullBlock.ISkullType, GenericHeadModel> MODELS = Util.make(Maps.newHashMap(), (p_209262_0_) -> {
 	      GenericHeadModel genericheadmodel = new GenericHeadModel(0, 0, 64, 32);
 	      //GenericHeadModel genericheadmodel1 = new HumanoidHeadModel();
 	      p_209262_0_.put(ModSkullBlock.Types.SPIDER, genericheadmodel);
@@ -35,7 +36,7 @@ public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileE
 	      p_209262_0_.put(ModSkullBlock.Types.BLAZE, genericheadmodel);
 	      p_209262_0_.put(ModSkullBlock.Types.ENDERMAN, genericheadmodel);
 	   });
-	   private static final Map<ModSkullBlock.ISkullType, ResourceLocation> SKINS = Util.make(Maps.newHashMap(), (p_209263_0_) -> {
+	   private static final Map<SkullBlock.ISkullType, ResourceLocation> SKINS = Util.make(Maps.newHashMap(), (p_209263_0_) -> {
 	      p_209263_0_.put(ModSkullBlock.Types.SPIDER, new ResourceLocation("textures/entity/spider/spider.png"));
 	      p_209263_0_.put(ModSkullBlock.Types.CAVE_SPIDER, new ResourceLocation("textures/entity/spider/cave_spider.png"));
 	      p_209263_0_.put(ModSkullBlock.Types.ZOMBIE_PIGMAN, new ResourceLocation("textures/entity/zombie_pigman.png"));
@@ -57,7 +58,7 @@ public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileE
 	   }
 
 	   @OnlyIn(Dist.CLIENT)
-	   public void render(float x, float y, float z, @Nullable Direction facing, float rotationIn, ModSkullBlock.ISkullType type, @Nullable GameProfile playerProfile, int destroyStage, float animationProgress) {
+	   public void render(float x, float y, float z, @Nullable Direction facing, float rotationIn, SkullBlock.ISkullType type, @Nullable GameProfile playerProfile, int destroyStage, float animationProgress) {
 	      GenericHeadModel genericheadmodel = MODELS.get(type);
 	      if (destroyStage >= 0) {
 	         this.bindTexture(DESTROY_STAGES[destroyStage]);
@@ -105,7 +106,7 @@ public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileE
 
 	   }
 
-	   private ResourceLocation func_199356_a(ModSkullBlock.ISkullType p_199356_1_, @Nullable GameProfile p_199356_2_) {
+	   private ResourceLocation func_199356_a(SkullBlock.ISkullType p_199356_1_, @Nullable GameProfile p_199356_2_) {
 	      ResourceLocation resourcelocation = SKINS.get(p_199356_1_);
 	      return resourcelocation;
 	   }

@@ -42,9 +42,9 @@ public class ModBlocks {
    
     //Storage Blocks
     public static final RegistryObject<Block> FLESH_BLOCK = BLOCKS.register("flesh_block", () -> new Block(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new ModBlock(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Block> BLAZE_BLOCK = BLOCKS.register("blaze_block", () -> new BlazeBlock(Block.Properties.create(Material.IRON).harvestLevel(1).hardnessAndResistance(5.0F, 6.0F).lightValue(15).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestLevel(1).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new ModBlock(Block.Properties.create(Material.ROCK).harvestLevel(1).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Block> GUNPOWDER_BLOCK = BLOCKS.register("gunpowder_block", () -> new FallingBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F, 2.0F).sound(SoundType.SAND)));
     
     //Netherwood

@@ -189,5 +189,10 @@
 "item.morecraft.bone_horse_armor": "Bone Horse Armour",
 "item.morecraft.emerald_horse_armor": "Emerald Horse Armour",
 "item.morecraft.ruby_horse_armor": "Ruby Horse Armour",
-"item.morecraft.obsidian_horse_armor": "Obsidian Horse Armour"
+"item.morecraft.obsidian_horse_armor": "Obsidian Horse Armour",
+
+"item.minecraft.potion.effect.morecraft:health_boost": "Potion of Health Boost",
+"item.minecraft.splash_potion.effect.morecraft:health_boost": "Splash Potion of Health Boost",
+"item.minecraft.lingering_potion.effect.morecraft:health_boost": "Lingering Potion of Health Boost",
+"item.minecraft.tipped_arrow.effect.morecraft:health_boost": "Arrow of Health Boost"
 }

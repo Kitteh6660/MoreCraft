@@ -2,7 +2,6 @@ package kittehmod.morecraft.network;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.MoreCraft;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -23,13 +22,11 @@ public class ModUpdateTileEntityPacket {
     }
 
     public static void encode(ModUpdateTileEntityPacket msg, PacketBuffer buf) {
-    	MoreCraft.LOGGER.info("Encoding packet for ModUpdateTileEntityPacket...");
     	buf.writeBlockPos(msg.blockPos);
     	buf.writeCompoundTag(msg.nbt);
     }
     
     public static ModUpdateTileEntityPacket decode(PacketBuffer buf) {
-    	MoreCraft.LOGGER.info("Decoding packet for ModUpdateTileEntityPacket...");
     	return new ModUpdateTileEntityPacket(buf.readBlockPos(), buf.readCompoundTag());
     }
 	
@@ -43,9 +40,7 @@ public class ModUpdateTileEntityPacket {
 		    		world = context.get().getSender().getEntityWorld();
 		    		te = world.getTileEntity(message.blockPos);
 		    		if (te != null && message.nbt != null) {
-		    			MoreCraft.LOGGER.info("Getting NBT info:\n" + message.nbt);
 			    		te.write(message.nbt);
-			    		MoreCraft.LOGGER.info("Successfully written NBT.");
 		    		}
 	    		}
 	        });

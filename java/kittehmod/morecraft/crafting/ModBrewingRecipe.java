@@ -2,9 +2,8 @@ package kittehmod.morecraft.crafting;
 
 import javax.annotation.Nonnull;
 
-import kittehmod.morecraft.MoreCraft;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 public class ModBrewingRecipe implements IBrewingRecipe {
@@ -31,7 +30,7 @@ public class ModBrewingRecipe implements IBrewingRecipe {
 
 	@Override
 	public ItemStack getOutput(@Nonnull ItemStack inputIn, @Nonnull ItemStack ingredientIn) {
-		if (isInput(inputIn) && isIngredient(ingredientIn)) {
+		if (isInput(inputIn) && isIngredient(ingredientIn) && PotionUtils.getPotionFromItem(inputIn) == PotionUtils.getPotionFromItem(input)) {
 			return output.copy();
 		}
 		return ItemStack.EMPTY;

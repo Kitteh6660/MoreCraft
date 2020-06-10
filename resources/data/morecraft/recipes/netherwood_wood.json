@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_log"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_wood",
+    "count": 3
+  }
+}

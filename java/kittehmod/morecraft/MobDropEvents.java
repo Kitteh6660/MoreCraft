@@ -6,6 +6,7 @@ import kittehmod.morecraft.item.ModItems;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.DrownedEntity;
 import net.minecraft.entity.monster.ElderGuardianEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.GuardianEntity;
@@ -82,7 +83,7 @@ public class MobDropEvents
         }
         
         //ZOMBIES
-        if ((event.getEntityLiving() instanceof ZombieEntity || event.getEntityLiving() instanceof HuskEntity) && MoreCraftConfig.mobHeadDrops.get())
+        if ((event.getEntityLiving() instanceof ZombieEntity || event.getEntityLiving() instanceof HuskEntity || event.getEntityLiving() instanceof DrownedEntity) && MoreCraftConfig.mobHeadDrops.get())
         {
         	if (event.getSource().getDamageType().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) {
             	stack = new ItemStack(Items.ZOMBIE_HEAD, 1);

@@ -50,10 +50,12 @@ public class ModItems {
 
 	public static final RegistryObject<Item> SOUL_GLASS = ITEMS.register("soul_glass", () -> new BlockItem(ModBlocks.SOUL_GLASS.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> SOUL_GLASS_PANE = ITEMS.register("soul_glass_pane", () -> new BlockItem(ModBlocks.SOUL_GLASS_PANE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> FLESH_CARPET = ITEMS.register("flesh_carpet", () -> new BlockItem(ModBlocks.FLESH_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BONE_LADDER = ITEMS.register("bone_ladder", () -> new BlockItem(ModBlocks.BONE_LADDER.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_TORCH = ITEMS.register("glowstone_torch", () -> new WallOrFloorItem(ModBlocks.GLOWSTONE_TORCH.get(), ModBlocks.WALL_GLOWSTONE_TORCH.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
+	//Not currently available in creative tabs or obtainable due to bugs.
 	public static final RegistryObject<Item> SPIDER_HEAD = ITEMS.register("spider_head", () -> new ModSkullItem(ModBlocks.SPIDER_HEAD.get(), ModBlocks.WALL_SPIDER_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON).setTEISR(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> CAVE_SPIDER_HEAD = ITEMS.register("cave_spider_head", () -> new ModSkullItem(ModBlocks.CAVE_SPIDER_HEAD.get(), ModBlocks.WALL_CAVE_SPIDER_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON).setTEISR(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> ZOMBIE_PIGMAN_HEAD  = ITEMS.register("zombie_pigman_head", () -> new ModSkullItem(ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.WALL_ZOMBIE_PIGMAN_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON).setTEISR(() -> ModItemStackTileEntityRenderer::new)));
@@ -89,6 +91,7 @@ public class ModItems {
     // -- MATERIALS -- \\
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> WITHER_BONE = ITEMS.register("wither_bone", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> WITHER_BONE_MEAL = ITEMS.register("wither_bone_meal", () -> new WitherBonemealItem(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     
 	// -- BOAT ITEMS -- \\

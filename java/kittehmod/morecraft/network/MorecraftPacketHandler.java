@@ -66,7 +66,6 @@ public class MorecraftPacketHandler {
 	 */
 	public static void sendTo(Object msg, ServerPlayerEntity player)
 	{
-		MoreCraft.LOGGER.info("Sending to " + player);
 		if (!(player instanceof FakePlayer))
 		{
 			HANDLER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);

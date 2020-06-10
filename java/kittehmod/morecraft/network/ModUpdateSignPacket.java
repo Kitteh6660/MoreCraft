@@ -2,7 +2,6 @@ package kittehmod.morecraft.network;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -24,7 +23,6 @@ public class ModUpdateSignPacket {
     }
 
     public static void encode(ModUpdateSignPacket msg, PacketBuffer buf) {
-    	MoreCraft.LOGGER.info("Encoding packet for ModUpdateTileEntityPacket...");
     	buf.writeBlockPos(msg.blockPos);
         for(int i = 0; i < 4; ++i) {
             buf.writeTextComponent(msg.lines[i]);
@@ -32,8 +30,7 @@ public class ModUpdateSignPacket {
     }
     
     public static ModUpdateSignPacket decode(PacketBuffer buf) {
-    	MoreCraft.LOGGER.info("Decoding packet for ModUpdateTileEntityPacket...");
-    	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent());
+     	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent());
     }
 	
     public static class Handler {

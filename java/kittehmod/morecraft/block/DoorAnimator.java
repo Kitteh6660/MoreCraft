@@ -1,9 +1,4 @@
-package kittehmod.morecraft.block;
-/*package kittehmod.bettercraft.block;
-
-import net.minecraft.block.Block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+/*package kittehmod.morecraft.block;
 
 public class DoorAnimator extends DoorDescriptor
 {

@@ -1,8 +1,5 @@
 package kittehmod.morecraft;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import kittehmod.morecraft.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.client.ModSkullTileEntityRenderer;
@@ -20,7 +17,7 @@ import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
 import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
 import kittehmod.morecraft.tileentity.NetherwoodTrappedChestTileEntity;
 import kittehmod.morecraft.worldgen.ModFeatures;
-import kittehmod.morecraft.worldgen.ModGenerator;
+import kittehmod.morecraft.worldgen.MorecraftGenerator;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
@@ -41,9 +38,9 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.0b2";
+    public static final String VERSION = "4.0";
 	
-    public static Logger LOGGER = LogManager.getLogger(MODID);
+    //public static Logger LOGGER = LogManager.getLogger(MODID);
     
     public MoreCraft()
     {
@@ -52,40 +49,37 @@ public class MoreCraft
     	ModEntities.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModPotions.POTION_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    	//FMLJavaModLoadingContext.get().getModEventBus().addListener(ModBrewingRecipes::registerRecipes);
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
     	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
     		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
     	});
-    	
-    	MinecraftForge.EVENT_BUS.register(new MobDropEvents());
-    	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
-    	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());
-    	
-    	ComposterBlock.CHANCES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
-    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE.get(), 0.65F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE_PIE.get(), 1.0F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHERWOOD_LEAVES.get(), 0.3F);
     }
     
     private void setupCommon(final FMLCommonSetupEvent event)
     {
-    	LOGGER.info("Common setup...");
-    	
     	ModBrewingRecipes.registerRecipes();
     	
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MoreCraftConfig.COMMON_CONFIG);
         MoreCraftConfig.loadConfig(MoreCraftConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft-common.toml"));
     	
-        ModGenerator.setupGeneration();
+        MorecraftGenerator.setupGeneration();
         MorecraftPacketHandler.register();
+        
+    	MinecraftForge.EVENT_BUS.register(new MobDropEvents());
+    	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
+    	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());
+    	
+    	ComposterBlock.CHANCES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
+    	ComposterBlock.CHANCES.put(ModItems.APPLE_PIE.get(), 1.0F);
+    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE.get(), 0.65F);
+    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE_PIE.get(), 1.0F);
+    	ComposterBlock.CHANCES.put(ModItems.NETHERWOOD_LEAVES.get(), 0.3F);
     }
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @OnlyIn(Dist.CLIENT)
 	private void setupClient(final FMLClientSetupEvent event)
     {
-    	LOGGER.info("Client setup...");
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, MoreCraftConfig.CLIENT_CONFIG);
         MoreCraftConfig.loadConfig(MoreCraftConfig.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft-client.toml"));
         RenderingRegistry.registerEntityRenderingHandler(NetherwoodBoatEntity.class, NetherwoodBoatRenderFactory.INSTANCE);

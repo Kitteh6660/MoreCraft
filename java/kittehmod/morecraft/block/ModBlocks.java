@@ -3,7 +3,6 @@ package kittehmod.morecraft.block;
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.worldgen.NetherwoodTree;
 import net.minecraft.block.Block;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FlowerPotBlock;
@@ -14,8 +13,10 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -38,14 +39,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F, 4.0F).sound(SoundType.WOOD)));
 
     //Ores
-    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new ModOreBlock(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(3.0F, 3.0F)));
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new ModOreBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).harvestLevel(2).hardnessAndResistance(3.0F, 3.0F)));
    
     //Storage Blocks
     public static final RegistryObject<Block> FLESH_BLOCK = BLOCKS.register("flesh_block", () -> new Block(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new ModBlock(Block.Properties.create(Material.ROCK).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> BLAZE_BLOCK = BLOCKS.register("blaze_block", () -> new BlazeBlock(Block.Properties.create(Material.IRON).harvestLevel(1).hardnessAndResistance(5.0F, 6.0F).lightValue(15).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new ModBlock(Block.Properties.create(Material.ROCK).harvestLevel(1).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> GUNPOWDER_BLOCK = BLOCKS.register("gunpowder_block", () -> new FallingBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F, 2.0F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> BLAZE_BLOCK = BLOCKS.register("blaze_block", () -> new BlazeBlock(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).harvestLevel(1).hardnessAndResistance(5.0F, 6.0F).lightValue(15).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> ENDER_BLOCK = BLOCKS.register("ender_block", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).harvestLevel(1).hardnessAndResistance(2.5F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> GUNPOWDER_BLOCK = BLOCKS.register("gunpowder_block", () -> new GunpowderBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F, 2.0F).sound(SoundType.SAND)));
     
     //Netherwood
     public static final RegistryObject<Block> NETHERWOOD_LOG = BLOCKS.register("netherwood_log", () -> new NetherwoodLogBlock(MaterialColor.OBSIDIAN, Block.Properties.create(Material.WOOD).hardnessAndResistance(3.0F, 4.0F).sound(SoundType.WOOD))); 
@@ -83,6 +84,7 @@ public class ModBlocks {
     //Others
     public static final RegistryObject<Block> SOUL_GLASS = BLOCKS.register("soul_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F, 3.0F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> SOUL_GLASS_PANE = BLOCKS.register("soul_glass_pane", () -> new ModPaneBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F, 3.0F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> FLESH_CARPET = BLOCKS.register("flesh_carpet", () -> new ModCarpetBlock(DyeColor.WHITE, Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F, 1.0F).sound(SoundType.NETHER_WART)));
     public static final RegistryObject<Block> BONE_LADDER = BLOCKS.register("bone_ladder", () -> new BoneLadderBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 3.0F).sound(SoundType.LADDER)));
     public static final RegistryObject<Block> GLOWSTONE_TORCH = BLOCKS.register("glowstone_torch", () -> new GlowstoneTorchBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).lightValue(15).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).lightValue(15).sound(SoundType.WOOD)));
@@ -109,9 +111,7 @@ public class ModBlocks {
 	    
 	    @SubscribeEvent
 	    public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
-	    	event.getRegistry().registerAll(
-		    	//setup(new Item(new Item.Properties()), "example_item")
-		    );
+	    	event.getRegistry().registerAll();
 	    }
 	}
 }

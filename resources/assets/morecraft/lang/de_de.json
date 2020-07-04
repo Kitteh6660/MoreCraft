@@ -186,8 +186,8 @@
 "item.morecraft.ruby_horse_armor": "Rubin Rossharnisch",
 "item.morecraft.obsidian_horse_armor": "Obsidian Rossharnisch",
 
-"item.minecraft.potion.effect.morecraft:health_boost": "Trank der Extraenergie",
-"item.minecraft.splash_potion.effect.morecraft:health_boost": "Wurftrank der Extraenergie",
-"item.minecraft.lingering_potion.effect.morecraft:health_boost": "Verwiiltrank der Extraenergie",
-"item.minecraft.tipped_arrow.effect.morecraft:health_boost": "Pfeil der Extraenergie"
+"item.minecraft.potion.effect.health_boost": "Trank der Extraenergie",
+"item.minecraft.splash_potion.effect.health_boost": "Wurftrank der Extraenergie",
+"item.minecraft.lingering_potion.effect.health_boost": "Verwiiltrank der Extraenergie",
+"item.minecraft.tipped_arrow.effect.health_boost": "Pfeil der Extraenergie"
 }

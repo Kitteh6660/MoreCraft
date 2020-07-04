@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/Kitteh6660/MoreCraft/issues" #optional
 # The modid of the mod
 modId="morecraft" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="4.0" #"${file.jarVersion}" #mandatory
+version="4.0.2" #"${file.jarVersion}" #mandatory
  # A display name for the mod
 displayName="MoreCraft" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
@@ -29,7 +29,5 @@ credits="MuscleMan1234 for the ruby tools textures and some people for the inspi
 authors="Kitteh6660" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-The ultimate mod that expands a lot on Minecraft without out-of-place stuff.
-Adds many blocks, tools, armour, foods, and crafting recipes. 
-Also makes the Nether a bit more interesting!
+The ultimate mod that expands a lot on Minecraft without out-of-place stuff.\nAdds many blocks, tools, armour, foods, and crafting recipes. Also makes the Nether a bit more interesting!
 '''

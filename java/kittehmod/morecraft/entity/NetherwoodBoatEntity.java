@@ -145,7 +145,8 @@ public class NetherwoodBoatEntity extends BoatEntity
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    @SuppressWarnings("deprecation")
+	public boolean attackEntityFrom(DamageSource source, float amount) {
        if (this.isInvulnerableTo(source)) {
           return false;
        } else if (!this.world.isRemote && !this.removed) {
@@ -220,7 +221,8 @@ public class NetherwoodBoatEntity extends BoatEntity
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.
      */
-    public boolean canBeCollidedWith() {
+    @SuppressWarnings("deprecation")
+	public boolean canBeCollidedWith() {
        return !this.removed;
     }
 
@@ -650,7 +652,8 @@ public class NetherwoodBoatEntity extends BoatEntity
        }
     }
 
-    public void updatePassenger(Entity passenger) {
+    @SuppressWarnings("deprecation")
+	public void updatePassenger(Entity passenger) {
        if (this.isPassenger(passenger)) {
           float f = 0.0F;
           float f1 = (float)((this.removed ? (double)0.01F : this.getMountedYOffset()) + passenger.getYOffset());
@@ -727,7 +730,8 @@ public class NetherwoodBoatEntity extends BoatEntity
        }
     }
 
-    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+    @SuppressWarnings("deprecation")
+	protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
        this.lastYd = this.getMotion().y;
        if (!this.isPassenger()) {
           if (onGroundIn) {

@@ -186,8 +186,8 @@
 "item.morecraft.ruby_horse_armor": "Roﬂrustung aus Rubin",
 "item.morecraft.obsidian_horse_armor": "Roﬂrustung aus Obsidian",
 
-"item.minecraft.potion.effect.morecraft:health_boost": "Tronk der Gsundheits-boost",
-"item.minecraft.splash_potion.effect.morecraft:health_boost": "Wurftronk der Gsundheits-boost",
-"item.minecraft.lingering_potion.effect.morecraft:health_boost": "Vawieltronk der Gsundheits-boost",
-"item.minecraft.tipped_arrow.effect.morecraft:health_boost": "Pfeil der Gsundheits-boost"
+"item.minecraft.potion.effect.health_boost": "Tronk der Gsundheits-boost",
+"item.minecraft.splash_potion.effect.health_boost": "Wurftronk der Gsundheits-boost",
+"item.minecraft.lingering_potion.effect.health_boost": "Vawieltronk der Gsundheits-boost",
+"item.minecraft.tipped_arrow.effect.health_boost": "Pfeil der Gsundheits-boost"
 }

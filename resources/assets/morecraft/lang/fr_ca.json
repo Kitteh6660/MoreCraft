@@ -187,8 +187,8 @@
 "item.morecraft.ruby_horse_armor": "Rubis Cheval Armure",
 "item.morecraft.obsidian_horse_armor": "Obsidienne Cheval Armure",
 
-"item.minecraft.potion.effect.morecraft:health_boost": "Potion de vie",
-"item.minecraft.splash_potion.effect.morecraft:health_boost": "Potion de bonus vie jetable",
-"item.minecraft.lingering_potion.effect.morecraft:health_boost": "Potion de bonus vie persistante",
-"item.minecraft.tipped_arrow.effect.morecraft:health_boost": "Fleche de bonus vie"
+"item.minecraft.potion.effect.health_boost": "Potion de vie",
+"item.minecraft.splash_potion.effect.health_boost": "Potion de bonus vie jetable",
+"item.minecraft.lingering_potion.effect.health_boost": "Potion de bonus vie persistante",
+"item.minecraft.tipped_arrow.effect.health_boost": "Fleche de bonus vie"
 }

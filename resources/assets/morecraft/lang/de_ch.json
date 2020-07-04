@@ -186,8 +186,8 @@
 "item.morecraft.ruby_horse_armor": "Rubin Pferd Rüstung",
 "item.morecraft.obsidian_horse_armor": "Obsidian Pferd Rüstung",
 
-"item.minecraft.potion.effect.morecraft:health_boost": "Trank vor Gsundheitsboost",
-"item.minecraft.splash_potion.effect.morecraft:health_boost": "Wurftrank vor Gsundheitsboost",
-"item.minecraft.lingering_potion.effect.morecraft:health_boost": "Verwiiltrank vor Gsundheitsboost",
-"item.minecraft.tipped_arrow.effect.morecraft:health_boost": "Pfiil vor Gsundheitsboost"
+"item.minecraft.potion.effect.health_boost": "Trank vor Gsundheitsboost",
+"item.minecraft.splash_potion.effect.health_boost": "Wurftrank vor Gsundheitsboost",
+"item.minecraft.lingering_potion.effect.health_boost": "Verwiiltrank vor Gsundheitsboost",
+"item.minecraft.tipped_arrow.effect.health_boost": "Pfiil vor Gsundheitsboost"
 }

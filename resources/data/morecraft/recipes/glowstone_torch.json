@@ -6,7 +6,7 @@
   ],
   "key": {
     "X": {
-      "item": "minecraft:glowstone"
+      "item": "minecraft:glowstone_dust"
     },
     "#": {
       "item": "minecraft:stick"
@@ -14,6 +14,6 @@
   },
   "result": {
     "item": "morecraft:glowstone_torch",
-    "count": 4
+    "count": 2
   }
 }

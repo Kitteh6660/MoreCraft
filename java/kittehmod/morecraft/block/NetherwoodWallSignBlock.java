@@ -8,11 +8,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.WallSignBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -22,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
@@ -35,12 +37,12 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class NetherwoodWallSignBlock extends WallSignBlock {
+public class NetherwoodWallSignBlock extends AbstractSignBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.makeCuboidShape(0.0D, 4.5D, 14.0D, 16.0D, 12.5D, 16.0D), Direction.SOUTH, Block.makeCuboidShape(0.0D, 4.5D, 0.0D, 16.0D, 12.5D, 2.0D), Direction.EAST, Block.makeCuboidShape(0.0D, 4.5D, 0.0D, 2.0D, 12.5D, 16.0D), Direction.WEST, Block.makeCuboidShape(14.0D, 4.5D, 0.0D, 16.0D, 12.5D, 16.0D)));
 
 	public NetherwoodWallSignBlock(Block.Properties properties) {
-		super(properties);
+		super(properties, WoodType.DARK_OAK);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
@@ -95,24 +97,24 @@ public class NetherwoodWallSignBlock extends WallSignBlock {
 		return facing.getOpposite() == stateIn.get(FACING) && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		ItemStack itemstack = player.getHeldItem(handIn);
+		boolean flag = itemstack.getItem() instanceof DyeItem && player.abilities.allowEdit;
 		if (worldIn.isRemote) {
-			return true;
+			return flag ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			if (tileentity instanceof NetherwoodSignTileEntity) {
 				NetherwoodSignTileEntity signtileentity = (NetherwoodSignTileEntity)tileentity;
-				ItemStack itemstack = player.getHeldItem(handIn);
-				if (itemstack.getItem() instanceof DyeItem && player.abilities.allowEdit) {
-					boolean flag = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());
-					if (flag && !player.isCreative()) {
-						itemstack.shrink(1);
-					}
-				}
-
-				return signtileentity.executeCommand(player);
+	            if (flag) {
+	                boolean flag1 = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());
+	                if (flag1 && !player.isCreative()) {
+	                   itemstack.shrink(1);
+	                }
+	             }
+				return signtileentity.executeCommand(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
 			} else {
-				return false;
+				return ActionResultType.PASS;
 			}
 		}
 	}

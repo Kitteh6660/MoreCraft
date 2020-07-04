@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -29,11 +30,15 @@ public class NetherwoodCraftingTableBlock extends CraftingTableBlock
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
-        player.openContainer(state.getContainer(worldIn, pos));
-        player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-        return true;
+    	if (worldIn.isRemote) {
+    		return ActionResultType.SUCCESS;
+    	} else {
+    		player.openContainer(state.getContainer(worldIn, pos));
+    		player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+    		return ActionResultType.SUCCESS;
+    	}
     }
     
     @Override

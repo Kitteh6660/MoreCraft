@@ -14,7 +14,7 @@ public class CatsSitOnChestsHandler
             CatEntity catEntity = (CatEntity) evt.getEntityLiving();
             
             if (catEntity.goalSelector.getRunningGoals().count() > 0) {
-            	catEntity.goalSelector.addGoal(2, new ModChestCatSitOnBlockGoal(catEntity, 0.4F));
+            	catEntity.goalSelector.addGoal((int)catEntity.goalSelector.getRunningGoals().count(), new ModChestCatSitOnBlockGoal(catEntity, 0.4F));
             }
         }
     }

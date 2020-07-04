@@ -1,12 +1,17 @@
 package kittehmod.morecraft.client;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.entity.NetherwoodBoatEntity;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Quaternion;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.BoatModel;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,83 +22,46 @@ public class NetherwoodBoatEntityRenderer extends EntityRenderer<NetherwoodBoatE
     /** instance of ModelBoat for rendering */
     protected final BoatModel modelBoat = new BoatModel();
     
-    public NetherwoodBoatEntityRenderer(EntityRendererManager renderManagerIn)
-    {
+    public NetherwoodBoatEntityRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
         this.shadowSize = 0.8F;
-    }
+     }
 	
     /** Renders the desired {@code T} type Entity. */
     @OnlyIn(Dist.CLIENT)
-    public void doRender(NetherwoodBoatEntity entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-        GlStateManager.pushMatrix();
-        this.setupTranslation(x, y, z);
-        this.setupRotation(entity, entityYaw, partialTicks);
-        this.bindEntityTexture(entity);
-        if (this.renderOutlines) {
-            GlStateManager.enableColorMaterial();
-            GlStateManager.setupSolidRenderingTextureCombine(this.getTeamColor(entity));
-        }
-
-        this.modelBoat.render(entity, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        if (this.renderOutlines) {
-            GlStateManager.tearDownSolidRenderingTextureCombine();
-            GlStateManager.disableColorMaterial();
-        }
-
-        GlStateManager.popMatrix();
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
-    }
-
-    public void setupRotation(NetherwoodBoatEntity entityIn, float entityYaw, float partialTicks)
-    {
-        GlStateManager.rotatef(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
+    public void render(NetherwoodBoatEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+        matrixStackIn.push();
+        matrixStackIn.translate(0.0D, 0.375D, 0.0D);
+        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
         float f = (float)entityIn.getTimeSinceHit() - partialTicks;
         float f1 = entityIn.getDamageTaken() - partialTicks;
-
-        if (f1 < 0.0F)
-        {
-            f1 = 0.0F;
+        if (f1 < 0.0F) {
+           f1 = 0.0F;
         }
 
-        if (f > 0.0F)
-        {
-        	GlStateManager.rotatef(MathHelper.sin(f) * f * f1 / 10.0F * (float)entityIn.getForwardDirection(), 1.0F, 0.0F, 0.0F);
+        if (f > 0.0F) {
+           matrixStackIn.rotate(Vector3f.XP.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float)entityIn.getForwardDirection()));
         }
 
         float f2 = entityIn.getRockingAngle(partialTicks);
         if (!MathHelper.epsilonEquals(f2, 0.0F)) {
-           GlStateManager.rotatef(entityIn.getRockingAngle(partialTicks), 1.0F, 0.0F, 1.0F);
+           matrixStackIn.rotate(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getRockingAngle(partialTicks), true));
         }
-        
-        GlStateManager.scalef(-1.0F, -1.0F, 1.0F);
-    }
 
-    public void setupTranslation(double x, double y, double z)
-    {
-    	GlStateManager.translatef((float)x, (float)y + 0.375F, (float)z);
-    }
-    
-    /** Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture. */
-    @Override
-    protected ResourceLocation getEntityTexture(NetherwoodBoatEntity entity)
-    {
-        return new ResourceLocation(MoreCraft.MODID + ":textures/entity/boat/boat_netherwood.png");
-    }
-    
-    public boolean isMultipass()
-    {
-        return true;
-    }
+        matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
+        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90.0F));
+        this.modelBoat.setRotationAngles(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
+        IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelBoat.getRenderType(this.getEntityTexture(entityIn)));
+        this.modelBoat.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        IVertexBuilder ivertexbuilder1 = bufferIn.getBuffer(RenderType.getWaterMask());
+        this.modelBoat.func_228245_c_().render(matrixStackIn, ivertexbuilder1, packedLightIn, OverlayTexture.NO_OVERLAY);
+        matrixStackIn.pop();
+        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+     }
 
-    public void renderMultipass(NetherwoodBoatEntity entityIn, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-        GlStateManager.pushMatrix();
-        this.setupTranslation(x, y, z);
-        this.setupRotation(entityIn, entityYaw, partialTicks);
-        this.bindEntityTexture(entityIn);
-        this.modelBoat.renderMultipass(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        GlStateManager.popMatrix();
-    }
+	@Override
+	public ResourceLocation getEntityTexture(NetherwoodBoatEntity entity) {
+		return new ResourceLocation("morecraft:textures/entity/boat/netherwood.png");
+	}
+
 }

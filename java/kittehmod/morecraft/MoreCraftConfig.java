@@ -8,6 +8,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.config.ModConfig.Reloading;
 
 public class MoreCraftConfig {
 	
@@ -42,7 +43,7 @@ public class MoreCraftConfig {
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
 		
-        /*COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
+        COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
         hardcoreRecipes = COMMON_BUILDER
                 .comment("Hardcore Recipes\n" + "Default: False")
@@ -56,7 +57,7 @@ public class MoreCraftConfig {
                 .comment("Salvage Recipes (Not Yet Re-Implemented)\n" + "Default: True")
                 .define("salvage_recipes", true);
 
-        COMMON_BUILDER.pop();*/
+        COMMON_BUILDER.pop();
         
         COMMON_BUILDER.push(SUBCATEGORY_DROPS);
         
@@ -96,7 +97,7 @@ public class MoreCraftConfig {
     }
 
     @SubscribeEvent
-    public static void configFileReload(final ModConfig.ConfigReloading event) {
+    public static void configFileReload(final Reloading event) {
 
     }
 	

@@ -1,10 +1,9 @@
 package kittehmod.morecraft.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.OreBlock;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.BlockPos;
 
 public class ModOreBlock extends OreBlock {
 	
@@ -13,11 +12,12 @@ public class ModOreBlock extends OreBlock {
 	}
 
 	@Override
-	protected int func_220281_a(Random p_220281_1_) {
+	public int getExpDrop(BlockState state, net.minecraft.world.IWorldReader reader, BlockPos pos, int fortune, int silktouch) {
 		if (this == ModBlocks.RUBY_ORE.get()) {
-			return MathHelper.nextInt(p_220281_1_, 3, 6);
+			return silktouch == 0 ? this.getExperience(RANDOM) : 0;
 		} else {
 			return 0;
 		}
 	}
+
 }

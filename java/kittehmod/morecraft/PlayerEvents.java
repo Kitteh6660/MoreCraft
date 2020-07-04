@@ -9,16 +9,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = MoreCraft.MODID)
 public class PlayerEvents
 {
 	
@@ -27,10 +24,8 @@ public class PlayerEvents
 	{
 		if (event.getEntityLiving().getRidingEntity() instanceof NetherwoodBoatEntity) {
 			if (event.getSource().equals(DamageSource.ON_FIRE) || event.getSource().equals(DamageSource.IN_FIRE) || event.getSource().equals(DamageSource.LAVA)) {
-				if (!event.getEntityLiving().getRidingEntity().areEyesInFluid(FluidTags.LAVA)) {
-					event.setCanceled(true);
-					event.getEntityLiving().extinguish();
-				}
+				event.setCanceled(true);
+				event.getEntityLiving().extinguish();
 			}
 		}
 	}

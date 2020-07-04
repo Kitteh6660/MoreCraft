@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StandingSignBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -15,6 +16,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
@@ -31,7 +33,7 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_0_15;
 	
 	public NetherwoodStandingSignBlock(Block.Properties properties) {
-		super(properties);
+		super(properties, WoodType.DARK_OAK);
 		this.setDefaultState(this.stateContainer.getBaseState().with(ROTATION, Integer.valueOf(0)).with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
@@ -59,9 +61,9 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 		return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (worldIn.isRemote) {
-			return true;
+			return ActionResultType.SUCCESS;
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			if (tileentity instanceof NetherwoodSignTileEntity) {
@@ -74,9 +76,9 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 					}
 				}
 
-				return signtileentity.executeCommand(player);
+				return signtileentity.executeCommand(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
 			} else {
-				return false;
+				return ActionResultType.PASS;
 			}
 		}
 	}

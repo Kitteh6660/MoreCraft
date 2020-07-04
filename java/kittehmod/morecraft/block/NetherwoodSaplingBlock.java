@@ -1,6 +1,9 @@
 package kittehmod.morecraft.block;
 
 import java.util.Random;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,32 +18,35 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 {
+	public static final Set<Block> ALLOWED_BLOCKS = ImmutableSet.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.FARMLAND, Blocks.SOUL_SAND); 
+	
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	private final Tree tree;
 
-	public NetherwoodSaplingBlock(Tree p_i48337_1_, Block.Properties properties) {
-		super(p_i48337_1_, properties);
-		this.tree = p_i48337_1_;
+	public NetherwoodSaplingBlock(Tree treeIn, Block.Properties properties) {
+		super(treeIn, properties);
+		this.tree = treeIn;
 		this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
 	}
 
 	@Override
-	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	public boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		Block block = state.getBlock();
-		return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND || block == Blocks.SOUL_SAND;
+		return ALLOWED_BLOCKS.contains(block);
 	}
 	
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return SHAPE;
 	}
 
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	@Override
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		super.tick(state, worldIn, pos, random);
 		if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 		if (worldIn.getLight(pos.up()) >= 9 && random.nextInt(7) == 0) {
@@ -48,12 +54,12 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 		}
 	}
 
-	public void grow(IWorld worldIn, BlockPos pos, BlockState state, Random rand) {
+	public void grow(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
 			worldIn.setBlockState(pos, state.cycle(STAGE), 4);
 		} else {
 			if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(worldIn, rand, pos)) return;
-			this.tree.spawn(worldIn, pos, state, rand);
+			this.tree.place(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
 		}
 	}
 
@@ -66,7 +72,7 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 		return (double)worldIn.rand.nextFloat() < 0.45D;
 	}
 
-	public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 		this.grow(worldIn, pos, state, rand);
 	}
 

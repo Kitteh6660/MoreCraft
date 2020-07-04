@@ -46,7 +46,7 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 	}
 
 	public NetherwoodChestTileEntity() {
-		this(ModTileEntityType.NETHERWOOD_CHEST);
+		this(ModTileEntityType.NETHERWOOD_CHEST.get());
 	}
 
    /**

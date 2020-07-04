@@ -30,7 +30,7 @@ public class ModUpdateSignPacket {
     }
     
     public static ModUpdateSignPacket decode(PacketBuffer buf) {
-     	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent());
+    	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent());
     }
 	
     public static class Handler {

@@ -48,7 +48,7 @@ public class NetherwoodSignTileEntity extends TileEntity {
 	   }
 	   
 	   public NetherwoodSignTileEntity() {
-		   super(ModTileEntityType.NETHERWOOD_SIGN);
+		   super(ModTileEntityType.NETHERWOOD_SIGN.get());
 	   }
 
 	   @Override
@@ -184,7 +184,7 @@ public class NetherwoodSignTileEntity extends TileEntity {
 	   public CommandSource getCommandSource(@Nullable ServerPlayerEntity playerIn) {
 	      String s = playerIn == null ? "Sign" : playerIn.getName().getString();
 	      ITextComponent itextcomponent = (ITextComponent)(playerIn == null ? new StringTextComponent("Sign") : playerIn.getDisplayName());
-	      return new CommandSource(ICommandSource.field_213139_a_, new Vec3d((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D), Vec2f.ZERO, (ServerWorld)this.world, 2, s, itextcomponent, this.world.getServer(), playerIn);
+	      return new CommandSource(ICommandSource.DUMMY, new Vec3d((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D), Vec2f.ZERO, (ServerWorld)this.world, 2, s, itextcomponent, this.world.getServer(), playerIn);
 	   }
 
 	   public DyeColor getTextColor() {

@@ -1,14 +1,19 @@
 package kittehmod.morecraft.block;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
+import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
+import net.minecraft.block.AbstractChestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +39,12 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.ChestType;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
+import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityMerger;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
@@ -53,7 +63,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
+@SuppressWarnings("deprecation")
+public class NetherwoodChestBlock extends AbstractChestBlock<NetherwoodChestTileEntity> implements IWaterLoggable {
 	   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	   public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
 	   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -62,24 +73,28 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	   protected static final VoxelShape SHAPE_WEST = Block.makeCuboidShape(0.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 	   protected static final VoxelShape SHAPE_EAST = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 16.0D, 14.0D, 15.0D);
 	   protected static final VoxelShape field_196315_B = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
-	   private static final NetherwoodChestBlock.InventoryFactory<IInventory> field_220109_i = new NetherwoodChestBlock.InventoryFactory<IInventory>() {
-	      public IInventory forDouble(NetherwoodChestTileEntity p_212855_1_, NetherwoodChestTileEntity p_212855_2_) {
-	         return new DoubleSidedInventory(p_212855_1_, p_212855_2_);
+	   private static final TileEntityMerger.ICallback<NetherwoodChestTileEntity, Optional<IInventory>> field_220109_i = new TileEntityMerger.ICallback<NetherwoodChestTileEntity, Optional<IInventory>>() {
+	      public Optional<IInventory> func_225539_a_(NetherwoodChestTileEntity p_225539_1_, NetherwoodChestTileEntity p_225539_2_) {
+	         return Optional.of(new DoubleSidedInventory(p_225539_1_, p_225539_2_));
 	      }
 
-	      public IInventory forSingle(NetherwoodChestTileEntity p_212856_1_) {
-	         return p_212856_1_;
+	      public Optional<IInventory> func_225538_a_(NetherwoodChestTileEntity p_225538_1_) {
+	         return Optional.of(p_225538_1_);
+	      }
+
+	      public Optional<IInventory> func_225537_b_() {
+	         return Optional.empty();
 	      }
 	   };
-	   private static final NetherwoodChestBlock.InventoryFactory<INamedContainerProvider> field_220110_j = new NetherwoodChestBlock.InventoryFactory<INamedContainerProvider>() {
-	      public INamedContainerProvider forDouble(final NetherwoodChestTileEntity p_212855_1_, final NetherwoodChestTileEntity p_212855_2_) {
-	         final IInventory iinventory = new DoubleSidedInventory(p_212855_1_, p_212855_2_);
-	         return new INamedContainerProvider() {
+	   private static final TileEntityMerger.ICallback<NetherwoodChestTileEntity, Optional<INamedContainerProvider>> field_220110_j = new TileEntityMerger.ICallback<NetherwoodChestTileEntity, Optional<INamedContainerProvider>>() {
+	      public Optional<INamedContainerProvider> func_225539_a_(final NetherwoodChestTileEntity p_225539_1_, final NetherwoodChestTileEntity p_225539_2_) {
+	         final IInventory iinventory = new DoubleSidedInventory(p_225539_1_, p_225539_2_);
+	         return Optional.of(new INamedContainerProvider() {
 	            @Nullable
 	            public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
-	               if (p_212855_1_.canOpen(p_createMenu_3_) && p_212855_2_.canOpen(p_createMenu_3_)) {
-	                  p_212855_1_.fillWithLoot(p_createMenu_2_.player);
-	                  p_212855_2_.fillWithLoot(p_createMenu_2_.player);
+	               if (p_225539_1_.canOpen(p_createMenu_3_) && p_225539_2_.canOpen(p_createMenu_3_)) {
+	                  p_225539_1_.fillWithLoot(p_createMenu_2_.player);
+	                  p_225539_2_.fillWithLoot(p_createMenu_2_.player);
 	                  return ChestContainer.createGeneric9X6(p_createMenu_1_, p_createMenu_2_, iinventory);
 	               } else {
 	                  return null;
@@ -87,32 +102,36 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	            }
 
 	            public ITextComponent getDisplayName() {
-	               if (p_212855_1_.hasCustomName()) {
-	                  return p_212855_1_.getDisplayName();
+	               if (p_225539_1_.hasCustomName()) {
+	                  return p_225539_1_.getDisplayName();
 	               } else {
-	                  return (ITextComponent)(p_212855_2_.hasCustomName() ? p_212855_2_.getDisplayName() : new TranslationTextComponent("container.chestDouble"));
+	                  return (ITextComponent)(p_225539_2_.hasCustomName() ? p_225539_2_.getDisplayName() : new TranslationTextComponent("container.chestDouble"));
 	               }
 	            }
-	         };
+	         });
 	      }
 
-	      public INamedContainerProvider forSingle(NetherwoodChestTileEntity p_212856_1_) {
-	         return p_212856_1_;
+	      public Optional<INamedContainerProvider> func_225538_a_(NetherwoodChestTileEntity p_225538_1_) {
+	         return Optional.of(p_225538_1_);
+	      }
+
+	      public Optional<INamedContainerProvider> func_225537_b_() {
+	         return Optional.empty();
 	      }
 	   };
 
-	   public NetherwoodChestBlock(Block.Properties properties) {
-	      super(properties);
-	      this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(TYPE, ChestType.SINGLE).with(WATERLOGGED, Boolean.valueOf(false)));
+	   protected NetherwoodChestBlock(Block.Properties builder, Supplier<TileEntityType<? extends NetherwoodChestTileEntity>> tileEntityTypeIn) {
+		    super(builder, tileEntityTypeIn);
+		    this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(TYPE, ChestType.SINGLE).with(WATERLOGGED, Boolean.valueOf(false)));
 	   }
 
-	   /**
-	    * @deprecated call via {@link IBlockState#hasCustomBreakingProgress()} whenever possible. Implementing/overriding is
-	    * fine.
-	    */
-	   @OnlyIn(Dist.CLIENT)
-	   public boolean hasCustomBreakingProgress(BlockState state) {
-	      return true;
+	public static TileEntityMerger.Type func_226919_h_(BlockState p_226919_0_) {
+	      ChestType chesttype = p_226919_0_.get(TYPE);
+	      if (chesttype == ChestType.SINGLE) {
+	         return TileEntityMerger.Type.SINGLE;
+	      } else {
+	         return chesttype == ChestType.RIGHT ? TileEntityMerger.Type.FIRST : TileEntityMerger.Type.SECOND;
+	      }
 	   }
 
 	   /**
@@ -177,7 +196,7 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	      ChestType chesttype = ChestType.SINGLE;
 	      Direction direction = context.getPlacementHorizontalFacing().getOpposite();
 	      IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-	      boolean flag = context.isPlacerSneaking();
+	      boolean flag = context.func_225518_g_();
 	      Direction direction1 = context.getFace();
 	      if (direction1.getAxis().isHorizontal() && flag) {
 	         Direction direction2 = this.getDirectionToAttach(context, direction1.getOpposite());
@@ -236,9 +255,9 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	      }
 	   }
 
-	   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	   public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 	      if (worldIn.isRemote) {
-	         return true;
+	         return ActionResultType.SUCCESS;
 	      } else {
 	         INamedContainerProvider inamedcontainerprovider = this.getContainer(state, worldIn, pos);
 	         if (inamedcontainerprovider != null) {
@@ -246,7 +265,7 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	            player.addStat(this.getOpenStat());
 	         }
 
-	         return true;
+	         return ActionResultType.SUCCESS;
 	      }
 	   }
 
@@ -255,56 +274,52 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	   }
 
 	   @Nullable
-	   public static <T> T func_220106_a(BlockState p_220106_0_, IWorld p_220106_1_, BlockPos p_220106_2_, boolean allowBlocked, NetherwoodChestBlock.InventoryFactory<T> p_220106_4_) {
-	      TileEntity tileentity = p_220106_1_.getTileEntity(p_220106_2_);
-	      if (!(tileentity instanceof NetherwoodChestTileEntity)) {
-	         return (T)null;
-	      } else if (!allowBlocked && isBlocked(p_220106_1_, p_220106_2_)) {
-	         return (T)null;
-	      } else {
-	    	  NetherwoodChestTileEntity chesttileentity = (NetherwoodChestTileEntity)tileentity;
-	         ChestType chesttype = p_220106_0_.get(TYPE);
-	         if (chesttype == ChestType.SINGLE) {
-	            return p_220106_4_.forSingle(chesttileentity);
-	         } else {
-	            BlockPos blockpos = p_220106_2_.offset(getDirectionToAttached(p_220106_0_));
-	            BlockState blockstate = p_220106_1_.getBlockState(blockpos);
-	            if (blockstate.getBlock() == p_220106_0_.getBlock()) {
-	               ChestType chesttype1 = blockstate.get(TYPE);
-	               if (chesttype1 != ChestType.SINGLE && chesttype != chesttype1 && blockstate.get(FACING) == p_220106_0_.get(FACING)) {
-	                  if (!allowBlocked && isBlocked(p_220106_1_, blockpos)) {
-	                     return (T)null;
-	                  }
-
-	                  TileEntity tileentity1 = p_220106_1_.getTileEntity(blockpos);
-	                  if (tileentity1 instanceof NetherwoodChestTileEntity) {
-	                	  NetherwoodChestTileEntity chesttileentity1 = chesttype == ChestType.RIGHT ? chesttileentity : (NetherwoodChestTileEntity)tileentity1;
-	                	  NetherwoodChestTileEntity chesttileentity2 = chesttype == ChestType.RIGHT ? (NetherwoodChestTileEntity)tileentity1 : chesttileentity;
-	                     return p_220106_4_.forDouble(chesttileentity1, chesttileentity2);
-	                  }
-	               }
-	            }
-
-	            return p_220106_4_.forSingle(chesttileentity);
-	         }
-	      }
+	   public static IInventory func_226916_a_(NetherwoodChestBlock p_226916_0_, BlockState p_226916_1_, World p_226916_2_, BlockPos p_226916_3_, boolean p_226916_4_) {
+	      return p_226916_0_.func_225536_a_(p_226916_1_, p_226916_2_, p_226916_3_, p_226916_4_).apply(field_220109_i).orElse((IInventory)null);
 	   }
 
-	   @Nullable
-	   public static IInventory getInventory(BlockState p_220105_0_, World p_220105_1_, BlockPos p_220105_2_, boolean allowBlocked) {
-	      return func_220106_a(p_220105_0_, p_220105_1_, p_220105_2_, allowBlocked, field_220109_i);
+	   @Override
+	   public TileEntityMerger.ICallbackWrapper<? extends NetherwoodChestTileEntity> func_225536_a_(BlockState p_225536_1_, World p_225536_2_, BlockPos p_225536_3_, boolean p_225536_4_) {
+	      BiPredicate<IWorld, BlockPos> bipredicate;
+	      if (p_225536_4_) {
+	         bipredicate = (p_226918_0_, p_226918_1_) -> {
+	            return false;
+	         };
+	      } else {
+	         bipredicate = NetherwoodChestBlock::isBlocked;
+	      }
+	      return TileEntityMerger.func_226924_a_(this.tileEntityType.get(), NetherwoodChestBlock::func_226919_h_, NetherwoodChestBlock::getDirectionToAttached, FACING, p_225536_1_, p_225536_2_, p_225536_3_, bipredicate);
 	   }
 
 	   @Nullable
 	   public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-	      return func_220106_a(state, worldIn, pos, false, field_220110_j);
+	      return this.func_225536_a_(state, worldIn, pos, false).apply(field_220110_j).orElse((INamedContainerProvider)null);
+	   }
+
+	   @OnlyIn(Dist.CLIENT)
+	   public static TileEntityMerger.ICallback<NetherwoodChestTileEntity, Float2FloatFunction> func_226917_a_(final IChestLid p_226917_0_) {
+	      return new TileEntityMerger.ICallback<NetherwoodChestTileEntity, Float2FloatFunction>() {
+	         public Float2FloatFunction func_225539_a_(NetherwoodChestTileEntity p_225539_1_, NetherwoodChestTileEntity p_225539_2_) {
+	            return (p_226921_2_) -> {
+	               return Math.max(p_225539_1_.getLidAngle(p_226921_2_), p_225539_2_.getLidAngle(p_226921_2_));
+	            };
+	         }
+
+	         public Float2FloatFunction func_225538_a_(NetherwoodChestTileEntity p_225538_1_) {
+	            return p_225538_1_::getLidAngle;
+	         }
+
+	         public Float2FloatFunction func_225537_b_() {
+	            return p_226917_0_::getLidAngle;
+	         }
+	      };
 	   }
 
 	   public TileEntity createNewTileEntity(IBlockReader worldIn) {
 	      return new NetherwoodChestTileEntity();
 	   }
 
-	   private static boolean isBlocked(IWorld p_220108_0_, BlockPos p_220108_1_) {
+	   public static boolean isBlocked(IWorld p_220108_0_, BlockPos p_220108_1_) {
 	      return isBelowSolidBlock(p_220108_0_, p_220108_1_) || isCatSittingOn(p_220108_0_, p_220108_1_);
 	   }
 
@@ -339,7 +354,7 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	    * Implementing/overriding is fine.
 	    */
 	   public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-	      return Container.calcRedstoneFromInventory(getInventory(blockState, worldIn, pos, false));
+	      return Container.calcRedstoneFromInventory(func_226916_a_(this, blockState, worldIn, pos, false));
 	   }
 
 	   /**
@@ -368,10 +383,13 @@ public class NetherwoodChestBlock extends ChestBlock implements IWaterLoggable {
 	   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
 	      return false;
 	   }
-
-	   interface InventoryFactory<T> {
-	      T forDouble(NetherwoodChestTileEntity p_212855_1_, NetherwoodChestTileEntity p_212855_2_);
-
-	      T forSingle(NetherwoodChestTileEntity p_212856_1_);
+	   
+	   @Override
+	   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+	     return this.getTileEntityType().create();
+	   }
+	   
+	   public TileEntityType<? extends ChestTileEntity> getTileEntityType() {
+		   return ModTileEntityType.NETHERWOOD_CHEST.get();
 	   }
 }

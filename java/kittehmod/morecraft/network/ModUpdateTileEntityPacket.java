@@ -17,7 +17,6 @@ public class ModUpdateTileEntityPacket {
 
     public ModUpdateTileEntityPacket(BlockPos blockPosIn, CompoundNBT compoundIn) {
         this.blockPos = blockPosIn;
-        //this.tileEntityType = tileEntityTypeIn;
         this.nbt = compoundIn;
     }
 

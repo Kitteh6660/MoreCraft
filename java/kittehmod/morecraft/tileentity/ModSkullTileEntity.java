@@ -5,12 +5,16 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.SkullTileEntity;
+import net.minecraft.tileentity.TileEntity;
 
-public class ModSkullTileEntity extends SkullTileEntity implements ITickableTileEntity {
+public class ModSkullTileEntity extends TileEntity implements ITickableTileEntity {
 
 	public ModSkullTileEntity() {
-		super();
+		super(ModTileEntityType.MOD_SKULL.get());
+	}
+
+	public void tick() {
+		//Block block = this.getBlockState().getBlock();
 	}
 
    /**

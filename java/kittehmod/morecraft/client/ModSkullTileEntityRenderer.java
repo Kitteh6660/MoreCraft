@@ -6,7 +6,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import kittehmod.morecraft.block.ModSkullBlock;
 import kittehmod.morecraft.block.ModWallSkullBlock;
@@ -14,7 +15,10 @@ import kittehmod.morecraft.tileentity.ModSkullTileEntity;
 import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SkullBlock;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.GenericHeadModel;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
@@ -25,7 +29,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileEntity> {
-
 	   public static ModSkullTileEntityRenderer instance;
 	   private static final Map<SkullBlock.ISkullType, GenericHeadModel> MODELS = Util.make(Maps.newHashMap(), (p_209262_0_) -> {
 	      GenericHeadModel genericheadmodel = new GenericHeadModel(0, 0, 64, 32);
@@ -43,71 +46,51 @@ public class ModSkullTileEntityRenderer extends TileEntityRenderer<ModSkullTileE
 	      p_209263_0_.put(ModSkullBlock.Types.BLAZE, new ResourceLocation("textures/entity/blaze.png"));
 	      p_209263_0_.put(ModSkullBlock.Types.ENDERMAN, new ResourceLocation("textures/entity/enderman/enderman.png"));
 	   });
+	   
+	public ModSkullTileEntityRenderer(TileEntityRendererDispatcher p_i226015_1_) {
+		super(p_i226015_1_);
+	}
 
-	   public void render(ModSkullTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
-	      BlockState blockstate = tileEntityIn.getBlockState();
-	      boolean flag = blockstate.getBlock() instanceof ModWallSkullBlock;
-	      Direction direction = flag ? blockstate.get(ModWallSkullBlock.FACING) : null;
-	      float f1 = 22.5F * (float)(flag ? (2 + direction.getHorizontalIndex()) * 4 : blockstate.get(ModSkullBlock.ROTATION));
-	      this.render((float)x, (float)y, (float)z, direction, f1, ((AbstractSkullBlock)blockstate.getBlock()).getSkullType(), null, destroyStage, 0.0F);
-	   }
+		
+	public void render(ModSkullTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+		BlockState blockstate = tileEntityIn.getBlockState();
+		boolean flag = blockstate.getBlock() instanceof ModWallSkullBlock;
+		Direction direction = flag ? blockstate.get(ModWallSkullBlock.FACING) : null;
+		float f1 = 22.5F * (float)(flag ? (2 + direction.getHorizontalIndex()) * 4 : blockstate.get(ModSkullBlock.ROTATION));
+		render(direction, f1, ((AbstractSkullBlock)blockstate.getBlock()).getSkullType(), null, 0, matrixStackIn, bufferIn, combinedLightIn);
+	}
 
-	   public void setRendererDispatcher(TileEntityRendererDispatcher rendererDispatcherIn) {
-	      super.setRendererDispatcher(rendererDispatcherIn);
-	      instance = this;
-	   }
-
-	   @OnlyIn(Dist.CLIENT)
-	   public void render(float x, float y, float z, @Nullable Direction facing, float rotationIn, SkullBlock.ISkullType type, @Nullable GameProfile playerProfile, int destroyStage, float animationProgress) {
-	      GenericHeadModel genericheadmodel = MODELS.get(type);
-	      if (destroyStage >= 0) {
-	         this.bindTexture(DESTROY_STAGES[destroyStage]);
-	         GlStateManager.matrixMode(5890);
-	         GlStateManager.pushMatrix();
-	         GlStateManager.scalef(4.0F, 2.0F, 1.0F);
-	         GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
-	         GlStateManager.matrixMode(5888);
-	      } else {
-	         this.bindTexture(this.func_199356_a(type, playerProfile));
-	      }
-
-	      GlStateManager.pushMatrix();
-	      GlStateManager.disableCull();
-	      if (facing == null) {
-	         GlStateManager.translatef(x + 0.5F, y, z + 0.5F);
-	      } else {
-	         switch(facing) {
-	         case NORTH:
-	            GlStateManager.translatef(x + 0.5F, y + 0.25F, z + 0.74F);
+	public static void render(@Nullable Direction directionIn, float p_228879_1_, SkullBlock.ISkullType skullType, @Nullable GameProfile gameProfileIn, float animationProgress, MatrixStack matrixStackIn, IRenderTypeBuffer buffer, int combinedLight) {
+		GenericHeadModel genericheadmodel = MODELS.get(skullType);
+		matrixStackIn.push();
+		if (directionIn == null) {
+			matrixStackIn.translate(0.5D, 0.0D, 0.5D);
+		} else {
+			switch(directionIn) {
+			case NORTH:
+				matrixStackIn.translate(0.5D, 0.25D, (double)0.74F);
+				break;
+			case SOUTH:
+	            matrixStackIn.translate(0.5D, 0.25D, (double)0.26F);
 	            break;
-	         case SOUTH:
-	            GlStateManager.translatef(x + 0.5F, y + 0.25F, z + 0.26F);
+			case WEST:
+	            matrixStackIn.translate((double)0.74F, 0.25D, 0.5D);
 	            break;
-	         case WEST:
-	            GlStateManager.translatef(x + 0.74F, y + 0.25F, z + 0.5F);
-	            break;
-	         case EAST:
-	         default:
-	            GlStateManager.translatef(x + 0.26F, y + 0.25F, z + 0.5F);
-	         }
-	      }
+			case EAST:
+			default:
+	            matrixStackIn.translate((double)0.26F, 0.25D, 0.5D);
+			}
+		}
 
-	      GlStateManager.enableRescaleNormal();
-	      GlStateManager.scalef(-1.0F, -1.0F, 1.0F);
-	      GlStateManager.enableAlphaTest();
+		matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
+		IVertexBuilder ivertexbuilder = buffer.getBuffer(getRenderType(skullType, gameProfileIn));
+		genericheadmodel.func_225603_a_(animationProgress, p_228879_1_, 0.0F);
+		genericheadmodel.render(matrixStackIn, ivertexbuilder, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		matrixStackIn.pop();
+	}
 
-	      genericheadmodel.func_217104_a(animationProgress, 0.0F, 0.0F, rotationIn, 0.0F, 0.0625F);
-	      GlStateManager.popMatrix();
-	      if (destroyStage >= 0) {
-	         GlStateManager.matrixMode(5890);
-	         GlStateManager.popMatrix();
-	         GlStateManager.matrixMode(5888);
-	      }
-
-	   }
-
-	   private ResourceLocation func_199356_a(SkullBlock.ISkullType p_199356_1_, @Nullable GameProfile p_199356_2_) {
-	      ResourceLocation resourcelocation = SKINS.get(p_199356_1_);
-	      return resourcelocation;
-	   }
+	private static RenderType getRenderType(SkullBlock.ISkullType skullType, @Nullable GameProfile gameProfileIn) {
+		ResourceLocation resourcelocation = SKINS.get(skullType);
+		return RenderType.getEntityCutoutNoCull(resourcelocation);
+	}
 }

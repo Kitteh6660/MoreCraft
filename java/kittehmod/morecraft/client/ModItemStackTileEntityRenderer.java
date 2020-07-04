@@ -1,47 +1,45 @@
 package kittehmod.morecraft.client;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
-import kittehmod.morecraft.item.ModItems;
-import kittehmod.morecraft.item.ModSkullItem;
-import kittehmod.morecraft.tileentity.ModSkullTileEntity;
+import kittehmod.morecraft.block.NetherwoodChestBlock;
+import kittehmod.morecraft.block.NetherwoodTrappedChestBlock;
 import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
 import kittehmod.morecraft.tileentity.NetherwoodTrappedChestTileEntity;
-import net.minecraft.block.AbstractSkullBlock;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
+import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ModItemStackTileEntityRenderer extends ItemStackTileEntityRenderer {
+public class ModItemStackTileEntityRenderer<T extends TileEntity> extends ItemStackTileEntityRenderer {
 	
-	public static final NetherwoodChestTileEntity NETHERWOOD_CHEST = new NetherwoodChestTileEntity();
-	public static final NetherwoodTrappedChestTileEntity NETHERWOOD_CHEST_TRAPPED = new NetherwoodTrappedChestTileEntity();
-	public static final NetherwoodSignTileEntity NETHERWOOD_SIGN = new NetherwoodSignTileEntity();
-	public static final ModSkullTileEntity MOD_SKULL = new ModSkullTileEntity();
-	
+	private ChestTileEntity chestTileEntity = null;
+	  
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void renderByItem(ItemStack itemStack) {
-        //Your custom block
-        if (itemStack.getItem() == ModItems.NETHERWOOD_CHEST.get()) {
-            TileEntityRendererDispatcher.instance.renderAsItem(NETHERWOOD_CHEST);
-        } else if (itemStack.getItem() == ModItems.NETHERWOOD_TRAPPED_CHEST.get()) {
-        	TileEntityRendererDispatcher.instance.renderAsItem(NETHERWOOD_CHEST_TRAPPED);
-        } else if (itemStack.getItem() instanceof ModSkullItem) {
-        	if (ModSkullTileEntityRenderer.instance != null) {
-        		GlStateManager.pushMatrix();
-        		GlStateManager.disableCull();
-        		ModSkullTileEntityRenderer.instance.render(0.0F, 0.0F, 0.0F, (Direction)null, 180.0F, ((AbstractSkullBlock)((BlockItem)itemStack.getItem()).getBlock()).getSkullType(), null, -1, 0.0F);
-        		GlStateManager.enableCull();
-        		GlStateManager.popMatrix();
-        	}
-        } else {
-        	super.renderByItem(itemStack); //for minecraft to render its own tile entities such as the chest
-        }
+    public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    	final Item item = itemStackIn.getItem();
+    	if (item instanceof BlockItem) {
+    		final Block block = ((BlockItem) item).getBlock();
+    		if (block instanceof NetherwoodChestBlock) {
+    			if (this.chestTileEntity == null) {
+    				this.chestTileEntity = (NetherwoodChestTileEntity) ((NetherwoodChestBlock) block).getTileEntityType().create();
+    			}
+    		}
+    		if (block instanceof NetherwoodTrappedChestBlock) {
+    			if (this.chestTileEntity == null) {
+    				this.chestTileEntity = (NetherwoodTrappedChestTileEntity) ((NetherwoodTrappedChestBlock) block).getTileEntityType().create();
+    			}
+    		}
+    	}
+    	assert chestTileEntity != null;
+    	TileEntityRendererDispatcher.instance.renderItem(this.chestTileEntity, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
     }
 }

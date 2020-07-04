@@ -1,10 +1,9 @@
 package kittehmod.morecraft.ai;
 
 import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
-import kittehmod.morecraft.tileentity.NetherwoodTrappedChestTileEntity;
+import net.minecraft.block.AbstractChestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
 import net.minecraft.entity.ai.goal.CatSitOnBlockGoal;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.util.math.BlockPos;
@@ -32,9 +31,9 @@ public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal
             BlockState iBlockState = worldIn.getBlockState(pos);
             Block block = iBlockState.getBlock();
 
-            if (block instanceof ChestBlock)
+            if (block instanceof AbstractChestBlock)
             {
-                return NetherwoodChestTileEntity.getPlayersUsing(worldIn, pos) < 1 && NetherwoodTrappedChestTileEntity.getPlayersUsing(worldIn, pos) < 1;
+                return NetherwoodChestTileEntity.getPlayersUsing(worldIn, pos) < 1;
             }
 
             return super.shouldMoveTo(worldIn, pos);

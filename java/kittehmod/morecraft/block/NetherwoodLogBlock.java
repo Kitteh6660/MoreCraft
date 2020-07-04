@@ -7,6 +7,7 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -24,11 +25,10 @@ public class NetherwoodLogBlock extends LogBlock
 	public NetherwoodLogBlock(MaterialColor p_i48367_1_, Block.Properties p_i48367_2_) {
 		super(p_i48367_1_, p_i48367_2_);
 		this.verticalColor = p_i48367_1_;
-		//BLOCK_STRIPPING_MAP
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (player.getHeldItemMainhand().getItem() instanceof AxeItem) {
 			//LOGGER.info(handIn);
 			Block block = state.getBlock() == ModBlocks.NETHERWOOD_LOG.get() ? ModBlocks.STRIPPED_NETHERWOOD_LOG.get() : ModBlocks.STRIPPED_NETHERWOOD_WOOD.get();
@@ -41,9 +41,9 @@ public class NetherwoodLogBlock extends LogBlock
 					});
 	            }
 	        }
-			return true;
+			return ActionResultType.SUCCESS;
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 	
 	/**

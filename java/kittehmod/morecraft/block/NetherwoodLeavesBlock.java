@@ -12,9 +12,9 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.PooledMutable;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -73,7 +73,7 @@ public class NetherwoodLeavesBlock extends LeavesBlock
 	private static BlockState updateDistance(BlockState p_208493_0_, IWorld p_208493_1_, BlockPos p_208493_2_) {
 		int i = 7;
 
-		try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain()) {
+		try (PooledMutable blockpos$pooledmutableblockpos = BlockPos.PooledMutable.retain()) {
 			for(Direction direction : Direction.values()) {
 				blockpos$pooledmutableblockpos.setPos(p_208493_2_).move(direction);
 				i = Math.min(i, getDistance(p_208493_1_.getBlockState(blockpos$pooledmutableblockpos)) + 1);
@@ -105,7 +105,7 @@ public class NetherwoodLeavesBlock extends LeavesBlock
 			if (rand.nextInt(15) == 1) {
 				BlockPos blockpos = pos.down();
 				BlockState blockstate = worldIn.getBlockState(blockpos);
-				if (!blockstate.isSolid() || !blockstate.func_224755_d(worldIn, blockpos, Direction.UP)) {
+				if (!blockstate.isSolid() || !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
 					double d0 = (double)((float)pos.getX() + rand.nextFloat());
 					double d1 = (double)pos.getY() - 0.05D;
 					double d2 = (double)((float)pos.getZ() + rand.nextFloat());
@@ -113,27 +113,6 @@ public class NetherwoodLeavesBlock extends LeavesBlock
 				}
 			}
 		}
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static void setRenderTranslucent(boolean fancy) {
-		renderTranslucent = fancy;
-	}
-
-	public boolean isSolid(BlockState state) {
-		return false;
-	}
-
-	/**
-	 * Gets the render layer this block will render on. SOLID for solid blocks, CUTOUT or CUTOUT_MIPPED for on-off
-	 * transparency (glass, reeds), TRANSLUCENT for fully blended transparency (stained glass)
-	 */
-	public BlockRenderLayer getRenderLayer() {
-		return renderTranslucent ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-	}
-
-	public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return false;
 	}
 
 	public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {

@@ -1,34 +1,24 @@
 package kittehmod.morecraft.tileentity;
 
-import java.util.function.Supplier;
-
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
 public class ModTileEntityType {
 
-	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITITES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, MoreCraft.MODID);
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, MoreCraft.MODID);
 	
-    @ObjectHolder("morecraft:netherwood_chest")
-    public static TileEntityType<?> NETHERWOOD_CHEST;
+    public static RegistryObject<TileEntityType<NetherwoodChestTileEntity>> NETHERWOOD_CHEST = TILE_ENTITIES.register("netherwood_chest", () -> TileEntityType.Builder.create(NetherwoodChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST.get()).build(null));
+    public static RegistryObject<TileEntityType<NetherwoodTrappedChestTileEntity>> NETHERWOOD_TRAPPED_CHEST = TILE_ENTITIES.register("netherwood_trapped_chest", () -> TileEntityType.Builder.create(NetherwoodTrappedChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST_TRAPPED.get()).build(null));
+    public static RegistryObject<TileEntityType<NetherwoodSignTileEntity>> NETHERWOOD_SIGN = TILE_ENTITIES.register("netherwood_sign", () -> TileEntityType.Builder.create(NetherwoodSignTileEntity::new, ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()).build(null));
+    public static RegistryObject<TileEntityType<ModSkullTileEntity>> MOD_SKULL = TILE_ENTITIES.register("morecraft_skulls", () -> TileEntityType.Builder.create(ModSkullTileEntity::new).build(null));
 
-    @ObjectHolder("morecraft:netherwood_trapped_chest")
-    public static TileEntityType<?> NETHERWOOD_TRAPPED_CHEST;
-
-    @ObjectHolder("morecraft:netherwood_sign")
-    public static TileEntityType<?> NETHERWOOD_SIGN;
-
-    @ObjectHolder("morecraft:mod_skull")
-    public static TileEntityType<?> MOD_SKULL;
-    
     public static ModTileEntityType instance = new ModTileEntityType();
     
     @Mod.EventBusSubscriber(modid = MoreCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -37,12 +27,7 @@ public class ModTileEntityType {
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> e)
         {
-            e.getRegistry().registerAll(
-            	TileEntityType.Builder.create((Supplier<TileEntity>) NetherwoodChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST.get()).build(null).setRegistryName("morecraft:netherwood_chest"),
-                TileEntityType.Builder.create((Supplier<TileEntity>) NetherwoodTrappedChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST_TRAPPED.get()).build(null).setRegistryName("morecraft:netherwood_trapped_chest"),
-                TileEntityType.Builder.create((Supplier<TileEntity>) NetherwoodSignTileEntity::new, ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()).build(null).setRegistryName("morecraft:netherwood_sign"),
-                TileEntityType.Builder.create((Supplier<TileEntity>) ModSkullTileEntity::new, ModBlocks.SPIDER_HEAD.get(), ModBlocks.WALL_SPIDER_HEAD.get(), ModBlocks.CAVE_SPIDER_HEAD.get(), ModBlocks.WALL_CAVE_SPIDER_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.WALL_ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.BLAZE_HEAD.get(), ModBlocks.WALL_BLAZE_HEAD.get(), ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.WALL_ENDERMAN_HEAD.get()).build(null).setRegistryName("morecraft:mod_skull")
-            );
+            e.getRegistry().registerAll();
         }
     }
 	

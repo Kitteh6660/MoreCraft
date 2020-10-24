@@ -74,6 +74,7 @@ public class ModItems {
 	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
 
 	public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
+	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().group(ItemGroup.REDSTONE).func_234689_a_()));
 	
 	// -- FOOD -- \\
     public static final RegistryObject<Item> COOKED_FLESH = ITEMS.register("cooked_flesh", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COOKED_FLESH)));
@@ -106,7 +107,7 @@ public class ModItems {
     public static final RegistryObject<Item> EMERALD_HORSE_ARMOR = ITEMS.register("emerald_horse_armor", () -> new ModHorseArmorItem(10, "emerald", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> RUBY_HORSE_ARMOR = ITEMS.register("ruby_horse_armor", () -> new ModHorseArmorItem(8, "ruby", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> OBSIDIAN_HORSE_ARMOR = ITEMS.register("obsidian_horse_armor", () -> new ModHorseArmorItem(9, "obsidian", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new ModHorseArmorItem(12, "netherite", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new ModHorseArmorItem(12, "netherite", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).func_234689_a_()));
 
 	// -- TOOLS, WEAPONS, ARMOUR -- \\
     public static final RegistryObject<Item> SLIME_HELMET = ITEMS.register("slime_helmet", () -> new ModArmorItem(ModArmorMaterial.SLIME, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));

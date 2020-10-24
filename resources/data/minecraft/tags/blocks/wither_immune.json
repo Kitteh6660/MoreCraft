@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "morecraft:bedrock_brick",
-    "morecraft:netherite_door"
+    "morecraft:netherite_door",
+    "morecraft:netherite_trapdoor"
   ]
 }

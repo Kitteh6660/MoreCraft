@@ -70,7 +70,8 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 		return new TranslationTextComponent("container.chest");
 	}
 
-	public void read(BlockState state, CompoundNBT compound) {
+	@Override
+	public void func_230337_a_(BlockState state, CompoundNBT compound) {
 		super.func_230337_a_(state, compound);
 		this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 		if (!this.checkLootAndRead(compound)) {
@@ -78,6 +79,7 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 		}
 	}
 
+	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 		if (!this.checkLootAndWrite(compound)) {

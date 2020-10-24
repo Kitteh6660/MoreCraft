@@ -20,7 +20,7 @@
 "block.morecraft.netherwood_chest": "Netherhoizkistn",
 "block.morecraft.netherwood_trapped_chest": "Netherhoiz Redstonekistn",
 "block.morecraft.netherwood_crafting_table": "Netherhoiz Werkbonk",
-"block.morecraft.netherwood_sign": "Netherhoizschüd",
+"block.morecraft.netherwood_sign": "NetherhoizschÃ¼d",
 "block.morecraft.netherwood_button": "Netherhoizknopf",
 "block.morecraft.netherwood_pressure_plate": "Netherhoizdruckplottn",
 
@@ -50,31 +50,35 @@
 "item.morecraft.enderdragon_scales": "Ender Drachenschuppe",
 
 "item.morecraft.netherwood_boat": "Netherholzboot",
+"item.morecraft.warped_boat": "Zerrboot",
+"item.morecraft.crimson_boat": "Karmesinboot",
 
 "block.morecraft.netherbrick_door": "Nether Backsteintir",
 "block.morecraft.netherwood_door": "Netherholztir",
+"block.morecraft.netherite_door": "Netheritetir",
 "block.morecraft.glass_door": "Glastir",
 "block.morecraft.bone_door": "Knochntir",
 "block.morecraft.netherbrick_fence_gate": "Netherziaglzauntor",
 "block.morecraft.netherwood_fence_gate": "Netherholzzauntor",
 "block.morecraft.netherwood_trapdoor": "Netherholzfoitir",
+"block.morecraft.netherite_trapdoor": "Netheritefoitir",
 
-"item.morecraft.slime_helmet": "Schleimhöm",
+"item.morecraft.slime_helmet": "SchleimhÃ¶m",
 "item.morecraft.slime_chestplate": "Schleimbrustplottn",
 "item.morecraft.slime_leggings": "Schleimhaxnschutz",
 "item.morecraft.slime_boots": "Schleimstiefe",
 
-"item.morecraft.flesh_helmet": "Fleischhöm",
+"item.morecraft.flesh_helmet": "FleischhÃ¶m",
 "item.morecraft.flesh_chestplate": "Fleischbrustplottn",
 "item.morecraft.flesh_leggings": "Fleischhaxnschutz",
 "item.morecraft.flesh_boots": "Fleischstiefe",
 
-"item.morecraft.spidersilk_helmet": "Spinnenseidehöm",
+"item.morecraft.spidersilk_helmet": "SpinnenseidehÃ¶m",
 "item.morecraft.spidersilk_chestplate": "Spinnenseidebrustplottn",
 "item.morecraft.spidersilk_leggings": "Spinnenseidehaxnschutz",
 "item.morecraft.spidersilk_boots": "Spinnenseidestiefe",
 
-"item.morecraft.obsidian_helmet": "Obsidianhöm",
+"item.morecraft.obsidian_helmet": "ObsidianhÃ¶m",
 "item.morecraft.obsidian_chestplate": "Obsidianbrustplottn",
 "item.morecraft.obsidian_leggings": "Obsidianhaxnschutz",
 "item.morecraft.obsidian_boots": "Obsidianstiefe",
@@ -84,7 +88,7 @@
 "item.morecraft.obsidian_hoe": "Obsidianhock",
 "item.morecraft.obsidian_sword": "Obsidianschwert",
 
-"item.morecraft.bone_helmet": "Knochnhöm",
+"item.morecraft.bone_helmet": "KnochnhÃ¶m",
 "item.morecraft.bone_chestplate": "Knochnbrustplottn",
 "item.morecraft.bone_leggings": "Knochnhaxnschutz",
 "item.morecraft.bone_boots": "Knochnstiefe",
@@ -94,7 +98,7 @@
 "item.morecraft.bone_hoe": "Knochnhock",
 "item.morecraft.bone_sword": "Knochnschwert",
 
-"item.morecraft.witherbone_helmet": "Verdorrter Knochnhöm",
+"item.morecraft.witherbone_helmet": "Verdorrter KnochnhÃ¶m",
 "item.morecraft.witherbone_chestplate": "Verdorrter Knochnbrustplottn",
 "item.morecraft.witherbone_leggings": "Verdorrter Knochnhaxnschutz",
 "item.morecraft.witherbone_boots": "Verdorrter Knochnstiefe",
@@ -104,7 +108,7 @@
 "item.morecraft.witherbone_hoe": "Verdorrter Knochnhock",
 "item.morecraft.witherbone_sword": "Verdorrter Knochnschwert",
 
-"item.morecraft.emerald_helmet": "Smaragdhöm",
+"item.morecraft.emerald_helmet": "SmaragdhÃ¶m",
 "item.morecraft.emerald_chestplate": "Smaragdbrustplottn",
 "item.morecraft.emerald_leggings": "Smaragdhaxnschutz",
 "item.morecraft.emerald_boots": "Smaragdstiefe",
@@ -114,7 +118,7 @@
 "item.morecraft.emerald_hoe": "Smaragdhock",
 "item.morecraft.emerald_sword": "Smaragdschwert",
 
-"item.morecraft.ruby_helmet": "Rubinhöm",
+"item.morecraft.ruby_helmet": "RubinhÃ¶m",
 "item.morecraft.ruby_chestplate": "Rubinbrustplottn",
 "item.morecraft.ruby_leggings": "Rubinhaxnschutz",
 "item.morecraft.ruby_boots": "Rubinstiefe",
@@ -124,7 +128,7 @@
 "item.morecraft.ruby_hoe": "Rubinhock",
 "item.morecraft.ruby_sword": "Rubinschwert",
 
-"item.morecraft.blaze_helmet": "Blazehöm",
+"item.morecraft.blaze_helmet": "BlazehÃ¶m",
 "item.morecraft.blaze_chestplate": "Blazebrustplottn",
 "item.morecraft.blaze_leggings": "Blazehaxnschutz",
 "item.morecraft.blaze_boots": "Blazestiefe",
@@ -134,7 +138,7 @@
 "item.morecraft.blaze_hoe": "Blazehock",
 "item.morecraft.blaze_sword": "Blazeschwert",
 
-"item.morecraft.ender_helmet": "Enderhöm",
+"item.morecraft.ender_helmet": "EnderhÃ¶m",
 "item.morecraft.ender_chestplate": "Enderbrustplottn",
 "item.morecraft.ender_leggings": "Enderhaxnschutz",
 "item.morecraft.ender_boots": "Enderstiefe",
@@ -156,22 +160,22 @@
 "item.morecraft.endstone_hoe": "Endstoahock",
 "item.morecraft.endstone_sword": "Endstoaschwert",
 
-"item.morecraft.guardian_helmet": "WÃ¤chterhöm",
+"item.morecraft.guardian_helmet": "WÃ¤chterhÃ¶m",
 "item.morecraft.guardian_chestplate": "WÃ¤chterbrustplottn",
 "item.morecraft.guardian_leggings": "WÃ¤chterhaxnschutz",
 "item.morecraft.guardian_boots": "WÃ¤chterstiefe",
 
-"item.morecraft.bonelord_helmet": "Knochnder Lordhöm",
+"item.morecraft.bonelord_helmet": "Knochnder LordhÃ¶m",
 "item.morecraft.bonelord_chestplate": "Knochnder Lordbrustplottn",
 "item.morecraft.bonelord_leggings": "Knochnder Lordhaxnschutz",
 "item.morecraft.bonelord_boots": "Bone Knochnderstiefe",
 
-"item.morecraft.enderdragon_helmet": "Ender Drachenschuppehöm",
+"item.morecraft.enderdragon_helmet": "Ender DrachenschuppehÃ¶m",
 "item.morecraft.enderdragon_chestplate": "Ender Drachenschuppebrustplottn",
 "item.morecraft.enderdragon_leggings": "Ender Drachenschuppehaxnschutz",
 "item.morecraft.enderdragon_boots": "Ender Drachenschuppestiefe",
 
-"item.morecraft.bedrock_helmet": "Grundstoahöm",
+"item.morecraft.bedrock_helmet": "GrundstoahÃ¶m",
 "item.morecraft.bedrock_chestplate": "Grundstoabrustplottn",
 "item.morecraft.bedrock_leggings": "Grundstoahaxnschutz",
 "item.morecraft.bedrock_boots": "Grundstoastiefe",
@@ -181,11 +185,11 @@
 "item.morecraft.bedrock_hoe": "Grundstoahock",
 "item.morecraft.bedrock_sword": "Grundstoaschwert",
 
-"item.morecraft.bone_horse_armor": "Roßrustung aus Knochn",
-"item.morecraft.emerald_horse_armor": "Roßrustung aus Smaragd",
-"item.morecraft.ruby_horse_armor": "Roßrustung aus Rubin",
-"item.morecraft.obsidian_horse_armor": "Roßrustung aus Obsidian",
-"item.morecraft.netherite_horse_armor": "Netherite aus Obsidian",
+"item.morecraft.bone_horse_armor": "RoÃŸrustung aus Knochn",
+"item.morecraft.emerald_horse_armor": "RoÃŸrustung aus Smaragd",
+"item.morecraft.ruby_horse_armor": "RoÃŸrustung aus Rubin",
+"item.morecraft.obsidian_horse_armor": "RoÃŸrustung aus Obsidian",
+"item.morecraft.netherite_horse_armor": "RoÃŸrustung aus Netherite",
 
 "item.minecraft.potion.effect.health_boost": "Tronk der Gsundheits-boost",
 "item.minecraft.splash_potion.effect.health_boost": "Wurftronk der Gsundheits-boost",

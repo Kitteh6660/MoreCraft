@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.block.BlockState;
@@ -206,7 +205,7 @@ public class ModSignTileEntity extends TileEntity
 
 	public boolean setTextColor(DyeColor newColor) {
 		if (newColor != this.getTextColor()) {
-			MoreCraft.LOGGER.debug("Attempting to set colour to " + newColor);
+			//MoreCraft.LOGGER.debug("Attempting to set colour to " + newColor);
 			this.textColor = newColor;
 			this.markDirty();
 			this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);

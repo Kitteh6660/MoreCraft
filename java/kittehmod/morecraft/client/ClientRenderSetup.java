@@ -38,11 +38,13 @@ public class ClientRenderSetup {
 		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.getCutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.getCutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_LADDER.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAVES.get(), RenderType.getCutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_SAPLING.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_NETHERWOOD_SAPLING.get(), RenderType.getCutout());
 
 	}
 	

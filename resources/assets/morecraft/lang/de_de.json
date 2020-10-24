@@ -13,7 +13,7 @@
 "block.morecraft.stripped_netherwood_wood": "Entrindetes Netherholz",
 "block.morecraft.netherwood_leaves": "Netherlaub",
 "block.morecraft.netherwood_sapling": "Nethersetzling",
-"block.morecraft.netherwood_planks": "Netherholzplanken",
+"block.morecraft.netherwood_planks": "Netherholzbretter",
 "block.morecraft.netherwood_stairs": "Netherholztreppe",
 "block.morecraft.netherwood_slab": "Netherholzstufe",
 "block.morecraft.netherwood_fence": "Netherholzzaun",
@@ -50,14 +50,18 @@
 "item.morecraft.enderdragon_scales": "Ender Drachenschuppe",
 
 "item.morecraft.netherwood_boat": "Netherholzboot",
+"item.morecraft.warped_boat": "Wirrboot",
+"item.morecraft.crimson_boat": "Karmesinboot",
 
 "block.morecraft.netherbrick_door": "Netherziegeltür",
 "block.morecraft.netherwood_door": "Netherholztür",
+"block.morecraft.netherite_door": "Netheritetür",
 "block.morecraft.glass_door": "Glastür",
 "block.morecraft.bone_door": "Knochentür",
 "block.morecraft.netherbrick_fence_gate": "Netherziegelzauntor",
 "block.morecraft.netherwood_fence_gate": "Netherholzzauntor",
-"block.morecraft.netherwood_trapdoor": "Netherholzfalltär",
+"block.morecraft.netherwood_trapdoor": "Netherholzfalltür",
+"block.morecraft.netherite_trapdoor": "Netheritefalltür",
 
 "item.morecraft.slime_helmet": "Schleimhelm",
 "item.morecraft.slime_chestplate": "Schleimharnisch",

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "morecraft:netherwood_trapdoor"
+    "morecraft:netherwood_trapdoor",
+    "morecraft:netherite_trapdoor"
   ]
 }

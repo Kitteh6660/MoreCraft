@@ -63,7 +63,6 @@ public class ModFeatures {
 	
 	@SubscribeEvent
     public void biomeLoadEvent(BiomeLoadingEvent event) {
-		MoreCraft.LOGGER.info("Adding feature to " + event.getName().getPath());
     	BiomeGenerationSettingsBuilder bgsb = event.getGeneration();
     	bgsb.getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241882_a, ModBlocks.RUBY_ORE.get().getDefaultState(), 8)).func_242733_d(32).func_242728_a().func_242731_b(2));
     	if (event.getCategory() == Biome.Category.NETHER) {

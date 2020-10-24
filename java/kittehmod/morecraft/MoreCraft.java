@@ -2,8 +2,8 @@ package kittehmod.morecraft;
 
 //import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import kittehmod.morecraft.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.block.ModBlocks;
@@ -34,9 +34,9 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.2b1";
+    public static final String VERSION = "4.2b2";
     
-    public static Logger LOGGER = LogManager.getLogger(MODID);
+    //public static Logger LOGGER = LogManager.getLogger(MODID);
     
     @SuppressWarnings("deprecation")
 	public MoreCraft()

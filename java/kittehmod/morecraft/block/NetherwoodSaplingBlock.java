@@ -5,7 +5,6 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.worldgen.NetherwoodTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,7 +38,6 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	@Override
 	public boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		Block block = state.getBlock();
-		MoreCraft.LOGGER.debug("Checking block " + block.getRegistryName());
 		return ALLOWED_BLOCKS.contains(block);
 	}
 	
@@ -61,7 +59,6 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 			worldIn.setBlockState(pos, state.func_235896_a_(STAGE), 4);
 		} else {
 			if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(worldIn, rand, pos)) return;
-			MoreCraft.LOGGER.debug("Attempting to grow, checking against the allowed block.");
 			this.tree.func_230339_a_(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
 		}
 	}

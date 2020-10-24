@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import kittehmod.morecraft.MoreCraft;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.trees.Tree;
@@ -30,19 +29,15 @@ public class NetherwoodTree extends Tree {
 	public boolean func_230339_a_(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
 		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getTreeFeature(randomIn, this.func_230140_a_(worldIn, blockPosIn));
 		if (configuredfeature == null) {
-			MoreCraft.LOGGER.debug("No configured feature found.");
 			return false;
 		} else {
-			MoreCraft.LOGGER.debug("Try growing.");
 			worldIn.setBlockState(blockPosIn, Blocks.AIR.getDefaultState(), 4);
 			//configuredfeature.config.
 			configuredfeature.config.forcePlacement();
 			if (configuredfeature.func_242765_a(worldIn, generatorIn, randomIn, blockPosIn)) {
-				MoreCraft.LOGGER.debug("Grow successful.");
 				return true;
 			} else {
 				worldIn.setBlockState(blockPosIn, blockStateIn, 4);
-				MoreCraft.LOGGER.debug("Grow failed.");
 				return false;
 			}
 		}
@@ -54,7 +49,6 @@ public class NetherwoodTree extends Tree {
 				return true;
 			}
 		}
-
 		return false;
 	}
 }

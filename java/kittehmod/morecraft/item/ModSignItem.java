@@ -14,9 +14,9 @@ import net.minecraft.item.SignItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class NetherwoodSignItem extends SignItem {
+public class ModSignItem extends SignItem {
 	
-	public NetherwoodSignItem(Item.Properties propertiesIn, Block floorBlockIn, Block wallBlockIn) {
+	public ModSignItem(Item.Properties propertiesIn, Block floorBlockIn, Block wallBlockIn) {
 		super(propertiesIn, floorBlockIn, wallBlockIn);
 	}
 

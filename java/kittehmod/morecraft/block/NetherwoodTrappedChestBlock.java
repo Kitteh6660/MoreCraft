@@ -21,7 +21,6 @@ import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.DoubleSidedInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -202,7 +201,6 @@ public class NetherwoodTrappedChestBlock extends AbstractChestBlock<NetherwoodTr
 	   public BlockState getStateForPlacement(BlockItemUseContext context) {
 	      ChestType chesttype = ChestType.SINGLE;
 	      Direction direction = context.getPlacementHorizontalFacing().getOpposite();
-	      IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
 	      boolean flag = context.func_225518_g_();
 	      Direction direction1 = context.getFace();
 	      if (direction1.getAxis().isHorizontal() && flag) {
@@ -221,11 +219,7 @@ public class NetherwoodTrappedChestBlock extends AbstractChestBlock<NetherwoodTr
 	         }
 	      }
 
-	      return this.getDefaultState().with(FACING, direction).with(TYPE, chesttype).with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
-	   }
-
-	   public IFluidState getFluidState(BlockState state) {
-	      return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+	      return this.getDefaultState().with(FACING, direction).with(TYPE, chesttype);
 	   }
 
 	   /**
@@ -339,7 +333,7 @@ public class NetherwoodTrappedChestBlock extends AbstractChestBlock<NetherwoodTr
 	      List<CatEntity> list = p_220107_0_.getEntitiesWithinAABB(CatEntity.class, new AxisAlignedBB((double)p_220107_1_.getX(), (double)(p_220107_1_.getY() + 1), (double)p_220107_1_.getZ(), (double)(p_220107_1_.getX() + 1), (double)(p_220107_1_.getY() + 2), (double)(p_220107_1_.getZ() + 1)));
 	      if (!list.isEmpty()) {
 	         for(CatEntity catentity : list) {
-	            if (catentity.isSitting()) {
+	            if (catentity.func_233684_eK_()) {
 	               return true;
 	            }
 	         }

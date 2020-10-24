@@ -14,7 +14,6 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.PooledMutable;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -70,20 +69,19 @@ public class NetherwoodLeavesBlock extends LeavesBlock
 		return stateIn;
 	}
 
-	private static BlockState updateDistance(BlockState p_208493_0_, IWorld p_208493_1_, BlockPos p_208493_2_) {
+	private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
 		int i = 7;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-		try (PooledMutable blockpos$pooledmutableblockpos = BlockPos.PooledMutable.retain()) {
-			for(Direction direction : Direction.values()) {
-				blockpos$pooledmutableblockpos.setPos(p_208493_2_).move(direction);
-				i = Math.min(i, getDistance(p_208493_1_.getBlockState(blockpos$pooledmutableblockpos)) + 1);
-				if (i == 1) {
-					break;
-				}
+		for(Direction direction : Direction.values()) {
+			blockpos$mutable.func_239622_a_(pos, direction);
+			i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
+			if (i == 1) {
+				break;
 			}
 		}
 
-		return p_208493_0_.with(DISTANCE, Integer.valueOf(i));
+		return state.with(DISTANCE, Integer.valueOf(i));
 	}
 
 	private static int getDistance(BlockState neighbor) {

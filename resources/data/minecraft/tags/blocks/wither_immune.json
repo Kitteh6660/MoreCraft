@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "morecraft:bedrock_brick"
+    "morecraft:bedrock_brick",
+    "morecraft:netherite_door"
   ]
 }

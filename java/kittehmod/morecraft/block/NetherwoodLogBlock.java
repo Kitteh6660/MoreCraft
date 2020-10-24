@@ -2,29 +2,21 @@ package kittehmod.morecraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LogBlock;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class NetherwoodLogBlock extends LogBlock
+public class NetherwoodLogBlock extends RotatedPillarBlock
 {
-	
-	private final MaterialColor verticalColor;
-	
-	public NetherwoodLogBlock(MaterialColor p_i48367_1_, Block.Properties p_i48367_2_) {
-		super(p_i48367_1_, p_i48367_2_);
-		this.verticalColor = p_i48367_1_;
+	public NetherwoodLogBlock(Block.Properties p_i48367_2_) {
+		super(p_i48367_2_);
 	}
 
 	@Override
@@ -44,15 +36,6 @@ public class NetherwoodLogBlock extends LogBlock
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.PASS;
-	}
-	
-	/**
-	* Get the MapColor for this Block and the given BlockState
-	* @deprecated call via {@link IBlockState#getMapColor(IBlockAccess,BlockPos)} whenever possible.
-	* Implementing/overriding is fine.
-	*/
-	public MaterialColor getMaterialColor(BlockState state, IBlockReader worldIn, BlockPos pos) {
-	   return state.get(AXIS) == Direction.Axis.Y ? this.verticalColor : this.materialColor;
 	}
     
 }

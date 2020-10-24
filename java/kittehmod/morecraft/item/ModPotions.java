@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModPotions extends Potions {
 
-	public static final DeferredRegister<Potion> POTION_TYPES = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, MoreCraft.MODID);
+	public static final DeferredRegister<Potion> POTION_TYPES = DeferredRegister.create(ForgeRegistries.POTION_TYPES, MoreCraft.MODID);
 	
 	public static final RegistryObject<Potion> HEALTH_BOOST = POTION_TYPES.register("health_boost", () -> new Potion("health_boost", new EffectInstance(Effects.HEALTH_BOOST, 3600)));
 	public static final RegistryObject<Potion> LONG_HEALTH_BOOST = POTION_TYPES.register("long_health_boost", () -> new Potion("health_boost", new EffectInstance(Effects.HEALTH_BOOST, 9600)));

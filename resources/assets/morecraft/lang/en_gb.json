@@ -57,6 +57,8 @@
 "item.morecraft.enderdragon_scales": "Enderdragon Scales",
 
 "item.morecraft.netherwood_boat": "Netherwood Boat",
+"item.morecraft.warped_boat": "Warped Boat",
+"item.morecraft.crimson_boat": "Crimson Boat",
 
 "block.morecraft.netherbrick_door": "Nether Brick Door",
 "block.morecraft.netherwood_door": "Netherwood Door",
@@ -192,6 +194,7 @@
 "item.morecraft.emerald_horse_armor": "Emerald Horse Armour",
 "item.morecraft.ruby_horse_armor": "Ruby Horse Armour",
 "item.morecraft.obsidian_horse_armor": "Obsidian Horse Armour",
+"item.morecraft.netherite_horse_armor": "Netherite Horse Armour",
 
 "item.minecraft.potion.effect.health_boost": "Potion of Health Boost",
 "item.minecraft.splash_potion.effect.health_boost": "Splash Potion of Health Boost",

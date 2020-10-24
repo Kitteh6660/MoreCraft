@@ -74,8 +74,8 @@ public class MoreCraftConfig {
 		COMMON_BUILDER.push(SUBCATEGORY_GENERATION);
 
         generateNetherwoodTrees = COMMON_BUILDER
-                .comment("Netherwood Trees Frequency\n" + "Default: " + 16)
-                .defineInRange("netherwood_gen_freq", 16, 0, 50);
+                .comment("Netherwood Trees Frequency\n" + "Default: " + 8)
+                .defineInRange("netherwood_gen_freq", 8, 0, 50);
         
         COMMON_BUILDER.pop();
 	}

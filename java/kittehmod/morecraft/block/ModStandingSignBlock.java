@@ -1,14 +1,14 @@
 package kittehmod.morecraft.block;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StandingSignBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
@@ -29,17 +29,18 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class NetherwoodStandingSignBlock extends StandingSignBlock {
+public class ModStandingSignBlock extends StandingSignBlock 
+{
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_0_15;
 	
-	public NetherwoodStandingSignBlock(Block.Properties properties) {
+	public ModStandingSignBlock(Block.Properties properties) {
 		super(properties, WoodType.DARK_OAK);
 		this.setDefaultState(this.stateContainer.getBaseState().with(ROTATION, Integer.valueOf(0)).with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new NetherwoodSignTileEntity();
+		return new ModSignTileEntity();
 	}
 	
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -47,8 +48,8 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 	}
 
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-		return this.getDefaultState().with(ROTATION, Integer.valueOf(MathHelper.floor((double)((180.0F + context.getPlacementYaw()) * 16.0F / 360.0F) + 0.5D) & 15)).with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
+		FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+		return this.getDefaultState().with(ROTATION, Integer.valueOf(MathHelper.floor((double)((180.0F + context.getPlacementYaw()) * 16.0F / 360.0F) + 0.5D) & 15)).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
 	}
 	
    /**
@@ -61,13 +62,14 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 		return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
+	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (worldIn.isRemote) {
 			return ActionResultType.SUCCESS;
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
-			if (tileentity instanceof NetherwoodSignTileEntity) {
-				NetherwoodSignTileEntity signtileentity = (NetherwoodSignTileEntity)tileentity;
+			if (tileentity instanceof ModSignTileEntity) {
+				ModSignTileEntity signtileentity = (ModSignTileEntity)tileentity;
 				ItemStack itemstack = player.getHeldItem(handIn);
 				if (itemstack.getItem() instanceof DyeItem && player.abilities.allowEdit) {
 					boolean flag = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());

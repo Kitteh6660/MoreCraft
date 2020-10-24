@@ -13,9 +13,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Vector3f;
-import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.tileentity.DualBrightnessCallback;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -24,6 +23,7 @@ import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 
 public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid> extends TileEntityRenderer<T> 
@@ -78,7 +78,7 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	      BlockState blockstate = flag ? tileEntityIn.getBlockState() : ModBlocks.NETHERWOOD_CHEST.get().getDefaultState().with(NetherwoodChestBlock.FACING, Direction.SOUTH);
 	      Block block = blockstate.getBlock();
 	      if (block instanceof NetherwoodChestBlock) {
-		      ChestType chesttype = blockstate.has(NetherwoodChestBlock.TYPE) ? blockstate.get(NetherwoodChestBlock.TYPE) : ChestType.SINGLE;
+		      ChestType chesttype = blockstate.func_235901_b_(NetherwoodChestBlock.TYPE) ? blockstate.get(NetherwoodChestBlock.TYPE) : ChestType.SINGLE;
 	    	  NetherwoodChestBlock abstractchestblock = (NetherwoodChestBlock)block;
 	    	  boolean flag1 = chesttype != ChestType.SINGLE;
 	    	  matrixStackIn.push();
@@ -97,8 +97,8 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
 	         int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
-	         Material material = this.getMaterial(tileEntityIn, chesttype, false);
-	         IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::getEntityCutout);
+	         RenderMaterial rendermaterial = this.getMaterial(tileEntityIn, chesttype, false);
+	         IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(bufferIn, RenderType::getEntityCutout);
 	         if (flag1) {
 	            if (chesttype == ChestType.LEFT) {
 	               this.renderModels(matrixStackIn, ivertexbuilder, this.leftLid, this.leftLatch, this.leftBottom, f1, i, combinedOverlayIn);
@@ -112,7 +112,7 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	         matrixStackIn.pop();
 	      }
 	      else if (block instanceof NetherwoodTrappedChestBlock) {
-		      ChestType chesttype = blockstate.has(NetherwoodTrappedChestBlock.TYPE) ? blockstate.get(NetherwoodTrappedChestBlock.TYPE) : ChestType.SINGLE;
+		      ChestType chesttype = blockstate.func_235901_b_(NetherwoodTrappedChestBlock.TYPE) ? blockstate.get(NetherwoodTrappedChestBlock.TYPE) : ChestType.SINGLE;
 		      NetherwoodTrappedChestBlock abstractchestblock = (NetherwoodTrappedChestBlock)block;
 	    	  boolean flag1 = chesttype != ChestType.SINGLE;
 	    	  matrixStackIn.push();
@@ -131,8 +131,8 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
 	         int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
-	         Material material = this.getMaterial(tileEntityIn, chesttype, true);
-	         IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::getEntityCutout);
+	         RenderMaterial rendermaterial = this.getMaterial(tileEntityIn, chesttype, true);
+	         IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(bufferIn, RenderType::getEntityCutout);
 	         if (flag1) {
 	            if (chesttype == ChestType.LEFT) {
 	               this.renderModels(matrixStackIn, ivertexbuilder, this.leftLid, this.leftLatch, this.leftBottom, f1, i, combinedOverlayIn);
@@ -155,8 +155,8 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	      chestBottom.render(matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 	   }
 	   
-	   protected Material getMaterial(T tileEntity, ChestType chestType, Boolean trapped) {
-		   return new Material(Atlases.CHEST_ATLAS, TileEntityTextureHelper.chooseChestTexture(chestType, trapped));
+	   protected RenderMaterial getMaterial(T tileEntity, ChestType chestType, Boolean trapped) {
+		   return new RenderMaterial(Atlases.CHEST_ATLAS, TileEntityTextureHelper.chooseChestTexture(chestType, trapped));
 	   }
 
 }

@@ -53,13 +53,8 @@ public class WitherBonemealItem extends Item {
 			IGrowable igrowable = (IGrowable)blockstate.getBlock();
 			if (igrowable.canGrow(worldIn, pos, blockstate, worldIn.isRemote) && !AFFECTED_BLOCKS.contains(blockstate.getBlock())) {
 				if (!worldIn.isRemote) {
-					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos, blockstate)) {
-						if (igrowable instanceof SaplingBlock || igrowable instanceof SweetBerryBushBlock) {
-							worldIn.setBlockState(pos, Blocks.DEAD_BUSH.getDefaultState());
-						}
-						else {
-							worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-						}
+					if (igrowable instanceof SaplingBlock || igrowable instanceof SweetBerryBushBlock) {
+						worldIn.setBlockState(pos, Blocks.DEAD_BUSH.getDefaultState());
 					}
 					stack.shrink(1);
 				}

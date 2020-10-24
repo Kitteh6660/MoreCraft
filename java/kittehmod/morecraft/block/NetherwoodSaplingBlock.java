@@ -5,12 +5,13 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
+import kittehmod.morecraft.MoreCraft;
+import kittehmod.morecraft.worldgen.NetherwoodTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.trees.Tree;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -23,13 +24,13 @@ import net.minecraft.world.server.ServerWorld;
 
 public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 {
-	public static final Set<Block> ALLOWED_BLOCKS = ImmutableSet.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.FARMLAND, Blocks.SOUL_SAND); 
+	public static final Set<Block> ALLOWED_BLOCKS = ImmutableSet.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.FARMLAND, Blocks.SOUL_SAND, Blocks.field_235336_cN_); 
 	
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-	private final Tree tree;
+	private final NetherwoodTree tree;
 
-	public NetherwoodSaplingBlock(Tree treeIn, Block.Properties properties) {
+	public NetherwoodSaplingBlock(NetherwoodTree treeIn, Block.Properties properties) {
 		super(treeIn, properties);
 		this.tree = treeIn;
 		this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
@@ -38,6 +39,7 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	@Override
 	public boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		Block block = state.getBlock();
+		MoreCraft.LOGGER.debug("Checking block " + block.getRegistryName());
 		return ALLOWED_BLOCKS.contains(block);
 	}
 	
@@ -46,22 +48,24 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	}
 
 	@Override
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		super.tick(state, worldIn, pos, random);
-		if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-		if (worldIn.getLight(pos.up()) >= 9 && random.nextInt(7) == 0) {
-			this.grow(worldIn, pos, state, random);
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+		if (worldIn.getLight(pos.up()) >= 0 && random.nextInt(7) == 0) {
+			if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+			this.func_226942_a_(worldIn, pos, state, random);
 		}
 	}
 
-	public void grow(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
+	@Override
+	public void func_226942_a_(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
-			worldIn.setBlockState(pos, state.cycle(STAGE), 4);
+			worldIn.setBlockState(pos, state.func_235896_a_(STAGE), 4);
 		} else {
 			if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(worldIn, rand, pos)) return;
-			this.tree.place(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
+			MoreCraft.LOGGER.debug("Attempting to grow, checking against the allowed block.");
+			this.tree.func_230339_a_(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
 		}
 	}
+	
 
     /** Whether this IGrowable can grow */
 	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
@@ -71,9 +75,9 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return (double)worldIn.rand.nextFloat() < 0.45D;
 	}
-
+	
 	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		this.grow(worldIn, pos, state, rand);
+		this.func_226942_a_(worldIn, pos, state, rand);
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

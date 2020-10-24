@@ -3,7 +3,7 @@ package kittehmod.morecraft.item;
 import java.util.List;
 import java.util.function.Predicate;
 
-import kittehmod.morecraft.entity.NetherwoodBoatEntity;
+import kittehmod.morecraft.entity.NetherBoatEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -16,17 +16,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class NetherwoodBoatItem extends Item 
+public class NetherBoatItem extends Item 
 {
 	private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
-	//private final BoatEntity.Type type;
+	private final NetherBoatEntity.Type type;
 
-	public NetherwoodBoatItem(Item.Properties properties) {
+	public NetherBoatItem(Item.Properties properties, NetherBoatEntity.Type typeIn) {
 		super(properties);
-		//this.type = typeIn;
+		this.type = typeIn;
 	}
 	
 	/**
@@ -39,11 +39,11 @@ public class NetherwoodBoatItem extends Item
 		if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
 			return new ActionResult<>(ActionResultType.PASS, itemstack);
 		} else {
-			Vec3d vec3d = playerIn.getLook(1.0F);
+			Vector3d vec3d = playerIn.getLook(1.0F);
 			double d0 = 5.0D;
 			List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vec3d.scale(d0)).grow(1.0D), field_219989_a);
 			if (!list.isEmpty()) {
-				Vec3d vec3d1 = playerIn.getEyePosition(1.0F);
+				Vector3d vec3d1 = playerIn.getEyePosition(1.0F);
 				for(Entity entity : list) {
 					AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow((double)entity.getCollisionBorderSize());
 					if (axisalignedbb.contains(vec3d1)) {
@@ -52,8 +52,8 @@ public class NetherwoodBoatItem extends Item
 				}
 			}
 			if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-				NetherwoodBoatEntity boatentity = new NetherwoodBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
-				//boatentity.setBoatType(this.type);
+				NetherBoatEntity boatentity = new NetherBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
+				boatentity.setBoatType(this.type);
 				boatentity.rotationYaw = playerIn.rotationYaw;
 				if (!worldIn.hasNoCollisions(boatentity, boatentity.getBoundingBox().grow(-0.1D))) {
 					return new ActionResult<>(ActionResultType.FAIL, itemstack);

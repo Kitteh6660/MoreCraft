@@ -5,28 +5,27 @@ import java.util.List;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import kittehmod.morecraft.block.NetherwoodStandingSignBlock;
-import kittehmod.morecraft.block.NetherwoodWallSignBlock;
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.block.ModStandingSignBlock;
+import kittehmod.morecraft.block.ModWallSignBlock;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.RenderComponentsUtil;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Vector3f;
-import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.texture.NativeImage;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<NetherwoodSignTileEntity> {
+public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<ModSignTileEntity> {
 	   /** The ModelSign instance for use in this renderer */
 	   private final NetherwoodSignTileEntityRenderer.SignModel model = new NetherwoodSignTileEntityRenderer.SignModel();
 
@@ -35,18 +34,18 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<Netherw
 	   }
 
 	   @Override
-	   public void render(NetherwoodSignTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	   public void render(ModSignTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
 	      BlockState blockstate = tileEntityIn.getBlockState();
 	      matrixStackIn.push();
 	      float f = 0.6666667F;
-	      if (blockstate.getBlock() instanceof NetherwoodStandingSignBlock) {
+	      if (blockstate.getBlock() instanceof ModStandingSignBlock) {
 	         matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-	         float f1 = -((float)(blockstate.get(NetherwoodStandingSignBlock.ROTATION) * 360) / 16.0F);
+	         float f1 = -((float)(blockstate.get(ModStandingSignBlock.ROTATION) * 360) / 16.0F);
 	         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f1));
 	         this.model.signStick.showModel = true;
 	      } else {
 	         matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-	         float f4 = -blockstate.get(NetherwoodWallSignBlock.FACING).getHorizontalAngle();
+	         float f4 = -blockstate.get(ModWallSignBlock.FACING).getHorizontalAngle();
 	         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f4));
 	         matrixStackIn.translate(0.0D, -0.3125D, -0.4375D);
 	         this.model.signStick.showModel = false;
@@ -54,8 +53,8 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<Netherw
 
 	      matrixStackIn.push();
 	      matrixStackIn.scale(f, -f, -f);
-	      Material material = getMaterial(blockstate.getBlock());
-	      IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, this.model::getRenderType);
+	      RenderMaterial rendermaterial = getMaterial(blockstate.getBlock());
+	      IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(bufferIn, this.model::getRenderType);
 	      this.model.signBoard.render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn);
 	      this.model.signStick.render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn);
 	      matrixStackIn.pop();
@@ -70,22 +69,22 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<Netherw
 	      int l = (int)((double)NativeImage.getBlue(i) * d0);
 	      int i1 = NativeImage.getCombined(0, l, k, j);
 
-	      for(int j1 = 0; j1 < 4; ++j1) {
-	         String s = tileEntityIn.getRenderText(j1, (p_212491_1_) -> {
-	            List<ITextComponent> list = RenderComponentsUtil.splitText(p_212491_1_, 90, fontrenderer, false, true);
-	            return list.isEmpty() ? "" : list.get(0).getFormattedText();
-	         });
-	         if (s != null) {
-	            float f3 = (float)(-fontrenderer.getStringWidth(s) / 2);
-	            fontrenderer.renderString(s, f3, (float)(j1 * 10 - tileEntityIn.signText.length * 5), i1, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
-	         }
-	      }
+      for(int k1 = 0; k1 < 4; ++k1) {
+         IReorderingProcessor ireorderingprocessor = tileEntityIn.getRenderText(k1, (p_243502_1_) -> {
+            List<IReorderingProcessor> list = fontrenderer.func_238425_b_(p_243502_1_, 90);
+            return list.isEmpty() ? IReorderingProcessor.field_242232_a : list.get(0);
+         });
+         if (ireorderingprocessor != null) {
+            float f3 = (float)(-fontrenderer.func_243245_a(ireorderingprocessor) / 2);
+            fontrenderer.func_238416_a_(ireorderingprocessor, f3, (float)(k1 * 10 - 20), i1, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
+         }
+      }
 
 	      matrixStackIn.pop();
 	   }
 
-	   public static Material getMaterial(Block blockIn) {
-		   return new Material(Atlases.SIGN_ATLAS, TileEntityTextureHelper.NETHERWOOD_SIGN_LOCATION);
+	   public static RenderMaterial getMaterial(Block blockIn) {
+		   return new RenderMaterial(Atlases.SIGN_ATLAS, TileEntityTextureHelper.NETHERWOOD_SIGN_LOCATION);
 	   }
 
 	   @OnlyIn(Dist.CLIENT)

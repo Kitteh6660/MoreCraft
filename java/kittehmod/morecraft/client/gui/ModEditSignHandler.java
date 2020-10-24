@@ -2,7 +2,7 @@ package kittehmod.morecraft.client.gui;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +24,7 @@ public class ModEditSignHandler {
 	
 	private static void openSignGUI(TileEntity tileEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
-    	ModEditSignScreen gui = new ModEditSignScreen((NetherwoodSignTileEntity)tileEntity);
+    	ModEditSignScreen gui = new ModEditSignScreen((ModSignTileEntity)tileEntity);
 		minecraft.displayGuiScreen(gui);
 	}
 }

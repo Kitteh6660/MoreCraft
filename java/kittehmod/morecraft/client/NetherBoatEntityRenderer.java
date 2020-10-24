@@ -3,33 +3,33 @@ package kittehmod.morecraft.client;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import kittehmod.morecraft.entity.NetherwoodBoatEntity;
+import kittehmod.morecraft.entity.NetherBoatEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.BoatModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class NetherwoodBoatEntityRenderer extends EntityRenderer<NetherwoodBoatEntity> 
+public class NetherBoatEntityRenderer extends EntityRenderer<NetherBoatEntity> 
 {
     /** instance of ModelBoat for rendering */
     protected final BoatModel modelBoat = new BoatModel();
     
-    public NetherwoodBoatEntityRenderer(EntityRendererManager renderManagerIn) {
+    public NetherBoatEntityRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
         this.shadowSize = 0.8F;
      }
 	
     /** Renders the desired {@code T} type Entity. */
     @OnlyIn(Dist.CLIENT)
-    public void render(NetherwoodBoatEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(NetherBoatEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.push();
         matrixStackIn.translate(0.0D, 0.375D, 0.0D);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
@@ -60,8 +60,17 @@ public class NetherwoodBoatEntityRenderer extends EntityRenderer<NetherwoodBoatE
      }
 
 	@Override
-	public ResourceLocation getEntityTexture(NetherwoodBoatEntity entity) {
-		return new ResourceLocation("morecraft:textures/entity/boat/netherwood.png");
+	public ResourceLocation getEntityTexture(NetherBoatEntity entity) {
+		switch(entity.getNetherBoatType()) {
+			case NETHERWOOD:
+				return new ResourceLocation("morecraft:textures/entity/boat/netherwood.png");
+			case WARPED:
+				return new ResourceLocation("morecraft:textures/entity/boat/warped.png");
+			case CRIMSON:
+				return new ResourceLocation("morecraft:textures/entity/boat/crimson.png");
+			default:
+				return new ResourceLocation("morecraft:textures/entity/boat/netherwood.png");
+		}
 	}
 
 }

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#morecraft:netherwood_logs",
+    "morecraft:netherwood_planks",
+    "morecraft:netherwood_slab",
+    "morecraft:netherwood_pressure_plate",
+    "morecraft:netherwood_fence",
+    "morecraft:netherwood_trapdoor",
+    "morecraft:netherwood_fence_gate",
+    "morecraft:netherwood_stairs",
+    "morecraft:netherwood_button",
+    "morecraft:netherwood_door",
+    "morecraft:netherwood_sign",
+    "morecraft:netherwood_wall_sign"
+  ]
+}

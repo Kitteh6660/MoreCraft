@@ -1,5 +1,10 @@
 package kittehmod.morecraft;
 
+//import java.util.stream.Collectors;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import kittehmod.morecraft.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.client.ClientRenderSetup;
@@ -10,7 +15,6 @@ import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.ModFeatures;
-import kittehmod.morecraft.worldgen.ModGenerator;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,6 +26,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+//import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -29,13 +34,12 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.1b1";
-	
-    //public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+    public static final String VERSION = "4.2b1";
     
-    //public static Logger LOGGER = LogManager.getLogger(MODID);
+    public static Logger LOGGER = LogManager.getLogger(MODID);
     
-    public MoreCraft()
+    @SuppressWarnings("deprecation")
+	public MoreCraft()
     {
     	ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -44,9 +48,7 @@ public class MoreCraft
     	ModPotions.POTION_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
-    	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-    		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
-    	});
+    	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> { FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient); });
     }
     
     private void setupCommon(final FMLCommonSetupEvent event)
@@ -57,12 +59,12 @@ public class MoreCraft
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MoreCraftConfig.COMMON_CONFIG);
         MoreCraftConfig.loadConfig(MoreCraftConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft-common.toml"));
     	
-        ModGenerator.setupGeneration();
         MorecraftPacketHandler.register();
         
     	MinecraftForge.EVENT_BUS.register(new MobDropEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
     	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());
+    	MinecraftForge.EVENT_BUS.register(new ModFeatures());
     	
     	ComposterBlock.CHANCES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
     	ComposterBlock.CHANCES.put(ModItems.APPLE_PIE.get(), 1.0F);
@@ -79,4 +81,14 @@ public class MoreCraft
         
 		ClientRenderSetup.setup();
     }
+    
+    /* Dunno what I'll do with this. Maybe later.
+    private void processIMC(final InterModProcessEvent event)
+    {
+        // some example code to receive and process InterModComms from other mods
+        LOGGER.info("Got IMC {}", event.getIMCStream().
+                map(m->m.getMessageSupplier().get()).
+                collect(Collectors.toList()));
+    }
+    */
 }

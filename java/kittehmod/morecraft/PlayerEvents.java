@@ -1,6 +1,6 @@
 package kittehmod.morecraft;
 
-import kittehmod.morecraft.entity.NetherwoodBoatEntity;
+import kittehmod.morecraft.entity.NetherBoatEntity;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.network.ModBoatDismountPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
@@ -22,7 +22,7 @@ public class PlayerEvents
 	@SubscribeEvent
 	public void LavaBoatAntiHurt(LivingAttackEvent event)
 	{
-		if (event.getEntityLiving().getRidingEntity() instanceof NetherwoodBoatEntity) {
+		if (event.getEntityLiving().getRidingEntity() instanceof NetherBoatEntity) {
 			if (event.getSource().equals(DamageSource.ON_FIRE) || event.getSource().equals(DamageSource.IN_FIRE) || event.getSource().equals(DamageSource.LAVA)) {
 				event.setCanceled(true);
 				event.getEntityLiving().extinguish();
@@ -33,7 +33,7 @@ public class PlayerEvents
 	@SubscribeEvent
 	public void LavaBoatDismount(EntityMountEvent event)
 	{
-		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherwoodBoatEntity) {
+		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherBoatEntity) {
 			event.getEntityMounting().extinguish();
 			if (event.getEntityMounting() instanceof PlayerEntity) {
 				MorecraftPacketHandler.sendToServer(new ModBoatDismountPacket()); //Has to be called otherwise fire won't properly get extinguished.

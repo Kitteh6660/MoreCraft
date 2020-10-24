@@ -14,9 +14,11 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class ModEntities {
 
-	public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, MoreCraft.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MoreCraft.MODID);
 	
-	public static final RegistryObject<EntityType<NetherwoodBoatEntity>> NETHERWOOD_BOAT = ENTITIES.register("netherwood_boat", () -> EntityType.Builder.<NetherwoodBoatEntity>create(NetherwoodBoatEntity::new, EntityClassification.MISC).immuneToFire().size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new NetherwoodBoatEntity(world, 0, 0, 0)).build("netherwood_boat")); 
+	public static final RegistryObject<EntityType<NetherBoatEntity>> NETHERWOOD_BOAT = ENTITIES.register("netherwood_boat", () -> EntityType.Builder.<NetherBoatEntity>create(NetherBoatEntity::new, EntityClassification.MISC).immuneToFire().size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new NetherBoatEntity(world, 0, 0, 0)).build("netherwood_boat")); 
+	public static final RegistryObject<EntityType<NetherBoatEntity>> WARPED_BOAT = ENTITIES.register("warped_boat", () -> EntityType.Builder.<NetherBoatEntity>create(NetherBoatEntity::new, EntityClassification.MISC).immuneToFire().size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new NetherBoatEntity(world, 0, 0, 0)).build("warped_boat")); 
+	public static final RegistryObject<EntityType<NetherBoatEntity>> CRIMSON_BOAT = ENTITIES.register("crimson_boat", () -> EntityType.Builder.<NetherBoatEntity>create(NetherBoatEntity::new, EntityClassification.MISC).immuneToFire().size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new NetherBoatEntity(world, 0, 0, 0)).build("crimson_boat")); 
 	
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

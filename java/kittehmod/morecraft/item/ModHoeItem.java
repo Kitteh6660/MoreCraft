@@ -10,8 +10,8 @@ import net.minecraft.potion.Effects;
 
 public class ModHoeItem extends HoeItem {
 
-	public ModHoeItem(IItemTier tier, float attackSpeedIn, Properties builder) {
-		super(tier, attackSpeedIn, builder);
+	public ModHoeItem(IItemTier tier, int damageIn, float attackSpeedIn, Properties builder) {
+		super(tier, damageIn, attackSpeedIn, builder);
 	}
 
 	@Override

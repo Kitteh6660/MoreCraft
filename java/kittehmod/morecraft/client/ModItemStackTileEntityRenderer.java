@@ -8,6 +8,7 @@ import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
 import kittehmod.morecraft.tileentity.NetherwoodTrappedChestTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.BlockItem;
@@ -24,7 +25,7 @@ public class ModItemStackTileEntityRenderer<T extends TileEntity> extends ItemSt
 	  
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformTypeIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
     	final Item item = itemStackIn.getItem();
     	if (item instanceof BlockItem) {
     		final Block block = ((BlockItem) item).getBlock();

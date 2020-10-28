@@ -43,6 +43,7 @@ public class ClientRenderSetup {
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_SAPLING.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_NETHERWOOD_SAPLING.get(), RenderType.getCutout());
 

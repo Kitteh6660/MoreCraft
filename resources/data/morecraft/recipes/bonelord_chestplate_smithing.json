@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morecraft:bone_chestplate"
+  },
+  "addition": {
+    "item": "minecraft:skeleton_skull"
+  },
+  "result": {
+    "item": "morecraft:bonelord_chestplate"
+  }
+}

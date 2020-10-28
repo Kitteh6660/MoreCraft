@@ -31,6 +31,7 @@
 "block.morecraft.flesh_carpet": "Flesh Carpet",
 "block.morecraft.bone_ladder": "Bone Ladder",
 "block.morecraft.glowstone_torch": "Glowstone Torch",
+"block.morecraft.glowstone_lantern": "Glowstone Lantern",
 
 "block.morecraft.spider_head": "Spider Head",
 "block.morecraft.cave_spider_head": "Cave Spider Head",
@@ -46,10 +47,11 @@
 "item.morecraft.raw_guardian_meat": "Raw Guardian Meat",
 "item.morecraft.cooked_guardian_meat": "Cooked Guardian Meat",
 "item.morecraft.cooked_egg": "Fried Egg",
-"item.morecraft.apple_pie": "Apple Pie",
 "item.morecraft.nether_apple": "Nether Apple",
-"item.morecraft.nether_apple_pie": "Nether Apple Pie",
 "item.morecraft.cake_slice": "Cake Slice",
+"item.morecraft.apple_pie": "Apple Pie",
+"item.morecraft.nether_apple_pie": "Nether Apple Pie",
+"item.morecraft.nether_apple_pie": "Sweet Berry Pie",
 
 "item.morecraft.ruby": "Ruby",
 "item.morecraft.wither_bone": "Wither Bone",

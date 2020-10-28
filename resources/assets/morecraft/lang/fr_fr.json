@@ -20,8 +20,8 @@
 "block.morecraft.netherwood_fence": "Barrière en bois de Nether",
 "block.morecraft.netherwood_chest": "Coffre en bois de Nether",
 "block.morecraft.netherwood_trapped_chest": "Coffre piégé en bois de Nether",
-"block.morecraft.netherwood_crafting_table": "Table d'artisanat en bois de Nether",
-"block.morecraft.netherwood_sign": "Pancreate en bois de Nether",
+"block.morecraft.netherwood_crafting_table": "Établi en bois de Nether",
+"block.morecraft.netherwood_sign": "Pancarte en bois de Nether",
 "block.morecraft.netherwood_button": "Bouton en bois de Nether",
 "block.morecraft.netherwood_pressure_plate": "Plaque de pression en bois de Nether",
 
@@ -30,7 +30,8 @@
 "block.morecraft.soul_glass_pane": "Vitre des âmes",
 "block.morecraft.flesh_carpet": "Tapis chair",
 "block.morecraft.bone_ladder": "Échelle d'os",
-"block.morecraft.glowstone_torch": "Torche des pierres lumineuse",
+"block.morecraft.glowstone_torch": "Torche lumineuse",
+"block.morecraft.glowstone_lantern": "Lanternes lumineuse",
 
 "item.morecraft.cooked_flesh": "Chair cuite",
 "item.morecraft.raw_spider": "Daraignée cru",
@@ -40,13 +41,14 @@
 "item.morecraft.raw_guardian_meat": "Viande crue de gardien",
 "item.morecraft.cooked_guardian_meat": "Viande de gardien cuite",
 "item.morecraft.cooked_egg": "Oeuf frit",
-"item.morecraft.apple_pie": "Tarte aux pommes",
 "item.morecraft.nether_apple": "Pomme du Néant",
-"item.morecraft.nether_apple_pie": "Tarte aux pommes du Néant",
 "item.morecraft.cake_slice": "Tranche de gâteau",
+"item.morecraft.apple_pie": "Tarte à la pommes",
+"item.morecraft.nether_apple_pie": "Tarte à la pommes du Nether",
+"item.morecraft.sweetberry_pie": "Tarte à la baies sucrées",
 
 "item.morecraft.ruby": "Rubis",
-"item.morecraft.wither_bone": "Flétrir OS",
+"item.morecraft.wither_bone": "Flétrir Os",
 "item.morecraft.wither_bone_meal": "Poudre flétrir Os",
 "item.morecraft.enderdragon_scales": "Ender Dragon Écailles",
 

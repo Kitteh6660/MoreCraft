@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morecraft:bone_helmet"
+  },
+  "addition": {
+    "item": "minecraft:skeleton_skull"
+  },
+  "result": {
+    "item": "morecraft:bonelord_helmet"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SES",
+    "PLP",
+    "F F"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "E": {
+      "item": "minecraft:end_crystal"
+    },
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "L": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "minecraft:elytra"
+  }
+}

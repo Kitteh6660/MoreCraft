@@ -14,8 +14,10 @@ public class ModFoods {
 	public static final Food GUARDIAN_MEAT_COOKED = (new Food.Builder()).hunger(7).saturation(0.7F).meat().build();
 	
 	public static final Food COOKED_EGG = (new Food.Builder()).hunger(6).saturation(0.6F).build();
-	public static final Food APPLE_PIE = (new Food.Builder()).hunger(8).saturation(0.8F).effect(() -> new EffectInstance(Effects.REGENERATION, 100, 0), 0.3F).build();
 	public static final Food NETHER_APPLE = (new Food.Builder()).hunger(4).saturation(0.2F).build();
-	public static final Food NETHER_APPLE_PIE = (new Food.Builder()).hunger(8).saturation(0.8F).build();
 	public static final Food CAKE_SLICE = (new Food.Builder()).hunger(2).saturation(0.3F).build();
+	
+	public static final Food APPLE_PIE = (new Food.Builder()).hunger(8).saturation(0.8F).effect(() -> new EffectInstance(Effects.REGENERATION, 100, 0), 0.3F).build();
+	public static final Food NETHER_APPLE_PIE = (new Food.Builder()).hunger(8).saturation(0.8F).build();
+	public static final Food SWEETBERRY_PIE = (new Food.Builder()).hunger(8).saturation(0.7F).build();
 }

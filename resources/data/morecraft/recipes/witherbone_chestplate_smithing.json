@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morecraft:bone_chestplate"
+  },
+  "addition": {
+    "item": "morecraft:wither_bone"
+  },
+  "result": {
+    "item": "morecraft:witherbone_chestplate"
+  }
+}

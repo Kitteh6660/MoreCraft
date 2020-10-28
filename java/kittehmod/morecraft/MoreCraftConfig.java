@@ -21,13 +21,13 @@ public class MoreCraftConfig {
 	public static ForgeConfigSpec CLIENT_CONFIG;
 	
 	public static final String CATEGORY_GENERAL = "general";
-	public static final String SUBCATEGORY_RECIPES = "recipes";
+	//public static final String SUBCATEGORY_RECIPES = "recipes";
 	public static final String SUBCATEGORY_DROPS = "drops";
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
-	public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
-	public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
-	public static ForgeConfigSpec.BooleanValue salvageRecipes;
+	//public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
+	//public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
+	//public static ForgeConfigSpec.BooleanValue salvageRecipes;
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
 	public static ForgeConfigSpec.IntValue generateNetherwoodTrees; //Enables Netherwood trees generation.
@@ -43,7 +43,7 @@ public class MoreCraftConfig {
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
 		
-        COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
+        /*COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
         hardcoreRecipes = COMMON_BUILDER
                 .comment("Hardcore Recipes\n" + "Default: False")
@@ -55,7 +55,7 @@ public class MoreCraftConfig {
 
         salvageRecipes = COMMON_BUILDER
                 .comment("Salvage Recipes (Not Yet Re-Implemented)\n" + "Default: True")
-                .define("salvage_recipes", true);
+                .define("salvage_recipes", true);*/
 
         COMMON_BUILDER.pop();
         
@@ -74,8 +74,8 @@ public class MoreCraftConfig {
 		COMMON_BUILDER.push(SUBCATEGORY_GENERATION);
 
         generateNetherwoodTrees = COMMON_BUILDER
-                .comment("Netherwood Trees Frequency\n" + "Default: " + 8)
-                .defineInRange("netherwood_gen_freq", 8, 0, 50);
+                .comment("Netherwood Trees Frequency\n" + "Default: " + 16)
+                .defineInRange("netherwood_gen_freq", 16, 0, 50);
         
         COMMON_BUILDER.pop();
 	}

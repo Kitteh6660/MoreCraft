@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "morecraft:block/glowstone_lantern"
+    },
+    "hanging=true": {
+      "model": "morecraft:block/glowstone_lantern_hanging"
+    }
+  }
+}

@@ -30,6 +30,7 @@
 "block.morecraft.flesh_carpet": "Fleisch Teppich",
 "block.morecraft.bone_ladder": "Knochenleiter",
 "block.morecraft.glowstone_torch": "Glowstonefackel",
+"block.morecraft.glowstone_lantern": "Glowstonelaterne",
 
 "item.morecraft.cooked_flesh": "Gebratenes Fleisch",
 "item.morecraft.raw_spider": "Rohes Spinnen",
@@ -39,10 +40,11 @@
 "item.morecraft.raw_guardian_meat": "Rohes Wächter-Fleisch",
 "item.morecraft.cooked_guardian_meat": "Gebratenes Wächterfleisch",
 "item.morecraft.cooked_egg": "Gebratenes Ei",
-"item.morecraft.apple_pie": "Apfelkuchen",
 "item.morecraft.nether_apple": "Netherapfel",
-"item.morecraft.nether_apple_pie": "Netherapfelkuchen",
 "item.morecraft.cake_slice": "Kuchenscheibe",
+"item.morecraft.apple_pie": "Apfelkuchen",
+"item.morecraft.nether_apple_pie": "Netherapfelkuchen",
+"item.morecraft.sweetberry_pie": " Süßbeerenkuchen",
 
 "item.morecraft.ruby": "Rubin",
 "item.morecraft.wither_bone": "Verdorrter Knochen",

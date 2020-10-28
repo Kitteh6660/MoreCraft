@@ -32,7 +32,6 @@ public class NetherwoodTree extends Tree {
 			return false;
 		} else {
 			worldIn.setBlockState(blockPosIn, Blocks.AIR.getDefaultState(), 4);
-			//configuredfeature.config.
 			configuredfeature.config.forcePlacement();
 			if (configuredfeature.func_242765_a(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;

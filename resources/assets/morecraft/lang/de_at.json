@@ -29,7 +29,8 @@
 "block.morecraft.soul_glass_pane": "Seelnglosscheibn",
 "block.morecraft.flesh_carpet": "Fleisch Teppich",
 "block.morecraft.bone_ladder": "Knochnleita",
-"block.morecraft.glowstone_torch": "Leuchtstein Fockl",
+"block.morecraft.glowstone_torch": "Glowstonefockl",
+"block.morecraft.glowstone_lantern": "Glowstonelatern",
 
 "item.morecraft.cooked_flesh": "Brotns Fleisch",
 "item.morecraft.raw_spider": "Ruachs Spinnen",
@@ -39,10 +40,11 @@
 "item.morecraft.raw_guardian_meat": "Ruachs Wächtafleisch",
 "item.morecraft.cooked_guardian_meat": "Brotns Wächtafleisch",
 "item.morecraft.cooked_egg": "Brotns Ei",
-"item.morecraft.apple_pie": "Opfekuachn",
 "item.morecraft.nether_apple": "Netheropfe",
-"item.morecraft.nether_apple_pie": "Netheropfekuachn",
 "item.morecraft.cake_slice": "Kuchen-Scheibe",
+"item.morecraft.apple_pie": "Opfekuachn",
+"item.morecraft.nether_apple_pie": "Netheropfekuachn",
+"item.morecraft.sweetberry_pie": "Süßbeernkuachn",
 
 "item.morecraft.ruby": "Rubin",
 "item.morecraft.wither_bone": "Verdorrter Knochn",

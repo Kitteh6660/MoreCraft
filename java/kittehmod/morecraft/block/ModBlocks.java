@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.LanternBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
@@ -91,7 +92,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> BONE_LADDER = BLOCKS.register("bone_ladder", () -> new BoneLadderBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 3.0F).sound(SoundType.LADDER).notSolid()));
     public static final RegistryObject<Block> GLOWSTONE_TORCH = BLOCKS.register("glowstone_torch", () -> new GlowstoneTorchBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).sound(SoundType.WOOD).func_235838_a_((p_235464_0_) -> { return 15; })));
     public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0.0F, 1.0F).sound(SoundType.WOOD).func_235838_a_((p_235464_0_) -> { return 15; })));
-    public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(-1F, 3600000F).func_235861_h_().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> GLOWSTONE_LANTERN = BLOCKS.register("glowstone_lantern", () -> new LanternBlock(AbstractBlock.Properties.create(Material.IRON).func_235861_h_().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).func_235838_a_((p_235447_0_) -> { return 15; }).notSolid()));    
+	public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(-1F, 3600000F).func_235861_h_().sound(SoundType.STONE)));   
     @SuppressWarnings("deprecation")
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(NETHERWOOD_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
     

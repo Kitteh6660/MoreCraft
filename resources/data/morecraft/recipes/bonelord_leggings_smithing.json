@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morecraft:bone_leggings"
+  },
+  "addition": {
+    "item": "minecraft:skeleton_skull"
+  },
+  "result": {
+    "item": "morecraft:bonelord_leggings"
+  }
+}

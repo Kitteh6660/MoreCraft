@@ -2,14 +2,14 @@
   "parent": "morecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morecraft:glowstone_torcu"
+      "morecraft:glowstone_torch"
     ]
   },
   "criteria": {
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:glowstone_torcu"
+        "recipe": "morecraft:glowstone_torch"
       }
     },
     "has_items": {

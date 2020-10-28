@@ -54,6 +54,7 @@ public class ModItems {
 	public static final RegistryObject<Item> FLESH_CARPET = ITEMS.register("flesh_carpet", () -> new BlockItem(ModBlocks.FLESH_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BONE_LADDER = ITEMS.register("bone_ladder", () -> new BlockItem(ModBlocks.BONE_LADDER.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_TORCH = ITEMS.register("glowstone_torch", () -> new WallOrFloorItem(ModBlocks.GLOWSTONE_TORCH.get(), ModBlocks.WALL_GLOWSTONE_TORCH.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> GLOWSTONE_LANTERN = ITEMS.register("glowstone_lantern", () -> new BlockItem(ModBlocks.GLOWSTONE_LANTERN.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
 	//Not currently available in creative tabs or obtainable due to bugs.
@@ -86,10 +87,12 @@ public class ModItems {
     public static final RegistryObject<Item> COOKED_GUARDIAN_MEAT = ITEMS.register("cooked_guardian_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_MEAT_COOKED)));
 
     public static final RegistryObject<Item> COOKED_EGG = ITEMS.register("cooked_egg", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COOKED_EGG)));
-    public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.APPLE_PIE)));
-    public static final RegistryObject<Item> NETHER_APPLE = ITEMS.register("nether_apple", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE)));
-    public static final RegistryObject<Item> NETHER_APPLE_PIE = ITEMS.register("nether_apple_pie", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE_PIE)));
     public static final RegistryObject<Item> CAKE_SLICE = ITEMS.register("cake_slice", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.CAKE_SLICE)));
+    public static final RegistryObject<Item> NETHER_APPLE = ITEMS.register("nether_apple", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE)));
+
+    public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.APPLE_PIE)));
+    public static final RegistryObject<Item> NETHER_APPLE_PIE = ITEMS.register("nether_apple_pie", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE_PIE)));
+    public static final RegistryObject<Item> SWEETBERRY_PIE = ITEMS.register("sweetberry_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SWEETBERRY_PIE)));
 
     // -- MATERIALS -- \\
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));

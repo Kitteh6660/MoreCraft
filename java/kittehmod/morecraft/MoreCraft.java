@@ -34,7 +34,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.2b2";
+    public static final String VERSION = "4.2b3";
     
     //public static Logger LOGGER = LogManager.getLogger(MODID);
     
@@ -67,6 +67,7 @@ public class MoreCraft
     	MinecraftForge.EVENT_BUS.register(new ModFeatures());
     	
     	ComposterBlock.CHANCES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
+    	ComposterBlock.CHANCES.put(ModItems.SWEETBERRY_PIE.get(), 1.0F);
     	ComposterBlock.CHANCES.put(ModItems.APPLE_PIE.get(), 1.0F);
     	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE.get(), 0.65F);
     	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE_PIE.get(), 1.0F);

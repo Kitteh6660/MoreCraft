@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "fish_stew",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "minecraft:cooked_cod"
+    },
+    {
+        "item": "minecraft:baked_potato"
+    },
+    {
+        "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "item": "morecraft:fish_stew"
+  }
+}

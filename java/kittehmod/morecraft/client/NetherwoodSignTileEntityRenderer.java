@@ -71,7 +71,7 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<ModSign
 
       for(int k1 = 0; k1 < 4; ++k1) {
          IReorderingProcessor ireorderingprocessor = tileEntityIn.getRenderText(k1, (p_243502_1_) -> {
-            List<IReorderingProcessor> list = fontrenderer.func_238425_b_(p_243502_1_, 90);
+            List<IReorderingProcessor> list = fontrenderer.trimStringToWidth(p_243502_1_, 90);
             return list.isEmpty() ? IReorderingProcessor.field_242232_a : list.get(0);
          });
          if (ireorderingprocessor != null) {

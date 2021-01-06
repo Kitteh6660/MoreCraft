@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "minecraft:crimson_fungus"
+    },
+    {
+        "item": "minecraft:warped_fungus"
+    },
+    {
+        "item": "minecraft:nether_wart"
+    }
+  ],
+  "result": {
+    "item": "morecraft:nethershroom_stew"
+  }
+}

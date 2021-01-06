@@ -71,8 +71,8 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 	}
 
 	@Override
-	public void func_230337_a_(BlockState state, CompoundNBT compound) {
-		super.func_230337_a_(state, compound);
+	public void read(BlockState state, CompoundNBT compound) {
+		super.read(state, compound);
 		this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 		if (!this.checkLootAndRead(compound)) {
 			ItemStackHelper.loadAllItems(compound, this.chestContents);
@@ -94,7 +94,7 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 		int j = this.pos.getY();
 		int k = this.pos.getZ();
 		++this.ticksSinceSync;
-		this.numPlayersUsing = func_213977_a(this.world, this, this.ticksSinceSync, i, j, k, this.numPlayersUsing);
+		this.numPlayersUsing = calculatePlayersUsingSync(this.world, this, this.ticksSinceSync, i, j, k, this.numPlayersUsing);
 		this.prevLidAngle = this.lidAngle;
 		float f = 0.1F;
 		if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F) {
@@ -125,15 +125,15 @@ public class NetherwoodChestTileEntity extends ChestTileEntity
 
 	}
 
-	public static int func_213977_a(World p_213977_0_, LockableTileEntity p_213977_1_, int p_213977_2_, int p_213977_3_, int p_213977_4_, int p_213977_5_, int p_213977_6_) {
+	public static int calculatePlayersUsingSync(World p_213977_0_, LockableTileEntity p_213977_1_, int p_213977_2_, int p_213977_3_, int p_213977_4_, int p_213977_5_, int p_213977_6_) {
 		if (!p_213977_0_.isRemote && p_213977_6_ != 0 && (p_213977_2_ + p_213977_3_ + p_213977_4_ + p_213977_5_) % 200 == 0) {
-			p_213977_6_ = func_213976_a(p_213977_0_, p_213977_1_, p_213977_3_, p_213977_4_, p_213977_5_);
+			p_213977_6_ = calculatePlayersUsing(p_213977_0_, p_213977_1_, p_213977_3_, p_213977_4_, p_213977_5_);
 		}
 
 		return p_213977_6_;
 	}
 
-	public static int func_213976_a(World p_213976_0_, LockableTileEntity p_213976_1_, int p_213976_2_, int p_213976_3_, int p_213976_4_) {
+	public static int calculatePlayersUsing(World p_213976_0_, LockableTileEntity p_213976_1_, int p_213976_2_, int p_213976_3_, int p_213976_4_) {
 		int i = 0;
 		float f = 5.0F;
 

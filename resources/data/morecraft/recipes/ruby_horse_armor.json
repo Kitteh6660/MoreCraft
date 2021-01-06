@@ -2,18 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "X X",
-    "X$X",
+    "X#X",
     "X X"
   ],
   "key": {
-    "X": {
-      "item": "morecraft:ruby"
-    },
-    "$": [
-    {
+    "#": {
       "item": "minecraft:leather"
+    },
+    "X": {
+      "tag": "forge:gems/ruby"
     }
-    ]
   },
   "result": {
     "item": "morecraft:ruby_horse_armor"

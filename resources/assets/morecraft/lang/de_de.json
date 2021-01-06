@@ -20,9 +20,11 @@
 "block.morecraft.netherwood_chest": "Netherholz Truhe",
 "block.morecraft.netherwood_trapped_chest": "Netherholz Redstone-Truhe",
 "block.morecraft.netherwood_crafting_table": "Netherholzswerkbank",
+"block.morecraft.netherwood_bookshelf": "Netherholzbücherregal",
 "block.morecraft.netherwood_sign": "Netherholzschild",
 "block.morecraft.netherwood_button": "Netherholzknopf",
 "block.morecraft.netherwood_pressure_plate": "Netherholzdruckplatte",
+"block.morecraft.netherwood_beehive": "Netherholzbienenstock",
 
 "block.morecraft.bedrock_brick": "Grundgesteinziegel",
 "block.morecraft.soul_glass": "Seelenglas",

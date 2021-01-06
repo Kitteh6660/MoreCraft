@@ -37,14 +37,17 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 {
 	//private boolean attemptNetherGen;
-
+	public static final int CHANCE_BARRENS = 2;
+	public static final int CHANCE_MODERATE = 6;
+	public static final int CHANCE_LUSH = 10;
+	
 	public NetherwoodTreeFeature(Codec<BaseTreeFeatureConfig> codecIn, boolean netherGenAttempt) {
 		super(codecIn);
 		//this.attemptNetherGen = netherGenAttempt;
 	}
 
-	public static boolean func_236410_c_(IWorldGenerationBaseReader p_236410_0_, BlockPos p_236410_1_) {
-		return canReplaceBlock(p_236410_0_, p_236410_1_) || p_236410_0_.hasBlockState(p_236410_1_, (p_236417_0_) -> { return p_236417_0_.func_235714_a_(BlockTags.LOGS); });
+	public static boolean func_236410_c_(IWorldGenerationBaseReader readerIn, BlockPos blockPosIn) {
+		return canReplaceBlock(readerIn, blockPosIn) || readerIn.hasBlockState(blockPosIn, (blockstate) -> { return blockstate.isIn(BlockTags.LOGS); });
 	}
 
 	private static boolean func_236414_e_(IWorldGenerationBaseReader p_236414_0_, BlockPos p_236414_1_) {
@@ -57,10 +60,10 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 
 	@SuppressWarnings("deprecation")
 	public static boolean isNonSolidBlock(IWorldGenerationBaseReader p_236412_0_, BlockPos p_236412_1_) {
-		return p_236412_0_.hasBlockState(p_236412_1_, (p_236411_0_) -> { return p_236411_0_.isAir() || p_236411_0_.func_235714_a_(BlockTags.LEAVES); });
+		return p_236412_0_.hasBlockState(p_236412_1_, (p_236411_0_) -> { return p_236411_0_.isAir() || p_236411_0_.isIn(BlockTags.LEAVES); });
 	}
 
-	private static boolean func_236418_g_(IWorldGenerationBaseReader p_236418_0_, BlockPos p_236418_1_) {
+	private static boolean isAllowedToGrowOn(IWorldGenerationBaseReader p_236418_0_, BlockPos p_236418_1_) {
 		return p_236418_0_.hasBlockState(p_236418_1_, (p_236409_0_) -> {
 			Block block = p_236409_0_.getBlock();
 			return NetherwoodSaplingBlock.ALLOWED_BLOCKS.contains(block);
@@ -81,67 +84,39 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 	public static boolean canReplaceBlock(IWorldGenerationBaseReader generationReader, BlockPos posIn) {
 		return isNonSolidBlock(generationReader, posIn) || isTallPlant(generationReader, posIn) || isFluid(generationReader, posIn);
 	}
-
+	
 	/**
 	 * Called when placing the tree feature.
 	 */
 	private boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
-		int i = configIn.field_236678_g_.func_236917_a_(rand);
-		int j = configIn.field_236677_f_.func_230374_a_(rand, i, configIn);
+		int i = configIn.trunkPlacer.func_236917_a_(rand);
+		int j = configIn.foliagePlacer.func_230374_a_(rand, i, configIn);
 		int k = i - j;
-		int l = configIn.field_236677_f_.func_230376_a_(rand, k);
+		int l = configIn.foliagePlacer.func_230376_a_(rand, k);
 		BlockPos blockpos = positionIn;
 		BlockState blockstate = null;
 		BlockState origstate = null;
 		if (!configIn.forcePlacement) {
 			//Reduce the frequency of Netherwood trees.
-			//15% frequency for Crimson & Warped Forests. Made complicated by the presence of corresponding fungus.
-			if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.field_235372_ml_ || block.getBlock() == Blocks.field_235381_mu_)) {
-				if (rand.nextInt(100) > 30) {
+			if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
+				origstate = generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM) ? Blocks.CRIMSON_NYLIUM.getDefaultState() : Blocks.WARPED_NYLIUM.getDefaultState();
+				if (rand.nextInt(100) >= CHANCE_LUSH) {
 					return false;
 				}
-				else {
-					origstate = generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.field_235372_ml_) ? Blocks.field_235372_ml_.getDefaultState() : Blocks.field_235381_mu_.getDefaultState();
-					generationReader.setBlockState(blockpos.down(), Blocks.field_235336_cN_.getDefaultState(), 19);
-				}
-				
 			}
-			//10% frequency for Soul Valley.
-			if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SAND || block.getBlock() == Blocks.field_235336_cN_)) {
-				if (rand.nextInt(100) > 10) {
+			else if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SAND || block.getBlock() == Blocks.SOUL_SOIL)) {
+				origstate = generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SAND) ? Blocks.SOUL_SAND.getDefaultState() : Blocks.SOUL_SOIL.getDefaultState();
+				if (rand.nextInt(100) >= CHANCE_MODERATE) {
 					return false;
 				}
-				else {
-					origstate = generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SAND) ? Blocks.SOUL_SAND.getDefaultState() : Blocks.field_235336_cN_.getDefaultState();
-				}
 			}
-			//10% frequency for generic Netherrack biomes.
-			if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
-				if (rand.nextInt(100) > 10) {
+			else if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
+				origstate = Blocks.NETHERRACK.getDefaultState();
+				if (rand.nextInt(100) >= CHANCE_BARRENS) {
 					return false;
 				}
-				else {
-					origstate = Blocks.NETHERRACK.getDefaultState();
-					generationReader.setBlockState(blockpos.down(), Blocks.SOUL_SAND.getDefaultState(), 19);
-				}
+				generationReader.setBlockState(blockpos.down(), Blocks.SOUL_SAND.getDefaultState(), 19);
 			}
-			//Leftover code from regular trees.
-			/*int i1 = generationReader.getHeight(Heightmap.Type.OCEAN_FLOOR, positionIn).getY();
-			int j1 = generationReader.getHeight(Heightmap.Type.WORLD_SURFACE, positionIn).getY();
-			if (j1 - i1 > configIn.field_236680_i_) {
-				return false;
-			}
-
-			int k1;
-			if (configIn.field_236682_l_ == Heightmap.Type.OCEAN_FLOOR) {
-				k1 = i1;
-			} else if (configIn.field_236682_l_ == Heightmap.Type.WORLD_SURFACE) {
-				k1 = j1;
-			} else {
-				k1 = generationReader.getHeight(configIn.field_236682_l_, positionIn).getY();
-			}
-
-			blockpos = new BlockPos(positionIn.getX(), k1, positionIn.getZ());*/
 		} else {
 			blockpos = positionIn;
 		}
@@ -149,24 +124,35 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SAND)) {
 			blockstate = Blocks.SOUL_SAND.getDefaultState();
 		}
-		if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.field_235336_cN_ || block.getBlock() == Blocks.field_235372_ml_ || block.getBlock() == Blocks.field_235381_mu_)) {
-			blockstate = Blocks.field_235336_cN_.getDefaultState();
+		else if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.SOUL_SOIL)) {
+			blockstate = Blocks.SOUL_SOIL.getDefaultState();
+		}
+		else if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM)) {
+			blockstate = Blocks.CRIMSON_NYLIUM.getDefaultState();
+		}
+		else if (generationReader.hasBlockState(blockpos.down(), (block) -> block.getBlock() == Blocks.WARPED_NYLIUM)) {
+			blockstate = Blocks.WARPED_NYLIUM.getDefaultState();
 		}
 		if (blockpos.getY() >= 1 && blockpos.getY() + i + 1 <= 256) {
-			if (!func_236418_g_(generationReader, blockpos.down())) {
+			if (!isAllowedToGrowOn(generationReader, blockpos.down())) {
+				if (origstate != null) {
+					generationReader.setBlockState(blockpos.down(), origstate, 19); //Revert the block.
+				}
 				return false;
 			} else {
-				OptionalInt optionalint = configIn.field_236679_h_.func_236710_c_();
+				OptionalInt optionalint = configIn.minimumSize.func_236710_c_();
 				int l1 = this.func_241521_a_(generationReader, i, blockpos, configIn);
 				if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
-					List<FoliagePlacer.Foliage> list = configIn.field_236678_g_.func_230382_a_(generationReader, rand, l1, blockpos, p_225557_4_, boundingBoxIn, configIn);
-					list.forEach((p_236407_8_) -> { configIn.field_236677_f_.func_236752_a_(generationReader, rand, configIn, l1, p_236407_8_, j, l, p_225557_5_, boundingBoxIn); });
+					List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.func_230382_a_(generationReader, rand, l1, blockpos, p_225557_4_, boundingBoxIn, configIn);
+					list.forEach((p_236407_8_) -> { configIn.foliagePlacer.func_236752_a_(generationReader, rand, configIn, l1, p_236407_8_, j, l, p_225557_5_, boundingBoxIn); });
 					if (blockstate != null) {
 						generationReader.setBlockState(blockpos.down(), blockstate, 19);
 					}
 					return true;
 				} else {
-					generationReader.setBlockState(blockpos.down(), origstate, 19); //Revert the block.
+					if (blockstate != null) {
+						generationReader.setBlockState(blockpos.down(), origstate, 19); //Revert the block.
+					}
 					return false;
 				}
 			}
@@ -179,12 +165,12 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
 		for (int i = 0; i <= p_241521_2_ + 1; ++i) {
-			int j = p_241521_4_.field_236679_h_.func_230369_a_(p_241521_2_, i);
+			int j = p_241521_4_.minimumSize.func_230369_a_(p_241521_2_, i);
 
 			for (int k = -j; k <= j; ++k) {
 				for (int l = -j; l <= j; ++l) {
-					blockpos$mutable.func_239621_a_(p_241521_3_, k, i, l);
-					if (!func_236410_c_(p_241521_1_, blockpos$mutable) || !p_241521_4_.field_236681_j_ && func_236414_e_(p_241521_1_, blockpos$mutable)) {
+					blockpos$mutable.setAndOffset(p_241521_3_, k, i, l);
+					if (!func_236410_c_(p_241521_1_, blockpos$mutable) || !p_241521_4_.ignoreVines && func_236414_e_(p_241521_1_, blockpos$mutable)) {
 						return i - 2;
 					}
 				}
@@ -194,7 +180,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		return p_241521_2_;
 	}
 
-	public final boolean func_241855_a(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, BaseTreeFeatureConfig p_241855_5_) {
+	public final boolean generate(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, BaseTreeFeatureConfig p_241855_5_) {
 		Set<BlockPos> set = Sets.newHashSet();
 		Set<BlockPos> set1 = Sets.newHashSet();
 		Set<BlockPos> set2 = Sets.newHashSet();
@@ -240,10 +226,10 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 			}
 
 			for (Direction direction : Direction.values()) {
-				blockpos$mutable.func_239622_a_(blockpos1, direction);
+				blockpos$mutable.setAndMove(blockpos1, direction);
 				if (!p_236403_3_.contains(blockpos$mutable)) {
 					BlockState blockstate = worldIn.getBlockState(blockpos$mutable);
-					if (blockstate.func_235901_b_(BlockStateProperties.DISTANCE_1_7)) {
+					if (blockstate.hasProperty(BlockStateProperties.DISTANCE_1_7)) {
 						list.get(0).add(blockpos$mutable.toImmutable());
 						setBlockStateAt(worldIn, blockpos$mutable, blockstate.with(BlockStateProperties.DISTANCE_1_7, Integer.valueOf(1)));
 						if (bbIn.isVecInside(blockpos$mutable)) {
@@ -264,10 +250,10 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 				}
 
 				for (Direction direction1 : Direction.values()) {
-					blockpos$mutable.func_239622_a_(blockpos2, direction1);
+					blockpos$mutable.setAndMove(blockpos2, direction1);
 					if (!set.contains(blockpos$mutable) && !set1.contains(blockpos$mutable)) {
 						BlockState blockstate1 = worldIn.getBlockState(blockpos$mutable);
-						if (blockstate1.func_235901_b_(BlockStateProperties.DISTANCE_1_7)) {
+						if (blockstate1.hasProperty(BlockStateProperties.DISTANCE_1_7)) {
 							int k = blockstate1.get(BlockStateProperties.DISTANCE_1_7);
 							if (k > l + 1) {
 								BlockState blockstate2 = blockstate1.with(BlockStateProperties.DISTANCE_1_7, Integer.valueOf(l + 1));
@@ -286,4 +272,5 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 
 		return voxelshapepart;
 	}
+	
 }

@@ -39,7 +39,7 @@ public class ModUpdateSignPacket {
 	
     public static class Handler {
     	
-	    public static void handle(final ModUpdateSignPacket message, Supplier<NetworkEvent.Context> context) {
+		public static void handle(final ModUpdateSignPacket message, Supplier<NetworkEvent.Context> context) {
 	    	context.get().enqueueWork(() -> {
 	    		World world;
 	    		TileEntity te;
@@ -53,6 +53,9 @@ public class ModUpdateSignPacket {
 		    			}
 		    			sign.setTextColor(DyeColor.byId(message.color));
 		    		}
+	    		}
+	    		if (context.get().getDirection() == NetworkDirection.PLAY_TO_CLIENT) {
+	    			//No code here!
 	    		}
 	        });
 	    	context.get().setPacketHandled(true);

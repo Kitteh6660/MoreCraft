@@ -15,10 +15,10 @@ public class MoreCraftConfig {
 	public static MoreCraftConfig config;
 	
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
-    private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
+    //private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 	
 	public static ForgeConfigSpec COMMON_CONFIG;
-	public static ForgeConfigSpec CLIENT_CONFIG;
+	//public static ForgeConfigSpec CLIENT_CONFIG;
 	
 	public static final String CATEGORY_GENERAL = "general";
 	//public static final String SUBCATEGORY_RECIPES = "recipes";
@@ -36,7 +36,7 @@ public class MoreCraftConfig {
 		initializeConfig();
 		
         COMMON_CONFIG = COMMON_BUILDER.build();
-        CLIENT_CONFIG = CLIENT_BUILDER.build();
+        //CLIENT_CONFIG = CLIENT_BUILDER.build();
 	}
 	
 	private static void initializeConfig()
@@ -74,8 +74,8 @@ public class MoreCraftConfig {
 		COMMON_BUILDER.push(SUBCATEGORY_GENERATION);
 
         generateNetherwoodTrees = COMMON_BUILDER
-                .comment("Netherwood Trees Frequency\n" + "Default: " + 16)
-                .defineInRange("netherwood_gen_freq", 16, 0, 50);
+                .comment("Netherwood Trees Frequency\n" + "Default: " + 12)
+                .defineInRange("netherwood_gen_freq", 12, 0, 50);
         
         COMMON_BUILDER.pop();
 	}

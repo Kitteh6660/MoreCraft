@@ -5,8 +5,6 @@ import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
-import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.ICommandSource;
@@ -64,14 +62,14 @@ public class ModSignTileEntity extends TileEntity
 	}
 
 	@Override
-	public void func_230337_a_(BlockState state, CompoundNBT compound) {
+	public void read(BlockState state, CompoundNBT compound) {
 		this.isEditable = false;
-		super.func_230337_a_(state, compound);
+		super.read(state, compound);
 		this.textColor = DyeColor.byTranslationKey(compound.getString("Color"), DyeColor.BLACK);
 
 		for (int i = 0; i < 4; ++i) {
 			String s = compound.getString("Text" + (i + 1));
-			ITextComponent itextcomponent = ITextComponent.Serializer.func_240643_a_(s.isEmpty() ? "\"\"" : s);
+			ITextComponent itextcomponent = ITextComponent.Serializer.getComponentFromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.world instanceof ServerWorld) {
 				try {
 					this.signText[i] = TextComponentUtils.func_240645_a_(this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
@@ -127,11 +125,18 @@ public class ModSignTileEntity extends TileEntity
 	public CompoundNBT getUpdateTag() {
 		return this.write(new CompoundNBT());
 	}
+	
+	@Override
+	public void handleUpdateTag(BlockState state, CompoundNBT compound) {
+		this.read(state, compound);
+	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 		// Handle your Data
-		MorecraftPacketHandler.sendToServerSync(new ModUpdateTileEntityPacket(this.pos, this.getUpdateTag()));
+		BlockState blockState = world.getBlockState(pos);
+		this.read(blockState, pkt.getNbtCompound());
+		//MorecraftPacketHandler.sendToServerSync(new ModUpdateTileEntityPacket(this.pos, this.getUpdateTag()));
 	}
 
 	/**
@@ -205,20 +210,14 @@ public class ModSignTileEntity extends TileEntity
 
 	public boolean setTextColor(DyeColor newColor) {
 		if (newColor != this.getTextColor()) {
-			//MoreCraft.LOGGER.debug("Attempting to set colour to " + newColor);
 			this.textColor = newColor;
 			this.markDirty();
-			this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+			this.world.notifyBlockUpdate(this.getPos(), this.world.getBlockState(this.getPos()), this.getBlockState(), 3);
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-			/*ModUpdateSignPacket msg1 = new ModUpdateSignPacket(pos, this.signText[0], this.signText[1], this.signText[2], this.signText[3], newColor.getId());
-			MorecraftPacketHandler.sendToServerSync(msg1);
-			ModUpdateTileEntityPacket msg2 = new ModUpdateTileEntityPacket(this.getPos(), this.write(this.getUpdateTag()));
-			MorecraftPacketHandler.sendToServerSync(msg2);*/
 
 	@OnlyIn(Dist.CLIENT)
 	public void func_214062_a(int p_214062_1_, int p_214062_2_, int p_214062_3_, boolean p_214062_4_) {

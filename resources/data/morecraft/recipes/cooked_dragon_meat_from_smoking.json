@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "morecraft:raw_dragon_meat"
+  },
+  "result": "morecraft:cooked_dragon_meat",
+  "experience": 1.0,
+  "cookingtime": 100
+}

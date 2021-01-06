@@ -27,4 +27,5 @@ public class ModEditSignHandler {
     	ModEditSignScreen gui = new ModEditSignScreen((ModSignTileEntity)tileEntity);
 		minecraft.displayGuiScreen(gui);
 	}
+
 }

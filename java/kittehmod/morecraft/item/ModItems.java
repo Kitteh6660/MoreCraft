@@ -3,6 +3,7 @@ package kittehmod.morecraft.item;
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.client.ModItemStackTileEntityRenderer;
+import kittehmod.morecraft.entity.CraftingTableMinecartEntity;
 import kittehmod.morecraft.entity.NetherBoatEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
@@ -10,6 +11,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.SoupItem;
 import net.minecraft.item.TallBlockItem;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,6 +26,15 @@ public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreCraft.MODID);
 	
 	// -- BLOCKS -- \\
+	public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE = ITEMS.register("spruce_crafting_table", () -> new BlockItem(ModBlocks.SPRUCE_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE = ITEMS.register("birch_crafting_table", () -> new BlockItem(ModBlocks.BIRCH_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE = ITEMS.register("jungle_crafting_table", () -> new BlockItem(ModBlocks.JUNGLE_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE = ITEMS.register("acacia_crafting_table", () -> new BlockItem(ModBlocks.ACACIA_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE = ITEMS.register("dark_oak_crafting_table", () -> new BlockItem(ModBlocks.DARK_OAK_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE = ITEMS.register("crimson_crafting_table", () -> new BlockItem(ModBlocks.CRIMSON_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> WARPED_CRAFTING_TABLE = ITEMS.register("warped_crafting_table", () -> new BlockItem(ModBlocks.WARPED_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new BlockItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+
 	public static final RegistryObject<Item> NETHERWOOD_LOG = ITEMS.register("netherwood_log", () -> new BlockItem(ModBlocks.NETHERWOOD_LOG.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> STRIPPED_NETHERWOOD_LOG = ITEMS.register("stripped_netherwood_log", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_LOG.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> NETHERWOOD_WOOD = ITEMS.register("netherwood_wood", () -> new BlockItem(ModBlocks.NETHERWOOD_WOOD.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
@@ -35,12 +46,13 @@ public class ModItems {
 	public static final RegistryObject<Item> NETHERWOOD_SLAB = ITEMS.register("netherwood_slab", () -> new BlockItem(ModBlocks.NETHERWOOD_SLAB.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> NETHERWOOD_SIGN = ITEMS.register("netherwood_sign", () -> new ModSignItem((new Item.Properties()).maxStackSize(16).group(ItemGroup.DECORATIONS), ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()));
 	public static final RegistryObject<Item> NETHERWOOD_FENCE = ITEMS.register("netherwood_fence", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
-	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new BlockItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> NETHERWOOD_BOOKSHELF = ITEMS.register("netherwood_bookshelf", () -> new BlockItem(ModBlocks.NETHERWOOD_BOOKSHELF.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> NETHERWOOD_CHEST = ITEMS.register("netherwood_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST.get(), new Item.Properties().group(ItemGroup.DECORATIONS).setISTER(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> NETHERWOOD_TRAPPED_CHEST = ITEMS.register("netherwood_trapped_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST_TRAPPED.get(), new Item.Properties().group(ItemGroup.REDSTONE).setISTER(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> NETHERWOOD_BUTTON = ITEMS.register("netherwood_button", () -> new BlockItem(ModBlocks.NETHERWOOD_BUTTON.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
 	public static final RegistryObject<Item> NETHERWOOD_PRESSURE_PLATE = ITEMS.register("netherwood_pressure_plate", () -> new BlockItem(ModBlocks.NETHERWOOD_PRESSURE_PLATE.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
-
+	public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties()));
+	
 	public static final RegistryObject<Item> RUBY_ORE = ITEMS.register("ruby_ore", () -> new BlockItem(ModBlocks.RUBY_ORE.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
 	public static final RegistryObject<Item> FLESH_BLOCK = ITEMS.register("flesh_block", () -> new BlockItem(ModBlocks.FLESH_BLOCK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
@@ -55,6 +67,7 @@ public class ModItems {
 	public static final RegistryObject<Item> BONE_LADDER = ITEMS.register("bone_ladder", () -> new BlockItem(ModBlocks.BONE_LADDER.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_TORCH = ITEMS.register("glowstone_torch", () -> new WallOrFloorItem(ModBlocks.GLOWSTONE_TORCH.get(), ModBlocks.WALL_GLOWSTONE_TORCH.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_LANTERN = ITEMS.register("glowstone_lantern", () -> new BlockItem(ModBlocks.GLOWSTONE_LANTERN.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> KILN = ITEMS.register("kiln", () -> new BlockItem(ModBlocks.KILN.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
 	//Not currently available in creative tabs or obtainable due to bugs.
@@ -67,7 +80,7 @@ public class ModItems {
 	// -- DOORS -- \\
     public static final RegistryObject<Item> NETHERBRICK_DOOR = ITEMS.register("netherbrick_door", () -> new TallBlockItem(ModBlocks.NETHERBRICK_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE)));
     public static final RegistryObject<Item> NETHERWOOD_DOOR = ITEMS.register("netherwood_door", () -> new TallBlockItem(ModBlocks.NETHERWOOD_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE)));
-    public static final RegistryObject<Item> NETHERITE_DOOR = ITEMS.register("netherite_door", () -> new TallBlockItem(ModBlocks.NETHERITE_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE).func_234689_a_()));
+    public static final RegistryObject<Item> NETHERITE_DOOR = ITEMS.register("netherite_door", () -> new TallBlockItem(ModBlocks.NETHERITE_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE).isImmuneToFire()));
 	public static final RegistryObject<Item> GLASS_DOOR = ITEMS.register("glass_door", () -> new TallBlockItem(ModBlocks.GLASS_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE)));
     public static final RegistryObject<Item> BONE_DOOR = ITEMS.register("bone_door", () -> new TallBlockItem(ModBlocks.BONE_DOOR.get(), (new Item.Properties()).group(ItemGroup.REDSTONE)));
 	
@@ -75,7 +88,7 @@ public class ModItems {
 	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
 
 	public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
-	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().group(ItemGroup.REDSTONE).func_234689_a_()));
+	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().group(ItemGroup.REDSTONE).isImmuneToFire()));
 	
 	// -- FOOD -- \\
     public static final RegistryObject<Item> COOKED_FLESH = ITEMS.register("cooked_flesh", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COOKED_FLESH)));
@@ -85,7 +98,23 @@ public class ModItems {
     public static final RegistryObject<Item> COOKED_SQUID = ITEMS.register("cooked_squid", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SQUID_COOKED)));
     public static final RegistryObject<Item> RAW_GUARDIAN_MEAT = ITEMS.register("raw_guardian_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_MEAT_RAW)));
     public static final RegistryObject<Item> COOKED_GUARDIAN_MEAT = ITEMS.register("cooked_guardian_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_MEAT_COOKED)));
+    //public static final RegistryObject<Item> RAW_DRAGON_MEAT = ITEMS.register("raw_dragon_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.DRAGON_MEAT_RAW).rarity(Rarity.UNCOMMON)));
+    //public static final RegistryObject<Item> COOKED_DRAGON_MEAT = ITEMS.register("cooked_dragon_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.DRAGON_MEAT_COOKED).rarity(Rarity.UNCOMMON)));
 
+    public static final RegistryObject<Item> BEEF_STEW = ITEMS.register("beef_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.BEEF_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> PORK_STEW = ITEMS.register("pork_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.PORK_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> MUTTON_STEW = ITEMS.register("mutton_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.MUTTON_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> CHICKEN_STEW = ITEMS.register("chicken_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.CHICKEN_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> SPIDER_STEW = ITEMS.register("spider_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SPIDER_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> FISH_STEW = ITEMS.register("fish_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.FISH_STEW).maxStackSize(1)));
+    //public static final RegistryObject<Item> GUARDIAN_STEW = ITEMS.register("guardian_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_STEW).maxStackSize(1)));
+    //public static final RegistryObject<Item> DRAGON_STEW = ITEMS.register("dragon_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.DRAGON_STEW).maxStackSize(1).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> NETHERSHROOM_STEW = ITEMS.register("nethershroom_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHERSHROOM_STEW).maxStackSize(1)));
+
+    //public static final RegistryObject<Item> COD_SUSHI = ITEMS.register("cod_sushi", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COD_SUSHI).maxStackSize(1)));
+    //public static final RegistryObject<Item> SALMON_SUSHI = ITEMS.register("salmon_sushi", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SALMON_SUSHI).maxStackSize(1)));
+    //public static final RegistryObject<Item> SQUID_SUSHI = ITEMS.register("squid_sushi", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SQUID_SUSHI).maxStackSize(1)));
+    
     public static final RegistryObject<Item> COOKED_EGG = ITEMS.register("cooked_egg", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COOKED_EGG)));
     public static final RegistryObject<Item> CAKE_SLICE = ITEMS.register("cake_slice", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.CAKE_SLICE)));
     public static final RegistryObject<Item> NETHER_APPLE = ITEMS.register("nether_apple", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE)));
@@ -98,19 +127,30 @@ public class ModItems {
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> WITHER_BONE = ITEMS.register("wither_bone", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> WITHER_BONE_MEAL = ITEMS.register("wither_bone_meal", () -> new WitherBonemealItem(new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> GUARDIAN_SCALES = ITEMS.register("guardian_scales", () -> new Item(new Item.Properties().group(ItemGroup.BREWING)));
+    public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().group(ItemGroup.BREWING)));
     
-	// -- BOAT ITEMS -- \\
-    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).func_234689_a_(), NetherBoatEntity.Type.NETHERWOOD));
-    public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).func_234689_a_(), NetherBoatEntity.Type.WARPED));
-    public static final RegistryObject<Item> CRIMSON_BOAT = ITEMS.register("crimson_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).func_234689_a_(), NetherBoatEntity.Type.CRIMSON));
-    
+	// -- TRANSPORTATION ITEMS -- \\
+    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).isImmuneToFire(), NetherBoatEntity.Type.NETHERWOOD));
+    public static final RegistryObject<Item> CRIMSON_BOAT = ITEMS.register("crimson_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).isImmuneToFire(), NetherBoatEntity.Type.CRIMSON));
+    public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1).isImmuneToFire(), NetherBoatEntity.Type.WARPED));
+
+    public static final RegistryObject<Item> OAK_CRAFTING_TABLE_MINECART = ITEMS.register("oak_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.OAK));
+    public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE_MINECART = ITEMS.register("spruce_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.SPRUCE));
+    public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE_MINECART = ITEMS.register("birch_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.BIRCH));
+    public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE_MINECART = ITEMS.register("jungle_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.JUNGLE));
+    public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE_MINECART = ITEMS.register("acacia_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.ACACIA));
+    public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE_MINECART = ITEMS.register("dark_oak_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.DARK_OAK));
+    public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE_MINECART = ITEMS.register("crimson_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.CRIMSON));
+    public static final RegistryObject<Item> WARPED_CRAFTING_TABLE_MINECART = ITEMS.register("warped_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.WARPED));
+    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1), CraftingTableMinecartEntity.CraftingTableType.NETHERWOOD));
+
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> BONE_HORSE_ARMOR = ITEMS.register("bone_horse_armor", () -> new ModHorseArmorItem(4, "bone", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> EMERALD_HORSE_ARMOR = ITEMS.register("emerald_horse_armor", () -> new ModHorseArmorItem(10, "emerald", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> RUBY_HORSE_ARMOR = ITEMS.register("ruby_horse_armor", () -> new ModHorseArmorItem(8, "ruby", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> OBSIDIAN_HORSE_ARMOR = ITEMS.register("obsidian_horse_armor", () -> new ModHorseArmorItem(9, "obsidian", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new ModHorseArmorItem(12, "netherite", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).func_234689_a_()));
+    public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new ModHorseArmorItem(12, "netherite", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).isImmuneToFire()));
 
 	// -- TOOLS, WEAPONS, ARMOUR -- \\
     public static final RegistryObject<Item> SLIME_HELMET = ITEMS.register("slime_helmet", () -> new ModArmorItem(ModArmorMaterial.SLIME, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));

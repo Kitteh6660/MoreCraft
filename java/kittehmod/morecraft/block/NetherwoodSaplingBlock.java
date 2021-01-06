@@ -23,7 +23,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 {
-	public static final Set<Block> ALLOWED_BLOCKS = ImmutableSet.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.FARMLAND, Blocks.SOUL_SAND, Blocks.field_235336_cN_); 
+	public static final Set<Block> ALLOWED_BLOCKS = ImmutableSet.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.FARMLAND, Blocks.SOUL_SAND, Blocks.SOUL_SOIL, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM); 
 	
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
@@ -49,17 +49,17 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if (worldIn.getLight(pos.up()) >= 0 && random.nextInt(7) == 0) {
 			if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-			this.func_226942_a_(worldIn, pos, state, random);
+			this.placeTree(worldIn, pos, state, random);
 		}
 	}
 
 	@Override
-	public void func_226942_a_(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
+	public void placeTree(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
 		if (state.get(STAGE) == 0) {
 			worldIn.setBlockState(pos, state.func_235896_a_(STAGE), 4);
 		} else {
 			if (!net.minecraftforge.event.ForgeEventFactory.saplingGrowTree(worldIn, rand, pos)) return;
-			this.tree.func_230339_a_(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
+			this.tree.attemptGrowTree(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, state, rand);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class NetherwoodSaplingBlock extends SaplingBlock implements IGrowable
 	}
 	
 	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		this.func_226942_a_(worldIn, pos, state, rand);
+		this.placeTree(worldIn, pos, state, rand);
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

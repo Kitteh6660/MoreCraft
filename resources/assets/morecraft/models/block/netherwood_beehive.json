@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "top": "morecraft:blocks/netherwood_beehive_end",
+    "bottom": "morecraft:blocks/netherwood_beehive_end",
+    "side": "morecraft:blocks/netherwood_beehive_side",
+    "front": "morecraft:blocks/netherwood_beehive_front",
+    "particle": "morecraft:blocks/netherwood_beehive_side"
+  }
+}

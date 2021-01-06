@@ -49,19 +49,19 @@ public class ModEditSignScreen extends Screen
 	}
 
 	@Override
-	protected void func_231160_c_() {
-		this.field_230706_i_.keyboardListener.enableRepeatEvents(true);
-		this.func_230480_a_(new Button(this.field_230708_k_ / 2 - 100, this.field_230709_l_ / 4 + 120, 200, 20, DialogTexts.field_240632_c_, (p_238847_1_) -> { this.close(); }));
+	protected void init() {
+		this.minecraft.keyboardListener.enableRepeatEvents(true);
+		this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 120, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> { this.close(); }));
 		this.tileSign.setEditable(false);
 		this.textInputUtil = new TextInputUtil(() -> { return this.signLines[this.editLine]; }, (p_238850_1_) -> {
 			this.signLines[this.editLine] = p_238850_1_;
 			this.tileSign.setText(this.editLine, new StringTextComponent(p_238850_1_));
-		}, TextInputUtil.func_238570_a_(this.field_230706_i_), TextInputUtil.func_238582_c_(this.field_230706_i_), (p_238848_1_) -> { return this.field_230706_i_.fontRenderer.getStringWidth(p_238848_1_) <= 90; });
+		}, TextInputUtil.getClipboardTextSupplier(this.minecraft), TextInputUtil.getClipboardTextSetter(this.minecraft), (p_238848_1_) -> { return this.minecraft.fontRenderer.getStringWidth(p_238848_1_) <= 90; });
 	}
 
-	public void func_231164_f_() { // Removed
-		this.field_230706_i_.keyboardListener.enableRepeatEvents(false);
-		ClientPlayNetHandler clientplaynethandler = this.field_230706_i_.getConnection();
+	public void onClose() { // Removed
+		this.minecraft.keyboardListener.enableRepeatEvents(false);
+		ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
 		if (clientplaynethandler != null) {
 			ModUpdateSignPacket msg1 = new ModUpdateSignPacket(this.tileSign.getPos(), this.tileSign.getText(0), this.tileSign.getText(1), this.tileSign.getText(2), this.tileSign.getText(3), this.tileSign.getTextColor().getId());
 			MorecraftPacketHandler.sendToServer(msg1);
@@ -71,7 +71,7 @@ public class ModEditSignScreen extends Screen
 		this.tileSign.setEditable(true);
 	}
 
-	public void func_231023_e_() { // Tick
+	public void tick() { // Tick
 		++this.updateCounter;
 		if (!this.tileSign.getType().isValidBlock(this.tileSign.getBlockState().getBlock())) {
 			this.close();
@@ -80,83 +80,83 @@ public class ModEditSignScreen extends Screen
 
 	private void close() {
 		this.tileSign.markDirty();
-		this.field_230706_i_.displayGuiScreen((Screen) null);
+		this.minecraft.displayGuiScreen((Screen) null);
 	}
 
-	public boolean func_231042_a_(char p_charTyped_1_, int p_charTyped_2_) { // CharTyped
-		this.textInputUtil.func_216894_a(p_charTyped_1_);
+	public boolean charTyped(char codePoint, int modifiers) {
+		this.textInputUtil.putChar(codePoint);
 		return true;
 	}
 
-	public void func_231175_as__() { // OnClose
+	public void closeScreen() {
 		this.close();
 	}
 
-	public boolean func_231046_a_(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_) { // KeyPressed
-		if (p_keyPressed_1_ == 265) {
+	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+		if (keyCode == 265) {
 			this.editLine = this.editLine - 1 & 3;
-			this.textInputUtil.func_238588_f_();
+			this.textInputUtil.moveCursorToEnd();
 			return true;
-		} else if (p_keyPressed_1_ != 264 && p_keyPressed_1_ != 257 && p_keyPressed_1_ != 335) {
-			return this.textInputUtil.func_216897_a(p_keyPressed_1_) ? true : super.func_231046_a_(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
+		} else if (keyCode != 264 && keyCode != 257 && keyCode != 335) {
+			return this.textInputUtil.specialKeyPressed(keyCode) ? true : super.keyPressed(keyCode, scanCode, modifiers);
 		} else {
 			this.editLine = this.editLine + 1 & 3;
-			this.textInputUtil.func_238588_f_();
+			this.textInputUtil.moveCursorToEnd();
 			return true;
 		}
 	}
 
-	public void func_230430_a_(MatrixStack matrixStackIn, int p_render_1_, int p_render_2_, float p_render_3_) { // Render
+	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) { // Render
 		RenderHelper.setupGuiFlatDiffuseLighting();
-		this.func_230446_a_(matrixStackIn);
-		ModEditSignScreen.func_238472_a_(matrixStackIn, this.field_230712_o_, this.field_230704_d_, this.field_230708_k_ / 2, 40, 16777215);
-		matrixStackIn.push();
-		matrixStackIn.translate((double) (this.field_230708_k_ / 2), 0.0D, 50.0D);
+		this.renderBackground(matrixStack);
+		ModEditSignScreen.drawCenteredString(matrixStack, this.font, this.title, this.width / 2, 40, 16777215);
+		matrixStack.push();
+		matrixStack.translate((double) (this.width / 2), 0.0D, 50.0D);
 		float f = 93.75F;
-		matrixStackIn.scale(f, -f, f);
-		matrixStackIn.translate(0.0D, -1.3125D, 0.0D);
+		matrixStack.scale(f, -f, f);
+		matrixStack.translate(0.0D, -1.3125D, 0.0D);
 		BlockState blockstate = this.tileSign.getBlockState();
 		boolean flag = blockstate.getBlock() instanceof ModStandingSignBlock;
 		if (!flag) {
-			matrixStackIn.translate(0.0D, -0.3125D, 0.0D);
+			matrixStack.translate(0.0D, -0.3125D, 0.0D);
 		}
 
 		boolean flag1 = this.updateCounter / 6 % 2 == 0;
 		float f1 = 0.6666667F;
-		matrixStackIn.push();
-		matrixStackIn.scale(f1, -f1, -f1);
-		IRenderTypeBuffer.Impl irendertypebuffer$impl = this.field_230706_i_.getRenderTypeBuffers().getBufferSource();
+		matrixStack.push();
+		matrixStack.scale(f1, -f1, -f1);
+		IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.getRenderTypeBuffers().getBufferSource();
 		RenderMaterial rendermaterial = NetherwoodSignTileEntityRenderer.getMaterial(blockstate.getBlock());
 		IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(irendertypebuffer$impl, this.signModel::getRenderType);
-		this.signModel.signBoard.render(matrixStackIn, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);
+		this.signModel.signBoard.render(matrixStack, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);
 		if (flag) {
-			this.signModel.signStick.render(matrixStackIn, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);
+			this.signModel.signStick.render(matrixStack, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);
 		}
 
-		matrixStackIn.pop();
+		matrixStack.pop();
 		float f2 = 0.010416667F;
-		matrixStackIn.translate(0.0D, (double) 0.33333334F, (double) 0.046666667F);
-		matrixStackIn.scale(f2, -f2, f2);
+		matrixStack.translate(0.0D, (double) 0.33333334F, (double) 0.046666667F);
+		matrixStack.scale(f2, -f2, f2);
 		int i = this.tileSign.getTextColor().getTextColor();
-		int j = this.textInputUtil.func_216896_c();
-		int k = this.textInputUtil.func_216898_d();
+		int j = this.textInputUtil.getEndIndex();
+		int k = this.textInputUtil.getStartIndex();
 		int l = this.editLine * 10 - this.signLines.length * 5;
-		Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
+		Matrix4f matrix4f = matrixStack.getLast().getMatrix();
 
 		for (int i1 = 0; i1 < this.signLines.length; ++i1) {
 			String s = this.signLines[i1];
 			if (s != null) {
-				if (this.field_230712_o_.getBidiFlag()) {
-					s = this.field_230712_o_.bidiReorder(s);
+				if (this.font.getBidiFlag()) {
+					s = this.font.bidiReorder(s);
 				}
 
-				float f3 = (float) (-this.field_230706_i_.fontRenderer.getStringWidth(s) / 2);
-				this.field_230706_i_.fontRenderer.func_238411_a_(s, f3, (float) (i1 * 10 - this.signLines.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+				float f3 = (float) (-this.minecraft.fontRenderer.getStringWidth(s) / 2);
+				this.minecraft.fontRenderer.func_238411_a_(s, f3, (float) (i1 * 10 - this.signLines.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
 				if (i1 == this.editLine && j >= 0 && flag1) {
-					int j1 = this.field_230706_i_.fontRenderer.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
-					int k1 = j1 - this.field_230706_i_.fontRenderer.getStringWidth(s) / 2;
+					int j1 = this.minecraft.fontRenderer.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
+					int k1 = j1 - this.minecraft.fontRenderer.getStringWidth(s) / 2;
 					if (j >= s.length()) {
-						this.field_230706_i_.fontRenderer.func_238411_a_("_", (float) k1, (float) l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+						this.minecraft.fontRenderer.func_238411_a_("_", (float) k1, (float) l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
 					}
 				}
 			}
@@ -167,17 +167,17 @@ public class ModEditSignScreen extends Screen
 		for (int i3 = 0; i3 < this.signLines.length; ++i3) {
 			String s1 = this.signLines[i3];
 			if (s1 != null && i3 == this.editLine && j >= 0) {
-				int j3 = this.field_230706_i_.fontRenderer.getStringWidth(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
-				int k3 = j3 - this.field_230706_i_.fontRenderer.getStringWidth(s1) / 2;
+				int j3 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
+				int k3 = j3 - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
 				if (flag1 && j < s1.length()) {
-					func_238467_a_(matrixStackIn, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
+					fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
 				}
 
 				if (k != j) {
 					int l3 = Math.min(j, k);
 					int l1 = Math.max(j, k);
-					int i2 = this.field_230706_i_.fontRenderer.getStringWidth(s1.substring(0, l3)) - this.field_230706_i_.fontRenderer.getStringWidth(s1) / 2;
-					int j2 = this.field_230706_i_.fontRenderer.getStringWidth(s1.substring(0, l1)) - this.field_230706_i_.fontRenderer.getStringWidth(s1) / 2;
+					int i2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l3)) - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
+					int j2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l1)) - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
 					int k2 = Math.min(i2, j2);
 					int l2 = Math.max(i2, j2);
 					Tessellator tessellator = Tessellator.getInstance();
@@ -198,8 +198,8 @@ public class ModEditSignScreen extends Screen
 			}
 		}
 
-		matrixStackIn.pop();
+		matrixStack.pop();
 		RenderHelper.setupGui3DDiffuseLighting();
-		super.func_230430_a_(matrixStackIn, p_render_1_, p_render_2_, p_render_3_);
+		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}
 }

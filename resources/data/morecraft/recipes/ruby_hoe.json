@@ -10,7 +10,7 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "item": "morecraft:ruby"
+      "tag": "forge:gems/ruby"
     }
   },
   "result": {

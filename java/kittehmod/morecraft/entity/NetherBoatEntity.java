@@ -620,9 +620,15 @@ public class NetherBoatEntity extends BoatEntity
 			if (this.status == NetherBoatEntity.Status.IN_WATER) {
 				d2 = (this.waterLevel - this.getPosY()) / (double) this.getHeight();
 				this.momentum = 0.9F;
+				if (this.isInLava()) {
+					this.momentum *= 0.6; //Decrease speed in lava.
+				}
 			} else if (this.status == NetherBoatEntity.Status.UNDER_FLOWING_WATER) {
 				d1 = -7.0E-4D;
 				this.momentum = 0.9F;
+				if (this.isInLava()) {
+					this.momentum *= 0.6; //Decrease speed in lava.
+				}
 			} else if (this.status == NetherBoatEntity.Status.UNDER_WATER) {
 				d2 = (double) 0.01F;
 				this.momentum = 0.45F;
@@ -637,7 +643,12 @@ public class NetherBoatEntity extends BoatEntity
 
 			Vector3d vec3d = this.getMotion();
 			this.setMotion(vec3d.x * (double) this.momentum, vec3d.y + d1, vec3d.z * (double) this.momentum);
-			this.deltaRotation *= this.momentum;
+			if (this.isInLava()) {
+				this.deltaRotation *= (this.momentum / 0.6);
+			}
+			else {
+				this.deltaRotation *= this.momentum;
+			}
 			if (d2 > 0.0D) {
 				Vector3d vec3d1 = this.getMotion();
 				this.setMotion(vec3d1.x, (vec3d1.y + d2 * 0.06153846016296973D) * 0.75D, vec3d1.z);
@@ -783,7 +794,7 @@ public class NetherBoatEntity extends BoatEntity
 				}
 
 				this.fallDistance = 0.0F;
-			} else if (!this.world.getFluidState(this.func_233580_cy_().down()).isTagged(FluidTags.WATER) && y < 0.0D) {
+			} else if (!this.world.getFluidState(this.getPosition().down()).isTagged(FluidTags.WATER) && y < 0.0D) {
 				this.fallDistance = (float) ((double) this.fallDistance - y);
 			}
 
@@ -901,7 +912,7 @@ public class NetherBoatEntity extends BoatEntity
 
 	public static enum Type
 	{
-		NETHERWOOD(ModBlocks.NETHERWOOD_PLANKS.get(), "netherwood"), WARPED(Blocks.field_235345_mD_, "warped"), CRIMSON(Blocks.field_235344_mC_, "crimson");
+		NETHERWOOD(ModBlocks.NETHERWOOD_PLANKS.get(), "netherwood"), WARPED(Blocks.WARPED_PLANKS, "warped"), CRIMSON(Blocks.CRIMSON_PLANKS, "crimson");
 
 		private final String name;
 		private final Block block;

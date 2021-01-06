@@ -29,7 +29,7 @@ public class ModSignGUIPacket {
     		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
     			//GUI is client-side only.
     		}
-    		else {
+    		else if (context.get().getDirection() == NetworkDirection.PLAY_TO_CLIENT) {
     			ModEditSignHandler.deliverPacket(message.pos, context);
     		}
     		

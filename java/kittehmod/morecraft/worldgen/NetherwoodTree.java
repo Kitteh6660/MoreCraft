@@ -26,14 +26,14 @@ public class NetherwoodTree extends Tree {
 	}
 
 	@Override
-	public boolean func_230339_a_(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
-		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getTreeFeature(randomIn, this.func_230140_a_(worldIn, blockPosIn));
+	public boolean attemptGrowTree(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
+		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getTreeFeature(randomIn, this.hasNearbyFlora(worldIn, blockPosIn));
 		if (configuredfeature == null) {
 			return false;
 		} else {
 			worldIn.setBlockState(blockPosIn, Blocks.AIR.getDefaultState(), 4);
 			configuredfeature.config.forcePlacement();
-			if (configuredfeature.func_242765_a(worldIn, generatorIn, randomIn, blockPosIn)) {
+			if (configuredfeature.generate(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;
 			} else {
 				worldIn.setBlockState(blockPosIn, blockStateIn, 4);
@@ -42,9 +42,9 @@ public class NetherwoodTree extends Tree {
 		}
 	}
 
-	private boolean func_230140_a_(IWorld p_230140_1_, BlockPos p_230140_2_) {
-		for (BlockPos blockpos : BlockPos.Mutable.getAllInBoxMutable(p_230140_2_.down().north(2).west(2), p_230140_2_.up().south(2).east(2))) {
-			if (p_230140_1_.getBlockState(blockpos).func_235714_a_(BlockTags.FLOWERS)) {
+	private boolean hasNearbyFlora(IWorld worldIn, BlockPos blockPosIn) {
+		for (BlockPos blockpos : BlockPos.Mutable.getAllInBoxMutable(blockPosIn.down().north(2).west(2), blockPosIn.up().south(2).east(2))) {
+			if (worldIn.getBlockState(blockpos).isIn(BlockTags.FLOWERS)) {
 				return true;
 			}
 		}

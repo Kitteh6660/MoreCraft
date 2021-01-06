@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "minecart_with_crafting_table",
+  "pattern": [
+    "X",
+    "#"
+  ],
+  "key": {
+    "X": {
+      "item": "morecraft:netherwood_crafting_table"
+    },
+    "#": {
+      "item": "minecraft:minecart"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_crafting_table_minecart",
+    "count": 1
+  }
+}

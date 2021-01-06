@@ -64,10 +64,10 @@ public class ModStandingSignBlock extends StandingSignBlock
 
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
 		if (worldIn.isRemote) {
 			return ActionResultType.SUCCESS;
 		} else {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
 			if (tileentity instanceof ModSignTileEntity) {
 				ModSignTileEntity signtileentity = (ModSignTileEntity)tileentity;
 				ItemStack itemstack = player.getHeldItem(handIn);
@@ -77,7 +77,6 @@ public class ModStandingSignBlock extends StandingSignBlock
 						itemstack.shrink(1);
 					}
 				}
-
 				return signtileentity.executeCommand(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
 			} else {
 				return ActionResultType.PASS;

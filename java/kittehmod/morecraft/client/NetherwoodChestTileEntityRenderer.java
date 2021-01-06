@@ -78,7 +78,7 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	      BlockState blockstate = flag ? tileEntityIn.getBlockState() : ModBlocks.NETHERWOOD_CHEST.get().getDefaultState().with(NetherwoodChestBlock.FACING, Direction.SOUTH);
 	      Block block = blockstate.getBlock();
 	      if (block instanceof NetherwoodChestBlock) {
-		      ChestType chesttype = blockstate.func_235901_b_(NetherwoodChestBlock.TYPE) ? blockstate.get(NetherwoodChestBlock.TYPE) : ChestType.SINGLE;
+		      ChestType chesttype = blockstate.hasProperty(NetherwoodChestBlock.TYPE) ? blockstate.get(NetherwoodChestBlock.TYPE) : ChestType.SINGLE;
 	    	  NetherwoodChestBlock abstractchestblock = (NetherwoodChestBlock)block;
 	    	  boolean flag1 = chesttype != ChestType.SINGLE;
 	    	  matrixStackIn.push();
@@ -88,12 +88,12 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	    	  matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
 	    	  TileEntityMerger.ICallbackWrapper<? extends NetherwoodChestTileEntity> icallbackwrapper;
 	    	  if (flag) {
-	    		  icallbackwrapper = abstractchestblock.func_225536_a_(blockstate, world, tileEntityIn.getPos(), true);
+	    		  icallbackwrapper = abstractchestblock.combine(blockstate, world, tileEntityIn.getPos(), true);
 	    	  } else {
 	    		  icallbackwrapper = TileEntityMerger.ICallback::func_225537_b_;
 	    	  }
 
-	         float f1 = icallbackwrapper.apply(NetherwoodChestBlock.func_226917_a_((IChestLid)tileEntityIn)).get(partialTicks);
+	         float f1 = icallbackwrapper.apply(NetherwoodChestBlock.getLidRotationCallback((IChestLid)tileEntityIn)).get(partialTicks);
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
 	         int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
@@ -112,7 +112,7 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	         matrixStackIn.pop();
 	      }
 	      else if (block instanceof NetherwoodTrappedChestBlock) {
-		      ChestType chesttype = blockstate.func_235901_b_(NetherwoodTrappedChestBlock.TYPE) ? blockstate.get(NetherwoodTrappedChestBlock.TYPE) : ChestType.SINGLE;
+		      ChestType chesttype = blockstate.hasProperty(NetherwoodTrappedChestBlock.TYPE) ? blockstate.get(NetherwoodTrappedChestBlock.TYPE) : ChestType.SINGLE;
 		      NetherwoodTrappedChestBlock abstractchestblock = (NetherwoodTrappedChestBlock)block;
 	    	  boolean flag1 = chesttype != ChestType.SINGLE;
 	    	  matrixStackIn.push();
@@ -122,7 +122,7 @@ public class NetherwoodChestTileEntityRenderer<T extends TileEntity & IChestLid>
 	    	  matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
 	    	  TileEntityMerger.ICallbackWrapper<? extends NetherwoodTrappedChestTileEntity> icallbackwrapper;
 	    	  if (flag) {
-	    		  icallbackwrapper = abstractchestblock.func_225536_a_(blockstate, world, tileEntityIn.getPos(), true);
+	    		  icallbackwrapper = abstractchestblock.combine(blockstate, world, tileEntityIn.getPos(), true);
 	    	  } else {
 	    		  icallbackwrapper = TileEntityMerger.ICallback::func_225537_b_;
 	    	  }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "morecraft:cooked_spider"
+    },
+    {
+        "item": "minecraft:red_mushroom"
+    },
+    {
+        "item": "minecraft:brown_mushroom"
+    },
+    {
+        "item": "minecraft:spider_eye"
+    }
+  ],
+  "result": {
+    "item": "morecraft:spider_stew"
+  }
+}

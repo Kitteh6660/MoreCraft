@@ -2,7 +2,7 @@ package kittehmod.morecraft.client.gui;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 //This file is to resolve the invalid DIST.
-public class ModEditSignHandler {
+public class ModSignClientHandler {
 
 	@OnlyIn(Dist.CLIENT)
 	public static void deliverPacket(BlockPos pos, Supplier<NetworkEvent.Context> context) {
@@ -24,7 +24,7 @@ public class ModEditSignHandler {
 	
 	private static void openSignGUI(TileEntity tileEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
-    	ModEditSignScreen gui = new ModEditSignScreen((NetherwoodSignTileEntity)tileEntity);
+    	ModEditSignScreen gui = new ModEditSignScreen((ModSignTileEntity)tileEntity);
 		minecraft.displayGuiScreen(gui);
 	}
 }

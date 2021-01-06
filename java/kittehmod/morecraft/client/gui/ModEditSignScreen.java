@@ -7,13 +7,13 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
+import kittehmod.morecraft.block.ModStandingSignBlock;
 import kittehmod.morecraft.client.NetherwoodSignTileEntityRenderer;
 import kittehmod.morecraft.network.ModUpdateSignPacket;
 import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.StandingSignBlock;
 import net.minecraft.client.gui.RenderComponentsUtil;
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
@@ -38,12 +38,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ModEditSignScreen extends Screen {
 	private final NetherwoodSignTileEntityRenderer.SignModel field_228191_a_ = new NetherwoodSignTileEntityRenderer.SignModel();
-	private final NetherwoodSignTileEntity tileSign;
+	private final ModSignTileEntity tileSign;
 	private int updateCounter;
 	private int editLine;
 	private TextInputUtil textInputUtil;
 
-   public ModEditSignScreen(NetherwoodSignTileEntity teSign) {
+   public ModEditSignScreen(ModSignTileEntity teSign) {
       super(new TranslationTextComponent("sign.edit"));
       this.tileSign = teSign;
    }
@@ -121,7 +121,7 @@ public class ModEditSignScreen extends Screen {
       matrixstack.scale(f, -f, f);
       matrixstack.translate(0.0D, -1.3125D, 0.0D);
       BlockState blockstate = this.tileSign.getBlockState();
-      boolean flag = blockstate.getBlock() instanceof StandingSignBlock;
+      boolean flag = blockstate.getBlock() instanceof ModStandingSignBlock;
       if (!flag) {
          matrixstack.translate(0.0D, -0.3125D, 0.0D);
       }

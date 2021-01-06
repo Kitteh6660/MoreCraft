@@ -9,6 +9,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.SoupItem;
 import net.minecraft.item.TallBlockItem;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraftforge.event.RegistryEvent;
@@ -35,6 +36,7 @@ public class ModItems {
 	public static final RegistryObject<Item> NETHERWOOD_SIGN = ITEMS.register("netherwood_sign", () -> new NetherwoodSignItem((new Item.Properties()).maxStackSize(16).group(ItemGroup.DECORATIONS), ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()));
 	public static final RegistryObject<Item> NETHERWOOD_FENCE = ITEMS.register("netherwood_fence", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new BlockItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> NETHERWOOD_BOOKSHELF = ITEMS.register("netherwood_bookshelf", () -> new BlockItem(ModBlocks.NETHERWOOD_BOOKSHELF.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> NETHERWOOD_CHEST = ITEMS.register("netherwood_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST.get(), new Item.Properties().group(ItemGroup.DECORATIONS).setISTER(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> NETHERWOOD_TRAPPED_CHEST = ITEMS.register("netherwood_trapped_chest", () -> new BlockItem(ModBlocks.NETHERWOOD_CHEST_TRAPPED.get(), new Item.Properties().group(ItemGroup.REDSTONE).setISTER(() -> ModItemStackTileEntityRenderer::new)));
 	public static final RegistryObject<Item> NETHERWOOD_BUTTON = ITEMS.register("netherwood_button", () -> new BlockItem(ModBlocks.NETHERWOOD_BUTTON.get(), new Item.Properties().group(ItemGroup.REDSTONE)));
@@ -53,6 +55,7 @@ public class ModItems {
 	public static final RegistryObject<Item> FLESH_CARPET = ITEMS.register("flesh_carpet", () -> new BlockItem(ModBlocks.FLESH_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BONE_LADDER = ITEMS.register("bone_ladder", () -> new BlockItem(ModBlocks.BONE_LADDER.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_TORCH = ITEMS.register("glowstone_torch", () -> new WallOrFloorItem(ModBlocks.GLOWSTONE_TORCH.get(), ModBlocks.WALL_GLOWSTONE_TORCH.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<Item> GLOWSTONE_LANTERN = ITEMS.register("glowstone_lantern", () -> new BlockItem(ModBlocks.GLOWSTONE_LANTERN.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 	
 	//Not currently available in creative tabs or obtainable due to bugs.
@@ -82,17 +85,27 @@ public class ModItems {
     public static final RegistryObject<Item> RAW_GUARDIAN_MEAT = ITEMS.register("raw_guardian_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_MEAT_RAW)));
     public static final RegistryObject<Item> COOKED_GUARDIAN_MEAT = ITEMS.register("cooked_guardian_meat", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.GUARDIAN_MEAT_COOKED)));
 
+    public static final RegistryObject<Item> BEEF_STEW = ITEMS.register("beef_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.BEEF_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> PORK_STEW = ITEMS.register("pork_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.PORK_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> MUTTON_STEW = ITEMS.register("mutton_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.MUTTON_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> CHICKEN_STEW = ITEMS.register("chicken_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.CHICKEN_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> SPIDER_STEW = ITEMS.register("spider_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SPIDER_STEW).maxStackSize(1)));
+    public static final RegistryObject<Item> FISH_STEW = ITEMS.register("fish_stew", () -> new SoupItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.FISH_STEW).maxStackSize(1)));
+
     public static final RegistryObject<Item> COOKED_EGG = ITEMS.register("cooked_egg", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.COOKED_EGG)));
-    public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.APPLE_PIE)));
-    public static final RegistryObject<Item> NETHER_APPLE = ITEMS.register("nether_apple", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE)));
-    public static final RegistryObject<Item> NETHER_APPLE_PIE = ITEMS.register("nether_apple_pie", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE_PIE)));
     public static final RegistryObject<Item> CAKE_SLICE = ITEMS.register("cake_slice", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.CAKE_SLICE)));
+    public static final RegistryObject<Item> NETHER_APPLE = ITEMS.register("nether_apple", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE)));
+    
+    public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.APPLE_PIE)));
+    public static final RegistryObject<Item> NETHER_APPLE_PIE = ITEMS.register("nether_apple_pie", () -> new RandomEffectFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.NETHER_APPLE_PIE)));
+    public static final RegistryObject<Item> SWEETBERRY_PIE = ITEMS.register("sweetberry_pie", () -> new Item(new Item.Properties().group(ItemGroup.FOOD).food(ModFoods.SWEETBERRY_PIE)));
 
     // -- MATERIALS -- \\
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> WITHER_BONE = ITEMS.register("wither_bone", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> WITHER_BONE_MEAL = ITEMS.register("wither_bone_meal", () -> new WitherBonemealItem(new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> GUARDIAN_SCALES = ITEMS.register("guardian_scales", () -> new Item(new Item.Properties().group(ItemGroup.BREWING)));
+    public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().group(ItemGroup.BREWING)));
     
 	// -- BOAT ITEMS -- \\
     public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherwoodBoatItem(new Item.Properties().group(ItemGroup.TRANSPORTATION).maxStackSize(1)));

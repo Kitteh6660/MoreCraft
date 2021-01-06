@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_nugget"
+    },
+    "#": {
+      "item": "morecraft:glowstone_torch"
+    }
+  },
+  "result": {
+    "item": "morecraft:glowstone_lantern",
+    "count": 1
+  }
+}

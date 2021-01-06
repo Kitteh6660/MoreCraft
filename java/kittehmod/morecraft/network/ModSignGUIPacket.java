@@ -2,7 +2,7 @@ package kittehmod.morecraft.network;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.client.gui.ModEditSignHandler;
+import kittehmod.morecraft.client.gui.ModSignClientHandler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -30,7 +30,7 @@ public class ModSignGUIPacket {
     			//GUI is client-side only.
     		}
     		else {
-    			ModEditSignHandler.deliverPacket(message.pos, context);
+    			ModSignClientHandler.deliverPacket(message.pos, context);
     		}
     		
     	});

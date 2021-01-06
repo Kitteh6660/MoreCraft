@@ -2,7 +2,7 @@ package kittehmod.morecraft.network;
 
 import java.util.function.Supplier;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -42,8 +42,8 @@ public class ModUpdateSignPacket {
 	    		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
 		    		world = context.get().getSender().getEntityWorld();
 		    		te = world.getTileEntity(message.blockPos);
-		    		if (te != null && te instanceof NetherwoodSignTileEntity) {
-		    			NetherwoodSignTileEntity sign = (NetherwoodSignTileEntity)te;
+		    		if (te != null && te instanceof ModSignTileEntity) {
+		    			ModSignTileEntity sign = (ModSignTileEntity)te;
 		    			for (int i = 0; i < 4; i++) {
 		    				sign.setText(i, message.lines[i]);
 		    			}

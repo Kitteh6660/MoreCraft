@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mutton_stew",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "minecraft:cooked_mutton"
+    },
+    {
+        "item": "minecraft:baked_potato"
+    },
+    {
+        "item": "minecraft:carrot"
+    },
+    {
+        "item": "minecraft:red_mushroom"
+    }
+  ],
+  "result": {
+    "item": "morecraft:mutton_stew"
+  }
+}

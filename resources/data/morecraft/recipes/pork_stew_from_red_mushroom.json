@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pork_stew",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "minecraft:cooked_porkchop"
+    },
+    {
+        "item": "minecraft:baked_potato"
+    },
+    {
+        "item": "minecraft:carrot"
+    },
+    {
+        "item": "minecraft:red_mushroom"
+    }
+  ],
+  "result": {
+    "item": "morecraft:pork_stew"
+  }
+}

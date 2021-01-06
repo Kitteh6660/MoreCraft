@@ -7,12 +7,12 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
-import net.minecraft.block.AbstractSignBlock;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -37,18 +37,18 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class NetherwoodWallSignBlock extends AbstractSignBlock {
+public class ModWallSignBlock extends WallSignBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.makeCuboidShape(0.0D, 4.5D, 14.0D, 16.0D, 12.5D, 16.0D), Direction.SOUTH, Block.makeCuboidShape(0.0D, 4.5D, 0.0D, 16.0D, 12.5D, 2.0D), Direction.EAST, Block.makeCuboidShape(0.0D, 4.5D, 0.0D, 2.0D, 12.5D, 16.0D), Direction.WEST, Block.makeCuboidShape(14.0D, 4.5D, 0.0D, 16.0D, 12.5D, 16.0D)));
 
-	public NetherwoodWallSignBlock(Block.Properties properties) {
+	public ModWallSignBlock(Block.Properties properties) {
 		super(properties, WoodType.DARK_OAK);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new NetherwoodSignTileEntity();
+		return new ModSignTileEntity();
 	}
 	
    /**
@@ -104,8 +104,8 @@ public class NetherwoodWallSignBlock extends AbstractSignBlock {
 			return flag ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
-			if (tileentity instanceof NetherwoodSignTileEntity) {
-				NetherwoodSignTileEntity signtileentity = (NetherwoodSignTileEntity)tileentity;
+			if (tileentity instanceof ModSignTileEntity) {
+				ModSignTileEntity signtileentity = (ModSignTileEntity)tileentity;
 	            if (flag) {
 	                boolean flag1 = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());
 	                if (flag1 && !player.isCreative()) {

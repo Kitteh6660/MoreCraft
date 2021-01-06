@@ -5,9 +5,9 @@ import java.util.List;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import kittehmod.morecraft.block.NetherwoodStandingSignBlock;
-import kittehmod.morecraft.block.NetherwoodWallSignBlock;
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.block.ModStandingSignBlock;
+import kittehmod.morecraft.block.ModWallSignBlock;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -26,7 +26,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<NetherwoodSignTileEntity> {
+public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<ModSignTileEntity> {
 	   /** The ModelSign instance for use in this renderer */
 	   private final NetherwoodSignTileEntityRenderer.SignModel model = new NetherwoodSignTileEntityRenderer.SignModel();
 
@@ -35,18 +35,18 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<Netherw
 	   }
 
 	   @Override
-	   public void render(NetherwoodSignTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	   public void render(ModSignTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
 	      BlockState blockstate = tileEntityIn.getBlockState();
 	      matrixStackIn.push();
 	      float f = 0.6666667F;
-	      if (blockstate.getBlock() instanceof NetherwoodStandingSignBlock) {
+	      if (blockstate.getBlock() instanceof ModStandingSignBlock) {
 	         matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-	         float f1 = -((float)(blockstate.get(NetherwoodStandingSignBlock.ROTATION) * 360) / 16.0F);
+	         float f1 = -((float)(blockstate.get(ModStandingSignBlock.ROTATION) * 360) / 16.0F);
 	         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f1));
 	         this.model.signStick.showModel = true;
 	      } else {
 	         matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-	         float f4 = -blockstate.get(NetherwoodWallSignBlock.FACING).getHorizontalAngle();
+	         float f4 = -blockstate.get(ModWallSignBlock.FACING).getHorizontalAngle();
 	         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f4));
 	         matrixStackIn.translate(0.0D, -0.3125D, -0.4375D);
 	         this.model.signStick.showModel = false;

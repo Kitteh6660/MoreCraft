@@ -1,6 +1,6 @@
 package kittehmod.morecraft.block;
 
-import kittehmod.morecraft.tileentity.NetherwoodSignTileEntity;
+import kittehmod.morecraft.tileentity.ModSignTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -29,17 +29,17 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class NetherwoodStandingSignBlock extends StandingSignBlock {
+public class ModStandingSignBlock extends StandingSignBlock {
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_0_15;
 	
-	public NetherwoodStandingSignBlock(Block.Properties properties) {
+	public ModStandingSignBlock(Block.Properties properties) {
 		super(properties, WoodType.DARK_OAK);
 		this.setDefaultState(this.stateContainer.getBaseState().with(ROTATION, Integer.valueOf(0)).with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new NetherwoodSignTileEntity();
+		return new ModSignTileEntity();
 	}
 	
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -66,8 +66,8 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 			return ActionResultType.SUCCESS;
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
-			if (tileentity instanceof NetherwoodSignTileEntity) {
-				NetherwoodSignTileEntity signtileentity = (NetherwoodSignTileEntity)tileentity;
+			if (tileentity instanceof ModSignTileEntity) {
+				ModSignTileEntity signtileentity = (ModSignTileEntity)tileentity;
 				ItemStack itemstack = player.getHeldItem(handIn);
 				if (itemstack.getItem() instanceof DyeItem && player.abilities.allowEdit) {
 					boolean flag = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());
@@ -75,7 +75,6 @@ public class NetherwoodStandingSignBlock extends StandingSignBlock {
 						itemstack.shrink(1);
 					}
 				}
-
 				return signtileentity.executeCommand(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
 			} else {
 				return ActionResultType.PASS;

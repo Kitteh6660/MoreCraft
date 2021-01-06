@@ -59,6 +59,11 @@ public class MobDropEvents
         	stack = event.getEntityLiving().isBurning() ? new ItemStack(ModItems.COOKED_GUARDIAN_MEAT.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1)) : new ItemStack(ModItems.RAW_GUARDIAN_MEAT.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1));
         	drop = new ItemEntity(event.getEntityLiving().world, event.getEntityLiving().getPosition().getX(), event.getEntityLiving().getPosition().getY(), event.getEntityLiving().getPosition().getZ(), stack);
         	event.getDrops().add(drop);
+        	if (rand < 0.4D + (event.getLootingLevel() * 0.2) || event.getEntityLiving() instanceof ElderGuardianEntity) {
+	        	stack = new ItemStack(ModItems.GUARDIAN_SCALES.get(), 1);
+	        	drop = new ItemEntity(event.getEntityLiving().world, event.getEntityLiving().getPosX(), event.getEntityLiving().getPosY(), event.getEntityLiving().getPosZ(), stack);
+	        	event.getDrops().add(drop);
+        	}
         }
         
         //ENDERMEN

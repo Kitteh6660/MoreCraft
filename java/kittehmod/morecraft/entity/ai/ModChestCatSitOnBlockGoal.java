@@ -20,9 +20,9 @@ public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal
      * Return true to set given position as destination
      */
     @Override
-    protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos)
+    protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos)
     {
-        if (!worldIn.isAirBlock(pos.up()))
+        if (!worldIn.isEmptyBlock(pos.above()))
         {
             return false;
         }
@@ -33,10 +33,10 @@ public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal
 
             if (block instanceof AbstractChestBlock)
             {
-                return NetherwoodChestTileEntity.getPlayersUsing(worldIn, pos) < 1;
+                return NetherwoodChestTileEntity.getOpenCount(worldIn, pos) < 1;
             }
 
-            return super.shouldMoveTo(worldIn, pos);
+            return super.isValidTarget(worldIn, pos);
         }
     }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "morecraft:block/hedge_side",
+  "textures": {
+    "leaf": "morecraft:blocks/netherwood_leaves"
+  }
+}

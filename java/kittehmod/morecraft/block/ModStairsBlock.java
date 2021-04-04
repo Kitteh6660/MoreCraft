@@ -12,7 +12,7 @@ public class ModStairsBlock extends StairsBlock
 	@SuppressWarnings("deprecation")
 	public ModStairsBlock(BlockState blockState, Block.Properties properties) {
 		super(blockState, properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}
 	
 }

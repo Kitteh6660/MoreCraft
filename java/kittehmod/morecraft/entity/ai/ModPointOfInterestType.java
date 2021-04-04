@@ -16,8 +16,8 @@ public class ModPointOfInterestType
 {
 	public static final DeferredRegister<PointOfInterestType> POINTS_OF_INTERESTS = DeferredRegister.create(ForgeRegistries.POI_TYPES, MoreCraft.MODID);
 	
-	public static final RegistryObject<PointOfInterestType> MOD_BEEHIVES = POINTS_OF_INTERESTS.register("mod_beehive", () -> new PointOfInterestType("morecraft_beehive", PointOfInterestType.getAllStates(ModBlocks.NETHERWOOD_BEEHIVE.get()), 0, 1));
-	public static final RegistryObject<PointOfInterestType> KILN = POINTS_OF_INTERESTS.register("kiln", () -> new PointOfInterestType("kiln", PointOfInterestType.getAllStates(ModBlocks.KILN.get()), 0, 1));
+	//public static final RegistryObject<PointOfInterestType> MOD_BEEHIVES = POINTS_OF_INTERESTS.register("mod_beehive", () -> new PointOfInterestType("morecraft_beehive", PointOfInterestType.getBlockStates(ModBlocks.NETHERWOOD_BEEHIVE.get()), 0, 1));
+	public static final RegistryObject<PointOfInterestType> KILN = POINTS_OF_INTERESTS.register("kiln", () -> new PointOfInterestType("kiln", PointOfInterestType.getBlockStates(ModBlocks.KILN.get()), 0, 1));
 	
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

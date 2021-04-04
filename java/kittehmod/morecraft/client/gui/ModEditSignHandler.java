@@ -17,15 +17,15 @@ public class ModEditSignHandler {
 	@OnlyIn(Dist.CLIENT)
 	public static void deliverPacket(BlockPos pos, Supplier<NetworkEvent.Context> context) {
 		Minecraft minecraft = Minecraft.getInstance();
-		World world = minecraft.player.getEntityWorld();
-		TileEntity te = world.getTileEntity(pos);
+		World world = minecraft.player.level;
+		TileEntity te = world.getBlockEntity(pos);
 		openSignGUI(te);
 	}
 	
 	private static void openSignGUI(TileEntity tileEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
     	ModEditSignScreen gui = new ModEditSignScreen((ModSignTileEntity)tileEntity);
-		minecraft.displayGuiScreen(gui);
+		minecraft.setScreen(gui);
 	}
 
 }

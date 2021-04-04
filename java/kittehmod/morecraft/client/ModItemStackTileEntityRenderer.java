@@ -2,8 +2,8 @@ package kittehmod.morecraft.client;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import kittehmod.morecraft.block.NetherwoodChestBlock;
-import kittehmod.morecraft.block.NetherwoodTrappedChestBlock;
+import kittehmod.morecraft.block.ModChestBlock;
+import kittehmod.morecraft.block.ModTrappedChestBlock;
 import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
 import kittehmod.morecraft.tileentity.NetherwoodTrappedChestTileEntity;
 import net.minecraft.block.Block;
@@ -25,18 +25,18 @@ public class ModItemStackTileEntityRenderer<T extends TileEntity> extends ItemSt
 	  
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformTypeIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void renderByItem(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformTypeIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
     	final Item item = itemStackIn.getItem();
     	if (item instanceof BlockItem) {
     		final Block block = ((BlockItem) item).getBlock();
-    		if (block instanceof NetherwoodChestBlock) {
+    		if (block instanceof ModChestBlock) {
     			if (this.chestTileEntity == null) {
-    				this.chestTileEntity = (NetherwoodChestTileEntity) ((NetherwoodChestBlock) block).getTileEntityType().create();
+    				this.chestTileEntity = (NetherwoodChestTileEntity) ((ModChestBlock) block).getTileEntityType().create();
     			}
     		}
-    		if (block instanceof NetherwoodTrappedChestBlock) {
+    		if (block instanceof ModTrappedChestBlock) {
     			if (this.chestTileEntity == null) {
-    				this.chestTileEntity = (NetherwoodTrappedChestTileEntity) ((NetherwoodTrappedChestBlock) block).getTileEntityType().create();
+    				this.chestTileEntity = (NetherwoodTrappedChestTileEntity) ((ModTrappedChestBlock) block).getTileEntityType().create();
     			}
     		}
     	}

@@ -24,48 +24,52 @@ public class KilnRecipeSerializer<T extends AbstractCookingRecipe> extends net.m
 		this.cookingTime = cookingTime;
 		this.factory = factory;
 	}
-
+	
+	@Override
 	@SuppressWarnings("deprecation")
-	public T read(ResourceLocation recipeId, JsonObject json) {
-		String s = JSONUtils.getString(json, "group", "");
-		JsonElement jsonelement = (JsonElement) (JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
-		Ingredient ingredient = Ingredient.deserialize(jsonelement);
+	public T fromJson(ResourceLocation recipeId, JsonObject json) {
+		String s = JSONUtils.getAsString(json, "group", "");
+		JsonElement jsonelement = (JsonElement) (JSONUtils.isArrayNode(json, "ingredient") ? JSONUtils.getAsJsonArray(json, "ingredient") : JSONUtils.getAsJsonObject(json, "ingredient"));
+		Ingredient ingredient = Ingredient.fromJson(jsonelement);
 		// Forge: Check if primitive string to keep vanilla or a object which can
 		// contain a count field.
 		if (!json.has("result"))
 			throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
 		ItemStack itemstack;
 		if (json.get("result").isJsonObject())
-			itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+			itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
 		else {
-			String s1 = JSONUtils.getString(json, "result");
+			String s1 = JSONUtils.getAsString(json, "result");
 			ResourceLocation resourcelocation = new ResourceLocation(s1);
 			itemstack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> { return new IllegalStateException("Item: " + s1 + " does not exist"); }));
 		}
-		float f = JSONUtils.getFloat(json, "experience", 0.0F);
-		int i = JSONUtils.getInt(json, "cookingtime", this.cookingTime);
+		float f = JSONUtils.getAsFloat(json, "experience", 0.0F);
+		int i = JSONUtils.getAsInt(json, "cookingtime", this.cookingTime);
 		return this.factory.create(recipeId, s, ingredient, itemstack, f, i);
 	}
-
-	public T read(ResourceLocation recipeId, PacketBuffer buffer) {
-		String s = buffer.readString(32767);
-		Ingredient ingredient = Ingredient.read(buffer);
-		ItemStack itemstack = buffer.readItemStack();
+	
+	@Override
+	public T fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+		String s = buffer.readUtf(32767);
+		Ingredient ingredient = Ingredient.fromNetwork(buffer);
+		ItemStack itemstack = buffer.readItem();
 		float f = buffer.readFloat();
 		int i = buffer.readVarInt();
 		return this.factory.create(recipeId, s, ingredient, itemstack, f, i);
 	}
 
-	public void write(PacketBuffer buffer, T recipe) {
-		buffer.writeString(recipe.getGroup());
-		recipe.getIngredients().get(0).write(buffer);
-		buffer.writeItemStack(recipe.getRecipeOutput());
+	@Override
+	public void toNetwork(PacketBuffer buffer, T recipe) {
+		buffer.writeUtf(recipe.getGroup());
+		recipe.getIngredients().get(0).toNetwork(buffer);
+		buffer.writeItem(recipe.getResultItem());
 		buffer.writeFloat(recipe.getExperience());
-		buffer.writeVarInt(recipe.getCookTime());
+		buffer.writeVarInt(recipe.getCookingTime());
 	}
 
 	interface IFactory<T extends AbstractCookingRecipe>
 	{
 		T create(ResourceLocation p_create_1_, String p_create_2_, Ingredient p_create_3_, ItemStack p_create_4_, float p_create_5_, int p_create_6_);
 	}
+
 }

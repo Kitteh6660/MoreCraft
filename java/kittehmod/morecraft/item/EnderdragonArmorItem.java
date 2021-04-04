@@ -42,30 +42,29 @@ public class EnderdragonArmorItem extends ArmorItem
 		BipedModel<LivingEntity> armorModel = armorSlot == EquipmentSlotType.LEGS ? new EnderdragonLegsModel(0.5F) : new EnderdragonArmorModel(1.0F);
 
 		if (armorModel != null) {
-			armorModel.bipedHead.showModel = armorSlot == EquipmentSlotType.HEAD;
-			armorModel.bipedHeadwear.showModel = false;
-			armorModel.bipedBody.showModel = armorSlot == EquipmentSlotType.CHEST || armorSlot == EquipmentSlotType.LEGS;
-			armorModel.bipedRightArm.showModel = armorSlot == EquipmentSlotType.CHEST;
-			armorModel.bipedLeftArm.showModel = armorSlot == EquipmentSlotType.CHEST;
-			armorModel.bipedRightLeg.showModel = armorSlot == EquipmentSlotType.LEGS || armorSlot == EquipmentSlotType.FEET;
-			armorModel.bipedLeftLeg.showModel = armorSlot == EquipmentSlotType.LEGS || armorSlot == EquipmentSlotType.FEET;
+			armorModel.head.visible = armorSlot == EquipmentSlotType.HEAD;
+			armorModel.hat.visible = false;
+			armorModel.body.visible = armorSlot == EquipmentSlotType.CHEST || armorSlot == EquipmentSlotType.LEGS;
+			armorModel.rightArm.visible = armorSlot == EquipmentSlotType.CHEST;
+			armorModel.leftArm.visible = armorSlot == EquipmentSlotType.CHEST;
+			armorModel.rightLeg.visible = armorSlot == EquipmentSlotType.LEGS || armorSlot == EquipmentSlotType.FEET;
+			armorModel.leftLeg.visible = armorSlot == EquipmentSlotType.LEGS || armorSlot == EquipmentSlotType.FEET;
 			
-			armorModel.isSneak = entityLiving.isSneaking();
-			//armorModel.isSitting = entityLiving.isRidingOrBeingRiddenBy(entityIn)();
-			armorModel.isChild = entityLiving.isChild();
+			armorModel.crouching = entityLiving.isCrouching();
+			armorModel.young = entityLiving.isBaby();
 			
 			armorModel.rightArmPose = BipedModel.ArmPose.EMPTY;
 			//armorModel.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
-			ItemStack held_item = entityLiving.getHeldItemMainhand();
+			ItemStack held_item = entityLiving.getMainHandItem();
 			
 			if (held_item != null)
 			{
 				armorModel.rightArmPose = BipedModel.ArmPose.ITEM;
 
-				if (entityLiving.getItemInUseCount() > 0)
+				if (entityLiving.getUseItemRemainingTicks() > 0)
 				{
-					UseAction enumaction = held_item.getUseAction();
+					UseAction enumaction = held_item.getUseAnimation();
 
 					if (enumaction == UseAction.BOW) {
 						armorModel.rightArmPose = BipedModel.ArmPose.BOW_AND_ARROW;

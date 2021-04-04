@@ -15,17 +15,16 @@ public class ModHoeItem extends HoeItem {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if (this.getTier() == ModItemTier.BLAZE) {
-			target.setFire(4);
+			target.setSecondsOnFire(4);
 		}
 		else if (this.getTier() == ModItemTier.WITHERBONE) {
-			target.addPotionEffect(new EffectInstance(Effects.WITHER, 100, 0));
+			target.addEffect(new EffectInstance(Effects.WITHER, 100, 0));
 		}
-		stack.damageItem(2, attacker, (p_220045_0_) -> {
-			p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+		stack.hurtAndBreak(2, attacker, (p_220045_0_) -> {
+			p_220045_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
 		});
 		return true;
 	}
-	
 }

@@ -22,11 +22,11 @@ public class ModUpdateTileEntityPacket {
 
     public static void encode(ModUpdateTileEntityPacket msg, PacketBuffer buf) {
     	buf.writeBlockPos(msg.blockPos);
-    	buf.writeCompoundTag(msg.nbt);
+    	buf.writeNbt(msg.nbt);
     }
     
     public static ModUpdateTileEntityPacket decode(PacketBuffer buf) {
-    	return new ModUpdateTileEntityPacket(buf.readBlockPos(), buf.readCompoundTag());
+    	return new ModUpdateTileEntityPacket(buf.readBlockPos(), buf.readNbt());
     }
 	
     public static class Handler {
@@ -36,10 +36,10 @@ public class ModUpdateTileEntityPacket {
 	    		World world;
 	    		TileEntity te;
 	    		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
-		    		world = context.get().getSender().getEntityWorld();
-		    		te = world.getTileEntity(message.blockPos);
+		    		world = context.get().getSender().getLevel();
+		    		te = world.getBlockEntity(message.blockPos);
 		    		if (te != null && message.nbt != null) {
-			    		te.write(message.nbt);
+			    		te.save(message.nbt);
 		    		}
 	    		}
 	        });

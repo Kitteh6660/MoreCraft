@@ -30,21 +30,21 @@ public class ModCraftingTableBlock extends CraftingTableBlock
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
-    	if (worldIn.isRemote) {
+    	if (worldIn.isClientSide) {
     		return ActionResultType.SUCCESS;
     	} else {
-    		player.openContainer(state.getContainer(worldIn, pos));
-    		player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-    		return ActionResultType.SUCCESS;
+    		player.openMenu(state.getMenuProvider(worldIn, pos));
+    		player.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+    		return ActionResultType.CONSUME;
     	}
     }
     
     @Override
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
+    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
         return new SimpleNamedContainerProvider((id, inventory, player) -> {
-           return new ModWorkbenchContainer(id, inventory, IWorldPosCallable.of(worldIn, pos), this.getBlock());
+           return new ModWorkbenchContainer(id, inventory, IWorldPosCallable.create(worldIn, pos), this.getBlock());
         }, TITLE);
     }
     

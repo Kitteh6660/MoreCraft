@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:stripped_netherwood_wood"
+    }
+  },
+  "result": {
+    "item": "morecraft:stripped_netherwood_post",
+    "count": 8
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "wooden_posts"
+    }
+  ]
+}

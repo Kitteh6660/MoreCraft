@@ -24,10 +24,10 @@ public class TileEntityTextureHelper {
 	
 	@SubscribeEvent
 	public static void onStitch(TextureStitchEvent.Pre event) {
-		if (event.getMap().getTextureLocation().equals(Atlases.SIGN_ATLAS)) {
+		if (event.getMap().location().equals(Atlases.SIGN_SHEET)) {
 			event.addSprite(NETHERWOOD_SIGN_LOCATION);
 		}
-		else if (event.getMap().getTextureLocation().equals(Atlases.CHEST_ATLAS)) {
+		else if (event.getMap().location().equals(Atlases.CHEST_SHEET)) {
 			event.addSprite(NETHERWOOD_CHEST);
 			event.addSprite(NETHERWOOD_CHEST_LEFT);
 			event.addSprite(NETHERWOOD_CHEST_RIGHT);

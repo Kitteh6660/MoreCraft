@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "morecraft:block/netherwood_ladder" },
+        "facing=east":  { "model": "morecraft:block/netherwood_ladder", "y": 90 },
+        "facing=south": { "model": "morecraft:block/netherwood_ladder", "y": 180 },
+        "facing=west":  { "model": "morecraft:block/netherwood_ladder", "y": 270 }
+    }
+}

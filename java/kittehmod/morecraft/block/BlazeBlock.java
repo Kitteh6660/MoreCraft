@@ -13,9 +13,9 @@ public class BlazeBlock extends Block
 	}
     
 	@Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn)
     {
-		entityIn.setFire(4);
+		entityIn.setSecondsOnFire(4);
     }
 
 }

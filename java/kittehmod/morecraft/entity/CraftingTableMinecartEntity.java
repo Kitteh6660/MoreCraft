@@ -32,11 +32,11 @@ public class CraftingTableMinecartEntity extends ContainerMinecartEntity impleme
 		super(getEntitySubtype(type), x, y, z, worldIn);
 	}
 
-	public ActionResultType processInitialInteract(PlayerEntity player, Hand hand) {
-		ActionResultType ret = super.processInitialInteract(player, hand);
-		if (ret.isSuccessOrConsume()) return ret;
-		player.openContainer(this);
-		if (!player.world.isRemote) {
+	public ActionResultType interact(PlayerEntity player, Hand hand) {
+		ActionResultType ret = super.interact(player, hand);
+		if (ret.consumesAction()) return ret;
+		player.openMenu(this);
+		if (!player.level.isClientSide) {
 			return ActionResultType.CONSUME;
 		} else {
 			return ActionResultType.SUCCESS;
@@ -44,12 +44,12 @@ public class CraftingTableMinecartEntity extends ContainerMinecartEntity impleme
 	}
 
 	@Override
-	public BlockState getDisplayTile() {
-		return this.getDefaultDisplayTile();
+	public BlockState getDisplayBlockState() {
+		return this.getDefaultDisplayBlockState();
 	}
 
 	@Override
-	public BlockState getDefaultDisplayTile() {
+	public BlockState getDefaultDisplayBlockState() {
 		Block block;
 		switch (this.getCraftingTableType()) {
 		case OAK:
@@ -82,15 +82,15 @@ public class CraftingTableMinecartEntity extends ContainerMinecartEntity impleme
 		default:
 			block = Blocks.CRAFTING_TABLE;
 		}
-		return block.getDefaultState();
+		return block.defaultBlockState();
 	}
 
 	public int getDefaultDisplayTileOffset() {
 		return 8;
 	}
 
-	public Container createContainer(int cid, PlayerInventory playerInventoryIn) {
-		return new MinecartWorkbenchContainer(cid, playerInventoryIn, IWorldPosCallable.of(this.getEntityWorld(), this.getPosition()), this);
+	public Container createMenu(int cid, PlayerInventory playerInventoryIn) {
+		return new MinecartWorkbenchContainer(cid, playerInventoryIn, IWorldPosCallable.create(this.level, this.blockPosition()), this);
 	}
 
 	@Override
@@ -103,19 +103,19 @@ public class CraftingTableMinecartEntity extends ContainerMinecartEntity impleme
 	}
 
 	@Override
-	public int getSizeInventory() {
+	public int getContainerSize() {
 		return 9;
 	}
 
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
-	public void killMinecart(DamageSource source) {
-		super.killMinecart(source);
-		if (!source.isExplosion() && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
-			this.entityDropItem(this.getDisplayTile().getBlock());
+	public void destroy(DamageSource source) {
+		super.destroy(source);
+		if (!source.isExplosion() && this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+			this.spawnAtLocation(this.getDisplayBlockState().getBlock());
 		}
 	}
 

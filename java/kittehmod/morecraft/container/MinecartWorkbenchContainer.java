@@ -17,7 +17,7 @@ public class MinecartWorkbenchContainer extends WorkbenchContainer
 	private final CraftingTableMinecartEntity entity;
 
 	public MinecartWorkbenchContainer(int id, PlayerInventory playerInventoryIn, CraftingTableMinecartEntity entityIn) {
-		this(id, playerInventoryIn, IWorldPosCallable.DUMMY, entityIn);
+		this(id, playerInventoryIn, IWorldPosCallable.NULL, entityIn);
 	}
 
 	public MinecartWorkbenchContainer(int id, PlayerInventory playerInventoryIn, IWorldPosCallable worldPosIn, CraftingTableMinecartEntity entityIn) {
@@ -46,7 +46,7 @@ public class MinecartWorkbenchContainer extends WorkbenchContainer
 	 * Determines whether supplied player can use this container
 	 */
 	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
-		return playerIn.getDistance(this.entity) <= (net.minecraftforge.common.ForgeMod.REACH_DISTANCE.isPresent() ? playerIn.getAttributeValue(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()) : 5);
+	public boolean stillValid(PlayerEntity playerIn) {
+		return playerIn.distanceTo(this.entity) <= (net.minecraftforge.common.ForgeMod.REACH_DISTANCE.isPresent() ? playerIn.getAttributeValue(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()) : 5);
 	}
 }

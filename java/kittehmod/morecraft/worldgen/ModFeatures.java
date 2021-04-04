@@ -31,8 +31,8 @@ public class ModFeatures {
 	protected static BaseTreeFeatureConfig NETHERWOOD_TREE_FORKY_CONFIG;
 	
 	public static void setupFeatureConfigs() {
-		NETHERWOOD_TREE_STRAIGHT_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LOG.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LEAVES.get().getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 3, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().setDecorators(ImmutableList.of()).build();
-		NETHERWOOD_TREE_FORKY_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LOG.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LEAVES.get().getDefaultState()), new AcaciaFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0)), new ForkyTrunkPlacer(5, 2, 2), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().setDecorators(ImmutableList.of()).build();
+		NETHERWOOD_TREE_STRAIGHT_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LOG.get().defaultBlockState()), new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3), new StraightTrunkPlacer(4, 3, 0), new TwoLayerFeature(1, 0, 1))).ignoreVines().decorators(ImmutableList.of()).build();
+		NETHERWOOD_TREE_FORKY_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LOG.get().defaultBlockState()), new SimpleBlockStateProvider(ModBlocks.NETHERWOOD_LEAVES.get().defaultBlockState()), new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), new ForkyTrunkPlacer(5, 2, 2), new TwoLayerFeature(1, 0, 1))).ignoreVines().decorators(ImmutableList.of()).build();
 	}
 	
 	@EventBusSubscriber(modid = MoreCraft.MODID)

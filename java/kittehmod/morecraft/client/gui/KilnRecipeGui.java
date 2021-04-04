@@ -13,14 +13,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class KilnRecipeGui extends AbstractRecipeBookGui
 {
-	private static final ITextComponent field_243415_i = new TranslationTextComponent("gui.recipebook.toggleRecipes.smokable");
+	private static final ITextComponent FILTER_NAME = new TranslationTextComponent("gui.recipebook.toggleRecipes.smokable");
 
-	protected ITextComponent func_230479_g_() {
-		return field_243415_i;
+	protected ITextComponent getRecipeFilterName() {
+		return FILTER_NAME;
 	}
 
 	@SuppressWarnings("deprecation")
-	protected Set<Item> func_212958_h() {
-		return AbstractFurnaceTileEntity.getBurnTimes().keySet();
+	protected Set<Item> getFuelItems() {
+		return AbstractFurnaceTileEntity.getFuel().keySet();
 	}
 }

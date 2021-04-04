@@ -26,7 +26,7 @@ public class GlowstoneWallTorchBlock extends WallTorchBlock implements IWaterLog
 
 	public GlowstoneWallTorchBlock(Block.Properties properties) {
 	   super(properties, null);
-	   this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(WATERLOGGED, false));
+	   this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
 	
 	@Override
@@ -36,17 +36,17 @@ public class GlowstoneWallTorchBlock extends WallTorchBlock implements IWaterLog
 	}
 	
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState blockstate = this.getDefaultState();
-		IWorldReader iworldreader = context.getWorld();
-		BlockPos blockpos = context.getPos();
-		World world = context.getWorld();
+		BlockState blockstate = this.defaultBlockState();
+		IWorldReader iworldreader = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		World world = context.getLevel();
 		//Get direction and try to place.
 		Direction[] adirection = context.getNearestLookingDirections();
 	    for(Direction direction : adirection) {
 	    	if (direction.getAxis().isHorizontal()) {
 	        	Direction direction1 = direction.getOpposite();
-	        	blockstate = blockstate.with(HORIZONTAL_FACING, direction1).with(WATERLOGGED, Boolean.valueOf(world.getFluidState(blockpos).getFluid() == Fluids.WATER));
-	        	if (blockstate.isValidPosition(iworldreader, blockpos)) {
+	        	blockstate = blockstate.setValue(FACING, direction1).setValue(WATERLOGGED, Boolean.valueOf(world.getFluidState(blockpos).getType() == Fluids.WATER));
+	        	if (blockstate.canSurvive(iworldreader, blockpos)) {
 	        		return blockstate;
 	        	}
 	    	}
@@ -54,20 +54,20 @@ public class GlowstoneWallTorchBlock extends WallTorchBlock implements IWaterLog
 		return null;
 	}
 	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HORIZONTAL_FACING, WATERLOGGED);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		builder.add(FACING, WATERLOGGED);
 	}
 	
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 	
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 }

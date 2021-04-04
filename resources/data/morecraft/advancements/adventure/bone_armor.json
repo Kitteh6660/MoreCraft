@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancements.adventure.bone_armor.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.bone_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "bone_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:bone_helmet"
+          }
+        ]
+      }
+    },
+    "bone_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:bone_chestplate"
+          }
+        ]
+      }
+    },
+    "bone_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:bone_leggings"
+          }
+        ]
+      }
+    },
+    "bone_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:bone_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bone_helmet",
+      "bone_chestplate",
+      "bone_leggings",
+      "bone_boots"
+    ]
+  ]
+}

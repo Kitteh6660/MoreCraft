@@ -21,7 +21,7 @@ public class ModBoatDismountPacket {
     	context.get().enqueueWork(() -> {
     		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
     			PlayerEntity player = context.get().getSender();
-    			player.extinguish();
+    			player.clearFire();
     		}
     	});
     	context.get().setPacketHandled(true);

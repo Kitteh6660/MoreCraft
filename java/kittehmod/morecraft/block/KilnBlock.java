@@ -2,6 +2,7 @@ package kittehmod.morecraft.block;
 
 import java.util.Random;
 
+import kittehmod.morecraft.MoreCraftStats;
 import kittehmod.morecraft.tileentity.KilnTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractFurnaceBlock;
@@ -24,47 +25,39 @@ public class KilnBlock extends AbstractFurnaceBlock {
       super(builder);
    }
 
-   public TileEntity createNewTileEntity(IBlockReader worldIn) {
+   public TileEntity newBlockEntity(IBlockReader worldIn) {
       return new KilnTileEntity();
    }
 
-   /**
-    * Interface for handling interaction with blocks that impliment AbstractFurnaceBlock. Called in onBlockActivated
-    * inside AbstractFurnaceBlock.
-    */
-   protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player) {
-      TileEntity tileentity = worldIn.getTileEntity(pos);
+   protected void openContainer(World worldIn, BlockPos pos, PlayerEntity player) {
+      TileEntity tileentity = worldIn.getBlockEntity(pos);
       if (tileentity instanceof KilnTileEntity) {
-         player.openContainer((INamedContainerProvider)tileentity);
-         //player.addStat(Stats.INTERACT_WITH_FURNACE);
+         player.openMenu((INamedContainerProvider)tileentity);
+         player.awardStat(MoreCraftStats.INTERACT_WITH_KILN);
       }
 
    }
 
-   /**
-    * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
-    * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
-    * of whether the block can receive random update ticks
-    */
    @OnlyIn(Dist.CLIENT)
    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-      if (stateIn.get(LIT)) {
+      if (stateIn.getValue(LIT)) {
          double d0 = (double)pos.getX() + 0.5D;
          double d1 = (double)pos.getY();
          double d2 = (double)pos.getZ() + 0.5D;
          if (rand.nextDouble() < 0.1D) {
-            worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            worldIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
          }
 
-         Direction direction = stateIn.get(FACING);
+         Direction direction = stateIn.getValue(FACING);
          Direction.Axis direction$axis = direction.getAxis();
          double d3 = 0.52D;
          double d4 = rand.nextDouble() * 0.6D - 0.3D;
-         double d5 = direction$axis == Direction.Axis.X ? (double)direction.getXOffset() * d3 : d4;
+         double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * d3 : d4;
          double d6 = rand.nextDouble() * 6.0D / 16.0D;
-         double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getZOffset() * d3 : d4;
+         double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * d3 : d4;
          worldIn.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
          worldIn.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
       }
    }
+
 }

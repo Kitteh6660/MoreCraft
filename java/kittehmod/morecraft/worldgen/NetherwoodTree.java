@@ -17,34 +17,34 @@ import net.minecraft.world.server.ServerWorld;
 
 public class NetherwoodTree extends Tree {
 	@Nullable
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
 		if (randomIn.nextInt(100) < 30) { // 30% chance of forky.
-			return ModFeatures.NETHERWOOD_TREE.get().withConfiguration(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG);
+			return ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG);
 		} else {
-			return ModFeatures.NETHERWOOD_TREE.get().withConfiguration(ModFeatures.NETHERWOOD_TREE_STRAIGHT_CONFIG);
+			return ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_STRAIGHT_CONFIG);
 		}
 	}
 
 	@Override
-	public boolean attemptGrowTree(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
-		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getTreeFeature(randomIn, this.hasNearbyFlora(worldIn, blockPosIn));
+	public boolean growTree(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
+		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
 		if (configuredfeature == null) {
 			return false;
 		} else {
-			worldIn.setBlockState(blockPosIn, Blocks.AIR.getDefaultState(), 4);
-			configuredfeature.config.forcePlacement();
-			if (configuredfeature.generate(worldIn, generatorIn, randomIn, blockPosIn)) {
+			worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 4);
+			configuredfeature.config.setFromSapling();
+			if (configuredfeature.place(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;
 			} else {
-				worldIn.setBlockState(blockPosIn, blockStateIn, 4);
+				worldIn.setBlock(blockPosIn, blockStateIn, 4);
 				return false;
 			}
 		}
 	}
-
-	private boolean hasNearbyFlora(IWorld worldIn, BlockPos blockPosIn) {
-		for (BlockPos blockpos : BlockPos.Mutable.getAllInBoxMutable(blockPosIn.down().north(2).west(2), blockPosIn.up().south(2).east(2))) {
-			if (worldIn.getBlockState(blockpos).isIn(BlockTags.FLOWERS)) {
+	
+	private boolean hasFlowers(IWorld worldIn, BlockPos blockPosIn) {
+		for(BlockPos blockpos : BlockPos.Mutable.betweenClosed(blockPosIn.below().north(2).west(2), blockPosIn.above().south(2).east(2))) {
+			if (worldIn.getBlockState(blockpos).is(BlockTags.FLOWERS)) {
 				return true;
 			}
 		}

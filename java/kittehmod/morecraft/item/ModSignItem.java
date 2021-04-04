@@ -21,8 +21,8 @@ public class ModSignItem extends SignItem {
 	}
 
 	@Override
-	protected boolean onBlockPlaced(BlockPos pos, World worldIn, @Nullable PlayerEntity player, ItemStack stack, BlockState state) {
-		boolean flag = setTileEntityNBT(worldIn, player, pos, stack);
+	protected boolean updateCustomBlockEntityTag(BlockPos pos, World worldIn, @Nullable PlayerEntity player, ItemStack stack, BlockState state) {
+		boolean flag = super.updateCustomBlockEntityTag(worldIn, player, pos, stack);
 		if (player instanceof ServerPlayerEntity && !flag) {
 			ModSignGUIPacket msg = new ModSignGUIPacket(pos);
 			MorecraftPacketHandler.sendTo(msg, (ServerPlayerEntity)player);

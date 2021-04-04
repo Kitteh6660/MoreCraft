@@ -14,6 +14,7 @@ import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.item.crafting.ModBrewingRecipes;
 import kittehmod.morecraft.item.crafting.ModRecipes;
+import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.ModBiomes;
@@ -24,6 +25,7 @@ import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -38,7 +40,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.2.3";
+    public static final String VERSION = "4.3.0";
     
     //public static Logger LOGGER = LogManager.getLogger(MODID);
     
@@ -59,7 +61,7 @@ public class MoreCraft
     }
     
     private void setupCommon(final FMLCommonSetupEvent event)
-    {
+    {	
     	ModBrewingRecipes.registerRecipes();
     	ModFeatures.setupFeatureConfigs();
     	
@@ -68,26 +70,29 @@ public class MoreCraft
     	
         MorecraftPacketHandler.register();
         
+        CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
+        
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
     	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());
     	MinecraftForge.EVENT_BUS.register(new ModFeatures());
     	MinecraftForge.EVENT_BUS.register(new ModBiomes());
     	
-    	ComposterBlock.CHANCES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
-    	ComposterBlock.CHANCES.put(ModItems.SWEETBERRY_PIE.get(), 1.0F);
-    	ComposterBlock.CHANCES.put(ModItems.APPLE_PIE.get(), 1.0F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE.get(), 0.65F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHER_APPLE_PIE.get(), 1.0F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHERWOOD_LEAVES.get(), 0.3F);
-    	ComposterBlock.CHANCES.put(ModItems.NETHERWOOD_SAPLING.get(), 0.3F);
+    	ComposterBlock.COMPOSTABLES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
+    	ComposterBlock.COMPOSTABLES.put(ModItems.SWEETBERRY_PIE.get(), 1.0F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.APPLE_PIE.get(), 1.0F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.NETHER_APPLE.get(), 0.65F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.NETHER_APPLE_PIE.get(), 1.0F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_LEAVES.get(), 0.3F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_SAPLING.get(), 0.3F);
+    	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_LEAF_CARPET.get(), 0.3F);
     }
     
     @OnlyIn(Dist.CLIENT)
 	private void setupClient(final FMLClientSetupEvent event)
     {
 		ClientRenderSetup.setup();
-		ScreenManager.registerFactory(ModContainerType.KILN.get(), KilnScreen::new);
+		ScreenManager.register(ModContainerType.KILN.get(), KilnScreen::new);
     }
     
     /* Dunno what I'll do with this. Maybe later.

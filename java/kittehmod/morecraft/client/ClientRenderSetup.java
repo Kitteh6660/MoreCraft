@@ -75,26 +75,34 @@ public class ClientRenderSetup {
 		ClientRegistry.bindTileEntityRenderer(ModTileEntityType.NETHERWOOD_CHEST.get(), NetherwoodChestTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ModTileEntityType.NETHERWOOD_TRAPPED_CHEST.get(), NetherwoodChestTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ModTileEntityType.MOD_SIGN.get(), NetherwoodSignTileEntityRenderer::new);
-		//ClientRegistry.bindTileEntityRenderer(TileEntityType.Builder.create(ModSkullTileEntity::new, ModBlocks.SPIDER_HEAD.get(), ModBlocks.CAVE_SPIDER_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.BLAZE_HEAD.get(), ModBlocks.ENDERMAN_HEAD.get()).build(null), ModSkullTileEntityRenderer::new);
 		
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_DOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERBRICK_DOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_DOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_DOOR.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERBRICK_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_DOOR.get(), RenderType.cutout());
 		
-		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_LADDER.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAVES.get(), RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_SAPLING.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_NETHERWOOD_SAPLING.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_LADDER.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.FLESH_CARPET.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LADDER.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAVES.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_SAPLING.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_NETHERWOOD_SAPLING.get(), RenderType.cutout());
 
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_POST.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
+		
 	}
 	
 }

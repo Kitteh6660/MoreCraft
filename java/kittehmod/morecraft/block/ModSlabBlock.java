@@ -14,7 +14,7 @@ public abstract class ModSlabBlock extends SlabBlock implements IWaterLoggable {
     public ModSlabBlock(Block.Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 	
 }

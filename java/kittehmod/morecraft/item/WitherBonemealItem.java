@@ -30,12 +30,12 @@ public class WitherBonemealItem extends Item {
 	 * Called when this item is used when targetting a Block
 	 */
 	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		BlockPos blockpos = context.getPos();
+		World world = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
 		//BlockPos blockpos1 = blockpos.offset(context.getFace());
-		if (applyBonemeal(context.getItem(), world, blockpos, context.getPlayer())) {
-			if (!world.isRemote) {
-				world.playEvent(2005, blockpos, 0);
+		if (applyBonemeal(context.getItemInHand(), world, blockpos, context.getPlayer())) {
+			if (!world.isClientSide) {
+				world.levelEvent(2005, blockpos, 0);
 			}
 
 			return ActionResultType.SUCCESS;
@@ -51,10 +51,10 @@ public class WitherBonemealItem extends Item {
 		//Kills saplings, turning them into dead bushes.
 		if (blockstate.getBlock() instanceof IGrowable) {
 			IGrowable igrowable = (IGrowable)blockstate.getBlock();
-			if (igrowable.canGrow(worldIn, pos, blockstate, worldIn.isRemote) && !AFFECTED_BLOCKS.contains(blockstate.getBlock())) {
-				if (!worldIn.isRemote) {
+			if (igrowable.isValidBonemealTarget(worldIn, pos, blockstate, worldIn.isClientSide) && !AFFECTED_BLOCKS.contains(blockstate.getBlock())) {
+				if (!worldIn.isClientSide) {
 					if (igrowable instanceof SaplingBlock || igrowable instanceof SweetBerryBushBlock) {
-						worldIn.setBlockState(pos, Blocks.DEAD_BUSH.getDefaultState());
+						worldIn.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 11);
 					}
 					stack.shrink(1);
 				}
@@ -65,8 +65,8 @@ public class WitherBonemealItem extends Item {
 		if (blockstate.getBlock() instanceof FlowerBlock) {
 			FlowerBlock flower = (FlowerBlock)blockstate.getBlock();
 			if (flower != Blocks.WITHER_ROSE) {
-				if (!worldIn.isRemote) {
-					worldIn.setBlockState(pos, Blocks.WITHER_ROSE.getDefaultState());
+				if (!worldIn.isClientSide) {
+					worldIn.setBlock(pos, Blocks.WITHER_ROSE.defaultBlockState(), 11);
 					stack.shrink(1);
 				}
 				return true;
@@ -105,13 +105,13 @@ public class WitherBonemealItem extends Item {
 						break;
 				}
 				if (AFFECTED_BLOCKS.contains(worldIn.getBlockState(affectPos).getBlock())) {
-					worldIn.setBlockState(affectPos, Blocks.MYCELIUM.getDefaultState());
+					worldIn.setBlockAndUpdate(affectPos, Blocks.MYCELIUM.defaultBlockState());
 				}
-				if (AFFECTED_BLOCKS.contains(worldIn.getBlockState(affectPos.up()).getBlock())) {
-					worldIn.setBlockState(affectPos.up(), Blocks.MYCELIUM.getDefaultState());
+				if (AFFECTED_BLOCKS.contains(worldIn.getBlockState(affectPos.above()).getBlock())) {
+					worldIn.setBlockAndUpdate(affectPos.above(), Blocks.MYCELIUM.defaultBlockState());
 				}
-				if (AFFECTED_BLOCKS.contains(worldIn.getBlockState(affectPos.down()).getBlock())) {
-					worldIn.setBlockState(affectPos.down(), Blocks.MYCELIUM.getDefaultState());
+				if (AFFECTED_BLOCKS.contains(worldIn.getBlockState(affectPos.below()).getBlock())) {
+					worldIn.setBlockAndUpdate(affectPos.below(), Blocks.MYCELIUM.defaultBlockState());
 				}
 			}
 			stack.shrink(1);

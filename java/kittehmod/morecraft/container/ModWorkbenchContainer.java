@@ -14,16 +14,16 @@ public class ModWorkbenchContainer extends WorkbenchContainer
 {
 	private final CraftingInventory inventory = new CraftingInventory(this, 3, 3);
 	private final CraftResultInventory result = new CraftResultInventory();
-	private final IWorldPosCallable worldPosCallable;
+	private final IWorldPosCallable access;
 	private final Block block;
 	
 	public ModWorkbenchContainer(int id, PlayerInventory playerInventoryIn, Block blockIn) {
-		this(id, playerInventoryIn, IWorldPosCallable.DUMMY, blockIn);
+		this(id, playerInventoryIn, IWorldPosCallable.NULL, blockIn);
 	}
 
 	public ModWorkbenchContainer(int id, PlayerInventory playerInventoryIn, IWorldPosCallable worldPosIn, Block blockIn) {
 		super(id,  playerInventoryIn,  worldPosIn);
-		this.worldPosCallable = worldPosIn;
+		this.access = worldPosIn;
 		this.block = blockIn;
 		this.addSlot(new CraftingResultSlot(playerInventoryIn.player, this.inventory, this.result, 0, 124, 35));
 
@@ -47,8 +47,8 @@ public class ModWorkbenchContainer extends WorkbenchContainer
    /**
     * Determines whether supplied player can use this container
     */
-	public boolean canInteractWith(PlayerEntity playerIn) {
-		return isWithinUsableDistance(this.worldPosCallable, playerIn, block);
+	public boolean stillValid(PlayerEntity playerIn) {
+		return stillValid(this.access, playerIn, block);
 	}
 
 }

@@ -14,11 +14,10 @@ public class ModTileEntityType {
 
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MoreCraft.MODID);
 	
-    public static RegistryObject<TileEntityType<NetherwoodChestTileEntity>> NETHERWOOD_CHEST = TILE_ENTITIES.register("netherwood_chest", () -> TileEntityType.Builder.create(NetherwoodChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST.get()).build(null));
-    public static RegistryObject<TileEntityType<NetherwoodTrappedChestTileEntity>> NETHERWOOD_TRAPPED_CHEST = TILE_ENTITIES.register("netherwood_trapped_chest", () -> TileEntityType.Builder.create(NetherwoodTrappedChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST_TRAPPED.get()).build(null));
-    public static RegistryObject<TileEntityType<ModSignTileEntity>> MOD_SIGN = TILE_ENTITIES.register("netherwood_sign", () -> TileEntityType.Builder.create(ModSignTileEntity::new, ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()).build(null));
-    public static RegistryObject<TileEntityType<ModSkullTileEntity>> MOD_SKULL = TILE_ENTITIES.register("morecraft_skulls", () -> TileEntityType.Builder.create(ModSkullTileEntity::new).build(null));
-    public static RegistryObject<TileEntityType<KilnTileEntity>> KILN = TILE_ENTITIES.register("kiln", () -> TileEntityType.Builder.create(KilnTileEntity::new, ModBlocks.KILN.get()).build(null));
+    public static RegistryObject<TileEntityType<NetherwoodChestTileEntity>> NETHERWOOD_CHEST = TILE_ENTITIES.register("netherwood_chest", () -> TileEntityType.Builder.of(NetherwoodChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST.get()).build(null));
+    public static RegistryObject<TileEntityType<NetherwoodTrappedChestTileEntity>> NETHERWOOD_TRAPPED_CHEST = TILE_ENTITIES.register("netherwood_trapped_chest", () -> TileEntityType.Builder.of(NetherwoodTrappedChestTileEntity::new, ModBlocks.NETHERWOOD_CHEST_TRAPPED.get()).build(null));
+    public static RegistryObject<TileEntityType<ModSignTileEntity>> MOD_SIGN = TILE_ENTITIES.register("netherwood_sign", () -> TileEntityType.Builder.of(ModSignTileEntity::new, ModBlocks.NETHERWOOD_SIGN.get(), ModBlocks.NETHERWOOD_WALL_SIGN.get()).build(null));
+    public static RegistryObject<TileEntityType<KilnTileEntity>> KILN = TILE_ENTITIES.register("kiln", () -> TileEntityType.Builder.of(KilnTileEntity::new, ModBlocks.KILN.get()).build(null));
 
     public static ModTileEntityType instance = new ModTileEntityType();
     

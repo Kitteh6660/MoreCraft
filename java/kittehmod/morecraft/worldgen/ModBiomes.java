@@ -47,7 +47,7 @@ public class ModBiomes
 	@SubscribeEvent
     public void biomeLoadEvent(BiomeLoadingEvent event) {
     	BiomeGenerationSettingsBuilder bgsb = event.getGeneration();
-    	bgsb.getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.RUBY_ORE.get().getDefaultState(), 8)).range(32).square().func_242731_b(2));
+    	bgsb.getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUBY_ORE.get().defaultBlockState(), 8)).range(32).squared().count(2));
     	if (event.getCategory() == Biome.Category.NETHER) {
     		if (MoreCraftConfig.generateNetherwoodTrees.get() <= 0) {
     			return; //Don't generate trees if set to 0.
@@ -69,9 +69,9 @@ public class ModBiomes
 	    			genMultiplier = 0.25F;
     		}
     		//Regular, straight Netherwood trees make up 70% of the trees.
-    		bgsb.getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.NETHERWOOD_TREE.get().withConfiguration(ModFeatures.NETHERWOOD_TREE_STRAIGHT_CONFIG).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig((int)Math.floor(MoreCraftConfig.generateNetherwoodTrees.get() * 0.7 * genMultiplier)))));
+    		bgsb.getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_STRAIGHT_CONFIG).decorated(Placement.COUNT_MULTILAYER.configured(new FeatureSpreadConfig((int)Math.floor(MoreCraftConfig.generateNetherwoodTrees.get() * 0.7 * genMultiplier)))));
     		//Acacia-like, forked Netherwood trees make up 30% of the trees.
-    		bgsb.getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.NETHERWOOD_TREE.get().withConfiguration(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG).withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3 * genMultiplier)))));
+    		bgsb.getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG).decorated(Placement.COUNT_MULTILAYER.configured(new FeatureSpreadConfig((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3 * genMultiplier)))));
     	}
     }
 }

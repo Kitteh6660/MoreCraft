@@ -19,7 +19,7 @@ public class ModHorseArmorItem extends HorseArmorItem {
 	}
 	
 	@OnlyIn(Dist.CLIENT)
-	public ResourceLocation func_219976_d() {
+	public ResourceLocation getTexture() {
 		return texture;
 	}
 	

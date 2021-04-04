@@ -28,13 +28,13 @@ public class ModUpdateSignPacket {
     public static void encode(ModUpdateSignPacket msg, PacketBuffer buf) {
     	buf.writeBlockPos(msg.blockPos);
         for(int i = 0; i < 4; ++i) {
-            buf.writeTextComponent(msg.lines[i]);
+            buf.writeComponent(msg.lines[i]);
         }
         buf.writeInt(msg.color);
     }
     
     public static ModUpdateSignPacket decode(PacketBuffer buf) {
-    	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readTextComponent(), buf.readInt());
+    	return new ModUpdateSignPacket(buf.readBlockPos(), buf.readComponent(), buf.readComponent(), buf.readComponent(), buf.readComponent(), buf.readInt());
     }
 	
     public static class Handler {
@@ -44,8 +44,8 @@ public class ModUpdateSignPacket {
 	    		World world;
 	    		TileEntity te;
 	    		if (context.get().getDirection() == NetworkDirection.PLAY_TO_SERVER) {
-		    		world = context.get().getSender().getEntityWorld();
-		    		te = world.getTileEntity(message.blockPos);
+		    		world = context.get().getSender().getLevel();
+		    		te = world.getBlockEntity(message.blockPos);
 		    		if (te != null && te instanceof ModSignTileEntity) {
 		    			ModSignTileEntity sign = (ModSignTileEntity)te;
 		    			for (int i = 0; i < 4; i++) {

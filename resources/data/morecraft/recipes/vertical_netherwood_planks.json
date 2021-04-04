@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "vertical_planks",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_planks"
+    }
+  },
+  "result": {
+    "item": "morecraft:vertical_netherwood_planks",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

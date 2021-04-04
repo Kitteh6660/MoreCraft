@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_leaves"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_leaf_carpet",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "leaf_carpet"
+    }
+  ]
+}

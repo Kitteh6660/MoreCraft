@@ -30,7 +30,7 @@ public class ModBrewingRecipe implements IBrewingRecipe {
 
 	@Override
 	public ItemStack getOutput(@Nonnull ItemStack inputIn, @Nonnull ItemStack ingredientIn) {
-		if (isInput(inputIn) && isIngredient(ingredientIn) && PotionUtils.getPotionFromItem(inputIn) == PotionUtils.getPotionFromItem(input)) {
+		if (isInput(inputIn) && isIngredient(ingredientIn) && PotionUtils.getPotion(inputIn) == PotionUtils.getPotion(input)) {
 			return output.copy();
 		}
 		return ItemStack.EMPTY;

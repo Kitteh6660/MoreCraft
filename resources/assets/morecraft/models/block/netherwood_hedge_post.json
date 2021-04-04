@@ -1,0 +1,7 @@
+{
+  "parent": "morecraft:block/hedge_post",
+  "textures": {
+    "log": "morecraft:blocks/netherwood_log_side",
+    "leaf": "morecraft:blocks/netherwood_leaves"
+  }
+}

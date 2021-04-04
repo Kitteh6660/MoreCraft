@@ -9,7 +9,7 @@ public class CatsSitOnChestsHandler
     @SubscribeEvent
     public void changeSittingTaskForOcelots(final LivingEvent.LivingUpdateEvent evt)
     {
-        if (evt.getEntityLiving().ticksExisted < 5 && evt.getEntityLiving() instanceof CatEntity)
+        if (evt.getEntityLiving().tickCount < 5 && evt.getEntityLiving() instanceof CatEntity)
         {
             CatEntity catEntity = (CatEntity) evt.getEntityLiving();
             

@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class NetherBoatItem extends Item 
 {
-	private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+	private static final Predicate<Entity> ENTITY_PREDICATE = EntityPredicates.NO_SPECTATORS.and(Entity::canBeCollidedWith);
 	private final NetherBoatEntity.Type type;
 
 	public NetherBoatItem(Item.Properties properties, NetherBoatEntity.Type typeIn) {
@@ -33,40 +33,40 @@ public class NetherBoatItem extends Item
 	* Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
 	* {@link #onItemUse}.
 	*/
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
+		RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
 		if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
 			return new ActionResult<>(ActionResultType.PASS, itemstack);
 		} else {
-			Vector3d vec3d = playerIn.getLook(1.0F);
+			Vector3d vec3d = playerIn.getEyePosition(1.0F);
 			double d0 = 5.0D;
-			List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vec3d.scale(d0)).grow(1.0D), field_219989_a);
+			List<Entity> list = worldIn.getEntities(playerIn, playerIn.getBoundingBox().expandTowards(vec3d.scale(d0)).inflate(1.0D), ENTITY_PREDICATE);
 			if (!list.isEmpty()) {
 				Vector3d vec3d1 = playerIn.getEyePosition(1.0F);
 				for(Entity entity : list) {
-					AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow((double)entity.getCollisionBorderSize());
+					AxisAlignedBB axisalignedbb = entity.getBoundingBox().inflate((double)entity.getPickRadius());
 					if (axisalignedbb.contains(vec3d1)) {
 						return new ActionResult<>(ActionResultType.PASS, itemstack);
 					}
 				}
 			}
 			if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-				NetherBoatEntity boatentity = new NetherBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
+				NetherBoatEntity boatentity = new NetherBoatEntity(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
 				boatentity.setBoatType(this.type);
-				boatentity.rotationYaw = playerIn.rotationYaw;
-				if (!worldIn.hasNoCollisions(boatentity, boatentity.getBoundingBox().grow(-0.1D))) {
+				boatentity.yRot = playerIn.yRot;
+				if (!worldIn.noCollision(boatentity, boatentity.getBoundingBox().inflate(-0.1D))) {
 					return new ActionResult<>(ActionResultType.FAIL, itemstack);
 				} else {
-					if (!worldIn.isRemote) {
-						worldIn.addEntity(boatentity);
+					if (!worldIn.isClientSide) {
+						worldIn.addFreshEntity(boatentity);
 					}
 
-					if (!playerIn.abilities.isCreativeMode) {
+					if (!playerIn.abilities.instabuild) {
 						itemstack.shrink(1);
 					}
 
-					playerIn.addStat(Stats.ITEM_USED.get(this));
+					playerIn.awardStat(Stats.ITEM_USED.get(this));
 					return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 				}
 			} else {

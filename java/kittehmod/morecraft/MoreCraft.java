@@ -40,7 +40,6 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    public static final String VERSION = "4.3.0";
     
     //public static Logger LOGGER = LogManager.getLogger(MODID);
     

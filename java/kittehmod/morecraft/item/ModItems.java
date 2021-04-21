@@ -29,14 +29,14 @@ public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreCraft.MODID);
 	
 	// -- BLOCKS -- \\
-	public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE = ITEMS.register("spruce_crafting_table", () -> new BlockItem(ModBlocks.SPRUCE_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE = ITEMS.register("birch_crafting_table", () -> new BlockItem(ModBlocks.BIRCH_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE = ITEMS.register("jungle_crafting_table", () -> new BlockItem(ModBlocks.JUNGLE_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE = ITEMS.register("acacia_crafting_table", () -> new BlockItem(ModBlocks.ACACIA_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE = ITEMS.register("dark_oak_crafting_table", () -> new BlockItem(ModBlocks.DARK_OAK_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE = ITEMS.register("crimson_crafting_table", () -> new BlockItem(ModBlocks.CRIMSON_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> WARPED_CRAFTING_TABLE = ITEMS.register("warped_crafting_table", () -> new BlockItem(ModBlocks.WARPED_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new BlockItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE = ITEMS.register("spruce_crafting_table", () -> new ModCraftingTableItem(ModBlocks.SPRUCE_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE = ITEMS.register("birch_crafting_table", () -> new ModCraftingTableItem(ModBlocks.BIRCH_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE = ITEMS.register("jungle_crafting_table", () -> new ModCraftingTableItem(ModBlocks.JUNGLE_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE = ITEMS.register("acacia_crafting_table", () -> new ModCraftingTableItem(ModBlocks.ACACIA_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE = ITEMS.register("dark_oak_crafting_table", () -> new ModCraftingTableItem(ModBlocks.DARK_OAK_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE = ITEMS.register("crimson_crafting_table", () -> new ModCraftingTableItem(ModBlocks.CRIMSON_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> WARPED_CRAFTING_TABLE = ITEMS.register("warped_crafting_table", () -> new ModCraftingTableItem(ModBlocks.WARPED_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new ModCraftingTableItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 
 	public static final RegistryObject<Item> NETHERWOOD_LOG = ITEMS.register("netherwood_log", () -> new BlockItem(ModBlocks.NETHERWOOD_LOG.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> STRIPPED_NETHERWOOD_LOG = ITEMS.register("stripped_netherwood_log", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_LOG.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));

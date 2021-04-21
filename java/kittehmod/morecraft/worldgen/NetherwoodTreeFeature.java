@@ -10,7 +10,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 
-import kittehmod.morecraft.block.ModSaplingBlock;
+import kittehmod.morecraft.block.NetherSaplingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -66,7 +66,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 	private static boolean isGrassOrDirtOrFarmland(IWorldGenerationBaseReader p_236418_0_, BlockPos pos) {
 		return p_236418_0_.isStateAtPosition(pos, (blockstate) -> {
 			Block block = blockstate.getBlock();
-			return isDirt(block) || block == Blocks.FARMLAND || ModSaplingBlock.EXTRA_ALLOWED_BLOCKS.contains(block);
+			return isDirt(block) || block == Blocks.FARMLAND || NetherSaplingBlock.EXTRA_ALLOWED_BLOCKS.contains(block);
 		});
 	}
 
@@ -88,7 +88,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 	/**
 	 * Called when placing the tree feature.
 	 */
-	private boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
+	private boolean doPlace(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> trunkIn, Set<BlockPos> leavesIn, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
 		int i = configIn.trunkPlacer.getTreeHeight(rand);
 		int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
 		int k = i - j;
@@ -120,7 +120,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		}
 		// Hacky workaround to stop the blocks from being changed to dirt.
 		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND)) {
-			blockstate = Blocks.SOUL_SAND.defaultBlockState();
+			blockstate = Blocks.SOUL_SAND.defaultBlockState();	
 		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SOIL)) {
 			blockstate = Blocks.SOUL_SOIL.defaultBlockState();
 		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM)) {
@@ -138,14 +138,14 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 				OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
 				int l1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
 				if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
-					List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, p_225557_4_, boundingBoxIn, configIn);
-					list.forEach((p_236407_8_) -> { configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, p_236407_8_, j, l, p_225557_5_, boundingBoxIn); });
+					List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, trunkIn, boundingBoxIn, configIn);
+					list.forEach((p_236407_8_) -> { configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, p_236407_8_, j, l, leavesIn, boundingBoxIn); });
 					if (blockstate != null) {
 						generationReader.setBlock(blockpos.below(), blockstate, 19);
 					}
 					return true;
 				} else {
-					if (blockstate != null) {
+					if (origstate != null) {
 						generationReader.setBlock(blockpos.below(), origstate, 19); // Revert the block.
 					}
 					return false;
@@ -175,12 +175,13 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		return p_241521_2_;
 	}
 
+	@Override
 	public final boolean place(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, BaseTreeFeatureConfig p_241855_5_) {
 		Set<BlockPos> set = Sets.newHashSet();
 		Set<BlockPos> set1 = Sets.newHashSet();
 		Set<BlockPos> set2 = Sets.newHashSet();
 		MutableBoundingBox mutableboundingbox = MutableBoundingBox.getUnknownBox();
-		boolean flag = this.place(p_241855_1_, p_241855_3_, p_241855_4_, set, set1, mutableboundingbox, p_241855_5_);
+		boolean flag = this.doPlace(p_241855_1_, p_241855_3_, p_241855_4_, set, set1, mutableboundingbox, p_241855_5_);
 		if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !set.isEmpty()) {
 			if (!p_241855_5_.decorators.isEmpty()) {
 				List<BlockPos> list = Lists.newArrayList(set);
@@ -194,6 +195,9 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 			Template.updateShapeAtEdge(p_241855_1_, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
 			return true;
 		} else {
+			if (!flag) {
+				
+			}
 			return false;
 		}
 	}

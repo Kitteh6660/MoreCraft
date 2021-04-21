@@ -69,7 +69,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRIPPED_NETHERWOOD_WOOD = BLOCKS.register("stripped_netherwood_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_PURPLE).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_PLANKS = BLOCKS.register("netherwood_planks", () -> new Block(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_LEAVES = BLOCKS.register("netherwood_leaves", () -> new ModLeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).strength(0.2F, 1.0F).noOcclusion()));
-    public static final RegistryObject<Block> NETHERWOOD_SAPLING = BLOCKS.register("netherwood_sapling", () -> new ModSaplingBlock(new NetherwoodTree(), AbstractBlock.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).sound(SoundType.WOOD).noCollission().randomTicks().instabreak()));
+    public static final RegistryObject<Block> NETHERWOOD_SAPLING = BLOCKS.register("netherwood_sapling", () -> new NetherSaplingBlock(new NetherwoodTree(), AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.WOOD).noCollission().randomTicks().instabreak()));
     public static final RegistryObject<Block> NETHERWOOD_STAIRS = BLOCKS.register("netherwood_stairs", () -> new ModStairsBlock(NETHERWOOD_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_SLAB = BLOCKS.register("netherwood_slab", () -> new SlabBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_CHEST = BLOCKS.register("netherwood_chest", () -> new ModChestBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.5F, 6.0F).sound(SoundType.WOOD), () -> { return ModTileEntityType.NETHERWOOD_CHEST.get(); }));
@@ -105,16 +105,16 @@ public class ModBlocks {
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(NETHERWOOD_SAPLING.get(), AbstractBlock.Properties.of(Material.PLANT).strength(0.0F)));
 
     //Quark
-    public static final RegistryObject<Block> NETHERWOOD_LADDER = BLOCKS.register("netherwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
-    public static final RegistryObject<Block> VERTICAL_NETHERWOOD_PLANKS = ModBlocks.BLOCKS.register("vertical_netherwood_planks", () -> new Block(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> NETHERWOOD_VERTICAL_SLAB = ModBlocks.BLOCKS.register("netherwood_vertical_slab", () -> new ModVerticalSlabBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> NETHERWOOD_POST = ModBlocks.BLOCKS.register("netherwood_post", () -> new ModPostBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> STRIPPED_NETHERWOOD_POST = ModBlocks.BLOCKS.register("stripped_netherwood_post", () -> new ModPostBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> NETHERWOOD_HEDGE = ModBlocks.BLOCKS.register("netherwood_hedge", () -> new ModHedgeBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F)));
-    public static final RegistryObject<Block> NETHERWOOD_LEAF_CARPET = BLOCKS.register("netherwood_leaf_carpet", () -> new CarpetBlock(DyeColor.RED, AbstractBlock.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).noCollission().strength(0.2F).sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> NETHERWOOD_LADDER = BLOCKS.register("netherwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
+    public static final RegistryObject<Block> VERTICAL_NETHERWOOD_PLANKS = ModBlocks.BLOCKS.register("vertical_netherwood_planks", () -> new Block(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> NETHERWOOD_VERTICAL_SLAB = ModBlocks.BLOCKS.register("netherwood_vertical_slab", () -> new ModVerticalSlabBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> NETHERWOOD_POST = ModBlocks.BLOCKS.register("netherwood_post", () -> new ModPostBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> STRIPPED_NETHERWOOD_POST = ModBlocks.BLOCKS.register("stripped_netherwood_post", () -> new ModPostBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> NETHERWOOD_HEDGE = ModBlocks.BLOCKS.register("netherwood_hedge", () -> new ModHedgeBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F)));
+    public static final RegistryObject<Block> NETHERWOOD_LEAF_CARPET = BLOCKS.register("netherwood_leaf_carpet", () -> new CarpetBlock(DyeColor.RED, AbstractBlock.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).harvestTool(ToolType.HOE).noCollission().instabreak().sound(SoundType.GRASS)));
 
     //Buzzier Bees
-    public static final RegistryObject<Block> NETHERWOOD_BEEHIVE = ModBlocks.BLOCKS.register("netherwood_beehive", () -> new BeehiveBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).strength(0.3F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> NETHERWOOD_BEEHIVE = ModBlocks.BLOCKS.register("netherwood_beehive", () -> new BeehiveBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
     
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

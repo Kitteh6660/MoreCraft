@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ModSaplingBlock extends SaplingBlock implements IGrowable
+public class NetherSaplingBlock extends SaplingBlock implements IGrowable
 {
 	public static final Set<Block> EXTRA_ALLOWED_BLOCKS = ImmutableSet.of(Blocks.SOUL_SAND, Blocks.SOUL_SOIL, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM); 
 	
@@ -29,7 +29,7 @@ public class ModSaplingBlock extends SaplingBlock implements IGrowable
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	private final NetherwoodTree treeGrower;
 
-	public ModSaplingBlock(NetherwoodTree treeIn, Block.Properties properties) {
+	public NetherSaplingBlock(NetherwoodTree treeIn, Block.Properties properties) {
 		super(treeIn, properties);
 		this.treeGrower = treeIn;
 		this.registerDefaultState(this.stateDefinition.any().setValue(STAGE, Integer.valueOf(0)));

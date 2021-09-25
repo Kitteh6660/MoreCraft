@@ -1,6 +1,0 @@
-{
-	"variants": {
-		"variant=default": { "model": "morecraft:block/netherwood_slab_full" },
-        "inventory":  { "model": "morecraft:block/netherwood_slab_full" }
-	}
-}

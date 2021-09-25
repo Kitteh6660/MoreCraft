@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "vertical_slab",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:dripstone_slab"
+    }
+  },
+  "result": {
+    "item": "morecraft:dripstone_vertical_slab",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}

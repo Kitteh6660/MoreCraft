@@ -6,22 +6,22 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 
 import kittehmod.morecraft.worldgen.NetherwoodTree;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class NetherSaplingBlock extends SaplingBlock implements IGrowable
+public class NetherSaplingBlock extends SaplingBlock implements BonemealableBlock
 {
 	public static final Set<Block> EXTRA_ALLOWED_BLOCKS = ImmutableSet.of(Blocks.SOUL_SAND, Blocks.SOUL_SOIL, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM); 
 	
@@ -36,17 +36,17 @@ public class NetherSaplingBlock extends SaplingBlock implements IGrowable
 	}
 
 	@Override
-	public boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	public boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
 		Block block = state.getBlock();
 		return super.mayPlaceOn(state, worldIn, pos) || EXTRA_ALLOWED_BLOCKS.contains(block);
 	}
 	
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 		if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 0 && random.nextInt(7) == 0) {
 			if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 			this.advanceTree(worldIn, pos, state, random);
@@ -54,7 +54,7 @@ public class NetherSaplingBlock extends SaplingBlock implements IGrowable
 	}
 
 	@Override
-	public void advanceTree(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
+	public void advanceTree(ServerLevel worldIn, BlockPos pos, BlockState state, Random rand) {
 		if (state.getValue(STAGE) == 0) {
 			worldIn.setBlock(pos, state.cycle(STAGE), 4);
 		} else {
@@ -65,19 +65,19 @@ public class NetherSaplingBlock extends SaplingBlock implements IGrowable
 	
 
     /** Whether this IGrowable can grow */
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean canGrow(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
 		return true;
 	}
 
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean canUseBonemeal(Level worldIn, Random rand, BlockPos pos, BlockState state) {
 		return (double)worldIn.random.nextFloat() < 0.45D;
 	}
 	
-	public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
 		this.advanceTree(worldIn, pos, state, rand);
 	}
 
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(STAGE);
 	}
 }

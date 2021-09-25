@@ -17,10 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:acacia_crafting_table"
-          },
-          {
-            "item": "minecraft:minecart"
+            "items": [ "morecraft:acacia_crafting_table", "minecraft:minecart" ]
           }
         ]
       }

@@ -18,7 +18,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:chipped_anvil"
+            "items": [ "minecraft:chipped_anvil" ]
           }
         ]
       }

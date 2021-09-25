@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:cooked_spider"
+            "items": [ "morecraft:cooked_spider" ]
           }
         ]
       }

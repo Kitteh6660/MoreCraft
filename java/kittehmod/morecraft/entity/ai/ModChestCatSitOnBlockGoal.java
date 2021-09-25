@@ -1,17 +1,17 @@
 package kittehmod.morecraft.entity.ai;
 
-import kittehmod.morecraft.tileentity.NetherwoodChestTileEntity;
-import net.minecraft.block.AbstractChestBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.ai.goal.CatSitOnBlockGoal;
-import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import kittehmod.morecraft.blockentity.ModChestBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.AbstractChestBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal 
 {
-    public ModChestCatSitOnBlockGoal(CatEntity catEntity, float speedIn)
+    public ModChestCatSitOnBlockGoal(Cat catEntity, float speedIn)
     {
         super(catEntity, speedIn);
     }
@@ -20,7 +20,7 @@ public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal
      * Return true to set given position as destination
      */
     @Override
-    protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos)
+    protected boolean isValidTarget(LevelReader worldIn, BlockPos pos)
     {
         if (!worldIn.isEmptyBlock(pos.above()))
         {
@@ -33,7 +33,7 @@ public class ModChestCatSitOnBlockGoal extends CatSitOnBlockGoal
 
             if (block instanceof AbstractChestBlock)
             {
-                return NetherwoodChestTileEntity.getOpenCount(worldIn, pos) < 1;
+                return ModChestBlockEntity.getOpenCount(worldIn, pos) < 1;
             }
 
             return super.isValidTarget(worldIn, pos);

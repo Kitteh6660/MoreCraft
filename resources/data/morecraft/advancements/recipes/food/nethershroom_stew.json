@@ -17,10 +17,10 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:crimson_fungus"
+            "items": [ "minecraft:crimson_fungus" ]
           },
           {
-            "item": "minecraft:warped_fungus"
+            "items": [ "minecraft:warped_fungus" ]
           }
         ]
       }

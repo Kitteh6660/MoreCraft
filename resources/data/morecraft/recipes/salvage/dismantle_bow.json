@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sticks",
+  "ingredients": [
+    {
+        "item": "minecraft:bow"
+    }
+  ],
+  "result": {
+    "item": "minecraft:stick",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

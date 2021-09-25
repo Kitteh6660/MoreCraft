@@ -1,13 +1,13 @@
 package kittehmod.morecraft.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.SlabType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
 
-public abstract class ModSlabBlock extends SlabBlock implements IWaterLoggable { 
+public abstract class ModSlabBlock extends SlabBlock implements SimpleWaterloggedBlock { 
 	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	

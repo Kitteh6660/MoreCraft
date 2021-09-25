@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:blasting",
+  "group": "salvage_gold_ingot",
+  "ingredient": {
+    "item": "minecraft:bell"
+  },
+  "result": "minecraft:gold_ingot",
+  "experience": 0.35,
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

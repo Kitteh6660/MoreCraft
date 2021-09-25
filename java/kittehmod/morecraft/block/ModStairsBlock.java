@@ -1,13 +1,13 @@
 package kittehmod.morecraft.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.state.properties.Half;
-import net.minecraft.state.properties.StairsShape;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.StairsShape;
 
-public class ModStairsBlock extends StairsBlock 
+public class ModStairsBlock extends StairBlock 
 {
 	@SuppressWarnings("deprecation")
 	public ModStairsBlock(BlockState blockState, Block.Properties properties) {

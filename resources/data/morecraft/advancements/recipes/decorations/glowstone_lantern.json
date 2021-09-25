@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:glowstone_torch"
+            "items": [ "morecraft:glowstone_torch" ]
           }
         ]
       }

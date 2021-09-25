@@ -1,25 +1,25 @@
 package kittehmod.morecraft.block;
 
-import kittehmod.morecraft.container.ModWorkbenchContainer;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CraftingTableBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import kittehmod.morecraft.container.ModCraftingMenu;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CraftingTableBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class ModCraftingTableBlock extends CraftingTableBlock
 {
-	public static final ITextComponent TITLE = new TranslationTextComponent("container.crafting");
+	public static final Component TITLE = new TranslatableComponent("container.crafting");
     
 	public ModCraftingTableBlock(Block.Properties properties) 
 	{
@@ -30,21 +30,21 @@ public class ModCraftingTableBlock extends CraftingTableBlock
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit)
     {
     	if (worldIn.isClientSide) {
-    		return ActionResultType.SUCCESS;
+    		return InteractionResult.SUCCESS;
     	} else {
     		player.openMenu(state.getMenuProvider(worldIn, pos));
     		player.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-    		return ActionResultType.CONSUME;
+    		return InteractionResult.CONSUME;
     	}
     }
     
     @Override
-    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
-        return new SimpleNamedContainerProvider((id, inventory, player) -> {
-           return new ModWorkbenchContainer(id, inventory, IWorldPosCallable.create(worldIn, pos), this.getBlock());
+    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+        return new SimpleMenuProvider((id, inventory, player) -> {
+           return new ModCraftingMenu(id, inventory, ContainerLevelAccess.create(worldIn, pos), this.asBlock());
         }, TITLE);
     }
     

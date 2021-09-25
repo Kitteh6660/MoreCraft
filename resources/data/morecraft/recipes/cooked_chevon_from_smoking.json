@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "morecraft:raw_chevon"
+  },
+  "result": "morecraft:cooked_chevon",
+  "experience": 0.35,
+  "cookingtime": 100
+}

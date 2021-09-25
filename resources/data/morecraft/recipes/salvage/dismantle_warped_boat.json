@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "salvage_planks",
+  "ingredients": [
+    {
+        "item": "morecraft:warped_boat"
+    }
+  ],
+  "result": {
+    "item": "minecraft:warped_planks",
+    "count": 4
+  },
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

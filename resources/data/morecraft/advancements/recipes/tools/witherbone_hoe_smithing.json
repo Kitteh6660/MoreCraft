@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:wither_bone"
+            "items": [ "morecraft:wither_bone" ]
           }
         ]
       }

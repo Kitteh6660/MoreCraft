@@ -1,15 +1,15 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class BlazeArmorItem extends ModArmorItem
 {
-	public IArmorMaterial material;
+	public ArmorMaterial material;
 
-	public BlazeArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Item.Properties builder)
+	public BlazeArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder)
 	{
 	    super(materialIn, slot, builder);
 	}

@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:bone_helmet"
+            "items": [
+              "morecraft:bone_helmet"
+            ]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:bone_chestplate"
+            "items": [
+              "morecraft:bone_chestplate"
+            ]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:bone_leggings"
+            "items": [
+              "morecraft:bone_leggings"
+            ]
           }
         ]
       }
@@ -51,7 +57,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:bone_boots"
+            "items": [
+              "morecraft:bone_boots"
+            ]
           }
         ]
       }

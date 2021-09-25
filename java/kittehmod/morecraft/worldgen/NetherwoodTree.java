@@ -4,20 +4,20 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.trees.Tree;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
-public class NetherwoodTree extends Tree {
+public class NetherwoodTree extends AbstractTreeGrower {
 	@Nullable
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+	protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
 		if (randomIn.nextInt(100) < 30) { // 30% chance of forky.
 			return ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG);
 		} else {
@@ -26,13 +26,12 @@ public class NetherwoodTree extends Tree {
 	}
 
 	@Override
-	public boolean growTree(ServerWorld worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
-		ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredfeature = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
+	public boolean growTree(ServerLevel worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
+		ConfiguredFeature<TreeConfiguration, ?> configuredfeature = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
 		if (configuredfeature == null) {
 			return false;
 		} else {
 			worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 4);
-			configuredfeature.config.setFromSapling();
 			if (configuredfeature.place(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;
 			} else {
@@ -42,8 +41,8 @@ public class NetherwoodTree extends Tree {
 		}
 	}
 	
-	private boolean hasFlowers(IWorld worldIn, BlockPos blockPosIn) {
-		for(BlockPos blockpos : BlockPos.Mutable.betweenClosed(blockPosIn.below().north(2).west(2), blockPosIn.above().south(2).east(2))) {
+	private boolean hasFlowers(LevelReader worldIn, BlockPos blockPosIn) {
+		for(BlockPos blockpos : BlockPos.MutableBlockPos.betweenClosed(blockPosIn.below().north(2).west(2), blockPosIn.above().south(2).east(2))) {
 			if (worldIn.getBlockState(blockpos).is(BlockTags.FLOWERS)) {
 				return true;
 			}

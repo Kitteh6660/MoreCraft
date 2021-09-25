@@ -1,0 +1,32 @@
+{
+  "parent": "morecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morecraft:copper_pickaxe"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morecraft:copper_pickaxe"
+      }
+    },
+    "has_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [ "minecraft:copper_ingot" ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper"
+    ]
+  ]
+}

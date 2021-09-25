@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:nether_apple"
+            "items": [ "morecraft:nether_apple" ]
           }
         ]
       }

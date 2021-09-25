@@ -2,10 +2,10 @@ package kittehmod.morecraft.item.crafting;
 
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 
 public class ModBrewingRecipes 

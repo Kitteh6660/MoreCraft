@@ -2,8 +2,8 @@ package kittehmod.morecraft.item.crafting;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 public class ModBrewingRecipe implements IBrewingRecipe {

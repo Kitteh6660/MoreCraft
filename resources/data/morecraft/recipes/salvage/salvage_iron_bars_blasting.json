@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:blasting",
+  "group": "salvage_iron_nugget",
+  "ingredient": {
+    "item": "minecraft:iron_bars"
+  },
+  "result": "minecraft:iron_nugget",
+  "experience": 0.35,
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

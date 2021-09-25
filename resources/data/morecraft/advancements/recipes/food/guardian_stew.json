@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:cooked_guardian_meat"
+            "items": [ "morecraft:cooked_guardian_meat" ]
           }
         ]
       }

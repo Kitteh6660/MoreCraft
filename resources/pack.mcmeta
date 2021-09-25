@@ -1,7 +1,7 @@
 {
     "pack": {
-        "description": "morecraft resources",
-        "pack_format": 6,
-        "_comment": "The pack of MoreCraft."
+        "description": "MoreCraft resources",
+        "pack_format": 7,
+        "_comment": "The data pack of MoreCraft."
     }
 }

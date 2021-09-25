@@ -5,90 +5,90 @@ import java.util.List;
 import java.util.OptionalInt;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 
 import kittehmod.morecraft.block.NetherSaplingBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
-import net.minecraft.util.math.shapes.VoxelShapePart;
-import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldWriter;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.IWorldGenerationBaseReader;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.template.Template;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.LevelWriter;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
+import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 
-public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
+public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 {
 	// private boolean attemptNetherGen;
 	public static final int CHANCE_BARRENS = 2;
 	public static final int CHANCE_MODERATE = 6;
 	public static final int CHANCE_LUSH = 10;
 
-	public NetherwoodTreeFeature(Codec<BaseTreeFeatureConfig> codecIn, boolean netherGenAttempt) {
+	public NetherwoodTreeFeature(Codec<TreeConfiguration> codecIn, boolean netherGenAttempt) {
 		super(codecIn);
 		// this.attemptNetherGen = netherGenAttempt;
 	}
 
-	public static boolean isFree(IWorldGenerationBaseReader p_236410_0_, BlockPos p_236410_1_) {
+	public static boolean isFree(LevelSimulatedReader p_236410_0_, BlockPos p_236410_1_) {
 		return validTreePos(p_236410_0_, p_236410_1_) || p_236410_0_.isStateAtPosition(p_236410_1_, (p_236417_0_) -> { return p_236417_0_.is(BlockTags.LOGS); });
 	}
 
-	private static boolean isVine(IWorldGenerationBaseReader p_236414_0_, BlockPos p_236414_1_) {
+	private static boolean isVine(LevelSimulatedReader p_236414_0_, BlockPos p_236414_1_) {
 		return p_236414_0_.isStateAtPosition(p_236414_1_, (p_236415_0_) -> { return p_236415_0_.is(Blocks.VINE); });
 	}
 
-	private static boolean isBlockWater(IWorldGenerationBaseReader p_236416_0_, BlockPos p_236416_1_) {
+	private static boolean isBlockWater(LevelSimulatedReader p_236416_0_, BlockPos p_236416_1_) {
 		return p_236416_0_.isStateAtPosition(p_236416_1_, (p_236413_0_) -> { return p_236413_0_.is(Blocks.WATER); });
 	}
 
-	@SuppressWarnings("deprecation")
-	public static boolean isAirOrLeaves(IWorldGenerationBaseReader p_236412_0_, BlockPos p_236412_1_) {
+	public static boolean isAirOrLeaves(LevelSimulatedReader p_236412_0_, BlockPos p_236412_1_) {
 		return p_236412_0_.isStateAtPosition(p_236412_1_, (p_236411_0_) -> { return p_236411_0_.isAir() || p_236411_0_.is(BlockTags.LEAVES); });
 	}
 
-	private static boolean isGrassOrDirtOrFarmland(IWorldGenerationBaseReader p_236418_0_, BlockPos pos) {
+	private static boolean isGrassOrDirtOrFarmland(LevelSimulatedReader p_236418_0_, BlockPos pos) {
 		return p_236418_0_.isStateAtPosition(pos, (blockstate) -> {
 			Block block = blockstate.getBlock();
-			return isDirt(block) || block == Blocks.FARMLAND || NetherSaplingBlock.EXTRA_ALLOWED_BLOCKS.contains(block);
+			return blockstate.is(BlockTags.DIRT) || block == Blocks.FARMLAND || NetherSaplingBlock.EXTRA_ALLOWED_BLOCKS.contains(block);
 		});
 	}
 
-	private static boolean isReplaceablePlant(IWorldGenerationBaseReader p_236419_0_, BlockPos p_236419_1_) {
+	private static boolean isReplaceablePlant(LevelSimulatedReader p_236419_0_, BlockPos p_236419_1_) {
 		return p_236419_0_.isStateAtPosition(p_236419_1_, (p_236406_0_) -> {
 			Material material = p_236406_0_.getMaterial();
 			return material == Material.REPLACEABLE_PLANT;
 		});
 	}
 
-	public static void setBlockKnownShape(IWorldWriter p_236408_0_, BlockPos p_236408_1_, BlockState p_236408_2_) {
+	public static void setBlockKnownShape(LevelWriter p_236408_0_, BlockPos p_236408_1_, BlockState p_236408_2_) {
 		p_236408_0_.setBlock(p_236408_1_, p_236408_2_, 19);
 	}
 
-	public static boolean validTreePos(IWorldGenerationBaseReader p_236404_0_, BlockPos p_236404_1_) {
+	public static boolean validTreePos(LevelSimulatedReader p_236404_0_, BlockPos p_236404_1_) {
 		return isAirOrLeaves(p_236404_0_, p_236404_1_) || isReplaceablePlant(p_236404_0_, p_236404_1_) || isBlockWater(p_236404_0_, p_236404_1_);
 	}
 
 	/**
 	 * Called when placing the tree feature.
 	 */
-	private boolean doPlace(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> trunkIn, Set<BlockPos> leavesIn, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
+	private boolean doPlace(WorldGenLevel generationReader, Random rand, BlockPos positionIn, BiConsumer<BlockPos, BlockState> biconsumer1, BiConsumer<BlockPos, BlockState> biconsumer2, TreeConfiguration configIn) {
 		int i = configIn.trunkPlacer.getTreeHeight(rand);
 		int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
 		int k = i - j;
@@ -96,7 +96,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		BlockPos blockpos = positionIn;
 		BlockState blockstate = null;
 		BlockState origstate = null;
-		if (!configIn.fromSapling) {
+		if (!configIn.saplingProvider.getState(rand, positionIn).canSurvive(generationReader, positionIn)) {
 			// Reduce the frequency of Netherwood trees.
 			if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
 				origstate = generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM) ? Blocks.CRIMSON_NYLIUM.defaultBlockState() : Blocks.WARPED_NYLIUM.defaultBlockState();
@@ -120,7 +120,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		}
 		// Hacky workaround to stop the blocks from being changed to dirt.
 		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND)) {
-			blockstate = Blocks.SOUL_SAND.defaultBlockState();	
+			blockstate = Blocks.SOUL_SAND.defaultBlockState();
 		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SOIL)) {
 			blockstate = Blocks.SOUL_SOIL.defaultBlockState();
 		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM)) {
@@ -136,10 +136,10 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 				return false;
 			} else {
 				OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
-				int l1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
-				if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
-					List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, trunkIn, boundingBoxIn, configIn);
-					list.forEach((p_236407_8_) -> { configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, p_236407_8_, j, l, leavesIn, boundingBoxIn); });
+				int i1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
+				if (i1 >= i || optionalint.isPresent() && i1 >= optionalint.getAsInt()) {
+					List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, biconsumer1, rand, i1, positionIn, configIn);
+					list.forEach((p_160539_) -> { configIn.foliagePlacer.createFoliage(generationReader, biconsumer2, rand, configIn, i1, p_160539_, j, l); });
 					if (blockstate != null) {
 						generationReader.setBlock(blockpos.below(), blockstate, 19);
 					}
@@ -156,8 +156,8 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 		}
 	}
 
-	private int getMaxFreeTreeHeight(IWorldGenerationBaseReader p_241521_1_, int p_241521_2_, BlockPos p_241521_3_, BaseTreeFeatureConfig p_241521_4_) {
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+	private int getMaxFreeTreeHeight(LevelSimulatedReader p_241521_1_, int p_241521_2_, BlockPos p_241521_3_, TreeConfiguration p_241521_4_) {
+		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
 		for (int i = 0; i <= p_241521_2_ + 1; ++i) {
 			int j = p_241521_4_.minimumSize.getSizeAtHeight(p_241521_2_, i);
@@ -176,52 +176,66 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 	}
 
 	@Override
-	public final boolean place(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, BaseTreeFeatureConfig p_241855_5_) {
+	public final boolean place(FeaturePlaceContext<TreeConfiguration> placeContxt) {
+		WorldGenLevel worldgenlevel = placeContxt.level();
+		Random random = placeContxt.random();
+		BlockPos blockpos = placeContxt.origin();
+		TreeConfiguration treeconfiguration = placeContxt.config();
 		Set<BlockPos> set = Sets.newHashSet();
 		Set<BlockPos> set1 = Sets.newHashSet();
 		Set<BlockPos> set2 = Sets.newHashSet();
-		MutableBoundingBox mutableboundingbox = MutableBoundingBox.getUnknownBox();
-		boolean flag = this.doPlace(p_241855_1_, p_241855_3_, p_241855_4_, set, set1, mutableboundingbox, p_241855_5_);
-		if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !set.isEmpty()) {
-			if (!p_241855_5_.decorators.isEmpty()) {
+		BiConsumer<BlockPos, BlockState> biconsumer = (p_160555_, p_160556_) -> {
+			set.add(p_160555_.immutable());
+			worldgenlevel.setBlock(p_160555_, p_160556_, 19);
+		};
+		BiConsumer<BlockPos, BlockState> biconsumer1 = (p_160548_, p_160549_) -> {
+			set1.add(p_160548_.immutable());
+			worldgenlevel.setBlock(p_160548_, p_160549_, 19);
+		};
+		BiConsumer<BlockPos, BlockState> biconsumer2 = (p_160543_, p_160544_) -> {
+			set2.add(p_160543_.immutable());
+			worldgenlevel.setBlock(p_160543_, p_160544_, 19);
+		};
+		boolean flag = this.doPlace(worldgenlevel, random, blockpos, biconsumer, biconsumer1, treeconfiguration);
+		if (flag && (!set.isEmpty() || !set1.isEmpty())) {
+			if (!treeconfiguration.decorators.isEmpty()) {
 				List<BlockPos> list = Lists.newArrayList(set);
 				List<BlockPos> list1 = Lists.newArrayList(set1);
-				list.sort(Comparator.comparingInt(Vector3i::getY));
-				list1.sort(Comparator.comparingInt(Vector3i::getY));
-				p_241855_5_.decorators.forEach((p_236405_6_) -> { p_236405_6_.place(p_241855_1_, p_241855_3_, list, list1, set2, mutableboundingbox); });
+				list.sort(Comparator.comparingInt(Vec3i::getY));
+				list1.sort(Comparator.comparingInt(Vec3i::getY));
+				treeconfiguration.decorators.forEach((p_160528_) -> { p_160528_.place(worldgenlevel, biconsumer2, random, list, list1); });
 			}
 
-			VoxelShapePart voxelshapepart = this.updateLeaves(p_241855_1_, mutableboundingbox, set, set2);
-			Template.updateShapeAtEdge(p_241855_1_, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
-			return true;
+			return BoundingBox.encapsulatingPositions(Iterables.concat(set, set1, set2)).map((p_160521_) -> {
+				DiscreteVoxelShape discretevoxelshape = updateLeaves(worldgenlevel, p_160521_, set, set2);
+				StructureTemplate.updateShapeAtEdge(worldgenlevel, 3, discretevoxelshape, p_160521_.minX(), p_160521_.minY(), p_160521_.minZ());
+				return true;
+			}).orElse(false);
 		} else {
-			if (!flag) {
-				
-			}
 			return false;
 		}
 	}
 
-	private VoxelShapePart updateLeaves(IWorld worldIn, MutableBoundingBox bbIn, Set<BlockPos> p_236403_3_, Set<BlockPos> p_236403_4_) {
+	private static DiscreteVoxelShape updateLeaves(LevelAccessor worldIn, BoundingBox bbIn, Set<BlockPos> p_236403_3_, Set<BlockPos> p_236403_4_) {
 		List<Set<BlockPos>> list = Lists.newArrayList();
-		VoxelShapePart voxelshapepart = new BitSetVoxelShapePart(bbIn.getXSpan(), bbIn.getYSpan(), bbIn.getZSpan());
+		DiscreteVoxelShape discretevoxelshape = new BitSetDiscreteVoxelShape(bbIn.getXSpan(), bbIn.getYSpan(), bbIn.getZSpan());
 		int amt = 6;
 
 		for (int j = 0; j < amt; ++j) {
 			list.add(Sets.newHashSet());
 		}
 
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
 		for (BlockPos blockpos : Lists.newArrayList(p_236403_4_)) {
 			if (bbIn.isInside(blockpos)) {
-				voxelshapepart.setFull(blockpos.getX() - bbIn.x0, blockpos.getY() - bbIn.y0, blockpos.getZ() - bbIn.z0, true, true);
+				discretevoxelshape.fill(blockpos.getX() - bbIn.minX(), blockpos.getY() - bbIn.minY(), blockpos.getZ() - bbIn.minZ());
 			}
 		}
 
 		for (BlockPos blockpos1 : Lists.newArrayList(p_236403_3_)) {
 			if (bbIn.isInside(blockpos1)) {
-				voxelshapepart.setFull(blockpos1.getX() - bbIn.x0, blockpos1.getY() - bbIn.y0, blockpos1.getZ() - bbIn.z0, true, true);
+				discretevoxelshape.fill(blockpos1.getX() - bbIn.minX(), blockpos1.getY() - bbIn.minY(), blockpos1.getZ() - bbIn.minZ());
 			}
 
 			for (Direction direction : Direction.values()) {
@@ -232,7 +246,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 						list.get(0).add(blockpos$mutable.immutable());
 						setBlockKnownShape(worldIn, blockpos$mutable, blockstate.setValue(BlockStateProperties.DISTANCE, Integer.valueOf(1)));
 						if (bbIn.isInside(blockpos$mutable)) {
-							voxelshapepart.setFull(blockpos$mutable.getX() - bbIn.x0, blockpos$mutable.getY() - bbIn.y0, blockpos$mutable.getZ() - bbIn.z0, true, true);
+							discretevoxelshape.fill(blockpos$mutable.getX() - bbIn.minX(), blockpos$mutable.getY() - bbIn.minY(), blockpos$mutable.getZ() - bbIn.minZ());
 						}
 					}
 				}
@@ -245,7 +259,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 
 			for (BlockPos blockpos2 : set) {
 				if (bbIn.isInside(blockpos2)) {
-					voxelshapepart.setFull(blockpos2.getX() - bbIn.x0, blockpos2.getY() - bbIn.y0, blockpos2.getZ() - bbIn.z0, true, true);
+					discretevoxelshape.fill(blockpos2.getX() - bbIn.minX(), blockpos2.getY() - bbIn.minY(), blockpos2.getZ() - bbIn.minZ());
 				}
 
 				for (Direction direction1 : Direction.values()) {
@@ -258,7 +272,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 								BlockState blockstate2 = blockstate1.setValue(BlockStateProperties.DISTANCE, Integer.valueOf(l + 1));
 								setBlockKnownShape(worldIn, blockpos$mutable, blockstate2);
 								if (bbIn.isInside(blockpos$mutable)) {
-									voxelshapepart.setFull(blockpos$mutable.getX() - bbIn.x0, blockpos$mutable.getY() - bbIn.y0, blockpos$mutable.getZ() - bbIn.z0, true, true);
+									discretevoxelshape.fill(blockpos$mutable.getX() - bbIn.minX(), blockpos$mutable.getY() - bbIn.minY(), blockpos$mutable.getZ() - bbIn.minZ());
 								}
 
 								set1.add(blockpos$mutable.immutable());
@@ -269,7 +283,7 @@ public class NetherwoodTreeFeature extends Feature<BaseTreeFeatureConfig>
 			}
 		}
 
-		return voxelshapepart;
+		return discretevoxelshape;
 	}
 
 }

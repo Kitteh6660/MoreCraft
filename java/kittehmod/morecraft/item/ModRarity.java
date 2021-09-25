@@ -1,9 +1,9 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.item.Rarity;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.item.Rarity;
 
 public class ModRarity 
 {
-	public static Rarity LEGENDARY = Rarity.create("legendary", TextFormatting.GOLD);
+	public static Rarity LEGENDARY = Rarity.create("legendary", ChatFormatting.GOLD);
 }

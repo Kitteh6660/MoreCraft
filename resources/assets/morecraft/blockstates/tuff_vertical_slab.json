@@ -1,0 +1,9 @@
+{
+    "variants": {
+ 		"type=half,facing=north": { "model": "morecraft:block/tuff_vertical_slab", "y": 0, "uvlock": true },
+ 		"type=half,facing=south": { "model": "morecraft:block/tuff_vertical_slab", "y": 180, "uvlock": true },
+  		"type=half,facing=east": { "model": "morecraft:block/tuff_vertical_slab", "y": 90, "uvlock": true },
+ 		"type=half,facing=west": { "model": "morecraft:block/tuff_vertical_slab", "y": 270, "uvlock": true },
+        "type=double": { "model": "minecraft:block/tuff" }
+    }
+}

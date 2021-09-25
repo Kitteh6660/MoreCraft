@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:gunpowder"
+            "items": [ "minecraft:gunpowder" ]
           }
         ]
       }

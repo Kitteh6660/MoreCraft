@@ -17,10 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:end_crystal"
-          },
-          {
-            "item": "minecraft:phantom_membrane"
+            "items": [ "minecraft:end_crystal", "minecraft:phantom_membrane" ]
           }
         ]
       }

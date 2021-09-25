@@ -1,0 +1,7 @@
+{
+	"variants": {
+        "type=bottom": { "model": "morecraft:block/tuff_slab_lower" },
+        "type=top": { "model": "morecraft:block/tuff_slab_upper" },
+        "type=double": { "model": "minecraft:block/tuff" }
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "salvage_planks",
+  "ingredients": [
+    {
+        "item": "minecraft:jungle_fence"
+    }
+  ],
+  "result": {
+    "item": "minecraft:jungle_planks",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

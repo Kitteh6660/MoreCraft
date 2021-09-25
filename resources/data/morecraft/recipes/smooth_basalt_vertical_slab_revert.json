@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:smooth_basalt_vertical_slab"
+    }
+  },
+  "result": {
+    "item": "morecraft:smooth_basalt_slab",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}

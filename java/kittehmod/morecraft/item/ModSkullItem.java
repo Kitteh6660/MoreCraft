@@ -1,9 +1,9 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.WallOrFloorItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.level.block.Block;
 
-public class ModSkullItem extends WallOrFloorItem {
+public class ModSkullItem extends StandingAndWallBlockItem {
 
 	public ModSkullItem(Block floorBlockIn, Block wallBlockIn, Properties builder) {
 		super(floorBlockIn, wallBlockIn, builder);

@@ -4,24 +4,28 @@ package kittehmod.morecraft;
 //import org.apache.logging.log4j.Logger;
 
 import kittehmod.morecraft.block.ModBlocks;
+import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.client.ClientRenderSetup;
 import kittehmod.morecraft.client.gui.KilnScreen;
 import kittehmod.morecraft.container.ModContainerType;
+import kittehmod.morecraft.effects.ModMobEffects;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.entity.ai.ModPointOfInterestType;
+import kittehmod.morecraft.events.MobEvents;
+import kittehmod.morecraft.events.PlayerEvents;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.item.crafting.ModBrewingRecipes;
 import kittehmod.morecraft.item.crafting.ModRecipes;
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
-import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.item.Items;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -48,8 +52,9 @@ public class MoreCraft
     	ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModEntities.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    	ModTileEntityType.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	ModBlockEntityType.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModPotions.POTION_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	ModMobEffects.MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModBiomes.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModContainerType.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -70,6 +75,7 @@ public class MoreCraft
         MorecraftPacketHandler.register();
         
         CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
+        CraftingHelper.register(new SalvageRecipeCondition.Serializer());
         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
@@ -91,7 +97,7 @@ public class MoreCraft
 	private void setupClient(final FMLClientSetupEvent event)
     {
 		ClientRenderSetup.setup();
-		ScreenManager.register(ModContainerType.KILN.get(), KilnScreen::new);
+		MenuScreens.register(ModContainerType.KILN.get(), KilnScreen::new);
     }
     
     /* Dunno what I'll do with this. Maybe later.

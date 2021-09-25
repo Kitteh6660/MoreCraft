@@ -1,0 +1,34 @@
+{
+  "parent": "morecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morecraft:tuff_stairs_from_tuff_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morecraft:tuff_stairs_from_tuff_stonecutting"
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:tuff"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_item"
+    ]
+  ]
+}

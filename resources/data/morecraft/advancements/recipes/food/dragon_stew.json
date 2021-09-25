@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:cooked_dragon_meat"
+            "items": [ "morecraft:cooked_dragon_meat" ]
           }
         ]
       }

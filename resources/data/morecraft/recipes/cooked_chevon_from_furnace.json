@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "morecraft:raw_chevon"
+  },
+  "result": "morecraft:cooked_chevon",
+  "experience": 1.0,
+  "cookingtime": 200
+}

@@ -17,10 +17,10 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:enchanted_golden_apple"
+            "items": [ "minecraft:enchanted_golden_apple" ]
           },
           {
-            "item": "minecraft:nether_star"
+            "items": [ "minecraft:nether_star" ]
           }
         ]
       }

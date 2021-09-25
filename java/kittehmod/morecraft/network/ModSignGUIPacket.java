@@ -3,10 +3,10 @@ package kittehmod.morecraft.network;
 import java.util.function.Supplier;
 
 import kittehmod.morecraft.client.gui.ModEditSignHandler;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class ModSignGUIPacket {
 	
@@ -16,11 +16,11 @@ public class ModSignGUIPacket {
     	this.pos = pos;
     }
     
-    public static void encode(ModSignGUIPacket pkt, PacketBuffer buf) {
+    public static void encode(ModSignGUIPacket pkt, FriendlyByteBuf buf) {
     	buf.writeBlockPos(pkt.pos);
     }
     
-    public static ModSignGUIPacket decode(PacketBuffer buf) {
+    public static ModSignGUIPacket decode(FriendlyByteBuf buf) {
     	return new ModSignGUIPacket(buf.readBlockPos());
     }
     

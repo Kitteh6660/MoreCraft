@@ -17,10 +17,10 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:netherwood_chest"
+            "items": [ "morecraft:netherwood_chest" ]
           },
           {
-            "item": "minecraft:tripwire_hook"
+            "items": [ "minecraft:tripwire_hook" ]
           }
         ]
       }

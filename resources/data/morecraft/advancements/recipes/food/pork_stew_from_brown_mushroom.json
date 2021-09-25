@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:cooked_porkchop"
+            "items": [ "minecraft:cooked_porkchop" ]
           }
         ]
       }

@@ -8,7 +8,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.config.ModConfig.Reloading;
+import net.minecraftforge.fml.event.config.ModConfigEvent.Reloading;
 
 public class MoreCraftConfig {
 	
@@ -21,15 +21,16 @@ public class MoreCraftConfig {
 	//public static ForgeConfigSpec CLIENT_CONFIG;
 	
 	public static final String CATEGORY_GENERAL = "general";
-	//public static final String SUBCATEGORY_RECIPES = "recipes";
+	public static final String SUBCATEGORY_RECIPES = "recipes";
 	public static final String SUBCATEGORY_DROPS = "drops";
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
 	//public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
 	//public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
-	//public static ForgeConfigSpec.BooleanValue salvageRecipes;
+	public static ForgeConfigSpec.BooleanValue salvageRecipes;
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
+	public static ForgeConfigSpec.BooleanValue chevonDrops; //Enables chevon drops.
 	public static ForgeConfigSpec.IntValue generateNetherwoodTrees; //Enables Netherwood trees generation.
 	public static ForgeConfigSpec.IntValue rubyOreGenMaxHeight; //Determines max height of Ruby Ores.
 	public static ForgeConfigSpec.IntValue rubyOreGenFreq; //Determines frequency of Ruby Ore veins.
@@ -46,19 +47,19 @@ public class MoreCraftConfig {
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
 		
-        /*COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
+        COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
-        hardcoreRecipes = COMMON_BUILDER
+        /*hardcoreRecipes = COMMON_BUILDER
                 .comment("Hardcore Recipes\n" + "Default: False")
                 .define("hardcore_recipes", false);
 
         sillyRecipes = COMMON_BUILDER
                 .comment("Silly Recipes\n" + "Default: False")
-                .define("silly_recipes", false);
+                .define("silly_recipes", false);*/
 
         salvageRecipes = COMMON_BUILDER
-                .comment("Salvage Recipes (Not Yet Re-Implemented)\n" + "Default: True")
-                .define("salvage_recipes", true);*/
+                .comment("Salvage Recipe: Enables recipes that allows you to salvage certain items back into materials.  " + "Default: True")
+                .define("salvage_recipes", true);
 
         COMMON_BUILDER.pop();
         
@@ -71,6 +72,10 @@ public class MoreCraftConfig {
         mobHeadDrops = COMMON_BUILDER
                 .comment("Mob Head Drops: Determines if mob heads should drop rarely.  " + "Default: true")
                 .define("mob_head_drops", true);
+        
+        chevonDrops = COMMON_BUILDER
+                .comment("Chevon Drops: Determines if goats should drop meat on death. Disable if you have other Chevon-adding mods installed.  " + "Default: true")
+                .define("chevon_drops", true);
         
         COMMON_BUILDER.pop();
         
@@ -107,7 +112,7 @@ public class MoreCraftConfig {
     }
     
     @SubscribeEvent
-    public static void configLoaded(final ModConfig.Loading event) {
+    public static void configLoaded(final ModConfig event) {
         
     }
 

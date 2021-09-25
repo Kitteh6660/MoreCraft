@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:tuff_stairs",
+    "morecraft:calcite_stairs",
+    "morecraft:dripstone_stairs",
+    "morecraft:smooth_basalt_stairs",
+    "morecraft:tuff_slab",
+    "morecraft:calcite_slab",
+    "morecraft:dripstone_slab",
+    "morecraft:smooth_basalt_slab",
+    "morecraft:tuff_vertical_slab",
+    "morecraft:calcite_vertical_slab",
+    "morecraft:dripstone_vertical_slab",
+    "morecraft:smooth_basalt_vertical_slab",
+    "morecraft:tuff_wall",
+    "morecraft:calcite_wall",
+    "morecraft:dripstone_wall",
+    "morecraft:smooth_basalt_wall",
+    "morecraft:ruby_ore",
+    "morecraft:deepslate_ruby_ore",
+    "morecraft:ruby_block",
+    "morecraft:blaze_block",
+    "morecraft:ender_block",
+    "morecraft:bone_door",
+    "morecraft:netherbrick_door",
+    "morecraft:netherite_door",
+    "morecraft:netherbrick_fence_gate",
+    "morecraft:netherite_trapdoor",
+    "morecraft:kiln"
+  ]
+}

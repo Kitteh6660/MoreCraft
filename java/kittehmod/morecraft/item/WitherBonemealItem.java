@@ -4,19 +4,20 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WitherBonemealItem extends Item {
 	
@@ -29,8 +30,8 @@ public class WitherBonemealItem extends Item {
 	/**
 	 * Called when this item is used when targetting a Block
 	 */
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getLevel();
+	public InteractionResult onItemUse(UseOnContext context) {
+		Level world = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
 		//BlockPos blockpos1 = blockpos.offset(context.getFace());
 		if (applyBonemeal(context.getItemInHand(), world, blockpos, context.getPlayer())) {
@@ -38,22 +39,22 @@ public class WitherBonemealItem extends Item {
 				world.levelEvent(2005, blockpos, 0);
 			}
 
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
-			return ActionResultType.PASS;
+			return InteractionResult.PASS;
 		}
 	}
 
-	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos pos, net.minecraft.entity.player.PlayerEntity player) {
+	public static boolean applyBonemeal(ItemStack stack, Level worldIn, BlockPos pos, Player player) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, pos, blockstate, stack);
 		if (hook != 0) return hook > 0;
 		//Kills saplings, turning them into dead bushes.
-		if (blockstate.getBlock() instanceof IGrowable) {
-			IGrowable igrowable = (IGrowable)blockstate.getBlock();
-			if (igrowable.isValidBonemealTarget(worldIn, pos, blockstate, worldIn.isClientSide) && !AFFECTED_BLOCKS.contains(blockstate.getBlock())) {
+		if (blockstate.getBlock() instanceof BonemealableBlock) {
+			BonemealableBlock BonemealableBlock = (BonemealableBlock)blockstate.getBlock();
+			if (BonemealableBlock.isValidBonemealTarget(worldIn, pos, blockstate, worldIn.isClientSide) && !AFFECTED_BLOCKS.contains(blockstate.getBlock())) {
 				if (!worldIn.isClientSide) {
-					if (igrowable instanceof SaplingBlock || igrowable instanceof SweetBerryBushBlock) {
+					if (BonemealableBlock instanceof SaplingBlock || BonemealableBlock instanceof SweetBerryBushBlock) {
 						worldIn.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 11);
 					}
 					stack.shrink(1);

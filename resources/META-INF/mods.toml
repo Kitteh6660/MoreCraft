@@ -9,7 +9,7 @@ license="GPL License" #mandatory (License Schmicense)
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[35,)" #mandatory
+loaderVersion="[37,)" #mandatory
 
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/Kitteh6660/MoreCraft/issues" #optional
@@ -43,28 +43,28 @@ authors="Kitteh6660" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-The ultimate mod that expands a lot on Minecraft without out-of-place stuff.
+The ultimate mod that expands a lot on Minecraft while staying true to the vanilla feel of Minecraft.
 Adds many blocks, tools, armour, foods, and crafting recipes.
-Also makes the Nether a bit more interesting!
+Also introduces the Netherwood Trees to the Nether!
 '''
 
 [[dependencies.morecraft]]
   modId="minecraft" 
   mandatory=true
-  versionRange="[1.16.5,)"
+  versionRange="[1.17.1,)"
   ordering="NONE"
   side="BOTH"
 
 [[dependencies.morecraft]]
   modId = "quark" 
   mandatory = false
-  versionRange = "[r2.4,)"
+  versionRange = ""
   ordering = "AFTER"
   side = "BOTH"
   
 [[dependencies.morecraft]] 
   modId = "buzzier_bees"
   mandatory = false
-  versionRange = "[x.x.x,)"
+  versionRange = ""
   ordering = "AFTER"
   side = "BOTH"

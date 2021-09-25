@@ -17,7 +17,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:soul_glass"
+            "items": [
+              "morecraft:soul_glass"
+            ]
           }
         ]
       }

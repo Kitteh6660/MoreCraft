@@ -1,15 +1,16 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public enum ModArmorMaterial implements IArmorMaterial {
+public enum ModArmorMaterial implements ArmorMaterial {
+	COPPER("copper", 10, new int[]{2, 4, 5, 2}, 17, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, Ingredient.of(Items.COPPER_INGOT)),
 	SLIME("slime", 8, new int[]{2, 2, 3, 2}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.SLIME_BALL)),
 	FLESH("flesh", 4, new int[]{1, 3, 2, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.ROTTEN_FLESH)),
 	SILK("spidersilk", 15, new int[]{2, 3, 3, 2}, 18, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.COBWEB)),
@@ -45,11 +46,11 @@ public enum ModArmorMaterial implements IArmorMaterial {
 		this.repairMaterial = repairMaterialSupplier;
 	}
 	
-	public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+	public int getDurabilityForSlot(EquipmentSlot slotIn) {
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}
 
-	public int getDefenseForSlot(EquipmentSlotType slotIn) {
+	public int getDefenseForSlot(EquipmentSlot slotIn) {
 		return this.damageReductionAmountArray[slotIn.getIndex()];
 	}
 

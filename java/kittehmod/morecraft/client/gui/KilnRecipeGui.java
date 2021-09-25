@@ -2,25 +2,25 @@ package kittehmod.morecraft.client.gui;
 
 import java.util.Set;
 
-import net.minecraft.client.gui.recipebook.AbstractRecipeBookGui;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.client.gui.screens.recipebook.AbstractFurnaceRecipeBookComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class KilnRecipeGui extends AbstractRecipeBookGui
+public class KilnRecipeGui extends AbstractFurnaceRecipeBookComponent
 {
-	private static final ITextComponent FILTER_NAME = new TranslationTextComponent("gui.recipebook.toggleRecipes.smokable");
+	private static final Component FILTER_NAME = new TranslatableComponent("gui.recipebook.toggleRecipes.smokable");
 
-	protected ITextComponent getRecipeFilterName() {
+	protected Component getRecipeFilterName() {
 		return FILTER_NAME;
 	}
 
 	@SuppressWarnings("deprecation")
 	protected Set<Item> getFuelItems() {
-		return AbstractFurnaceTileEntity.getFuel().keySet();
+		return AbstractFurnaceBlockEntity.getFuel().keySet();
 	}
 }

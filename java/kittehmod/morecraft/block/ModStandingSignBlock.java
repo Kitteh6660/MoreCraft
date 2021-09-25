@@ -1,20 +1,21 @@
 package kittehmod.morecraft.block;
 
-import kittehmod.morecraft.tileentity.ModSignTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StandingSignBlock;
-import net.minecraft.block.WoodType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import kittehmod.morecraft.blockentity.ModSignBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class ModStandingSignBlock extends StandingSignBlock 
 {	
@@ -23,28 +24,40 @@ public class ModStandingSignBlock extends StandingSignBlock
 	}
 
 	@Override
-	public TileEntity newBlockEntity(IBlockReader worldIn) {
-		return new ModSignTileEntity();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new ModSignBlockEntity(pos, state);
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		TileEntity tileentity = worldIn.getBlockEntity(pos);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		BlockEntity blockentity = worldIn.getBlockEntity(pos);
 		if (worldIn.isClientSide) {
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
-			if (tileentity instanceof ModSignTileEntity) {
-				ModSignTileEntity signtileentity = (ModSignTileEntity)tileentity;
+			if (blockentity instanceof ModSignBlockEntity) {
+				ModSignBlockEntity signBlockEntity = (ModSignBlockEntity) blockentity;
 				ItemStack itemstack = player.getItemInHand(handIn);
-				if (itemstack.getItem() instanceof DyeItem && player.abilities.mayBuild) {
-					boolean flag = signtileentity.setTextColor(((DyeItem)itemstack.getItem()).getDyeColor());
+				if (itemstack.getItem() instanceof DyeItem && player.getAbilities().mayBuild) {
+					boolean flag = signBlockEntity.setColor(((DyeItem)itemstack.getItem()).getDyeColor());
 					if (flag && !player.isCreative()) {
 						itemstack.shrink(1);
 					}
 				}
-				return signtileentity.executeCommand(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+				else if (itemstack.getItem() == Items.GLOW_INK_SAC && player.getAbilities().mayBuild) {
+					boolean flag = signBlockEntity.setHasGlowingText(true);
+					if (flag && !player.isCreative()) {
+						itemstack.shrink(1);
+					}
+				}
+				else if (itemstack.getItem() == Items.INK_SAC && player.getAbilities().mayBuild) {
+					boolean flag = signBlockEntity.setHasGlowingText(false);
+					if (flag && !player.isCreative()) {
+						itemstack.shrink(1);
+					}
+				}
+				return signBlockEntity.executeClickCommands((ServerPlayer)player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
 			} else {
-				return ActionResultType.PASS;
+				return InteractionResult.PASS;
 			}
 		}
 	}

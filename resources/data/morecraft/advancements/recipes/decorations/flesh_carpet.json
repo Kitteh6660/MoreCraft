@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:flesh_block"
+            "items": [ "morecraft:flesh_block" ]
           }
         ]
       }

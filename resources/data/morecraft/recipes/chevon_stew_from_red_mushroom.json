@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "beef_stew",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "morecraft:cooked_chevon"
+    },
+    {
+        "item": "minecraft:baked_potato"
+    },
+    {
+        "item": "minecraft:carrot"
+    },
+    {
+        "item": "minecraft:red_mushroom"
+    }
+  ],
+  "result": {
+    "item": "morecraft:chevon_stew"
+  }
+}

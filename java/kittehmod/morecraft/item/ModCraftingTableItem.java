@@ -1,8 +1,12 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import javax.annotation.Nullable;
+
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.Block;
 
 public class ModCraftingTableItem extends BlockItem
 {
@@ -11,8 +15,8 @@ public class ModCraftingTableItem extends BlockItem
 	}
 
 	@Override
-	public int getBurnTime(ItemStack stack) {
-		if (stack.getItem() != ModItems.CRIMSON_CRAFTING_TABLE.get() && stack.getItem() != ModItems.WARPED_CRAFTING_TABLE.get() && stack.getItem() != ModItems.NETHERWOOD_CRAFTING_TABLE.get()) {
+	public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> recipeType) {
+		if (!stack.is(ItemTags.NON_FLAMMABLE_WOOD)) {
 			return 300;
 		}
 		else {

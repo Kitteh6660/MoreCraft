@@ -17,7 +17,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:rotten_flesh"
+            "items": [
+              "minecraft:rotten_flesh"
+            ]
           }
         ]
       }

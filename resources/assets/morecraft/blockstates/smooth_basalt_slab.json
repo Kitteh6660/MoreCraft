@@ -1,0 +1,7 @@
+{
+	"variants": {
+        "type=bottom": { "model": "morecraft:block/smooth_basalt_slab_lower" },
+        "type=top": { "model": "morecraft:block/smooth_basalt_slab_upper" },
+        "type=double": { "model": "minecraft:block/smooth_basalt" }
+	}
+}

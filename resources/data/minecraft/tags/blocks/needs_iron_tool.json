@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:ruby_block",
+    "morecraft:ruby_ore",
+    "morecraft:deepslate_ruby_ore"
+  ]
+}

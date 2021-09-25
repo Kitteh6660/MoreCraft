@@ -1,9 +1,10 @@
 package kittehmod.morecraft.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class BlazeBlock extends Block
 {
@@ -13,7 +14,7 @@ public class BlazeBlock extends Block
 	}
     
 	@Override
-    public void stepOn(World worldIn, BlockPos pos, Entity entityIn)
+    public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn)
     {
 		entityIn.setSecondsOnFire(4);
     }

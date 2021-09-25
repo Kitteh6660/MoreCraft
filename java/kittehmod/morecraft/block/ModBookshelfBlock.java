@@ -1,9 +1,9 @@
 package kittehmod.morecraft.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class ModBookshelfBlock extends Block
 {
@@ -12,7 +12,7 @@ public class ModBookshelfBlock extends Block
 	}
 	
 	@Override
-	public float getEnchantPowerBonus(BlockState state, IWorldReader world, BlockPos pos)
+	public float getEnchantPowerBonus(BlockState state, LevelReader world, BlockPos pos)
     {
         return 1;
     }

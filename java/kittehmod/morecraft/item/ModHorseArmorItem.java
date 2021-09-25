@@ -1,12 +1,13 @@
 package kittehmod.morecraft.item;
 
-import net.minecraft.item.HorseArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.HorseArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ModHorseArmorItem extends HorseArmorItem {
+public class ModHorseArmorItem extends HorseArmorItem 
+{
 	private final ResourceLocation texture;
 
 	public ModHorseArmorItem(int p_i50042_1_, String p_i50042_2_, Item.Properties p_i50042_3_) {

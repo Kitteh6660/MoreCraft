@@ -6,6 +6,7 @@
 "block.morecraft.gunpowder_block": "Block of Gunpowder",
 
 "block.morecraft.ruby_ore": "Ruby Ore",
+"block.morecraft.deepslate_ruby_ore": "Deepslate Ruby Ore",
 "block.morecraft.ruby_block": "Block of Ruby",
 
 "block.morecraft.netherwood_log": "Netherwood Log",
@@ -44,6 +45,19 @@
 "block.morecraft.warped_crafting_table": "Warped Crafting Table",
 "block.morecraft.netherwood_crafting_table": "Netherwood Crafting Table",
 
+"block.morecraft.tuff_stairs": "Tuff Stairs",
+"block.morecraft.tuff_slab": "Tuff Slab",
+"block.morecraft.tuff_wall": "Tuff Wall",
+"block.morecraft.calcite_stairs": "Calcite Stairs",
+"block.morecraft.calcite_slab": "Calcite Slab",
+"block.morecraft.calcite_wall": "Calcite Wall",
+"block.morecraft.dripstone_stairs": "Dripstone Stairs",
+"block.morecraft.dripstone_slab": "Dripstone Slab",
+"block.morecraft.dripstone_wall": "Dripstone Wall",
+"block.morecraft.smooth_basalt_stairs": "Smooth Basalt Stairs",
+"block.morecraft.smooth_basalt_slab": "Smooth Basalt Slab",
+"block.morecraft.smooth_basalt_wall": "Smooth Basalt Wall",
+
 "block.morecraft.bedrock_brick": "Bedrock Bricks",
 "block.morecraft.soul_glass": "Soul Glass",
 "block.morecraft.soul_glass_pane": "Soul Glass Pane",
@@ -60,6 +74,8 @@
 "block.morecraft.enderman_head": "Enderman Head",
 
 "item.morecraft.cooked_flesh": "Cooked Flesh",
+"item.morecraft.raw_chevon": "Raw Chevon",
+"item.morecraft.cooked_chevon": "Cooked Chevon",
 "item.morecraft.raw_spider": "Spider",
 "item.morecraft.cooked_spider": "Fried Spider",
 "item.morecraft.raw_squid": "Squid",
@@ -79,6 +95,7 @@
 "item.morecraft.pork_stew": "Pork Stew",
 "item.morecraft.mutton_stew": "Mutton Stew",
 "item.morecraft.chicken_stew": "Chicken Soup",
+"item.morecraft.chevon_stew": "Goat Stew",
 "item.morecraft.spider_stew": "Spider Stew",
 "item.morecraft.fish_stew": "Fish Chowder",
 "item.morecraft.guardian_stew": "Guardian Stew",
@@ -117,6 +134,16 @@
 "block.morecraft.netherwood_fence_gate": "Netherwood Fence Gate",
 "block.morecraft.netherwood_trapdoor": "Netherwood Trapdoor",
 "block.morecraft.netherite_trapdoor": "Netherite Trapdoor",
+
+"item.morecraft.copper_helmet": "Copper Helmet",
+"item.morecraft.copper_chestplate": "Copper Chestplate",
+"item.morecraft.copper_leggings": "Copper Leggings",
+"item.morecraft.copper_boots": "Copper Boots",
+"item.morecraft.copper_pickaxe": "Copper Pickaxe",
+"item.morecraft.copper_axe": "Copper Axe",
+"item.morecraft.copper_shovel": "Copper Shovel",
+"item.morecraft.copper_hoe": "Copper Hoe",
+"item.morecraft.copper_sword": "Copper Sword",
 
 "item.morecraft.slime_helmet": "Slime Helmet",
 "item.morecraft.slime_chestplate": "Slime Chestplate",
@@ -240,6 +267,7 @@
 "item.morecraft.bedrock_hoe": "Bedrock Hoe",
 "item.morecraft.bedrock_sword": "Bedrock Sword",
 
+"item.morecraft.copper_horse_armor": "Copper Horse Armor",
 "item.morecraft.bone_horse_armor": "Bone Horse Armor",
 "item.morecraft.emerald_horse_armor": "Emerald Horse Armor",
 "item.morecraft.ruby_horse_armor": "Ruby Horse Armor",
@@ -280,9 +308,12 @@
 "advancements.adventure.bone_armor.description": "Craft a piece of bone armor.",
 "advancements.story.mine_ruby.title": "The Forgotten Red Ore",
 "advancements.story.mine_ruby.description": "Mine some rubies.",
+"advancements.end.enderdragon_armor.title": "Cover Me in Scales",
+"advancements.end.enderdragon_armor.description": "Craft a piece of Enderdragon Scale armor.",
 
 "gui.recipebook.toggleRecipes.kilnable": "Showing Kilnable",
-"container.kiln": "Kiln"
+"container.kiln": "Kiln",
 
-
+"messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armor protected you from harm!",
+"messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."
 }

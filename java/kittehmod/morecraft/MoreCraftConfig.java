@@ -31,6 +31,9 @@ public class MoreCraftConfig {
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
 	public static ForgeConfigSpec.IntValue generateNetherwoodTrees; //Enables Netherwood trees generation.
+	public static ForgeConfigSpec.IntValue rubyOreGenMaxHeight; //Determines max height of Ruby Ores.
+	public static ForgeConfigSpec.IntValue rubyOreGenFreq; //Determines frequency of Ruby Ore veins.
+	public static ForgeConfigSpec.IntValue rubyOreGenSize; //Determines max size of Ruby Ore veins.
 	
 	static {
 		initializeConfig();
@@ -62,11 +65,11 @@ public class MoreCraftConfig {
         COMMON_BUILDER.push(SUBCATEGORY_DROPS);
         
         overrideMobDrops = COMMON_BUILDER
-                .comment("Override Mob Drops\n" + "Default: True")
+                .comment("Override Mob Drops: Determines if Spider and Squid default drops should be replaced.  " + "Default: true")
                 .define("override_mob_drops", true);
         
         mobHeadDrops = COMMON_BUILDER
-                .comment("Mob Head Drops\n" + "Default: True")
+                .comment("Mob Head Drops: Determines if mob heads should drop rarely.  " + "Default: true")
                 .define("mob_head_drops", true);
         
         COMMON_BUILDER.pop();
@@ -74,8 +77,20 @@ public class MoreCraftConfig {
 		COMMON_BUILDER.push(SUBCATEGORY_GENERATION);
 
         generateNetherwoodTrees = COMMON_BUILDER
-                .comment("Netherwood Trees Frequency\n" + "Default: " + 12)
+                .comment("Netherwood Trees Frequency: How many attempts should be made per chunk to generate Netherwood Trees.  " + "Default: " + 12)
                 .defineInRange("netherwood_gen_freq", 12, 0, 50);
+
+        rubyOreGenMaxHeight = COMMON_BUILDER
+                .comment("Ruby Ore Max Height: The maximum Y position the ruby ores can generate up to.  " + "Default: " + 32)
+                .defineInRange("ruby_ore_gen_max_height", 32, 1, 256);
+        
+        rubyOreGenFreq = COMMON_BUILDER
+                .comment("Ruby Ore Frequency: How many attempts at generating ruby ores.  " + "Default: " + 2)
+                .defineInRange("ruby_ore_gen_freq", 2, 0, 16);
+        
+        rubyOreGenSize = COMMON_BUILDER
+                .comment("Ruby Ore Vein Size: The maximum size of ruby ore veins.  " + "Default: " + 8)
+                .defineInRange("ruby_ore_gen_size", 8, 1, 16);
         
         COMMON_BUILDER.pop();
 	}

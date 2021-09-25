@@ -58,7 +58,7 @@ Also makes the Nether a bit more interesting!
 [[dependencies.morecraft]]
   modId = "quark" 
   mandatory = false
-  versionRange = "[x.x.x,)"
+  versionRange = "[r2.4,)"
   ordering = "AFTER"
   side = "BOTH"
   

@@ -47,7 +47,7 @@ public class ModBiomes
 	@SubscribeEvent
     public void biomeLoadEvent(BiomeLoadingEvent event) {
     	BiomeGenerationSettingsBuilder bgsb = event.getGeneration();
-    	bgsb.getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUBY_ORE.get().defaultBlockState(), 8)).range(32).squared().count(2));
+    	bgsb.getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUBY_ORE.get().defaultBlockState(), MoreCraftConfig.rubyOreGenSize.get())).range(MoreCraftConfig.rubyOreGenMaxHeight.get()).squared().count(MoreCraftConfig.rubyOreGenFreq.get()));
     	if (event.getCategory() == Biome.Category.NETHER) {
     		if (MoreCraftConfig.generateNetherwoodTrees.get() <= 0) {
     			return; //Don't generate trees if set to 0.

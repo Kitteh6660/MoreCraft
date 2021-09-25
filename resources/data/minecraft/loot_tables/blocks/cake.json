@@ -6,13 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 7
-            }
-          ],
-          "name": "morecraft:cake_slice"
+          "name": "minecraft:cake"
         }
       ],
       "conditions": [

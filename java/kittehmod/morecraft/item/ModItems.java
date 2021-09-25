@@ -122,9 +122,9 @@ public class ModItems {
     public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().tab(ItemGroup.TAB_BREWING)));
     
 	// -- TRANSPORTATION ITEMS -- \\
-    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoatEntity.Type.NETHERWOOD));
     public static final RegistryObject<Item> CRIMSON_BOAT = ITEMS.register("crimson_boat", () -> new NetherBoatItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoatEntity.Type.CRIMSON));
     public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoatEntity.Type.WARPED));
+    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoatEntity.Type.NETHERWOOD));
 
     public static final RegistryObject<Item> OAK_CRAFTING_TABLE_MINECART = ITEMS.register("oak_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1), CraftingTableMinecartEntity.CraftingTableType.OAK));
     public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE_MINECART = ITEMS.register("spruce_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1), CraftingTableMinecartEntity.CraftingTableType.SPRUCE));

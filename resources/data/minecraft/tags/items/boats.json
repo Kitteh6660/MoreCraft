@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:crimson_boat",
+    "morecraft:warped_boat",
+    "morecraft:netherwood_boat"
+  ]
+}

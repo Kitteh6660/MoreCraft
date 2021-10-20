@@ -74,4 +74,9 @@ public class ModBiomes
     		bgsb.getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG).decorated(Placement.COUNT_MULTILAYER.configured(new FeatureSpreadConfig((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3 * genMultiplier)))));
     	}
     }
+	
+	public static void addBiomes() {
+		//BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(ForgeRegistries.BIOMES.getKey(), 10));
+		//BiomeDictionary.addTypes(ModBiomes.NETHERWOOD_FOREST.get(), Type.NETHER);
+	}
 }

@@ -1,7 +1,10 @@
 {
   "replace": false,
   "values": [
+    "morecraft:netherbrick_trapdoor",
     "morecraft:netherwood_trapdoor",
-    "morecraft:netherite_trapdoor"
+    "morecraft:netherite_trapdoor",
+    "morecraft:glass_trapdoor",
+    "morecraft:bone_trapdoor"
   ]
 }

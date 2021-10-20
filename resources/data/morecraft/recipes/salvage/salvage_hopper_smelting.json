@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "salvage_iron_ingot",
+  "ingredient": {
+    "item": "minecraft:hopper"
+  },
+  "result": "minecraft:iron_ingot",
+  "experience": 0.35,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

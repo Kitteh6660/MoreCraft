@@ -13,7 +13,7 @@ public class KilnRecipe extends AbstractCookingRecipe
 		super(IModRecipeType.KILN, id, group, ingredient, result, experience, cookTime);
 	}
 
-	public ItemStack getIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(ModBlocks.KILN.get());
 	}
 

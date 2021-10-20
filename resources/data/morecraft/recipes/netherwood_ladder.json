@@ -15,12 +15,21 @@
   },
   "result": {
     "item": "morecraft:netherwood_ladder",
-    "count": 3
+    "count": 4
   },
   "conditions": [
     {
-      "type": "morecraft:quark_flag",
-      "flag": "variant_ladders"
+      "type": "forge:or",
+      "values": [
+        {
+          "type": "morecraft:quark_flag",
+          "flag": "variant_ladders"
+        },
+        {
+          "type": "morecraft:charm_module",
+          "module": "variant_ladders"
+        }
+      ]
     }
   ]
 } 

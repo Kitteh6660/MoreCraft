@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
-import kittehmod.morecraft.client.ModItemStackTileEntityRenderer;
+import kittehmod.morecraft.client.renderer.ModItemStackTileEntityRenderer;
 import kittehmod.morecraft.entity.CraftingTableMinecartEntity;
 import kittehmod.morecraft.entity.NetherBoatEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -78,12 +78,15 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERITE_DOOR = ITEMS.register("netherite_door", () -> new TallBlockItem(ModBlocks.NETHERITE_DOOR.get(), (new Item.Properties()).tab(ItemGroup.TAB_REDSTONE).fireResistant()));
 	public static final RegistryObject<Item> GLASS_DOOR = ITEMS.register("glass_door", () -> new TallBlockItem(ModBlocks.GLASS_DOOR.get(), (new Item.Properties()).tab(ItemGroup.TAB_REDSTONE)));
     public static final RegistryObject<Item> BONE_DOOR = ITEMS.register("bone_door", () -> new TallBlockItem(ModBlocks.BONE_DOOR.get(), (new Item.Properties()).tab(ItemGroup.TAB_REDSTONE)));
-	
-	public static final RegistryObject<Item> NETHERBRICK_FENCE_GATE = ITEMS.register("netherbrick_fence_gate", () -> new BlockItem(ModBlocks.NETHERBRICK_FENCE_GATE.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
-	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
 
-	public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
+    public static final RegistryObject<Item> NETHERBRICK_TRAPDOOR = ITEMS.register("netherbrick_trapdoor", () -> new BlockItem(ModBlocks.NETHERBRICK_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
+    public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
 	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE).fireResistant()));
+    public static final RegistryObject<Item> GLASS_TRAPDOOR = ITEMS.register("glass_trapdoor", () -> new BlockItem(ModBlocks.GLASS_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
+    public static final RegistryObject<Item> BONE_TRAPDOOR = ITEMS.register("bone_trapdoor", () -> new BlockItem(ModBlocks.BONE_TRAPDOOR.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
+    
+	public static final RegistryObject<Item> NETHERBRICK_FENCE_GATE = ITEMS.register("netherbrick_fence_gate", () -> new BlockItem(ModBlocks.NETHERBRICK_FENCE_GATE.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : ItemGroup.TAB_REDSTONE)));
+	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().tab(ItemGroup.TAB_REDSTONE)));
 	
 	// -- FOOD -- \\
     public static final RegistryObject<Item> COOKED_FLESH = ITEMS.register("cooked_flesh", () -> new Item(new Item.Properties().tab(ItemGroup.TAB_FOOD).food(ModFoods.COOKED_FLESH)));
@@ -135,20 +138,6 @@ public class ModItems {
     public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE_MINECART = ITEMS.register("crimson_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1), CraftingTableMinecartEntity.CraftingTableType.CRIMSON));
     public static final RegistryObject<Item> WARPED_CRAFTING_TABLE_MINECART = ITEMS.register("warped_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1), CraftingTableMinecartEntity.CraftingTableType.WARPED));
     public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION).stacksTo(1), CraftingTableMinecartEntity.CraftingTableType.NETHERWOOD));
-
-    
-    // QUARK ADDONS
-    public static final RegistryObject<Item> NETHERWOOD_LADDER = ModItems.ITEMS.register("netherwood_ladder", () -> new BlockItem(ModBlocks.NETHERWOOD_LADDER.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
-    public static final RegistryObject<Item> VERTICAL_NETHERWOOD_PLANKS = ModItems.ITEMS.register("vertical_netherwood_planks", () -> new BlockItem(ModBlocks.VERTICAL_NETHERWOOD_PLANKS.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
-    public static final RegistryObject<Item> NETHERWOOD_VERTICAL_SLAB = ModItems.ITEMS.register("netherwood_vertical_slab", () -> new BlockItem(ModBlocks.NETHERWOOD_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
-    public static final RegistryObject<Item> NETHERWOOD_POST = ModItems.ITEMS.register("netherwood_post", () -> new BlockItem(ModBlocks.NETHERWOOD_POST.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
-    public static final RegistryObject<Item> STRIPPED_NETHERWOOD_POST = ModItems.ITEMS.register("stripped_netherwood_post", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
-    public static final RegistryObject<Item> NETHERWOOD_HEDGE = ModItems.ITEMS.register("netherwood_hedge", () -> new BlockItem(ModBlocks.NETHERWOOD_HEDGE.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
-    public static final RegistryObject<Item> NETHERWOOD_LEAF_CARPET = ModItems.ITEMS.register("netherwood_leaf_carpet", () -> new BlockItem(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
-    
-    // BUZZIER BEES
-    public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ModItems.ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties().tab(conditionallyAddTab("buzzier_bees", ItemGroup.TAB_DECORATIONS))));
-
     
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> BONE_HORSE_ARMOR = ITEMS.register("bone_horse_armor", () -> new ModHorseArmorItem(4, "bone", (new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_MISC)));
@@ -275,6 +264,31 @@ public class ModItems {
     public static final RegistryObject<Item> BEDROCK_HOE = ITEMS.register("bedrock_hoe", () -> new ModHoeItem(ModItemTier.BEDROCK, -4, -2.0F, new Item.Properties().tab(ItemGroup.TAB_TOOLS)));
     public static final RegistryObject<Item> BEDROCK_SWORD = ITEMS.register("bedrock_sword", () -> new ModSwordItem(ModItemTier.BEDROCK, 3, -2.4F, new Item.Properties().tab(ItemGroup.TAB_COMBAT)));
 
+    // -- MOD ADDONS -- \\
+    // QUARK ADDONS
+    public static final RegistryObject<Item> NETHERWOOD_LADDER = ModItems.ITEMS.register("netherwood_ladder", () -> new BlockItem(ModBlocks.NETHERWOOD_LADDER.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("charm")) ? ItemGroup.TAB_DECORATIONS : null)));
+    public static final RegistryObject<Item> VERTICAL_NETHERWOOD_PLANKS = ModItems.ITEMS.register("vertical_netherwood_planks", () -> new BlockItem(ModBlocks.VERTICAL_NETHERWOOD_PLANKS.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
+    public static final RegistryObject<Item> NETHERWOOD_VERTICAL_SLAB = ModItems.ITEMS.register("netherwood_vertical_slab", () -> new BlockItem(ModBlocks.NETHERWOOD_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
+    public static final RegistryObject<Item> NETHERWOOD_POST = ModItems.ITEMS.register("netherwood_post", () -> new BlockItem(ModBlocks.NETHERWOOD_POST.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
+    public static final RegistryObject<Item> STRIPPED_NETHERWOOD_POST = ModItems.ITEMS.register("stripped_netherwood_post", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
+    public static final RegistryObject<Item> NETHERWOOD_HEDGE = ModItems.ITEMS.register("netherwood_hedge", () -> new BlockItem(ModBlocks.NETHERWOOD_HEDGE.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
+    public static final RegistryObject<Item> NETHERWOOD_LEAF_CARPET = ModItems.ITEMS.register("netherwood_leaf_carpet", () -> new BlockItem(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
+    
+    // CHARM ADDONS
+    public static final RegistryObject<Item> NETHERWOOD_CRATE = ModItems.ITEMS.register("netherwood_crate", () -> new BlockItem(ModBlocks.NETHERWOOD_CRATE.get(), new Item.Properties().tab(conditionallyAddTab("charm", ItemGroup.TAB_DECORATIONS)).stacksTo(1)));
+    public static final RegistryObject<Item> NETHERWOOD_BOOKCASE = ModItems.ITEMS.register("netherwood_bookcase", () -> new BlockItem(ModBlocks.NETHERWOOD_BOOKCASE.get(), new Item.Properties().tab(conditionallyAddTab("charm", ItemGroup.TAB_DECORATIONS))));
+    public static final RegistryObject<Item> NETHERWOOD_BARREL = ModItems.ITEMS.register("netherwood_barrel", () -> new BlockItem(ModBlocks.NETHERWOOD_BARREL.get(), new Item.Properties().tab(conditionallyAddTab("charm", ItemGroup.TAB_DECORATIONS))));
+   
+    // BUZZIER BEES
+    public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ModItems.ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties().tab(conditionallyAddTab("buzzier_bees", ItemGroup.TAB_DECORATIONS))));
+
+    // DRAMATIC DOORS
+    public static final RegistryObject<Item> TALL_NETHERBRICK_DOOR = ITEMS.register("tall_netherbrick_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE)).fireResistant()));
+	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new TallBlockItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
+    
     @Nullable
     private static ItemGroup conditionallyAddTab(String modid, ItemGroup tab) {
     	if (ModList.get().isLoaded(modid)) {
@@ -284,7 +298,6 @@ public class ModItems {
     		return null;
     	}
     }
-    
     
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

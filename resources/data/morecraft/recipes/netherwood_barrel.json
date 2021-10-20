@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X#X",
+    "X X",
+    "X#X"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_slab"
+    },
+    "X": {
+      "item": "morecraft:netherwood_planks"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_barrel"
+  },
+  "conditions": [
+    {
+      "type": "morecraft:charm_module",
+      "module": "variant_barrels"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:blasting",
+  "group": "salvage_netherite_ingot",
+  "ingredient": {
+    "item": "morecraft:netherite_trapdoor"
+  },
+  "result": "minecraft:netherite_ingot",
+  "experience": 0.35,
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

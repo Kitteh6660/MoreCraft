@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "slots=0": { "model": "morecraft:block/netherwood_bookcase_0" },
+    "slots=1": { "model": "morecraft:block/netherwood_bookcase_1" },
+    "slots=2": {"model": "morecraft:block/netherwood_bookcase_1" },
+    "slots=3": {"model": "morecraft:block/netherwood_bookcase_2" },
+    "slots=4": {"model": "morecraft:block/netherwood_bookcase_2" },
+    "slots=5": {"model": "morecraft:block/netherwood_bookcase_3" },
+    "slots=6": {"model": "morecraft:block/netherwood_bookcase_3" },
+    "slots=7": {"model": "morecraft:block/netherwood_bookcase_4" },
+    "slots=8": {"model": "morecraft:block/netherwood_bookcase_4" },
+    "slots=9": {"model": "morecraft:block/netherwood_bookcase_5" },
+    "slots=10": {"model": "morecraft:block/netherwood_bookcase_5" },
+    "slots=11": {"model": "morecraft:block/netherwood_bookcase_6" },
+    "slots=12": {"model": "morecraft:block/netherwood_bookcase_6" },
+    "slots=13": {"model": "morecraft:block/netherwood_bookcase_7" },
+    "slots=14": {"model": "morecraft:block/netherwood_bookcase_7" },
+    "slots=15": {"model": "morecraft:block/netherwood_bookcase_8" },
+    "slots=16": {"model": "morecraft:block/netherwood_bookcase_8" },
+    "slots=17": {"model": "morecraft:block/netherwood_bookcase_9" },
+    "slots=18": {"model": "morecraft:block/netherwood_bookcase_9" }
+  }
+}

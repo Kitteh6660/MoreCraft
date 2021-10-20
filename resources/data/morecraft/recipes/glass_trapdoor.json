@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "minecraft:glass"
+      },
+      {
+        "item": "morecraft:soul_glass"
+      }
+    ]
+  },
+  "result": {
+    "item": "morecraft:glass_trapdoor"
+  }
+}

@@ -14,6 +14,9 @@ public class TileEntityTextureHelper {
 	
 	public static final ResourceLocation NETHERWOOD_SIGN_LOCATION = new ResourceLocation(MoreCraft.MODID, "entity/signs/netherwood");
 
+	public static final ResourceLocation NETHERWOOD_CRATE_TOP = new ResourceLocation(MoreCraft.MODID, "block/netherwood_crate_top");
+	public static final ResourceLocation NETHERWOOD_CRATE_SIDE = new ResourceLocation(MoreCraft.MODID, "block/netherwood_crate_side");
+	
 	public static final ResourceLocation NETHERWOOD_CHEST = new ResourceLocation(MoreCraft.MODID, "entity/chest/netherwood");
 	public static final ResourceLocation NETHERWOOD_CHEST_LEFT = new ResourceLocation(MoreCraft.MODID, "entity/chest/netherwood_left");
 	public static final ResourceLocation NETHERWOOD_CHEST_RIGHT = new ResourceLocation(MoreCraft.MODID, "entity/chest/netherwood_right");

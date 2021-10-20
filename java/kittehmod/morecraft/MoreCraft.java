@@ -5,22 +5,29 @@ package kittehmod.morecraft;
 
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.client.ClientRenderSetup;
-import kittehmod.morecraft.client.gui.KilnScreen;
 import kittehmod.morecraft.container.ModContainerType;
+import kittehmod.morecraft.effects.ModMobEffects;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.entity.ai.ModPointOfInterestType;
+import kittehmod.morecraft.events.MobEvents;
+import kittehmod.morecraft.events.PlayerEvents;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.item.crafting.ModBrewingRecipes;
 import kittehmod.morecraft.item.crafting.ModRecipes;
+import kittehmod.morecraft.item.crafting.conditions.CharmModInstalledCondition;
+import kittehmod.morecraft.item.crafting.conditions.CharmModNotInstalledCondition;
+import kittehmod.morecraft.item.crafting.conditions.CharmModuleRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.DramaticDoorsModInstalledCondition;
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.QuarkModNotInstalledCondition;
+import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -49,12 +56,14 @@ public class MoreCraft
     	ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModEntities.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModTileEntityType.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	ModMobEffects.MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModPotions.POTION_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModBiomes.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModContainerType.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
      	ModRecipes.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
    		ModPointOfInterestType.POINTS_OF_INTERESTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	MoreCraftSounds.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
     	DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> { FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient); });
     }
@@ -69,7 +78,13 @@ public class MoreCraft
     	
         MorecraftPacketHandler.register();
         
+        CraftingHelper.register(new QuarkModNotInstalledCondition.Serializer());
         CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
+        CraftingHelper.register(new CharmModInstalledCondition.Serializer());
+        CraftingHelper.register(new CharmModNotInstalledCondition.Serializer());
+        CraftingHelper.register(new CharmModuleRecipeCondition.Serializer());
+        CraftingHelper.register(new DramaticDoorsModInstalledCondition.Serializer());
+        CraftingHelper.register(new SalvageRecipeCondition.Serializer());
         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
@@ -91,7 +106,6 @@ public class MoreCraft
 	private void setupClient(final FMLClientSetupEvent event)
     {
 		ClientRenderSetup.setup();
-		ScreenManager.register(ModContainerType.KILN.get(), KilnScreen::new);
     }
     
     /* Dunno what I'll do with this. Maybe later.

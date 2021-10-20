@@ -7,7 +7,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import kittehmod.morecraft.block.ModStandingSignBlock;
-import kittehmod.morecraft.client.NetherwoodSignTileEntityRenderer;
+import kittehmod.morecraft.client.renderer.NetherwoodSignTileEntityRenderer;
 import kittehmod.morecraft.network.ModUpdateSignPacket;
 import kittehmod.morecraft.network.ModUpdateTileEntityPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;

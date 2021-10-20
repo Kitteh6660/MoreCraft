@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "salvage_netherite_ingot",
+  "ingredient": {
+    "item": "morecraft:netherite_door"
+  },
+  "result": "minecraft:netherite_ingot",
+  "experience": 0.35,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

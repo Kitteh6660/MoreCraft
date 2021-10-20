@@ -17,6 +17,7 @@ import net.minecraft.world.IWorld;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
+// Quark Content
 public class ModHedgeBlock extends FenceBlock
 {
 	public static final ITag<Block> HEDGES = BlockTags.createOptional(new ResourceLocation("quark", "hedges"));

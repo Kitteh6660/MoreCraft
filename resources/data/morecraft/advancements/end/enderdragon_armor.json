@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:end/kill_dragon",
+  "display": {
+    "icon": {
+      "item": "morecraft:enderdragon_scales"
+    },
+    "title": {
+      "translate": "advancements.end.enderdragon_armor.title"
+    },
+    "description": {
+      "translate": "advancements.end.enderdragon_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "enderdragon_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:enderdragon_helmet"
+          }
+        ]
+      }
+    },
+    "enderdragon_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:enderdragon_chestplate"
+          }
+        ]
+      }
+    },
+    "enderdragon_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:enderdragon_leggings"
+          }
+        ]
+      }
+    },
+    "enderdragon_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morecraft:enderdragon_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enderdragon_helmet",
+      "enderdragon_chestplate",
+      "enderdragon_leggings",
+      "enderdragon_boots"
+    ]
+  ]
+}

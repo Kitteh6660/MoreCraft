@@ -1,9 +1,16 @@
 package kittehmod.morecraft.client;
 
 import kittehmod.morecraft.block.ModBlocks;
+import kittehmod.morecraft.client.gui.BookcaseScreen;
+import kittehmod.morecraft.client.gui.CrateScreen;
+import kittehmod.morecraft.client.gui.KilnScreen;
+import kittehmod.morecraft.client.renderer.NetherwoodChestTileEntityRenderer;
+import kittehmod.morecraft.client.renderer.NetherwoodSignTileEntityRenderer;
+import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.NetherBoatEntity;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -71,6 +78,11 @@ public class ClientRenderSetup {
 			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
 		});
         
+		// Set up the GUIs.
+		ScreenManager.register(ModContainerType.KILN.get(), KilnScreen::new);
+		ScreenManager.register(ModContainerType.CRATE.get(), CrateScreen::new);
+		ScreenManager.register(ModContainerType.BOOKCASE.get(), BookcaseScreen::new);
+		
 		// This is for rendering entities and so forth later on
 		ClientRegistry.bindTileEntityRenderer(ModTileEntityType.NETHERWOOD_CHEST.get(), NetherwoodChestTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ModTileEntityType.NETHERWOOD_TRAPPED_CHEST.get(), NetherwoodChestTileEntityRenderer::new);
@@ -81,15 +93,24 @@ public class ClientRenderSetup {
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_DOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_DOOR.get(), RenderType.cutout());
-		
+
+		RenderTypeLookup.setRenderLayer(ModBlocks.TALL_NETHERWOOD_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.TALL_NETHERBRICK_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.TALL_NETHERITE_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.TALL_GLASS_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.TALL_BONE_DOOR.get(), RenderType.cutout());
+
 		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_LADDER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.FLESH_CARPET.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LADDER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAVES.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERBRICK_TRAPDOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.GLASS_TRAPDOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ModBlocks.BONE_TRAPDOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.cutout());
@@ -101,8 +122,9 @@ public class ClientRenderSetup {
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_POST.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
-		
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_CRATE.get(), RenderType.solid());
+
 	}
 	
 }

@@ -33,6 +33,9 @@
 "block.morecraft.stripped_netherwood_post": "Stripped Netherwood Post",
 "block.morecraft.netherwood_hedge": "Netherwood Hedge",
 "block.morecraft.netherwood_leaf_carpet": "Netherwood Leaf Carpet",
+"block.morecraft.netherwood_crate": "Netherwood Crate",
+"block.morecraft.netherwood_bookcase": "Netherwood Bookcase",
+"block.morecraft.netherwood_barrel": "Netherwood Barrel",
 
 "block.morecraft.spruce_crafting_table": "Spruce Crafting Table",
 "block.morecraft.birch_crafting_table": "Birch Crafting Table",
@@ -97,12 +100,20 @@
 
 "block.morecraft.netherbrick_door": "Nether Brick Door",
 "block.morecraft.netherwood_door": "Netherwood Door",
+"block.morecraft.netherite_door": "Netherite Door",
 "block.morecraft.glass_door": "Glass Door",
 "block.morecraft.bone_door": "Bone Door",
-"block.morecraft.netherbrick_fence_gate": "Nether Brick Fence Gate",
-"block.morecraft.netherwood_fence_gate": "Netherwood Fence Gate",
+"block.morecraft.netherbrick_trapdoor": "Nether Brick Trapdoor",
 "block.morecraft.netherwood_trapdoor": "Netherwood Trapdoor",
 "block.morecraft.netherite_trapdoor": "Netherite Trapdoor",
+"block.morecraft.glass_trapdoor": "Glass Trapdoor",
+"block.morecraft.bone_trapdoor": "Bone Trapdoor",
+
+"block.morecraft.tall_netherbrick_door": "Tall Nether Brick Door",
+"block.morecraft.tall_netherwood_door": "Tall Netherwood Door",
+"block.morecraft.tall_netherite_door": "Tall Netherite Door",
+"block.morecraft.tall_glass_door": "Tall Glass Door",
+"block.morecraft.tall_bone_door": "Tall Bone Door",
 
 "item.morecraft.slime_helmet": "Slime Helmet",
 "item.morecraft.slime_chestplate": "Slime Chestplate",
@@ -266,7 +277,12 @@
 "advancements.adventure.bone_armor.description": "Craft a piece of bone armour.",
 "advancements.story.mine_ruby.title": "The Forgotten Red Ore",
 "advancements.story.mine_ruby.description": "Mine some rubies.",
+"advancements.end.enderdragon_armor.title": "Cover Me in Scales",
+"advancements.end.enderdragon_armor.description": "Craft a piece of Enderdragon Scale armour.",
 
 "gui.recipebook.toggleRecipes.kilnable": "Showing Kilnable",
-"container.kiln": "Kiln"
+"container.kiln": "Kiln",
+
+"messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armour protected you from harm!",
+"messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."
 }

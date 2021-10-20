@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "salvage_gold_ingot",
+  "ingredient": {
+    "item": "minecraft:light_weighted_pressure_plate"
+  },
+  "result": "minecraft:gold_ingot",
+  "experience": 0.35,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "type": "morecraft:salvage_recipes"
+    }
+  ]
+}

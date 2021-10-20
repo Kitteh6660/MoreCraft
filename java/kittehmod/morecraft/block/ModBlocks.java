@@ -1,8 +1,12 @@
 package kittehmod.morecraft.block;
 
 import kittehmod.morecraft.MoreCraft;
+import kittehmod.morecraft.block.addons.ModBarrelBlock;
+import kittehmod.morecraft.block.addons.ModBookcaseBlock;
+import kittehmod.morecraft.block.addons.ModCrateBlock;
 import kittehmod.morecraft.block.addons.ModHedgeBlock;
 import kittehmod.morecraft.block.addons.ModPostBlock;
+import kittehmod.morecraft.block.addons.ModTallDoorBlock;
 import kittehmod.morecraft.block.addons.ModVerticalSlabBlock;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.NetherwoodTree;
@@ -42,15 +46,18 @@ public class ModBlocks {
 	
 	//--LIST OF BLOCKS--\\
     //Doors & Gates
-    public static final RegistryObject<Block> NETHERBRICK_DOOR = BLOCKS.register("netherbrick_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.STONE).noOcclusion())); 
+    public static final RegistryObject<Block> NETHERBRICK_DOOR = BLOCKS.register("netherbrick_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.NETHER_BRICKS).noOcclusion())); 
 	public static final RegistryObject<Block> NETHERWOOD_DOOR = BLOCKS.register("netherwood_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> NETHERITE_DOOR = BLOCKS.register("netherite_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3)));
 	public static final RegistryObject<Block> GLASS_DOOR = BLOCKS.register("glass_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> BONE_DOOR = BLOCKS.register("bone_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.STONE).noOcclusion()));
-    public static final RegistryObject<Block> NETHERBRICK_FENCE_GATE = BLOCKS.register("netherbrick_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.of(Material.STONE).strength(3.0F, 8.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> BONE_DOOR = BLOCKS.register("bone_door", () -> new ModDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> NETHERBRICK_TRAPDOOR = BLOCKS.register("netherbrick_trapdoor", () -> new ModTrapDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.NETHER_BRICKS).noOcclusion()));
     public static final RegistryObject<Block> NETHERWOOD_TRAPDOOR = BLOCKS.register("netherwood_trapdoor", () -> new ModTrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> NETHERITE_TRAPDOOR = BLOCKS.register("netherite_trapdoor", () -> new ModTrapDoorBlock(AbstractBlock.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3)));
+    public static final RegistryObject<Block> GLASS_TRAPDOOR = BLOCKS.register("glass_trapdoor", () -> new ModTrapDoorBlock(AbstractBlock.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> BONE_TRAPDOOR = BLOCKS.register("bone_trapdoor", () -> new ModTrapDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> NETHERBRICK_FENCE_GATE = BLOCKS.register("netherbrick_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.of(Material.STONE).strength(3.0F, 8.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK)));
 
     //Ores
     public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new ModOreBlock(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(2).strength(3.0F, 3.0F)));
@@ -104,6 +111,7 @@ public class ModBlocks {
     @SuppressWarnings("deprecation")
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(NETHERWOOD_SAPLING.get(), AbstractBlock.Properties.of(Material.PLANT).strength(0.0F)));
 
+    //--MOD ADDONS--\\
     //Quark
     public static final RegistryObject<Block> NETHERWOOD_LADDER = BLOCKS.register("netherwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
     public static final RegistryObject<Block> VERTICAL_NETHERWOOD_PLANKS = ModBlocks.BLOCKS.register("vertical_netherwood_planks", () -> new Block(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(3.0F, 4.0F).sound(SoundType.WOOD)));
@@ -113,8 +121,21 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_HEDGE = ModBlocks.BLOCKS.register("netherwood_hedge", () -> new ModHedgeBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F)));
     public static final RegistryObject<Block> NETHERWOOD_LEAF_CARPET = BLOCKS.register("netherwood_leaf_carpet", () -> new CarpetBlock(DyeColor.RED, AbstractBlock.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).harvestTool(ToolType.HOE).noCollission().instabreak().sound(SoundType.GRASS)));
 
+    //Charm
+    public static final RegistryObject<Block> NETHERWOOD_CRATE = ModBlocks.BLOCKS.register("netherwood_crate", () -> new ModCrateBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD), ModWoodType.NETHERWOOD));
+    public static final RegistryObject<Block> NETHERWOOD_BOOKCASE = ModBlocks.BLOCKS.register("netherwood_bookcase", () -> new ModBookcaseBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD), ModWoodType.NETHERWOOD));
+    public static final RegistryObject<Block> NETHERWOOD_BARREL = ModBlocks.BLOCKS.register("netherwood_barrel", () -> new ModBarrelBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
+
     //Buzzier Bees
     public static final RegistryObject<Block> NETHERWOOD_BEEHIVE = ModBlocks.BLOCKS.register("netherwood_beehive", () -> new BeehiveBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
+    
+    //Dramatic Doors
+    public static final RegistryObject<Block> TALL_NETHERBRICK_DOOR = BLOCKS.register("tall_netherbrick_door", () -> new ModTallDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.NETHER_BRICKS).noOcclusion())); 
+	public static final RegistryObject<Block> TALL_NETHERWOOD_DOOR = BLOCKS.register("tall_netherwood_door", () -> new ModTallDoorBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> TALL_NETHERITE_DOOR = BLOCKS.register("tall_netherite_door", () -> new ModTallDoorBlock(AbstractBlock.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3)));
+	public static final RegistryObject<Block> TALL_GLASS_DOOR = BLOCKS.register("tall_glass_door", () -> new ModTallDoorBlock(AbstractBlock.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(AbstractBlock.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
+
     
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

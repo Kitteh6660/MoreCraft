@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:tall_netherwood_door"
+    }
+  },
+  "result": {
+    "item": "morecraft:tall_netherwood_door",
+    "count": 2
+  },
+  "conditions": [
+    {
+      "type": "morecraft:dramaticdoors_mod_installed"
+    }
+  ]
+}

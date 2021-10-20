@@ -21,13 +21,13 @@ public class MoreCraftConfig {
 	//public static ForgeConfigSpec CLIENT_CONFIG;
 	
 	public static final String CATEGORY_GENERAL = "general";
-	//public static final String SUBCATEGORY_RECIPES = "recipes";
+	public static final String SUBCATEGORY_RECIPES = "recipes";
 	public static final String SUBCATEGORY_DROPS = "drops";
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
 	//public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
 	//public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
-	//public static ForgeConfigSpec.BooleanValue salvageRecipes;
+	public static ForgeConfigSpec.BooleanValue salvageRecipes;
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
 	public static ForgeConfigSpec.IntValue generateNetherwoodTrees; //Enables Netherwood trees generation.
@@ -46,19 +46,19 @@ public class MoreCraftConfig {
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
 		
-        /*COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
+        COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
-        hardcoreRecipes = COMMON_BUILDER
+        /*hardcoreRecipes = COMMON_BUILDER
                 .comment("Hardcore Recipes\n" + "Default: False")
                 .define("hardcore_recipes", false);
 
         sillyRecipes = COMMON_BUILDER
                 .comment("Silly Recipes\n" + "Default: False")
-                .define("silly_recipes", false);
+                .define("silly_recipes", false);*/
 
         salvageRecipes = COMMON_BUILDER
-                .comment("Salvage Recipes (Not Yet Re-Implemented)\n" + "Default: True")
-                .define("salvage_recipes", true);*/
+                .comment("Salvage Recipes: Enables recipes that allows you to salvage certain items back into materials.  " + "Default: True")
+                .define("salvage_recipes", true);
 
         COMMON_BUILDER.pop();
         

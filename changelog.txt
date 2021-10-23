@@ -1,5 +1,97 @@
 NOTE: This change log may still be missing things! I will work to make sure it properly chronicles all sorts of changes from the mod's inception up to the latest release.
 
+==[ MINECRAFT 1.17.1]==
+=======================
+## [4.4.0] - 2021-10-23
+
+This update focuses on polishing the mod and moves it out of beta into release. It has plenty of fixes too!
+
+🌟Added:
++ Added French translation (both forms of French) for the following content:
+   * Chevons & Goat stews
+   * Deepslate Ruby Ore
+   * Copper equipment
+   * Bone, Glass, and Nether Brick Trapdoors
+   * Potions of Resistance and Glowing
++ The following changes and fixes are forward-ported from mod release 4.3.3:
+   * Added Charm support, where barrels, bookcases, and crates get the Netherwood variant, and supports portable crafting table. (Futureproofed)
+   * Added Dramatic Doors support, where each of the five doors now have the tall door variant when the mod is installed. (Futureproofed)
+   * Added Bone, Glass, and Nether Brick Trapdoors.
+   * Updated Bone Ladder and lower Nether Brick Door textures.
+   * Changed Netherwood Ladder recipe to yield 4 ladders for consistency with Quark ladders.
+   * Fixed an issue where Netherwood Trapdoors wouldn't drop anything when broken.
+   
+🔧Changed:
+* Slime boots now significantly reduce fall damage and make you bounce a bit, stacking with Feather Falling. Boots, however, will take durability damage.
+
+🐞Fixed:
+> Corrected notification toasts popping up for Oak (vanilla) Crafting Table and Ruby item.
+> Fixed a bug where picking up rotten flesh would cause fried egg recipe notification toast to pop up.
+> Fixed an issue where dismounting the mod-added boats would crash the server.
+> Fixed a bug where finishing editing Netherwood signs on modded servers would crash the client.
+> Corrected French translation for variant Crafting tables on fr_fr.
+
+❌Removed:
+- Removed a few unnecessary code in NetworkPacketHandler.
+
+=======================
+## [4.4b1] - 2021-09-24
+
+Well well well, what do we have here? The first mod build for Minecraft 1.17.1, that's what it is! This is a beta release as there may still be bugs to be ironed out as well as further tweaks.
+
+The mod now integrates some of the new additions of 1.17.1!
+
+🌟Added:
++ New equipment tier: Copper! Intended to fill the gaps between Stone and Iron. Craft with Copper Ingots.
+  * You have the usual array of copper tools, sword, and armour. Alongside horse armour!
++ New blocks: Stairs, Slabs, and Walls for Tuff, Calcite, Dripstone, and Smooth Basalt!
+  * The new stairs, slabs, and walls can be made as usual like any other type.
+  * You also can make using Stonecutter. For the first time, the mod now integrates the Stonecutter.
+  * Quark bonus: Vertical slabs are enabled if Quark is installed.
+* New ore block: Deepslate Ruby Ore
+  * Just like any other Deepslate ore blocks, it can generate where Deepslate exists.
+* New item: Chevons! Dropped by adult goats and can be cooked and made into stew.
+  * If goats die while on fire, they will drop cooked chevons!
+* Added set bonuses for some armour sets!
+  * Ruby armour gives you a chance to completely negate damage through luck. Chance is 2.5% per piece.
+  * Obsidian armour reduces fire damage taken by 10% per piece, stacking with Fire Protection.
+  * Spider Silk increases fire damage taken by 10% per piece. Currently doesn't let you move through webs faster.
+  * Bone, Bone Lord, and Wither Bone armour increase Fear Value of player. 1 point of Fear = 5% chance for hostile mobs to run from you. Bone Lord & Wither Bone = 2 points of fear per piece.
+    * The chance is reduced as mobs have increased max health.
++ The fear mechanics use 2 status effects: scared and unafraid.
+    * While the mob is scared, it will run away from you.
+    * Once the scared effect runs out, the mob is immune to fear for 1 minute.
+    * Bosses and minibosses can't be scared of you. Fear does not affect players.
+    * Those two effects work like potion effects. However, creepers can't transfer those effects to entities.
++ Re-implemented salvage recipes! This also can be turned on or off. More recipes may potentially be added over time!
+   * You can now melt down the following in furnace or blast furnace: Iron & Netherite doors, Iron & Netherite trapdoors, Iron bars, Chains, Buckets, Minecarts, Hoppers, Weighted pressure plates (both variants), and Bells into ingots or nuggets.
+   * You can now put the items in crafting grid to dismantle/revert:
+      * Wooden fences: 1x -> 1 plank
+      * Wooden fence gates: 1x -> 2 planks
+      * Wooden doors: 1x -> 2 planks
+      * Wooden trapdoors: 1x -> 2 planks
+      * Wooden boats 1x -> 4 planks
+      * Wooden pressure plates: 1x -> 1 plank
+      * Wooden buttons: 1x -> 1 plank
+      * Ladders: 1x -> 2 sticks
+      * Any arrows: 4x -> 1 stick
+      * Bows: 1x -> 1 stick
++ Added a new advancement: Cover Me in Scales. Make a piece of Enderdragon scale armour.
++ Added a new effect where Emerald Pickaxes have a small chance to turn a random stone or deepslate block into emerald ore. The effect cannot trigger if the pickaxe has Silk Touch, as to avoid any possible exploits. The durability has been nerfed to 364.
++ Added Cracked Deepslate Bricks and Cracked Deepslate Tiles to Kiln recipes.
+
+🔧Changed:
+* Built on Forge 37.0.44 so you'll need this version at minimum.
+* Glow Ink Sac can now be used on Netherwood Signs to make text glow! Use Ink Sac to reverse.
+* Incorporated the new mineable tags.
+* Added Ruby item texture due to Minecraft having removed the texture from 1.17. Also, new Ruby item texture.
+* Adjusted Wither Bone and Wither Bone Meal item textures.
+* Tweaked Enderdragon Armour model a bit. Loincloth is now split and attached to legs so the halves move with legs. The textures also have been tweaked.
+* Decreased the frequency of Netherwood trees in Soul Sand Valley.
+
+🐞Fixed:
+> Fixed the upside-down corner stairs graphics.
+
 ==[ MINECRAFT 1.16.5]==
 =======================
 ## [4.3.4] - 2021-10-22

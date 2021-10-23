@@ -1,5 +1,151 @@
 NOTE: This change log is still under construction!
 
+==[ MINECRAFT 1.10.2]==
+=======================
+## [3.0.3] - 2017-05-30
+
+This version should now work on servers.
+
+🔧Changed:
+* Merged the changes from version 2.9.3 maintenance update.
+
+=======================
+## [3.0.2] - 2017-05-19
+
+🔧Changed:
+* Netherwood doors now have different textures to make it look more unique, like the other wooden doors. (From 2.9.2)
+
+🐞Bug Fixes:
+* Added the fixes from version 2.9.2:
+  * Gunpowder blocks appear in creative inventory now.
+  * Blaze blocks now set mobs on fire once again.
+  * Stone stairs recipes changed to only accept regular stones.
+
+=======================
+## [3.0.1] - 2017-05-14
+
+🔧Changed:
+* Registered Netherwood slabs and stairs to ore dictionary.
+* Soul glass and its pane variant now use ore dictionary.
+* Soul glass can now be used in place of regular glass for vanilla recipes.
+
+🐞Fixed:
+- Corrected ruby display name.
+- Brought the fixes from 2.9.1 maintenance update.
+
+=======================
+## [3.0.0] - 2017-05-13
+
+Despite the version change, there isn't a lot of new features. I know it sucks but at least now the mod is available for Minecraft 1.10.2! Huzzah! Updating from 1.9.4 to 1.10.2 is a breeze actually.
+
+🐞Fixed:
+* Finally silenced the model loader error on console output by adding some dummy files. It's such a kludge but at least it works.
+
+❌Removed:
+- Removed Block of Bones. They're now in Minecraft 1.10.
+
+==[ MINECRAFT 1.9.4 ]==
+=======================
+## [2.9.3] - 2017-05-30
+
+This is the last mod update for Minecraft 1.9.4.
+
+🌟Added:
+* Added a recipe for name tags. This can be disabled if Hardcore Recipes are enabled. Crafted with 1 string and 2 papers in diagonal manner.
+
+🐞Fixed:
+* Fixed a crash if the mod is used on Forge server.
+
+=======================
+## [2.9.2] - 2017-05-19
+
+🔧Changed:
+* Netherwood doors now have different textures to make it look more unique, like the other wooden doors.
+* Integrated the ore dictionary and recipe changes from 3.0.1.
+
+🐞Fixed:
+* Finally suppressed the ModelLoader errors with some workaround.
+* Gunpowder block now appears in creative inventory once again.
+* Stone stairs recipes now only use the regular stones.
+* Blaze block now sets mob on fire once again.
+
+=======================
+## [2.9.1] - 2017-05-14
+
+🐞Fixed:
+* Fixed Enderdragon scale armour not rendering on mobs and armour stand.
+* Fixed certain axes not having coloured rarity.
+* MoreCraft logo now appears properly in mod options.
+
+=======================
+## [2.9.0] - 2017-05-13
+
+At last, the mod is finally ported over to Minecraft 1.9.4! Now you can enjoy the newer features. Make sure to use Forge 12.17.0.1976+!
+
+🌟Added:
++ Nether Apples. Has a chance to confer random effects, can be good or bad. This replaces the regular apple drops in netherwood trees.
++ Netherwood boats! In addition to standard capability of taking you across water, it can also take you across lava!
++ Enderdragon Scales. They replace the armour drops from Ender Dragon. Normally yields 4-7 scales but each level of Looting increases the maximum by 2. The amount is doubled for first kill.
++ Reinstated the enchanted Golden Apple recipe since it was removed from vanilla Minecraft, making it renewable again. Only if Hardcore Recipes are not enabled. 1.9 integration.
+
+🔧Changed:
+* Some of the higher-end armour now have Armour Toughness, part of 1.9 integration.
+* MoreCraft-added Axes now have higher damage but slower, for consistency with the vanilla axes, part of 1.9 integration.
+* Ender Dragon now has 20% chance to drop head. The chance is increased by 5% per level of Looting. This also makes Enderdragon head effectively renewable. Can be disabled by turning off mobHeadDrops.
+* Endermen now have a chance to drop diamonds as rare drops. The chance is cut by 1/5 of usual for the End to account for how common Endermen are. Diamonds are now renewable.
+* Squids and spiders now drop cooked variant if they die while on fire.
+* Guardian meat, raw or cooked, can be fed to wolves.
+* Changed the sound of equipping Enderdragon Scale armour to match that of leather.
+* Enderdragon scale armour no longer has infinite durability but it still lasts hella long time. This is because Ender Dragon can be respawned.
+* Mob spawner now appears under Miscellanous and Dragon Egg under Decoration Blocks in creative inventory. Vanilla-enhancing!
+
+🐞Fixed:
+* Managed to fix a duplicate default text on tooltip text in config.
+* Picking up Netherwood Logs now award Getting Wood achievement.
+* Crafting Netherwood Crafting Table now award Benchmarking achievement.
+
+❌Removed:
+- Removed Ender Bricks since End Bricks are now in vanilla Minecraft. The stairs and slabs now use the vanilla textures and renamed to match. Part of 1.9 integration.
+- Removed endermanBlockDrops since it's no longer needed. Endermen drop blocks in vanilla Minecraft now.
+
+==[ MINECRAFT 1.8.9 ]==
+=======================
+## [2.8.1] - 2017-05-08
+
+Yay, an update for this mod! Well... to be precise, it's primarily bug fixing but there are a few texture changes as well.
+With those fixes, I can eventually begin moving this mod towards 1.9.4 and beyond. 
+
+🔧Changes & Tweaks
+* Ore dictionary integration from version 2.7.5 added.
+* Brought forth texture changes seen in version 2.7.6.
+* Changed the ruby block texture.
+
+🐞Bug Fixes
+* Fixed slabs not turning into full slabs.
+* Finally fixed Netherwood chest render in inventory.
+* Fixed the missing texture particles when breaking Netherwood crafting tables and chests.
+* Fixed Enderdragon Scale armour not rendering on mobs.
+* Slime armour now repairs itself once again. Note that it may be buggy so I might end up disabling it instead.
+
+=======================
+## [2.8.0] - 2016-06-23
+
+First mod release for Minecraft 1.8.9. It involves a lot of code changes.
+ 
+🌟Additions
++ Added Guardian meat, dropped by Guardians. Can be cooked and eaten. Cooked guardian meat has a chance to give you Water Breathing.
++ Added Netherwood Fence Gate.
+
+🔧Changes & Tweaks
+* Netherwood generation has been replaced with frequency that goes from 0 to 32, which is number of attempts to generate Netherwood trees per chunk. (0 means disabled. 16 is default.)
+* Adjusted some recipes to maintain consistency, especially with the changes to door recipes.
+* Updated the door icon textures to maintain consistency with the vanilla door texture changes.
+
+🐞Bug Fixes
+* Thanks to the code changes, fences now properly connected to Nether brick and Netherwood fence gates.
+
+❌Removal
+* Removed Slime block, Iron trapdoor, and Mutton (raw and cooked) from the mod as they are now in vanilla Minecraft.
 
 ==[ MINECRAFT 1.7.10]==
 =======================

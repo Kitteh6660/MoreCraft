@@ -1,0 +1,155 @@
+NOTE: This change log is still under construction!
+
+
+==[ MINECRAFT 1.6.4 ]==
+=======================
+## [2.6.1] - 2014-07-26
+
+Changes & Tweaks
+* Changed Wither bones recipe to use coal instead of obsidian.
+* Some internal changes to prepare the mod to use ore dictionary.
+* Some tinkering with Netherwood chests. Use caution when updating the mod. Make sure to move contents from Netherwood chests to vanilla chests and remove the Netherwood chest before updating.
+
+Bug Fixes
+* The crash that occurs in SMP if Ender Dragon is killed should be fixed.
+
+=======================
+## [2.6b3] - 2014-01-28
+
+Mod changed to use Forge. Kind of bad news for ModLoader fans but I had to switch to Forge as ModLoader isn't updated. Sorry!
+There are many changes, including the addition of slime armour.
+
+Additions
++ New SMP support. Just drop the zip file into '1.6.4' in 'mods' folder in server folder.
++ You can now repair tools and armour with anvils!
++ Added bedrock bricks. It's indestructible but good-looking too!
+* Major internal changes to how armour got coded, it now works in SMP!
+
+Changes & Tweaks
+* Changed the emerald and ruby armour texture as well as Netherwood door texture.
+
+Caveats & Bugs
+- New bug: Slime, Bone Lord and Enderdragon Scale armour does not render correctly. (EDIT: It was quickly fixed)
+- Slabs don't stack properly. (Right-click to place the slab don't turn the slab into double slab block)
+- Lambchop and mob head drop is unaffected by Looting enchantment.
+
+==[ MINECRAFT 1.6.2 ]==
+=======================
+## [2.5] - 2013-07-15
+
+Additions
++ Added Ender Block, crafted with 9 Ender Pearls. Can be crafted back.
++ Added Block of Gunpowder, crafted with 9 Gunpowder. Can be crafted back.
+
+Changes & Tweaks
+* Replaced Redstone tools and armour with Ender tools and armour.
+* Tweaked Ender Dragon to not destroy Ender Bricks and the stairs and slabs.
+
+Caveats
+- Ender Brick Slabs don't stack properly. (Right-click to place the slab don't turn the slab into double slab block. Fixed in 2.7.x.)
+
+=======================
+## [2.5b2] - 2013-07-13
+
+Additions
++ Added Netherwood chest, crafted with 8 Netherwood Planks!
++ Added Nether Brick Fence Gate! Crafted with Nether Brick item in place of sticks and Nether Brick block in place of wooden planks. Fence and walls also connect! (This requires edit of 2 base classes)
+
+Changes & Tweaks
+* Sheep now drop Lambchop on death.
+* Changed Chain armour recipe, now uses Iron Ingots and Iron Bars. Recipe is up for you to find out! Recipe is still not finalized yet and is subject to change.
+
+Caveats
+- Ender Brick Slabs don't stack properly. (Right-click to place the slab don't turn the slab into double slab block)
+- No Netherwood Slabs yet.
+
+==[ MINECRAFT 1.6.1 ]==
+=======================
+## [2.5b1] - 2013-07-07
+
+Additions
++ Re-added Netherwood Trees! It now generate in Nether again! And it's more common than before!
++ Abandoned Nether Mineshaft is back for now.
+
+Changes & Tweaks
+* Enderdragon tweaked! If she destroys a block, it gets dropped. She also now drop Enderdragon Scale armour!
+* Fixed the blocks animation and Blaze textures.
+* Witches can open door now.
+* Zombies now target passive mobs, pigs run from zombies.
+* Zombies and Skeletons no longer burn under the sun on Hard mode.
+* Netherwood Leaves now decay properly. (This is very similar state to version 2.3 for 1.5.2, but with some new features and fixes.)
+
+Caveats
+- Ender Brick Slab don't stack properly. (Right-click to place the slab don't turn the slab into double slab block)
+
+=======================
+## [2.5a2] - 2013-07-04
+
+Additions
++ Added horse armour recipe, it's the same recipe used in snapshot.
++ Chain armour recipe test: Craft with Iron Bars instead of Iron Ingots.
+
+Bug Fixes
+* Corrected doors.
+* Fixed crash on killing Enderman when they carry no blocks.
+* Corrected head textures, name not fixed yet.
+* Fixed missing textures of blocks.
+* More mobs now drop head properly.
+
+Removal
+- Animated block animation removed temporarily.
+
+Caveats
+
+- Netherwood leaves currently don't decay.
+- Netherwood trees currently do not generate in Nether.
+- Blaze tools and armour have broken textures.
+
+
+=======================
+## [2.5a1] - 2013-07-03
+
+Additions
++ Updated for 1.6.1.
++ Added Ender Brick Slabs.
+
+Removal
+- Several features removed temporarily.
+
+Caveats
+- Some textures don't work properly, it's due to changes from Texture Packs to Resource Packs.
+- Netherwood trees currently don't generate.
+- Missing textures for animated textures, looking into fixing it.
+
+==[ MINECRAFT 1.5.2 ]==
+=======================
+## [2.3] - 2013-06-21
+
+Additions
++ New crafting recipes! You can now use Rotten Flesh to craft books and item frames, used as substitute for Leather.
++ Netherwood trees now generate in the Nether. They're fairly uncommon.
+
+Changes & Tweaks
+* Enderman now drop carried blocks on death!
+* Netherwood planks can now be used for array of recipes using wood planks.
+* Wither tools and armour now have orange names again! (Legendary rarity)
+* Blaze tools and armour now have yellow names. (Uncommon rarity)
+
+Bug Fixes
+* Fixed Netherwood leaves transparency.
+
+Caveats
+- Netherwood leaves currently don't decay.
+- Using shears on Netherwood leaves drops oak leaves.
+
+=======================
+## [2.2] - 2013-06-21
+
+Additions
++ Added necro armour!
++ Re-added missing glass door.
++ Abandoned Nether Mineshaft test
++ Netherwood introduced! Nether trees can be grown. Currently it doesn't generate naturally in Nether, you have to find saplings in Abandoned Nether Mineshaft.
+
+Caveats
+- Netherwood Trees don't generate naturally in Nether.

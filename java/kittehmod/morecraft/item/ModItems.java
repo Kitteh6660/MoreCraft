@@ -287,7 +287,7 @@ public class ModItems {
     public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
     public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE)).fireResistant()));
 	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
-    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new TallBlockItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", ItemGroup.TAB_REDSTONE))));
     
     @Nullable
     private static ItemGroup conditionallyAddTab(String modid, ItemGroup tab) {

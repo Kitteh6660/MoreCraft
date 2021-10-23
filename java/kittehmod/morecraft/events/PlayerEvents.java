@@ -37,7 +37,7 @@ public class PlayerEvents
 	public void LavaBoatDismount(EntityMountEvent event) {
 		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherBoatEntity) {
 			event.getEntityMounting().clearFire();
-			if (event.getEntityMounting() instanceof PlayerEntity) {
+			if (event.getEntityMounting() instanceof PlayerEntity && event.getEntityMounting().level.isClientSide) {
 				MorecraftPacketHandler.sendToServer(new ModBoatDismountPacket()); // Has to be called otherwise fire won't properly get extinguished.
 			}
 			event.setResult(Result.ALLOW);

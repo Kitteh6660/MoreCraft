@@ -55,7 +55,7 @@ public class MorecraftPacketHandler {
 	 * Sends a packet to the server.<br>
 	 * Must be called Client side. 
 	 */
-	public static void sendToServer(Object msg)
+	public static <MSG> void sendToServer(MSG msg)
 	{
 		HANDLER.sendToServer(msg);
 	}
@@ -64,7 +64,7 @@ public class MorecraftPacketHandler {
 	 * Send a packet to a specific player.<br>
 	 * Must be called Server side. 
 	 */
-	public static void sendTo(Object msg, ServerPlayerEntity player)
+	public static <MSG> void sendTo(MSG msg, ServerPlayerEntity player)
 	{
 		if (!(player instanceof FakePlayer))
 		{

@@ -1,6 +1,5 @@
 package kittehmod.morecraft;
 
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -21,7 +20,7 @@ public class MoreCraftSounds
     public static class Registration
     {
         @SubscribeEvent
-        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> e)
+        public static void onSoundRegistry(final RegistryEvent.Register<SoundEvent> e)
         {
             e.getRegistry().registerAll();
         }

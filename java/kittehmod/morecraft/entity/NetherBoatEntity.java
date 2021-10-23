@@ -689,7 +689,7 @@ public class NetherBoatEntity extends BoatEntity
 			passenger.setPos(this.getX() + vec3d.x, this.getY() + (double) f1, this.getZ() + vec3d.z);
 			passenger.yRot += this.deltaRotation;
 			passenger.setYHeadRot(passenger.getYHeadRot() + this.deltaRotation);
-			this.onPassengerTurned(passenger);
+			this.clampRotation(passenger);
 			if (passenger instanceof AnimalEntity && this.getPassengers().size() > 1) {
 				int j = passenger.getId() % 2 == 0 ? 90 : 270;
 				passenger.setYBodyRot(((AnimalEntity) passenger).yBodyRot + (float) j);
@@ -922,7 +922,9 @@ public class NetherBoatEntity extends BoatEntity
 
 	public static enum Type
 	{
-		NETHERWOOD(ModBlocks.NETHERWOOD_PLANKS.get(), "netherwood"), WARPED(Blocks.WARPED_PLANKS, "warped"), CRIMSON(Blocks.CRIMSON_PLANKS, "crimson");
+		NETHERWOOD(ModBlocks.NETHERWOOD_PLANKS.get(), "netherwood"), 
+		WARPED(Blocks.WARPED_PLANKS, "warped"), 
+		CRIMSON(Blocks.CRIMSON_PLANKS, "crimson");
 
 		private final String name;
 		private final Block block;

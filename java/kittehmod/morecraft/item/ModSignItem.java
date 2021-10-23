@@ -25,7 +25,7 @@ public class ModSignItem extends SignItem {
 		boolean flag = super.updateCustomBlockEntityTag(worldIn, player, pos, stack);
 		if (player instanceof ServerPlayer && !flag) {
 			ModSignGUIPacket msg = new ModSignGUIPacket(pos);
-			MorecraftPacketHandler.sendTo(msg, (ServerPlayer) player);
+			MorecraftPacketHandler.sendToClient(msg, (ServerPlayer) player);
 		}
 		return flag;
 	}

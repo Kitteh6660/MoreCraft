@@ -1,0 +1,14 @@
+{
+  "type": "environmental:sawing",
+  "ingredient": {
+    "tag": "morecraft:netherwood_logs"
+  },
+  "result": "morecraft:vertical_netherwood_planks",
+  "count": 4,
+  "conditions":[
+    {
+      "type":"morecraft:quark_flag",
+      "flag":"vertical_planks"
+    }
+  ]
+}

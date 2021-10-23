@@ -77,7 +77,7 @@ public class ModSignEditScreen extends Screen
 			ModUpdateSignPacket msg1 = new ModUpdateSignPacket(this.sign.getBlockPos(), this.sign.getMessage(0, false), this.sign.getMessage(1, false), this.sign.getMessage(2, false), this.sign.getMessage(3, false), this.sign.getColor().getId());
 			MorecraftPacketHandler.sendToServer(msg1);
 			ModUpdateTileEntityPacket msg2 = new ModUpdateTileEntityPacket(this.sign.getBlockPos(), this.sign.save(this.sign.getUpdateTag()));
-			MorecraftPacketHandler.sendToServerSync(msg2);
+			MorecraftPacketHandler.sendToServer(msg2);
 		}
 		this.sign.setEditable(true);
 	}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X#X",
+    "# #",
+    "X#X"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_planks"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_crate"
+  },
+  "conditions": [
+    {
+      "type": "morecraft:charm_module",
+      "module": "crates"
+    }
+  ]
+}

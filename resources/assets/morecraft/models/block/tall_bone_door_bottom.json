@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "morecraft:blocks/tall_bone_door_lower",
+        "top": "morecraft:blocks/tall_bone_door_upper"
+    }
+}

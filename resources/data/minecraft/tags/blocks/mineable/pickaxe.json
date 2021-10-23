@@ -25,6 +25,9 @@
     "morecraft:bone_door",
     "morecraft:netherbrick_door",
     "morecraft:netherite_door",
+    "morecraft:tall_bone_door",
+    "morecraft:tall_netherbrick_door",
+    "morecraft:tall_netherite_door",
     "morecraft:netherbrick_fence_gate",
     "morecraft:netherite_trapdoor",
     "morecraft:kiln"

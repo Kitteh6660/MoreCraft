@@ -34,7 +34,9 @@
 "block.morecraft.stripped_netherwood_post": "Stripped Netherwood Post",
 "block.morecraft.netherwood_hedge": "Netherwood Hedge",
 "block.morecraft.netherwood_leaf_carpet": "Netherwood Leaf Carpet",
-
+"block.morecraft.netherwood_crate": "Netherwood Crate",
+"block.morecraft.netherwood_bookcase": "Netherwood Bookcase",
+"block.morecraft.netherwood_barrel": "Netherwood Barrel",
 
 "block.morecraft.spruce_crafting_table": "Spruce Crafting Table",
 "block.morecraft.birch_crafting_table": "Birch Crafting Table",
@@ -130,10 +132,19 @@
 "block.morecraft.netherite_door": "Netherite Door",
 "block.morecraft.glass_door": "Glass Door",
 "block.morecraft.bone_door": "Bone Door",
-"block.morecraft.netherbrick_fence_gate": "Nether Brick Fence Gate",
-"block.morecraft.netherwood_fence_gate": "Netherwood Fence Gate",
+"block.morecraft.netherbrick_trapdoor": "Nether Brick Trapdoor",
 "block.morecraft.netherwood_trapdoor": "Netherwood Trapdoor",
 "block.morecraft.netherite_trapdoor": "Netherite Trapdoor",
+"block.morecraft.glass_trapdoor": "Glass Trapdoor",
+"block.morecraft.bone_trapdoor": "Bone Trapdoor",
+"block.morecraft.netherbrick_fence_gate": "Nether Brick Fence Gate",
+"block.morecraft.netherwood_fence_gate": "Netherwood Fence Gate",
+
+"block.morecraft.tall_netherbrick_door": "Tall Nether Brick Door",
+"block.morecraft.tall_netherwood_door": "Tall Netherwood Door",
+"block.morecraft.tall_netherite_door": "Tall Netherite Door",
+"block.morecraft.tall_glass_door": "Tall Glass Door",
+"block.morecraft.tall_bone_door": "Tall Bone Door",
 
 "item.morecraft.copper_helmet": "Copper Helmet",
 "item.morecraft.copper_chestplate": "Copper Chestplate",

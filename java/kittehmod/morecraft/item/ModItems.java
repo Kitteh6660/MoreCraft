@@ -72,8 +72,8 @@ public class ModItems
 	public static final RegistryObject<Item> FLESH_BLOCK = ITEMS.register("flesh_block", () -> new BlockItem(ModBlocks.FLESH_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> RUBY_BLOCK = ITEMS.register("ruby_block", () -> new BlockItem(ModBlocks.RUBY_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> BLAZE_BLOCK = ITEMS.register("blaze_block", () -> new BlockItem(ModBlocks.BLAZE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> ENDER_BLOCK = ITEMS.register("ender_block", () -> new BlockItem(ModBlocks.ENDER_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> GUNPOWDER_BLOCK = ITEMS.register("gunpowder_block", () -> new BlockItem(ModBlocks.GUNPOWDER_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> ENDER_BLOCK = ITEMS.register("ender_block", () -> new BlockItem(ModBlocks.ENDER_BLOCK.get(), new Item.Properties().tab(ModList.get().isLoaded("charm") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> GUNPOWDER_BLOCK = ITEMS.register("gunpowder_block", () -> new BlockItem(ModBlocks.GUNPOWDER_BLOCK.get(), new Item.Properties().tab(ModList.get().isLoaded("charm") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
 
 	public static final RegistryObject<Item> SOUL_GLASS = ITEMS.register("soul_glass", () -> new BlockItem(ModBlocks.SOUL_GLASS.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> SOUL_GLASS_PANE = ITEMS.register("soul_glass_pane", () -> new BlockItem(ModBlocks.SOUL_GLASS_PANE.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
@@ -91,11 +91,14 @@ public class ModItems
 	public static final RegistryObject<Item> GLASS_DOOR = ITEMS.register("glass_door", () -> new DoubleHighBlockItem(ModBlocks.GLASS_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
     public static final RegistryObject<Item> BONE_DOOR = ITEMS.register("bone_door", () -> new DoubleHighBlockItem(ModBlocks.BONE_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
 	
-	public static final RegistryObject<Item> NETHERBRICK_FENCE_GATE = ITEMS.register("netherbrick_fence_gate", () -> new BlockItem(ModBlocks.NETHERBRICK_FENCE_GATE.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
-	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
-
+	public static final RegistryObject<Item> NETHERBRICK_TRAPDOOR = ITEMS.register("netherbrick_trapdoor", () -> new BlockItem(ModBlocks.NETHERBRICK_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE).fireResistant()));
+	public static final RegistryObject<Item> GLASS_TRAPDOOR = ITEMS.register("glass_trapdoor", () -> new BlockItem(ModBlocks.GLASS_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> BONE_TRAPDOOR = ITEMS.register("bone_trapdoor", () -> new BlockItem(ModBlocks.BONE_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
+    
+    public static final RegistryObject<Item> NETHERBRICK_FENCE_GATE = ITEMS.register("netherbrick_fence_gate", () -> new BlockItem(ModBlocks.NETHERBRICK_FENCE_GATE.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> NETHERWOOD_FENCE_GATE = ITEMS.register("netherwood_fence_gate", () -> new BlockItem(ModBlocks.NETHERWOOD_FENCE_GATE.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	
 	// -- FOOD -- \\
     public static final RegistryObject<Item> COOKED_FLESH = ITEMS.register("cooked_flesh", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.COOKED_FLESH)));
@@ -164,9 +167,21 @@ public class ModItems
     public static final RegistryObject<Item> CALCITE_VERTICAL_SLAB = ModItems.ITEMS.register("calcite_vertical_slab", () -> new BlockItem(ModBlocks.CALCITE_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_BUILDING_BLOCKS))));
     public static final RegistryObject<Item> DRIPSTONE_VERTICAL_SLAB = ModItems.ITEMS.register("dripstone_vertical_slab", () -> new BlockItem(ModBlocks.DRIPSTONE_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_BUILDING_BLOCKS))));
     public static final RegistryObject<Item> SMOOTH_BASALT_VERTICAL_SLAB = ModItems.ITEMS.register("smooth_basalt_vertical_slab", () -> new BlockItem(ModBlocks.SMOOTH_BASALT_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_BUILDING_BLOCKS))));
-
+    
+    // CHARM ADDONS
+    public static final RegistryObject<Item> NETHERWOOD_CRATE = ModItems.ITEMS.register("netherwood_crate", () -> new BlockItem(ModBlocks.NETHERWOOD_CRATE.get(), new Item.Properties().tab(conditionallyAddTab("charm", CreativeModeTab.TAB_DECORATIONS)).stacksTo(1)));
+    public static final RegistryObject<Item> NETHERWOOD_BOOKCASE = ModItems.ITEMS.register("netherwood_bookcase", () -> new BlockItem(ModBlocks.NETHERWOOD_BOOKCASE.get(), new Item.Properties().tab(conditionallyAddTab("charm", CreativeModeTab.TAB_DECORATIONS))));
+    public static final RegistryObject<Item> NETHERWOOD_BARREL = ModItems.ITEMS.register("netherwood_barrel", () -> new BlockItem(ModBlocks.NETHERWOOD_BARREL.get(), new Item.Properties().tab(conditionallyAddTab("charm", CreativeModeTab.TAB_DECORATIONS))));
+   
     // BUZZIER BEES
     public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ModItems.ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties().tab(conditionallyAddTab("buzzier_bees", CreativeModeTab.TAB_DECORATIONS))));
+    
+    // DRAMATIC DOORS
+    public static final RegistryObject<Item> TALL_NETHERBRICK_DOOR = ITEMS.register("tall_netherbrick_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE)).fireResistant()));
+	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
     
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));

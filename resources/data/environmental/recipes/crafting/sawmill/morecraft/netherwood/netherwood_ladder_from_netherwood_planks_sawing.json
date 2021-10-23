@@ -1,0 +1,14 @@
+{
+  "type": "environmental:sawing",
+  "ingredient": {
+    "item": "morecraft:netherwood_planks"
+  },
+  "result": "morecraft:netherwood_ladder",
+  "count": 2,
+  "conditions":[
+    {
+      "type":"morecraft:quark_flag",
+      "flag":"variant_ladders"
+    }
+  ]
+}

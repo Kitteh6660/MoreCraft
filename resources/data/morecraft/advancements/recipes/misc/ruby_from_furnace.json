@@ -11,10 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:ruby_ore"
-          },
-          {
-            "item": "morecraft:deepslate_ruby_ore"
+            "items": [ "morecraft:ruby_ore", "morecraft:deepslate_ruby_ore" ]
           }
         ]
       }

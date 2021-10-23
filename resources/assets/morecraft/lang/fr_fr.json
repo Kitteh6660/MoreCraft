@@ -6,6 +6,7 @@
 "block.morecraft.gunpowder_block": "Bloc de poudre",
 
 "block.morecraft.ruby_ore": "Minerai de rubis",
+"block.morecraft.deepslate_ruby_ore": "Minerai de rubis des abîmes",
 "block.morecraft.ruby_block": "Bloc de rubis",
 
 "block.morecraft.netherwood_log": "Bûche en bois du Nether",
@@ -26,13 +27,13 @@
 "block.morecraft.netherwood_pressure_plate": "Plaque de pression en bois du Nether",
 "block.morecraft.netherwood_beehive": "Ruche en bois du Nether",
 
-"block.morecraft.spruce_crafting_table": "Spruce Crafting Table",
-"block.morecraft.birch_crafting_table": "Birch Crafting Table",
-"block.morecraft.jungle_crafting_table": "Jungle Crafting Table",
-"block.morecraft.acacia_crafting_table": "Acacia Crafting Table",
-"block.morecraft.dark_oak_crafting_table": "Dark Oak Crafting Table",
-"block.morecraft.crimson_crafting_table": "Crimson Crafting Table",
-"block.morecraft.warped_crafting_table": "Warped Crafting Table",
+"block.morecraft.spruce_crafting_table": "Établi en épinette",
+"block.morecraft.birch_crafting_table": "Établi en bouleau",
+"block.morecraft.jungle_crafting_table": "Établi en acajou",
+"block.morecraft.acacia_crafting_table": "Établi en acacia",
+"block.morecraft.dark_oak_crafting_table": "Établi en chêne noir",
+"block.morecraft.crimson_crafting_table": "Établi cramoisie",
+"block.morecraft.warped_crafting_table": "Établi tordue",
 "block.morecraft.netherwood_crafting_table": "Établi en bois du Nether",
 
 "block.morecraft.bedrock_brick": "Pierre bedrock",
@@ -54,6 +55,8 @@
 "block.morecraft.netherwood_crafting_table": "Établi en bois du Nether",
 
 "item.morecraft.cooked_flesh": "Chair cuite",
+"item.morecraft.raw_chevon": "Chèvre cru",
+"item.morecraft.cooked_chevon": "Chèvre cuit",
 "item.morecraft.raw_spider": "D'araignée cru",
 "item.morecraft.cooked_spider": "D'araignée cuit",
 "item.morecraft.raw_squid": "Poulpe cru",
@@ -71,6 +74,7 @@
 "item.morecraft.pork_stew": "Crème de porc",
 "item.morecraft.mutton_stew": "Crème de mouton",
 "item.morecraft.chicken_stew": "Crème de poulet",
+"item.morecraft.chevon_stew": "Crème de chèvre",
 "item.morecraft.spider_stew": "Crème d'araignée",
 "item.morecraft.fish_stew": "Crème de poisson",
 "item.morecraft.guardian_stew": "Crème le gardien",
@@ -95,15 +99,28 @@
 "item.morecraft.warped_crafting_table_minecart": "Wagonnet de établi tordue",
 "item.morecraft.netherwood_crafting_table_minecart": "Wagonnet de établi en bois du Nether",
 
-"block.morecraft.netherbrick_door": "Porte en briques du Néant",
+"block.morecraft.netherbrick_door": "Porte en briques du Nether",
 "block.morecraft.netherwood_door": "Porte en bois du Néant",
 "block.morecraft.glass_door": "Porte en verre",
 "block.morecraft.bone_door": "Porte d'os",
 "block.morecraft.netherite_door": "Porte en Netherite",
-"block.morecraft.netherbrick_fence_gate": "Porte de clôture en brique du Nether",
-"block.morecraft.netherwood_fence_gate": "Porte de clôture en bois du Nether",
+"block.morecraft.netherbrick_trapdoor": "Trappe en briques du Nether",
 "block.morecraft.netherwood_trapdoor": "Trappe en bois du Nether",
 "block.morecraft.netherite_trapdoor": "Trappe en Netherite",
+"block.morecraft.glass_trapdoor": "Trappe en verre",
+"block.morecraft.bone_trapdoor": "Trappe d'os",
+"block.morecraft.netherbrick_fence_gate": "Porte de clôture en brique du Nether",
+"block.morecraft.netherwood_fence_gate": "Porte de clôture en bois du Nether",
+
+"item.morecraft.copper_helmet": "Casque en obsidienne",
+"item.morecraft.copper_chestplate": "Plastron en obsidienne",
+"item.morecraft.copper_leggings": "Jambières en obsidienne",
+"item.morecraft.copper_boots": "Bottes en obsidienne",
+"item.morecraft.copper_pickaxe": "Pioche en obsidienne",
+"item.morecraft.copper_axe": "Hache en obsidienne",
+"item.morecraft.copper_shovel": "Pelle en obsidienne",
+"item.morecraft.copper_hoe": "Houe en obsidienne",
+"item.morecraft.copper_sword": "Épée en obsidienne",
 
 "item.morecraft.slime_helmet": "Casque de slime",
 "item.morecraft.slime_chestplate": "Plastron de slime",
@@ -222,6 +239,7 @@
 "item.morecraft.bedrock_hoe": "Houe en bedrock",
 "item.morecraft.bedrock_sword": "Épée en bedrock",
 
+"item.morecraft.copper_horse_armor": "Armure pour cheval de cuivre",
 "item.morecraft.bone_horse_armor": "Armure d'os pour cheval",
 "item.morecraft.emerald_horse_armor": "Armure d'émeraude pour cheval",
 "item.morecraft.ruby_horse_armor": "Armure de rubis pour cheval",
@@ -231,5 +249,15 @@
 "item.minecraft.potion.effect.health_boost": "Potion de vie",
 "item.minecraft.splash_potion.effect.health_boost": "Potion de bonus vie jetable",
 "item.minecraft.lingering_potion.effect.health_boost": "Potion de bonus vie persistante",
-"item.minecraft.tipped_arrow.effect.health_boost": "Flèche de bonus vie"
+"item.minecraft.tipped_arrow.effect.health_boost": "Flèche de bonus vie",
+
+"item.minecraft.potion.effect.resistance": "Potion de résistance",
+"item.minecraft.splash_potion.effect.resistance": "Potion de résistance vie jetable",
+"item.minecraft.lingering_potion.effect.resistance": "Potion de résistance vie persistante",
+"item.minecraft.tipped_arrow.effect.resistance": "Flèche de résistance",
+
+"item.minecraft.potion.effect.glowing": "Potion de surbrillance",
+"item.minecraft.splash_potion.effect.glowing": "Potion de surbrillance vie jetable",
+"item.minecraft.lingering_potion.effect.glowing": "Potion de surbrillance vie persistante",
+"item.minecraft.tipped_arrow.effect.glowing": "Flèche de surbrillance"
 }

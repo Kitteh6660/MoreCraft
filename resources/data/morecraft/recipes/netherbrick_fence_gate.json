@@ -15,5 +15,10 @@
   "result": {
     "item": "morecraft:netherbrick_fence_gate",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
+  ]
 }

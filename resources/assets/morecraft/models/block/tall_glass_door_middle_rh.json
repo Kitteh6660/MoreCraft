@@ -1,0 +1,6 @@
+{
+    "parent": "morecraft:block/door_middle_rh",
+    "textures": {
+        "middle": "morecraft:blocks/tall_glass_door_middle"
+    }
+}

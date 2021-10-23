@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:cooked_flesh_from_campfire"
+        "recipe": "morecraft:cooked_egg_from_campfire"
       }
     }
   },

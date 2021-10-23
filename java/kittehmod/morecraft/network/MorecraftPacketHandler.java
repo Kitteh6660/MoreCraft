@@ -18,7 +18,7 @@ import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class MorecraftPacketHandler {
 
-	private static final String PROTOCOL_VERSION = "1";
+	private static final String PROTOCOL_VERSION = "2";
 	public static final SimpleChannel HANDLER = NetworkRegistry.ChannelBuilder
 			.named(new ResourceLocation(MoreCraft.MODID, "main_channel"))
 			.clientAcceptedVersions(PROTOCOL_VERSION::equals)
@@ -39,18 +39,6 @@ public class MorecraftPacketHandler {
 		HANDLER.registerMessage(index++, type, encoder, decoder, consumer);
 	}
 	
-	public static void sendToServerSync(Object msg)
-	{
-		sendToServer(msg);
-		sendToAllPlayers(msg);
-	}
-	
-	public static void sendToServerAndOneClient(Object msg, Connection netManager)
-	{
-		sendToServer(msg);
-		sendToByNetManager(msg, netManager);
-	}
-	
 	/**
 	 * Sends a packet to the server.<br>
 	 * Must be called Client side. 
@@ -64,7 +52,7 @@ public class MorecraftPacketHandler {
 	 * Send a packet to a specific player.<br>
 	 * Must be called Server side. 
 	 */
-	public static void sendTo(Object msg, ServerPlayer player)
+	public static void sendToClient(Object msg, ServerPlayer player)
 	{
 		if (!(player instanceof FakePlayer))
 		{

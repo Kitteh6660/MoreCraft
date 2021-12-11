@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 import kittehmod.morecraft.client.gui.ModEditSignHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fmllegacy.network.NetworkDirection;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkDirection;
+import net.minecraftforge.network.NetworkEvent;
 
 public class ModSignGUIPacket {
 	

@@ -54,20 +54,18 @@ public class ModBarrelBlockEntity extends RandomizableContainerBlockEntity
 		super(ModBlockEntityType.MOD_BARREL.get(), pos, state);
 	}
 
-	public CompoundTag save(CompoundTag p_189515_1_) {
-		super.save(p_189515_1_);
-		if (!this.trySaveLootTable(p_189515_1_)) {
-			ContainerHelper.saveAllItems(p_189515_1_, this.items);
+	public void saveAdditional(CompoundTag nbt) {
+		super.saveAdditional(nbt);
+		if (!this.trySaveLootTable(nbt)) {
+			ContainerHelper.saveAllItems(nbt, this.items);
 		}
-
-		return p_189515_1_;
 	}
 
-	public void load(CompoundTag p_230337_2_) {
-		super.load(p_230337_2_);
+	public void load(CompoundTag nbt) {
+		super.load(nbt);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(p_230337_2_)) {
-			ContainerHelper.loadAllItems(p_230337_2_, this.items);
+		if (!this.tryLoadLootTable(nbt)) {
+			ContainerHelper.loadAllItems(nbt, this.items);
 		}
 
 	}

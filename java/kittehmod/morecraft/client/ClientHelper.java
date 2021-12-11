@@ -29,10 +29,10 @@ public class ClientHelper {
 	
 	@SubscribeEvent
 	public static void onStitch(TextureStitchEvent.Pre event) {
-		if (event.getMap().location().equals(Sheets.SIGN_SHEET)) {
+		if (event.getAtlas().location().equals(Sheets.SIGN_SHEET)) {
 			event.addSprite(NETHERWOOD_SIGN_LOCATION);
 		}
-		else if (event.getMap().location().equals(Sheets.CHEST_SHEET)) {
+		if (event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
 			event.addSprite(NETHERWOOD_CHEST);
 			event.addSprite(NETHERWOOD_CHEST_LEFT);
 			event.addSprite(NETHERWOOD_CHEST_RIGHT);

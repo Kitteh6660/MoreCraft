@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 
+import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.block.NetherSaplingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,9 +38,8 @@ import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 
 public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 {
-	// private boolean attemptNetherGen;
 	public static final int CHANCE_BARRENS = 2;
-	public static final int CHANCE_MODERATE = 6;
+	public static final int CHANCE_MODERATE = 5;
 	public static final int CHANCE_LUSH = 10;
 
 	public NetherwoodTreeFeature(Codec<TreeConfiguration> codecIn, boolean netherGenAttempt) {
@@ -94,41 +94,16 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 		int k = i - j;
 		int l = configIn.foliagePlacer.foliageRadius(rand, k);
 		BlockPos blockpos = positionIn;
-		BlockState blockstate = null;
-		BlockState origstate = null;
-		if (!configIn.saplingProvider.getState(rand, positionIn).canSurvive(generationReader, positionIn)) {
-			// Reduce the frequency of Netherwood trees.
-			if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
-				origstate = generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM) ? Blocks.CRIMSON_NYLIUM.defaultBlockState() : Blocks.WARPED_NYLIUM.defaultBlockState();
-				if (rand.nextInt(100) >= CHANCE_LUSH) {
-					return false;
-				}
-			} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND || block.getBlock() == Blocks.SOUL_SOIL)) {
-				origstate = generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND) ? Blocks.SOUL_SAND.defaultBlockState() : Blocks.SOUL_SOIL.defaultBlockState();
-				if (rand.nextInt(100) >= CHANCE_MODERATE) {
-					return false;
-				}
-			} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
-				origstate = Blocks.NETHERRACK.defaultBlockState();
-				if (rand.nextInt(100) >= CHANCE_BARRENS) {
-					return false;
-				}
-				generationReader.setBlock(blockpos.below(), Blocks.SOUL_SAND.defaultBlockState(), 19);
-			}
-		} else {
-			blockpos = positionIn;
-		}
-		// Hacky workaround to stop the blocks from being changed to dirt.
-		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND)) {
-			blockstate = Blocks.SOUL_SAND.defaultBlockState();
-		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SOIL)) {
-			blockstate = Blocks.SOUL_SOIL.defaultBlockState();
-		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM)) {
-			blockstate = Blocks.CRIMSON_NYLIUM.defaultBlockState();
-		} else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.WARPED_NYLIUM)) {
-			blockstate = Blocks.WARPED_NYLIUM.defaultBlockState();
+		BlockState blockstate = generationReader.getBlockState(blockpos.below());
+		BlockState origstate = generationReader.getBlockState(blockpos.below());
+		if (!randomChancePassed(generationReader, positionIn, rand)) {
+			return false;
 		}
 		if (blockpos.getY() >= 1 && blockpos.getY() + i + 1 <= 256) {
+			if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
+				blockstate = Blocks.SOUL_SOIL.defaultBlockState(); //Set the blockstate for Netherrack to Soul Soil.
+				generationReader.setBlock(blockpos.below(), blockstate, 19);
+			}
 			if (!isGrassOrDirtOrFarmland(generationReader, blockpos.below())) {
 				if (origstate != null) {
 					generationReader.setBlock(blockpos.below(), origstate, 19); // Revert the block.
@@ -136,6 +111,10 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 				return false;
 			} else {
 				OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
+				if (generationReader.isStateAtPosition(blockpos, (block) -> block.getBlock() == ModBlocks.NETHERWOOD_SAPLING.get())) {
+					generationReader.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 4);
+				}
+
 				int i1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
 				if (i1 >= i || optionalint.isPresent() && i1 >= optionalint.getAsInt()) {
 					List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, biconsumer1, rand, i1, positionIn, configIn);
@@ -156,6 +135,28 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 		}
 	}
 
+	private boolean randomChancePassed(WorldGenLevel generationReader, BlockPos blockpos, Random rand) {
+		int chance = 1;
+		// Skip RNG if there's Netherwood Sapling planted.
+		if (generationReader.isStateAtPosition(blockpos, (block) -> block.getBlock() == ModBlocks.NETHERWOOD_SAPLING.get())) {
+			return true;
+		}
+		// Reduce the frequency of Netherwood trees.
+		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
+			chance = CHANCE_LUSH;
+		} 
+		else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND || block.getBlock() == Blocks.SOUL_SOIL)) {
+			chance = CHANCE_MODERATE;
+		}
+		else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
+			chance = CHANCE_BARRENS;
+		}
+		if (rand.nextInt(100) >= chance) {
+			return false;
+		}
+		return true;
+	}
+	
 	private int getMaxFreeTreeHeight(LevelSimulatedReader p_241521_1_, int p_241521_2_, BlockPos p_241521_3_, TreeConfiguration p_241521_4_) {
 		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 

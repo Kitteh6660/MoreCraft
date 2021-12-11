@@ -40,9 +40,11 @@ public class ModBookcaseBlockEntity extends RandomizableContainerBlockEntity imp
 		this.loadFromTag(nbt);
 	}
 
-	public CompoundTag save(CompoundTag nbt) {
-		super.save(nbt);
-		return this.saveToTag(nbt);
+	public void saveAdditional(CompoundTag nbt) {
+		super.saveAdditional(nbt);
+		if (!this.trySaveLootTable(nbt)) {
+			ContainerHelper.saveAllItems(nbt, this.itemStacks, false);
+		}
 	}
 
 	public void loadFromTag(CompoundTag nbt) {
@@ -50,13 +52,6 @@ public class ModBookcaseBlockEntity extends RandomizableContainerBlockEntity imp
 		if (!this.tryLoadLootTable(nbt)) {
 			ContainerHelper.loadAllItems(nbt, this.itemStacks);
 		}
-	}
-
-	public CompoundTag saveToTag(CompoundTag nbt) {
-		if (!this.trySaveLootTable(nbt)) {
-			ContainerHelper.saveAllItems(nbt, this.itemStacks, false);
-		}
-		return nbt;
 	}
 
 	public int getContainerSize() {

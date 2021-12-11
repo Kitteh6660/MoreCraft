@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.block.ModWoodType;
+import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.blockentity.addons.ModCrateBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -90,11 +91,7 @@ public class ModCrateBlock extends BaseEntityBlock
 			ModCrateBlockEntity cratetileentity = (ModCrateBlockEntity) blockentity;
 			if (!world.isClientSide && player.isCreative() && !cratetileentity.isEmpty()) {
 				ItemStack itemstack = getTypedItemStack(this.getType());
-				CompoundTag CompoundTag = cratetileentity.saveToTag(new CompoundTag());
-				if (!CompoundTag.isEmpty()) {
-					itemstack.addTagElement("BlockEntityTag", CompoundTag);
-				}
-
+				blockentity.saveToItem(itemstack);
 				if (cratetileentity.hasCustomName()) {
 					itemstack.setHoverName(cratetileentity.getCustomName());
 				}
@@ -223,14 +220,11 @@ public class ModCrateBlock extends BaseEntityBlock
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
-		ItemStack itemstack = super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
-		ModCrateBlockEntity cratetileentity = (ModCrateBlockEntity) p_185473_1_.getBlockEntity(p_185473_2_);
-		CompoundTag CompoundTag = cratetileentity.saveToTag(new CompoundTag());
-		if (!CompoundTag.isEmpty()) {
-			itemstack.addTagElement("BlockEntityTag", CompoundTag);
-		}
-
+	public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
+		ItemStack itemstack = super.getCloneItemStack(getter, pos, state);
+		getter.getBlockEntity(pos, ModBlockEntityType.CRATE.get()).ifPresent((p_187446_) -> {
+			p_187446_.saveToItem(itemstack);
+		});
 		return itemstack;
 	}
 }

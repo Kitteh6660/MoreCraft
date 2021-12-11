@@ -50,7 +50,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 public class NetherBoat extends Boat
 {
@@ -62,21 +62,21 @@ public class NetherBoat extends Boat
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(NetherBoat.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(NetherBoat.class, EntityDataSerializers.INT);
 	private final float[] paddlePositions = new float[2];
-	private float momentum;
+	private float invFriction;
 	private float outOfControlTicks;
 	private float deltaRotation;
 	private int lerpSteps;
 	private double lerpX;
 	private double lerpY;
 	private double lerpZ;
-	private double lerpYaw;
-	private double lerpPitch;
+	private double lerpYRot;
+	private double lerpXRot;
 	private boolean inputLeft;
-	private boolean rightInputDown;
-	private boolean forwardInputDown;
-	private boolean backInputDown;
+	private boolean inputRight;
+	private boolean inputUp;
+	private boolean inputDown;
 	private double waterLevel;
-	private float boatGlide;
+	private float landFriction;
 	private NetherBoat.Status status;
 	private NetherBoat.Status oldStatus;
 	private double lastYd;
@@ -235,8 +235,8 @@ public class NetherBoat extends Boat
 		this.lerpX = x;
 		this.lerpY = y;
 		this.lerpZ = z;
-		this.lerpYaw = (double) yaw;
-		this.lerpPitch = (double) pitch;
+		this.lerpYRot = (double) yaw;
+		this.lerpXRot = (double) pitch;
 		this.lerpSteps = 10;
 	}
 
@@ -395,9 +395,9 @@ public class NetherBoat extends Boat
 			double d0 = this.getX() + (this.lerpX - this.getX()) / (double) this.lerpSteps;
 			double d1 = this.getY() + (this.lerpY - this.getY()) / (double) this.lerpSteps;
 			double d2 = this.getZ() + (this.lerpZ - this.getZ()) / (double) this.lerpSteps;
-			double d3 = Mth.wrapDegrees(this.lerpYaw - (double) this.getYRot());
+			double d3 = Mth.wrapDegrees(this.lerpYRot - (double) this.getYRot());
 			this.setYRot((float) ((double) this.getYRot() + d3 / (double) this.lerpSteps));
-			this.setXRot((float) ((double) this.getXRot() + (this.lerpPitch - (double) this.getXRot()) / (double) this.lerpSteps));
+			this.setXRot((float) ((double) this.getXRot() + (this.lerpXRot - (double) this.getXRot()) / (double) this.lerpSteps));
 			--this.lerpSteps;
 			this.setPos(d0, d1, d2);
 			this.setRot(this.getYRot(), this.getXRot());
@@ -427,7 +427,7 @@ public class NetherBoat extends Boat
 		} else {
 			float f = this.getGroundFriction();
 			if (f > 0.0F) {
-				this.boatGlide = f;
+				this.landFriction = f;
 				return NetherBoat.Status.ON_LAND;
 			} else {
 				return NetherBoat.Status.IN_AIR;
@@ -447,16 +447,8 @@ public class NetherBoat extends Boat
 
 		label39: for (int k1 = k; k1 < l; ++k1) {
 			float f = 0.0F;
-			int l1 = i;
 
-			while (true) {
-				if (l1 >= j) {
-					if (f < 1.0F) {
-						return (float) blockpos$mutable.getY() + f;
-					}
-					break;
-				}
-
+			for (int l1 = i; l1 < j; ++l1) {
 				for (int i2 = i1; i2 < j1; ++i2) {
 					blockpos$mutable.set(l1, k1, i2);
 					FluidState fluidstate = this.level.getFluidState(blockpos$mutable);
@@ -468,8 +460,10 @@ public class NetherBoat extends Boat
 						continue label39;
 					}
 				}
+			}
 
-				++l1;
+			if (f < 1.0F) {
+				return (float) blockpos$mutable.getY() + f;
 			}
 		}
 
@@ -524,7 +518,7 @@ public class NetherBoat extends Boat
 		int i1 = Mth.floor(axisalignedbb.minZ);
 		int j1 = Mth.ceil(axisalignedbb.maxZ);
 		boolean flag = false;
-		this.waterLevel = Double.MIN_VALUE;
+		this.waterLevel = -Double.MAX_VALUE;
 		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
 		for (int k1 = i; k1 < j; ++k1) {
@@ -580,13 +574,13 @@ public class NetherBoat extends Boat
 	}
 
 	/**
-	 * Update the boat's speed, based on momentum.
+	 * Update the boat's speed, based on invFriction.
 	 */
 	private void floatBoat() {
 		double d0 = (double) -0.04F;
 		double d1 = this.isNoGravity() ? 0.0D : d0;
 		double d2 = 0.0D;
-		this.momentum = 0.05F;
+		this.invFriction = 0.05F;
 		if (this.oldStatus == NetherBoat.Status.IN_AIR && this.status != NetherBoat.Status.IN_AIR && this.status != NetherBoat.Status.ON_LAND) {
 			this.waterLevel = this.getY(1.0D);
 			this.setPos(this.getX(), (double) (this.getWaterLevelAbove() - this.getBbHeight()) + 0.101D, this.getZ());
@@ -596,41 +590,41 @@ public class NetherBoat extends Boat
 		} else {
 			if (this.status == NetherBoat.Status.IN_WATER) {
 				d2 = (this.waterLevel - this.getY()) / (double) this.getBbHeight();
-				this.momentum = 0.9F;
+				this.invFriction = 0.9F;
 				if (this.isInLava()) {
-					this.momentum *= 0.6; // Decrease speed in lava.
+					this.invFriction *= 0.6; // Decrease speed in lava.
+					d2 += 0.35;
 				}
 			} else if (this.status == NetherBoat.Status.UNDER_FLOWING_WATER) {
 				d1 = -7.0E-4D;
-				this.momentum = 0.9F;
+				this.invFriction = 0.9F;
 				if (this.isInLava()) {
-					this.momentum *= 0.6; // Decrease speed in lava.
+					this.invFriction *= 0.6; // Decrease speed in lava.
 				}
 			} else if (this.status == NetherBoat.Status.UNDER_WATER) {
 				d2 = (double) 0.01F;
-				this.momentum = 0.45F;
+				this.invFriction = 0.45F;
 			} else if (this.status == NetherBoat.Status.IN_AIR) {
-				this.momentum = 0.9F;
+				this.invFriction = 0.9F;
 			} else if (this.status == NetherBoat.Status.ON_LAND) {
-				this.momentum = this.boatGlide;
+				this.invFriction = this.landFriction;
 				if (this.getControllingPassenger() instanceof Player) {
-					this.boatGlide /= 2.0F;
+					this.landFriction /= 2.0F;
 				}
 			}
 
 			Vec3 vec3d = this.getDeltaMovement();
-			this.setDeltaMovement(vec3d.x * (double) this.momentum, vec3d.y + d1, vec3d.z * (double) this.momentum);
+			this.setDeltaMovement(vec3d.x * (double) this.invFriction, vec3d.y + d1, vec3d.z * (double) this.invFriction);
 			if (this.isInLava()) {
-				this.deltaRotation *= (this.momentum / 0.6);
+				this.deltaRotation *= (this.invFriction / 0.6);
 			} else {
-				this.deltaRotation *= this.momentum;
+				this.deltaRotation *= this.invFriction;
 			}
 			if (d2 > 0.0D) {
 				Vec3 vec3d1 = this.getDeltaMovement();
 				this.setDeltaMovement(vec3d1.x, (vec3d1.y + d2 * 0.06153846016296973D) * 0.75D, vec3d1.z);
 			}
 		}
-
 	}
 
 	private void controlBoat() {
@@ -640,25 +634,25 @@ public class NetherBoat extends Boat
 				--this.deltaRotation;
 			}
 
-			if (this.rightInputDown) {
+			if (this.inputRight) {
 				++this.deltaRotation;
 			}
 
-			if (this.rightInputDown != this.inputLeft && !this.forwardInputDown && !this.backInputDown) {
+			if (this.inputRight != this.inputLeft && !this.inputUp && !this.inputDown) {
 				f += 0.005F;
 			}
 
 			this.setYRot(this.getYRot() + this.deltaRotation);
-			if (this.forwardInputDown) {
+			if (this.inputUp) {
 				f += 0.04F;
 			}
 
-			if (this.backInputDown) {
+			if (this.inputDown) {
 				f -= 0.005F;
 			}
 
 			this.setDeltaMovement(this.getDeltaMovement().add((double) (Mth.sin(-this.getYRot() * ((float) Math.PI / 180F)) * f), 0.0D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * f)));
-			this.setPaddleState(this.rightInputDown && !this.inputLeft || this.forwardInputDown, this.inputLeft && !this.rightInputDown || this.forwardInputDown);
+			this.setPaddleState(this.inputRight && !this.inputLeft || this.inputUp, this.inputLeft && !this.inputRight || this.inputUp);
 		}
 	}
 
@@ -801,7 +795,7 @@ public class NetherBoat extends Boat
 				}
 
 				this.fallDistance = 0.0F;
-			} else if (!this.level.getFluidState(this.blockPosition().below()).is(FluidTags.WATER) && y < 0.0D) {
+			} else if (!(this.level.getFluidState(this.blockPosition().below()).is(FluidTags.WATER) || this.level.getFluidState(this.blockPosition().below()).is(FluidTags.LAVA)) && y < 0.0D) {
 				this.fallDistance = (float) ((double) this.fallDistance - y);
 			}
 
@@ -893,9 +887,9 @@ public class NetherBoat extends Boat
 	@OnlyIn(Dist.CLIENT)
 	public void setInput(boolean p_184442_1_, boolean p_184442_2_, boolean p_184442_3_, boolean p_184442_4_) {
 		this.inputLeft = p_184442_1_;
-		this.rightInputDown = p_184442_2_;
-		this.forwardInputDown = p_184442_3_;
-		this.backInputDown = p_184442_4_;
+		this.inputRight = p_184442_2_;
+		this.inputUp = p_184442_3_;
+		this.inputDown = p_184442_4_;
 	}
 
 	public Packet<?> getAddEntityPacket() {
@@ -908,7 +902,7 @@ public class NetherBoat extends Boat
 		super.addPassenger(passenger);
 		if (this.isControlledByLocalInstance() && this.lerpSteps > 0) {
 			this.lerpSteps = 0;
-			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYaw, (float) this.lerpPitch);
+			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYRot, (float) this.lerpXRot);
 		}
 	}
 

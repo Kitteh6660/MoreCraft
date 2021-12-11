@@ -56,7 +56,7 @@ public class ModSignRenderer implements BlockEntityRenderer<ModSignBlockEntity>
 	private static final Material SIGN_MATERIAL_NETHERWOOD = new Material(Sheets.SIGN_SHEET, ClientHelper.NETHERWOOD_SIGN_LOCATION);
 
 	public ModSignRenderer(BlockEntityRendererProvider.Context p_173636_) {
-		this.signModels = WoodType.values().collect(ImmutableMap.toImmutableMap((p_173645_) -> { return p_173645_; }, (p_173651_) -> { return new ModSignRenderer.SignModel(p_173636_.bakeLayer(ModelLayers.createSignModelName(p_173651_))); }));
+		this.signModels = WoodType.values().collect(ImmutableMap.toImmutableMap((p_173645_) -> { return p_173645_; }, (p_173651_) -> { return new ModSignRenderer.SignModel(p_173636_.bakeLayer(ModelLayers.createSignModelName(WoodType.OAK))); }));
 		this.font = p_173636_.getFont();
 	}
 	

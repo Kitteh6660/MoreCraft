@@ -65,23 +65,18 @@ public class ModCrateBlockEntity extends RandomizableContainerBlockEntity implem
 		this.loadFromTag(p_230337_2_);
 	}
 
-	public CompoundTag save(CompoundTag p_189515_1_) {
-		super.save(p_189515_1_);
-		return this.saveToTag(p_189515_1_);
+	public void saveAdditional(CompoundTag nbt) {
+		super.saveAdditional(nbt);
+		if (!this.trySaveLootTable(nbt)) {
+			ContainerHelper.saveAllItems(nbt, this.itemStacks, false);
+		}
 	}
 
-	public void loadFromTag(CompoundTag p_190586_1_) {
+	public void loadFromTag(CompoundTag nbt) {
 		this.itemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(p_190586_1_) && p_190586_1_.contains("Items", this.itemStacks.size())) {
-			ContainerHelper.loadAllItems(p_190586_1_, this.itemStacks);
+		if (!this.tryLoadLootTable(nbt) && nbt.contains("Items", this.itemStacks.size())) {
+			ContainerHelper.loadAllItems(nbt, this.itemStacks);
 		}
-	}
-
-	public CompoundTag saveToTag(CompoundTag p_190580_1_) {
-		if (!this.trySaveLootTable(p_190580_1_)) {
-			ContainerHelper.saveAllItems(p_190580_1_, this.itemStacks, false);
-		}
-		return p_190580_1_;
 	}
 
 	public int getContainerSize() {

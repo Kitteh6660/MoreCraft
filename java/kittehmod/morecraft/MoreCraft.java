@@ -26,6 +26,7 @@ import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
+import kittehmod.morecraft.worldgen.ModPlacements;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,7 +39,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-//import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -68,9 +68,10 @@ public class MoreCraft
     }
     
     private void setupCommon(final FMLCommonSetupEvent event)
-    {	
+    {
     	ModBrewingRecipes.registerRecipes();
     	ModFeatures.setupFeatureConfigs();
+    	ModPlacements.setupPlacements();
     	
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MoreCraftConfig.COMMON_CONFIG);
         MoreCraftConfig.loadConfig(MoreCraftConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft.toml"));
@@ -105,14 +106,4 @@ public class MoreCraft
     {
 		ClientRenderSetup.setup();
     }
-    
-    /* Dunno what I'll do with this. Maybe later.
-    private void processIMC(final InterModProcessEvent event)
-    {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
-    }
-    */
 }

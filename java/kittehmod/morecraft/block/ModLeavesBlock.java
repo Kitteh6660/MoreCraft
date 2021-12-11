@@ -68,7 +68,7 @@ public class ModLeavesBlock extends LeavesBlock
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
 		int i = getDistanceAt(facingState) + 1;
 		if (i != 1 || stateIn.getValue(DISTANCE) != i) {
-			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+			worldIn.scheduleTick(currentPos, this, 1);
 		}
 
 		return stateIn;

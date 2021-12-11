@@ -9,7 +9,7 @@ license="GPL License" #mandatory (License Schmicense)
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[37,)" #mandatory
+loaderVersion="[39,)" #mandatory
 
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/Kitteh6660/MoreCraft/issues" #optional
@@ -42,16 +42,12 @@ credits="MuscleMan1234 for the ruby tools textures and some people for the inspi
 authors="Kitteh6660" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''
-The ultimate mod that expands a lot on Minecraft while staying true to the vanilla feel of Minecraft.
-Adds many blocks, tools, armour, foods, and crafting recipes.
-Also introduces the Netherwood Trees to the Nether!
-'''
+description="The ultimate mod that expands a lot on Minecraft while staying true to the vanilla feel of Minecraft.\nAdds many blocks, tools, armour, foods, and crafting recipes.\nAlso introduces the Netherwood Trees to the Nether!"
 
 [[dependencies.morecraft]]
   modId="minecraft" 
   mandatory=true
-  versionRange="[1.17.1,)"
+  versionRange="[1.18.1,)"
   ordering="NONE"
   side="BOTH"
 
@@ -68,3 +64,11 @@ Also introduces the Netherwood Trees to the Nether!
   versionRange = ""
   ordering = "AFTER"
   side = "BOTH"
+
+[[dependencies.morecraft]] 
+  modId = "dramaticdoors"
+  mandatory = false
+  versionRange = ""
+  ordering = "AFTER"
+  side = "BOTH"
+  

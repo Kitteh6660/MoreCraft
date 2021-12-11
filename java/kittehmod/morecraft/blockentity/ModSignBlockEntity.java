@@ -47,8 +47,8 @@ public class ModSignBlockEntity extends BlockEntity
 		super(ModBlockEntityType.MOD_SIGN.get(), pos, state);
 	}
 
-	public CompoundTag save(CompoundTag p_59745_) {
-		super.save(p_59745_);
+	public void saveAdditional(CompoundTag p_59745_) {
+		super.saveAdditional(p_59745_);
 
 		for (int i = 0; i < 4; ++i) {
 			Component component = this.messages[i];
@@ -62,7 +62,6 @@ public class ModSignBlockEntity extends BlockEntity
 
 		p_59745_.putString("Color", this.color.getName());
 		p_59745_.putBoolean("GlowingText", this.hasGlowingText);
-		return p_59745_;
 	}
 
 	public void load(CompoundTag p_155716_) {
@@ -139,15 +138,14 @@ public class ModSignBlockEntity extends BlockEntity
 		return p_155725_ ? this.filteredMessages : this.messages;
 	}
 
-	@Nullable
 	@Override
 	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return new ClientboundBlockEntityDataPacket(this.worldPosition, 9, this.getUpdateTag());
+		return ClientboundBlockEntityDataPacket.create(this);
 	}
 
 	@Override
 	public CompoundTag getUpdateTag() {
-		return this.save(new CompoundTag());
+		return this.saveWithoutMetadata();
 	}
 
 	@Override

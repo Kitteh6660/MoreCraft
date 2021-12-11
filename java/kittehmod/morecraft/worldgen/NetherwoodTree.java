@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -19,9 +18,9 @@ public class NetherwoodTree extends AbstractTreeGrower {
 	@Nullable
 	protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
 		if (randomIn.nextInt(100) < 30) { // 30% chance of forky.
-			return ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_FORKY_CONFIG);
+			return ModFeatures.NETHERWOOD_TREE_FORKY;
 		} else {
-			return ModFeatures.NETHERWOOD_TREE.get().configured(ModFeatures.NETHERWOOD_TREE_STRAIGHT_CONFIG);
+			return ModFeatures.NETHERWOOD_TREE_STRAIGHT;
 		}
 	}
 
@@ -31,7 +30,7 @@ public class NetherwoodTree extends AbstractTreeGrower {
 		if (configuredfeature == null) {
 			return false;
 		} else {
-			worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 4);
+			//worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 4);
 			if (configuredfeature.place(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;
 			} else {

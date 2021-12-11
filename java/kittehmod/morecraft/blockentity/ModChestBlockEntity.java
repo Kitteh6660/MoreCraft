@@ -100,13 +100,11 @@ public class ModChestBlockEntity extends ChestBlockEntity
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
-		super.save(compound);
+	public void saveAdditional(CompoundTag compound) {
+		super.saveAdditional(compound);
 		if (!this.trySaveLootTable(compound)) {
 			ContainerHelper.saveAllItems(compound, this.items);
 		}
-
-		return compound;
 	}
 
 	public static void lidAnimateTick(Level p_155344_, BlockPos p_155345_, BlockState p_155346_, ModChestBlockEntity p_155347_) {

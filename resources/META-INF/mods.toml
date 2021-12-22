@@ -36,17 +36,14 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/kitteh6660s-morecraft" 
 logoFile="MoreCraftBanner.png" #optional
 
 # A text field displayed in the mod UI
-credits="MuscleMan1234 for the ruby tools textures and some people for the inspiration." #optional
+credits="" #optional
 
 # A text field displayed in the mod UI
 authors="Kitteh6660" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''
-The ultimate mod that expands a lot on Minecraft while staying true to the vanilla feel of Minecraft.
-Adds many blocks, tools, armour, foods, and crafting recipes.
-Also introduces the Netherwood Trees to the Nether!
-'''
+description="The ultimate mod that expands a lot on Minecraft while staying true to the vanilla feel of Minecraft.\nAdds many blocks, tools, armour, foods, and crafting recipes.\nAlso introduces the Netherwood Trees to the Nether!"
+
 
 [[dependencies.morecraft]]
   modId="minecraft" 
@@ -54,17 +51,11 @@ Also introduces the Netherwood Trees to the Nether!
   versionRange="[1.17.1,)"
   ordering="NONE"
   side="BOTH"
-
-[[dependencies.morecraft]]
-  modId = "quark" 
+  
+[[dependencies.morecraft]] 
+  modId = "dramaticdoors"
   mandatory = false
-  versionRange = ""
+  versionRange = "1.17.1-1.4.1,)"
   ordering = "AFTER"
   side = "BOTH"
   
-[[dependencies.morecraft]] 
-  modId = "buzzier_bees"
-  mandatory = false
-  versionRange = ""
-  ordering = "AFTER"
-  side = "BOTH"

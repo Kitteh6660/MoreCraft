@@ -6,6 +6,7 @@ import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.entity.MinecartCraftingTable;
 import kittehmod.morecraft.entity.NetherBoat;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BowlFoodItem;
@@ -177,11 +178,11 @@ public class ModItems
     public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ModItems.ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties().tab(conditionallyAddTab("buzzier_bees", CreativeModeTab.TAB_DECORATIONS))));
     
     // DRAMATIC DOORS
-    public static final RegistryObject<Item> TALL_NETHERBRICK_DOOR = ITEMS.register("tall_netherbrick_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
-    public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
-    public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE)).fireResistant()));
-	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
-    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", CreativeModeTab.TAB_REDSTONE))));
+    public static final RegistryObject<Item> TALL_NETHERBRICK_DOOR = ITEMS.register("tall_netherbrick_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
+    public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
+    public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors"))).fireResistant()));
+	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
+    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
@@ -329,6 +330,17 @@ public class ModItems
     	}
     }
     
+    private static CreativeModeTab getTabWithMatchingName(String tabName) {
+    	CreativeModeTab tab = null;
+    	for (CreativeModeTab tempTab : CreativeModeTab.TABS) {
+    		TranslatableComponent tabComp = (TranslatableComponent) tempTab.getDisplayName();
+    		if (tabComp.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
+    			tab = tempTab;
+    			break;
+    		}
+    	}
+    	return tab;
+    }
     
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 

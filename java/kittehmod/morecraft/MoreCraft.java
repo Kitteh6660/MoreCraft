@@ -108,13 +108,5 @@ public class MoreCraft
 		ClientRenderSetup.setup();
     }
     
-    /* Dunno what I'll do with this. Maybe later.
-    private void processIMC(final InterModProcessEvent event)
-    {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
-    }
-    */
+    
 }

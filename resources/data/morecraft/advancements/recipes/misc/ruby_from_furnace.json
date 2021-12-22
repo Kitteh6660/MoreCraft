@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morecraft:cooked_egg_from_furnace"
+      "morecraft:ruby_from_furnace"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:egg"
+            "item": "morecraft:ruby_ore"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:cooked_egg_from_furnace"
+        "recipe": "morecraft:ruby_from_furnace"
       }
     }
   },

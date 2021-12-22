@@ -4,5 +4,5 @@ import net.minecraft.block.WoodType;
 
 public class ModWoodType 
 {
-	public static final WoodType NETHERWOOD = WoodType.register(WoodType.create("netherwood"));
+	public static final WoodType NETHERWOOD = WoodType.register(WoodType.create("morecraft:netherwood"));
 }

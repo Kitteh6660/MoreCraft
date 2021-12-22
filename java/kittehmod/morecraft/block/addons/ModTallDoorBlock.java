@@ -39,9 +39,12 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
 
 public class ModTallDoorBlock extends Block
 {
+	public static final boolean DOUBLE_DOORS_INSTALLED = ModList.get().isLoaded("doubledoors");
+	
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 	public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
@@ -183,6 +186,7 @@ public class ModTallDoorBlock extends Block
 		if (this.material == Material.METAL) {
 			return ActionResultType.PASS;
 		} else {
+			tryOpenDoubleDoor(level, state, pos);
 			state = state.cycle(OPEN);
 			level.setBlock(pos, state, 10);
 			level.levelEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
@@ -223,7 +227,7 @@ public class ModTallDoorBlock extends Block
 			if (flag != state.getValue(OPEN)) {
 				this.playSound(level, pos, flag);
 			}
-
+			tryOpenDoubleDoor(level, state, pos);
 			level.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Boolean.valueOf(flag)), 2);
 			if (state.getValue(THIRD) == TripleBlockThird.UPPER) {
 				if (level.getBlockState(pos.below(1)).is(this)) {
@@ -302,4 +306,20 @@ public class ModTallDoorBlock extends Block
 			}
 		}
 	}
+	
+	//Double Doors Compatibility
+	public static void tryOpenDoubleDoor(World world, BlockState state, BlockPos pos) {
+        if (DOUBLE_DOORS_INSTALLED) {
+            Direction direction = state.getValue(ModTallDoorBlock.FACING);
+            boolean isOpen = state.getValue(ModTallDoorBlock.OPEN);
+            DoorHingeSide isMirrored = state.getValue(ModTallDoorBlock.HINGE);
+            BlockPos mirrorPos = pos.relative(isMirrored == DoorHingeSide.RIGHT ? direction.getCounterClockWise() : direction.getClockWise());
+            BlockPos doorPos = state.getValue(ModTallDoorBlock.THIRD) == TripleBlockThird.LOWER ? mirrorPos : mirrorPos.below();
+            BlockState other = world.getBlockState(doorPos);
+            if (other.getBlock() == state.getBlock() && other.getValue(ModTallDoorBlock.FACING) == direction && !other.getValue(ModTallDoorBlock.POWERED) &&  other.getValue(ModTallDoorBlock.OPEN) == isOpen && other.getValue(ModTallDoorBlock.HINGE) != isMirrored) {
+                BlockState newState = other.cycle(ModTallDoorBlock.OPEN);
+                world.setBlock(doorPos, newState, 10);
+            }
+        }
+    }
 }

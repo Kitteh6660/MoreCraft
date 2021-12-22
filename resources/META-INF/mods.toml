@@ -68,3 +68,10 @@ Also makes the Nether a bit more interesting!
   versionRange = "[x.x.x,)"
   ordering = "AFTER"
   side = "BOTH"
+
+[[dependencies.morecraft]] 
+  modId = "dramaticdoors"
+  mandatory = false
+  versionRange = "[1.16.5-1.4.1,)"
+  ordering = "AFTER"
+  side = "BOTH"

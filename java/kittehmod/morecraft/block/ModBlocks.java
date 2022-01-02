@@ -25,6 +25,7 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.WallBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -107,6 +108,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
 	public static final RegistryObject<Block> GLOWSTONE_LANTERN = BLOCKS.register("glowstone_lantern", () -> new LanternBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((p_235447_0_) -> { return 15; }).noOcclusion()));    
 	public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_STAIRS = BLOCKS.register("bedrock_brick_stairs", () -> new ModStairsBlock(BEDROCK_BRICK.get().defaultBlockState(), AbstractBlock.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_SLAB = BLOCKS.register("bedrock_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_WALL = BLOCKS.register("bedrock_brick_wall", () -> new WallBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
     public static final RegistryObject<Block> KILN = BLOCKS.register("kiln", () -> new KilnBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
     @SuppressWarnings("deprecation")
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(NETHERWOOD_SAPLING.get(), AbstractBlock.Properties.of(Material.PLANT).strength(0.0F)));

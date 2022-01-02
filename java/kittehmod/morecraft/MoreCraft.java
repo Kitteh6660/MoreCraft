@@ -1,8 +1,5 @@
 package kittehmod.morecraft;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.client.ClientRenderSetup;
 import kittehmod.morecraft.container.ModContainerType;
@@ -23,6 +20,7 @@ import kittehmod.morecraft.item.crafting.conditions.DramaticDoorsModInstalledCon
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.QuarkModNotInstalledCondition;
 import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.VariantCraftingTableModNotInstalledCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.tileentity.ModTileEntityType;
 import kittehmod.morecraft.worldgen.ModBiomes;
@@ -39,7 +37,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-//import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -47,8 +44,6 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class MoreCraft 
 {
     public static final String MODID = "morecraft";
-    
-    //public static Logger LOGGER = LogManager.getLogger(MODID);
     
 	public MoreCraft()
     {
@@ -85,7 +80,8 @@ public class MoreCraft
         CraftingHelper.register(new CharmModuleRecipeCondition.Serializer());
         CraftingHelper.register(new DramaticDoorsModInstalledCondition.Serializer());
         CraftingHelper.register(new SalvageRecipeCondition.Serializer());
-        
+        CraftingHelper.register(new VariantCraftingTableModNotInstalledCondition.Serializer());
+         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
     	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());

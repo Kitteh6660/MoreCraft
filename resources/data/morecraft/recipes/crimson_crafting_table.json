@@ -12,5 +12,10 @@
   },
   "result": {
     "item": "morecraft:crimson_crafting_table"
-  }
+  },
+  "conditions": [
+    {
+      "type": "morecraft:variant_crafting_table_mod_not_installed"
+    }
+  ]
 }

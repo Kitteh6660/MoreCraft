@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "morecraft:bedrock_brick_stairs",
     "morecraft:netherwood_stairs"
   ]
 }

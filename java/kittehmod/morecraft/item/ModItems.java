@@ -72,6 +72,9 @@ public class ModItems {
 	public static final RegistryObject<Item> GLOWSTONE_LANTERN = ITEMS.register("glowstone_lantern", () -> new BlockItem(ModBlocks.GLOWSTONE_LANTERN.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> KILN = ITEMS.register("kiln", () -> new BlockItem(ModBlocks.KILN.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> BEDROCK_BRICK_STAIRS = ITEMS.register("bedrock_brick_stairs", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_STAIRS.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> BEDROCK_BRICK_SLAB = ITEMS.register("bedrock_brick_slab", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_SLAB.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> BEDROCK_BRICK_WALL = ITEMS.register("bedrock_brick_wall", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_WALL.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 
 	// -- DOORS -- \\
     public static final RegistryObject<Item> NETHERBRICK_DOOR = ITEMS.register("netherbrick_door", () -> new TallBlockItem(ModBlocks.NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(ItemGroup.TAB_REDSTONE)));
@@ -320,4 +323,6 @@ public class ModItems {
 	    	event.getRegistry().registerAll();
 	    }
 	}
+	
+
 }

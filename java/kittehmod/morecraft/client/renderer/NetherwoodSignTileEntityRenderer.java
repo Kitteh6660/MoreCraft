@@ -63,7 +63,7 @@ public class NetherwoodSignTileEntityRenderer extends TileEntityRenderer<ModSign
 	      float f2 = 0.010416667F;
 	      matrixStackIn.translate(0.0D, (double)0.33333334F, (double)0.046666667F);
 	      matrixStackIn.scale(f2, -f2, f2);
-	      int i = tileEntityIn.getTextColor().getTextColor();
+	      int i = tileEntityIn.getColor().getTextColor();
 	      double d0 = 0.4D;
 	      int j = (int)((double)NativeImage.getR(i) * d0);
 	      int k = (int)((double)NativeImage.getG(i) * d0);

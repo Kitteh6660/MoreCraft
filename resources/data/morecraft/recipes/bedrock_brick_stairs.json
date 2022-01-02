@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:bedrock_brick"
+    }
+  },
+  "result": {
+    "item": "morecraft:bedrock_brick_stairs",
+    "count": 4
+  }
+}

@@ -37,6 +37,7 @@
 "block.morecraft.netherwood_bookcase": "Netherwood Bookcase",
 "block.morecraft.netherwood_barrel": "Netherwood Barrel",
 
+"block.minecraft.crafting_table": "Oak Crafting Table",
 "block.morecraft.spruce_crafting_table": "Spruce Crafting Table",
 "block.morecraft.birch_crafting_table": "Birch Crafting Table",
 "block.morecraft.jungle_crafting_table": "Jungle Crafting Table",
@@ -47,6 +48,9 @@
 "block.morecraft.netherwood_crafting_table": "Netherwood Crafting Table",
 
 "block.morecraft.bedrock_brick": "Bedrock Bricks",
+"block.morecraft.bedrock_brick_stairs": "Bedrock Brick Stairs",
+"block.morecraft.bedrock_brick_slab": "Bedrock Brick Slab",
+"block.morecraft.bedrock_brick_wall": "Bedrock Brick Wall",
 "block.morecraft.soul_glass": "Soul Glass",
 "block.morecraft.soul_glass_pane": "Soul Glass Pane",
 "block.morecraft.flesh_carpet": "Flesh Carpet",

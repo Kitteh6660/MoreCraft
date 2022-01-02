@@ -28,5 +28,11 @@
       "has_the_recipe",
       "has_items"
     ]
+  ],
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "wooden_posts"
+    }
   ]
 }

@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "morecraft:bedrock_brick",
+    "morecraft:bedrock_brick_stairs",
+    "morecraft:bedrock_brick_slab",
+    "morecraft:bedrock_brick_wall",
     "morecraft:netherite_door",
     "morecraft:netherite_trapdoor",
     "morecraft:tall_netherite_door"

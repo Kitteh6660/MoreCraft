@@ -124,7 +124,6 @@ public class ClientRenderSetup {
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ModBlocks.NETHERWOOD_CRATE.get(), RenderType.solid());
-
 	}
 	
 }

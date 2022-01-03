@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "morecraft:netherwood_vertical_slab"
+    "morecraft:netherwood_vertical_slab",
+    "morecraft:bedrock_brick_vertical_slab"
   ]
 }

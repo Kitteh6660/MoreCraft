@@ -277,6 +277,7 @@ public class ModItems {
     public static final RegistryObject<Item> STRIPPED_NETHERWOOD_POST = ModItems.ITEMS.register("stripped_netherwood_post", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
     public static final RegistryObject<Item> NETHERWOOD_HEDGE = ModItems.ITEMS.register("netherwood_hedge", () -> new BlockItem(ModBlocks.NETHERWOOD_HEDGE.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
     public static final RegistryObject<Item> NETHERWOOD_LEAF_CARPET = ModItems.ITEMS.register("netherwood_leaf_carpet", () -> new BlockItem(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_DECORATIONS))));
+    public static final RegistryObject<Item> BEDROCK_BRICK_VERTICAL_SLAB = ModItems.ITEMS.register("bedrock_brick_vertical_slab", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_VERTICAL_SLAB.get(), new Item.Properties().tab(conditionallyAddTab("quark", ItemGroup.TAB_BUILDING_BLOCKS))));
     
     // CHARM ADDONS
     public static final RegistryObject<Item> NETHERWOOD_CRATE = ModItems.ITEMS.register("netherwood_crate", () -> new BlockItem(ModBlocks.NETHERWOOD_CRATE.get(), new Item.Properties().tab(conditionallyAddTab("charm", ItemGroup.TAB_DECORATIONS)).stacksTo(1)));

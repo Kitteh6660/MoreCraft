@@ -4,6 +4,7 @@
     "morecraft:bedrock_brick",
     "morecraft:bedrock_brick_stairs",
     "morecraft:bedrock_brick_slab",
-    "morecraft:bedrock_brick_wall"
+    "morecraft:bedrock_brick_wall",
+    "morecraft:bedrock_brick_vertical_slab"
   ]
 }

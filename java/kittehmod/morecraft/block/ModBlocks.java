@@ -124,7 +124,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRIPPED_NETHERWOOD_POST = ModBlocks.BLOCKS.register("stripped_netherwood_post", () -> new ModPostBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_HEDGE = ModBlocks.BLOCKS.register("netherwood_hedge", () -> new ModHedgeBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD).harvestTool(ToolType.AXE).strength(2.0F, 4.0F)));
     public static final RegistryObject<Block> NETHERWOOD_LEAF_CARPET = BLOCKS.register("netherwood_leaf_carpet", () -> new CarpetBlock(DyeColor.RED, AbstractBlock.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).harvestTool(ToolType.HOE).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> BEDROCK_BRICK_VERTICAL_SLAB = ModBlocks.BLOCKS.register("bedrock_brick_vertical_slab", () -> new ModVerticalSlabBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.AXE).strength(-1.0F, 3600000.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> BEDROCK_BRICK_VERTICAL_SLAB = ModBlocks.BLOCKS.register("bedrock_brick_vertical_slab", () -> new ModVerticalSlabBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(-1.0F, 3600000.0F).sound(SoundType.STONE)));
 
     //Charm
     public static final RegistryObject<Block> NETHERWOOD_CRATE = ModBlocks.BLOCKS.register("netherwood_crate", () -> new ModCrateBlock(AbstractBlock.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.AXE).strength(2.0F, 4.0F).sound(SoundType.WOOD), ModWoodType.NETHERWOOD));

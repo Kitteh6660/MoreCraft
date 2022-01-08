@@ -12,5 +12,10 @@
   "result": {
     "item": "morecraft:dripstone_wall",
     "count": 6
-  }
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
+  ]
 }

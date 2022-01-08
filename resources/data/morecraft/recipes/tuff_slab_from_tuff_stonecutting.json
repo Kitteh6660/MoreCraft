@@ -4,5 +4,10 @@
     "item": "minecraft:tuff"
   },
   "result": "morecraft:tuff_slab",
-  "count": 2
+  "count": 2,
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
+  ]
 }

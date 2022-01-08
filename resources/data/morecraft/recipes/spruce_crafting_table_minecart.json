@@ -16,5 +16,10 @@
   "result": {
     "item": "morecraft:spruce_crafting_table_minecart",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "morecraft:variant_crafting_table_mod_not_installed"
+    }
+  ]
 }

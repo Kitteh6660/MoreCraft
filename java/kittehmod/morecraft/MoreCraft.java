@@ -1,7 +1,7 @@
 package kittehmod.morecraft;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
@@ -23,6 +23,7 @@ import kittehmod.morecraft.item.crafting.conditions.DramaticDoorsModInstalledCon
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.QuarkModNotInstalledCondition;
 import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.VariantCraftingTableModNotInstalledCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
@@ -47,7 +48,7 @@ public class MoreCraft
 {
     public static final String MODID = "morecraft";
     
-    //public static Logger LOGGER = LogManager.getLogger(MODID);
+    public static final Logger LOGGER = LogManager.getLogger(MODID);
     
 	public MoreCraft()
     {
@@ -84,6 +85,7 @@ public class MoreCraft
         CraftingHelper.register(new CharmModuleRecipeCondition.Serializer());
         CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
         CraftingHelper.register(new SalvageRecipeCondition.Serializer());
+        CraftingHelper.register(new VariantCraftingTableModNotInstalledCondition.Serializer());
         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());
@@ -106,4 +108,5 @@ public class MoreCraft
     {
 		ClientRenderSetup.setup();
     }
+    
 }

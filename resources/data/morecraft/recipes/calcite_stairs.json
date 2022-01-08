@@ -13,5 +13,10 @@
   "result": {
     "item": "morecraft:calcite_stairs",
     "count": 4
-  }
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
+  ]
 }

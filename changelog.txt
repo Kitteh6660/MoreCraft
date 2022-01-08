@@ -2,6 +2,22 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.18.1]==
 =======================
+## [4.5.3] - 2022-01-08
+
+🌟Added:
++ Bedrock Brick Stairs, Slabs, Walls. Can be made from crafting with Bedrock Bricks or from Stonecutter.
+
+🔧Changed:
+* Cleaned up code related to Netherwood Signs.
+* Improved compatibility with Variant Crafting Tables, ensuring the crafting tables don't overlap.
+
+🐞Fixed:
+> Fixed an issue where saddles couldn't be crafted.
+
+❌Removed:
+- Removed vertical slabs for Calcite, Tuff, and Dripstone due to Quark having those already.
+
+=======================
 ## [4.5.2] - 2021-12-22
 
 🔧Changed:
@@ -46,6 +62,7 @@ This update ports the improvements from mod version 4.3.6 as well as fixing some
 
 🐞Fixed:
 > Fixed an issue where saddles couldn't be crafted.
+> Some fixes to a few recipe toast notifications.
 
 =======================
 ## [4.4.1] - 2021-12-22

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "morecraft:blocks/bedrock_brick"
+  }
+}

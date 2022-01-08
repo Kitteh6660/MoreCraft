@@ -36,7 +36,7 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/kitteh6660s-morecraft" 
 logoFile="MoreCraftBanner.png" #optional
 
 # A text field displayed in the mod UI
-credits="MuscleMan1234 for the ruby tools textures and some people for the inspiration." #optional
+credits="" #optional
 
 # A text field displayed in the mod UI
 authors="Kitteh6660" #optional
@@ -54,21 +54,14 @@ description="The ultimate mod that expands a lot on Minecraft while staying true
 [[dependencies.morecraft]]
   modId = "quark" 
   mandatory = false
-  versionRange = ""
-  ordering = "AFTER"
-  side = "BOTH"
-  
-[[dependencies.morecraft]] 
-  modId = "buzzier_bees"
-  mandatory = false
-  versionRange = ""
+  versionRange = "[3.0,)"
   ordering = "AFTER"
   side = "BOTH"
 
 [[dependencies.morecraft]] 
   modId = "dramaticdoors"
   mandatory = false
-  versionRange = ""
+  versionRange = "[1.18.1-1.4.1,)"
   ordering = "AFTER"
   side = "BOTH"
   

@@ -30,5 +30,10 @@
       "has_the_recipe",
       "has_item"
     ]
+  ],
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
   ]
 }

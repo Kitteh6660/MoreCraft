@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:tall_bone_door",
+    "morecraft:tall_glass_door",
+    "morecraft:tall_netherbrick_door",
+    "morecraft:tall_netherite_door",
+    "morecraft:tall_netherwood_door"
+  ]
+}

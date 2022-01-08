@@ -4,5 +4,10 @@
     "item": "minecraft:calcite"
   },
   "result": "morecraft:calcite_stairs",
-  "count": 1
+  "count": 1,
+  "conditions": [
+    {
+      "type": "morecraft:quark_mod_not_installed"
+    }
+  ]
 }

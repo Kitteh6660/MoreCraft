@@ -7,8 +7,7 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 This update ports the improvements from mod version 4.3.6 as well as fixing some bugs.
 
 🌟Added:
-+ Bedrock Brick Stairs, Slabs, Walls. Can be made from crafting with Bedrock Bricks or from Stonecutter.
-+ (Quark) Bedrock Vertical Slab
++ Bedrock Brick Stairs, Slabs, Walls. Can be made from crafting with Bedrock Bricks or from Stonecutter. Not included is Vertical Slab due to Quark skipping 1.17.1
 
 🔧Changed:
 * Cleaned up code related to Netherwood Signs.

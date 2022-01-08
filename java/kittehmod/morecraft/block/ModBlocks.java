@@ -128,6 +128,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
 	public static final RegistryObject<Block> GLOWSTONE_LANTERN = BLOCKS.register("glowstone_lantern", () -> new LanternBlock(Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((p_235447_0_) -> { return 15; }).noOcclusion()));    
 	public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_STAIRS = BLOCKS.register("bedrock_brick_stairs", () -> new ModStairsBlock(BEDROCK_BRICK.get().defaultBlockState(), Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_SLAB = BLOCKS.register("bedrock_brick_slab", () -> new SlabBlock(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
+	public static final RegistryObject<Block> BEDROCK_BRICK_WALL = BLOCKS.register("bedrock_brick_wall", () -> new WallBlock(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
     public static final RegistryObject<Block> KILN = BLOCKS.register("kiln", () -> new KilnBlock(Block.Properties.of(Material.STONE).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(null, () -> { return NETHERWOOD_SAPLING.get(); }, Block.Properties.of(Material.PLANT).strength(0.0F)));
 
@@ -139,6 +142,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRIPPED_NETHERWOOD_POST = ModBlocks.BLOCKS.register("stripped_netherwood_post", () -> new ModPostBlock(Block.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_HEDGE = ModBlocks.BLOCKS.register("netherwood_hedge", () -> new ModHedgeBlock(Block.Properties.of(Material.NETHER_WOOD).strength(2.0F, 4.0F)));
     public static final RegistryObject<Block> NETHERWOOD_LEAF_CARPET = BLOCKS.register("netherwood_leaf_carpet", () -> new CarpetBlock(Block.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> BEDROCK_BRICK_VERTICAL_SLAB = ModBlocks.BLOCKS.register("bedrock_brick_vertical_slab", () -> new ModVerticalSlabBlock(Block.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> TUFF_VERTICAL_SLAB = ModBlocks.BLOCKS.register("tuff_vertical_slab", () -> new ModVerticalSlabBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.TUFF)));
     public static final RegistryObject<Block> CALCITE_VERTICAL_SLAB = ModBlocks.BLOCKS.register("calcite_vertical_slab", () -> new ModVerticalSlabBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(0.75F).sound(SoundType.CALCITE)));

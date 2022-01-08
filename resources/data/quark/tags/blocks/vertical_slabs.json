@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "morecraft:netherwood_vertical_slab"
+    "morecraft:netherwood_vertical_slab",
+    "morecraft:bedrock_brick_vertical_slab",
+    "morecraft:calcite_vertical_slab",
+    "morecraft:dripstone_vertical_slab",
+    "morecraft:smooth_basalt_vertical_slab",
+    "morecraft:tuff_vertical_slab"
   ]
 }

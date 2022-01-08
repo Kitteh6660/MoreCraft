@@ -36,7 +36,10 @@
 "block.morecraft.warped_crafting_table": "Établi tordue",
 "block.morecraft.netherwood_crafting_table": "Établi en bois du Nether",
 
-"block.morecraft.bedrock_brick": "Briques de soubassement",
+"block.morecraft.bedrock_brick": "Briques de bedrock",
+"block.morecraft.bedrock_brick_stairs": "Escaliers en briques de bedrock",
+"block.morecraft.bedrock_brick_slab": "Dalle en briques de bedrock",
+"block.morecraft.bedrock_brick_wall": "Muret en briques de bedrock",
 "block.morecraft.soul_glass": "Verre d'âme",
 "block.morecraft.soul_glass_pane": "Panneau de verre d'âme",
 "block.morecraft.flesh_carpet": "Tapis la chair",

@@ -5,6 +5,7 @@
     "morecraft:calcite_slab",
     "morecraft:dripstone_slab",
     "morecraft:smooth_basalt_slab",
-    "morecraft:netherwood_slab"
+    "morecraft:netherwood_slab",
+    "morecraft:bedrock_brick_slab"
   ]
 }

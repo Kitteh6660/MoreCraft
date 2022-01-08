@@ -5,6 +5,7 @@
     "morecraft:calcite_stairs",
     "morecraft:dripstone_stairs",
     "morecraft:smooth_basalt_stairs",
-    "morecraft:netherwood_stairs"
+    "morecraft:netherwood_stairs",
+    "morecraft:bedrock_brick_stairs"
   ]
 }

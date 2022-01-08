@@ -2,6 +2,22 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.17.1]==
 =======================
+## [4.4.2] - 2022-01-07
+
+This update ports the improvements from mod version 4.3.6 as well as fixing some bugs.
+
+🌟Added:
++ Bedrock Brick Stairs, Slabs, Walls. Can be made from crafting with Bedrock Bricks or from Stonecutter.
++ (Quark) Bedrock Vertical Slab
+
+🔧Changed:
+* Cleaned up code related to Netherwood Signs.
+* Improved compatibility with Variant Crafting Tables, ensuring the crafting tables don't overlap.
+
+🐞Fixed:
+> Fixed an issue where saddles couldn't be crafted.
+
+=======================
 ## [4.4.1] - 2021-12-22
 
 This update ports the improvements from mod version 4.3.5.
@@ -109,6 +125,19 @@ The mod now integrates some of the new additions of 1.17.1!
 > Fixed the upside-down corner stairs graphics.
 
 ==[ MINECRAFT 1.16.5]==
+=======================
+## [4.3.6] - 2021-01-07
+
+Gave some love to Bedrock Bricks!
+
+🌟Added:
++ Bedrock Brick Stairs, Slabs, Walls. Can be made from crafting with Bedrock Bricks or from Stonecutter.
++ (Quark) Bedrock Vertical Slab
+
+🔧Changed:
+* Cleaned up code related to Netherwood Signs.
+* Improved compatibility with Variant Crafting Tables, ensuring the crafting tables don't overlap.
+
 =======================
 ## [4.3.5] - 2021-12-22
 

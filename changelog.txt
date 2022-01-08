@@ -1,5 +1,36 @@
 NOTE: This change log may still be missing things! I will work to make sure it properly chronicles all sorts of changes from the mod's inception up to the latest release.
 
+==[ MINECRAFT 1.18.1]==
+=======================
+## [4.5.2] - 2021-12-22
+
+🔧Changed:
+* Improved support for Dramatic Doors. Tall doors added by MoreCraft are now in Dramatic Doors tab.
+
+=======================
+## [4.5.1] - 2021-12-11
+
+First mod release made specially for Minecraft 1.18.1!
+
+🔧Changed:
+* Dropped support for Minecraft 1.18.0, please update to 1.18.1 as the previous version had security issues.
+
+=======================
+## [4.5.0] - 2021-12-04
+
+For some reason, loading 1.17.1 worlds into 1.18 may cause loss of some block entity data. I don't know what happened.
+
+To be safe, please remove all block entities like Netherwood Signs and Netherwood Chests, store them in vanilla chests before initiating the upgrade. After the upgrade, you can safely put the block entities back.
+
+🔧Changed:
+* The mod now has a spazzy new logo.
+* Updated ruby ore generation code to work with the new ore generation code, and it can also generate below 0 too.
+* Decreased Netherwood Tree generation rate from 6% to 4% in Soul Sand Valley to make it feel less forest-like.
+* Tweaked Nether boats to be slightly raised in lava, as a workaround for hiding lava in boat. Plus lava is thicker.
+
+🐞Fixed:
+* Some fixes to mod description in the mods list, no more odd symbol at end of line.
+
 ==[ MINECRAFT 1.17.1]==
 =======================
 ## [4.4.2] - 2022-01-07

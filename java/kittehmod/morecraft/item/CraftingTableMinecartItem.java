@@ -66,7 +66,7 @@ public class CraftingTableMinecartItem extends Item
 				CraftingTableMinecartItem item = (CraftingTableMinecartItem) stack.getItem();
 				minecartentity = CraftingTableMinecartEntity.create(world, d0, d1 + d3, d2, item.craftingTableType);
 			} else {
-				minecartentity = CraftingTableMinecartEntity.create(world, d0, d1 + d3, d2, CraftingTableMinecartEntity.CraftingTableType.OAK);
+				minecartentity = CraftingTableMinecartEntity.create(world, d0, d1 + d3, d2, CraftingTableMinecartEntity.CraftingTableType.NETHERWOOD);
 			}
 			if (stack.hasCustomHoverName()) {
 				minecartentity.setCustomName(stack.getHoverName());

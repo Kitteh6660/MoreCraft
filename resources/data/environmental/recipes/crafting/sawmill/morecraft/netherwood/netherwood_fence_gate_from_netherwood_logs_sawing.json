@@ -1,8 +1,0 @@
-{
-  "type": "environmental:sawing",
-  "ingredient": {
-    "tag": "morecraft:netherwood_logs"
-  },
-  "result": "morecraft:netherwood_fence_gate",
-  "count": 1
-}

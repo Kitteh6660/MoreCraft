@@ -28,5 +28,10 @@
       "has_the_recipe",
       "has_items"
     ]
+  ],
+  "conditions": [
+    {
+      "type": "morecraft:variant_crafting_table_mod_installed"
+    }
   ]
 }

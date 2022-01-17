@@ -1,8 +1,0 @@
-{
-  "type": "environmental:sawing",
-  "ingredient": {
-    "tag": "minecraft:spruce_logs"
-  },
-  "result": "morecraft:spruce_crafting_table",
-  "count": 1
-}

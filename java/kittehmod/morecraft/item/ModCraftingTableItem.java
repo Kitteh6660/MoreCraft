@@ -12,7 +12,7 @@ public class ModCraftingTableItem extends BlockItem
 
 	@Override
 	public int getBurnTime(ItemStack stack) {
-		if (stack.getItem() != ModItems.CRIMSON_CRAFTING_TABLE.get() && stack.getItem() != ModItems.WARPED_CRAFTING_TABLE.get() && stack.getItem() != ModItems.NETHERWOOD_CRAFTING_TABLE.get()) {
+		if (stack.getItem() != ModItems.NETHERWOOD_CRAFTING_TABLE.get()) {
 			return 300;
 		}
 		else {

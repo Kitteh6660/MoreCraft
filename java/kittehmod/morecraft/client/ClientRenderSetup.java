@@ -41,38 +41,6 @@ public class ClientRenderSetup {
 			public EntityRenderer<? super NetherBoatEntity> createRenderFor(EntityRendererManager manager) { return new NetherBoatEntityRenderer(manager); }
 		});
         //Minecarts with Crafting Table
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.OAK_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPRUCE_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.BIRCH_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.JUNGLE_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.ACACIA_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.DARK_OAK_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.CRIMSON_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.WARPED_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
-			@Override
-			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }
-		});
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.NETHERWOOD_CRAFTING_TABLE_MINECART.get(), new IRenderFactory<AbstractMinecartEntity>() {
 			@Override
 			public EntityRenderer<? super AbstractMinecartEntity> createRenderFor(EntityRendererManager manager) { return new MinecartRenderer<>(manager); }

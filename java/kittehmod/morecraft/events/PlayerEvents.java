@@ -13,10 +13,12 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -65,6 +67,32 @@ public class PlayerEvents
 		}
 	}
 
+	@SubscribeEvent
+	public void onFallEvent(LivingFallEvent event) {
+		if (event.getEntityLiving() instanceof LivingEntity) {
+			LivingEntity entity = event.getEntityLiving();
+			if (entity.getItemBySlot(EquipmentSlotType.FEET) != null && entity.getItemBySlot(EquipmentSlotType.FEET).getItem() == ModItems.SLIME_BOOTS.get()) {
+				float mult = (float) (event.getDamageMultiplier() * 0.25);
+				float dist = event.getDistance();
+				if (!entity.isSuppressingBounce()) {
+					Vector3d vec3 = entity.getDeltaMovement();
+					if (vec3.y < 0.0D) {
+						double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
+						entity.setDeltaMovement(vec3.x, -vec3.y * d0, vec3.z);
+					}
+				}
+				else {
+					mult = (float) (event.getDamageMultiplier() * 0.4);
+				}
+				event.setDamageMultiplier(mult);
+				entity.getItemBySlot(EquipmentSlotType.FEET).hurtAndBreak(dist < 50 ? (int)Math.ceil(dist / 5) : 10, entity, (ent) -> {
+	               ent.broadcastBreakEvent(EquipmentSlotType.FEET);
+	            });
+				event.setResult(Result.DEFAULT);
+			}
+		}
+	}
+	
 	@SubscribeEvent
 	public static void onTickPlayerEvent(TickEvent.PlayerTickEvent event) {
 		if (event.player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ModItems.BLAZE_HELMET.get() && event.player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ModItems.BLAZE_CHESTPLATE.get() && event.player

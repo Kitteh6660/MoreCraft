@@ -2,6 +2,18 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.18.1]==
 =======================
+## [4.5.3] - 2022-01-16
+
+Some fixes. Removed modded Crafting Tables except for Netherwood.
+
+🐞Fixed:
+* Fixed broken recipe toast for Minecart with Netherwood Crafting Table.
+
+❌Removed:
+- Removed all modded Crafting Tables except for Netherwood. The modded crafting tables have been moved to Variant Crafting Tables.
+- Removed crafting table compat for Environmental Mod due to the removal of most crafting tables from this mod.
+
+=======================
 ## [4.5.3] - 2022-01-08
 
 🌟Added:
@@ -48,6 +60,18 @@ To be safe, please remove all block entities like Netherwood Signs and Netherwoo
 * Some fixes to mod description in the mods list, no more odd symbol at end of line.
 
 ==[ MINECRAFT 1.17.1]==
+=======================
+## [4.4.3] - 2022-01-16
+
+Some fixes. Removed modded Crafting Tables except for Netherwood.
+
+🐞Fixed:
+* Fixed broken recipe toast for Minecart with Netherwood Crafting Table.
+
+❌Removed:
+- Removed all modded Crafting Tables except for Netherwood. The modded crafting tables have been moved to Variant Crafting Tables.
+- Removed crafting table compat for Environmental Mod due to the removal of most crafting tables from this mod.
+
 =======================
 ## [4.4.2] - 2022-01-07
 
@@ -173,7 +197,22 @@ The mod now integrates some of the new additions of 1.17.1!
 
 ==[ MINECRAFT 1.16.5]==
 =======================
-## [4.3.6] - 2021-01-07
+## [4.3.7] - 2022-01-16
+
+Added slime boots effects from later versions, and removed modded Crafting Tables except for Netherwood.
+
+🌟Added:
++ Added the effects of Slime Boots which will absorb a lot of fall damage at the cost of durability.
+
+🐞Fixed:
+* Fixed broken recipe toast for Minecart with Netherwood Crafting Table.
+
+❌Removed:
+- Removed all modded Crafting Tables except for Netherwood. The modded crafting tables have been moved to Variant Crafting Tables.
+- Removed crafting table compat for Environmental Mod due to the removal of most crafting tables from this mod.
+
+=======================
+## [4.3.6] - 2022-01-07
 
 Gave some love to Bedrock Bricks!
 

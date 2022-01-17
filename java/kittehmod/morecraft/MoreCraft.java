@@ -23,7 +23,7 @@ import kittehmod.morecraft.item.crafting.conditions.DramaticDoorsModInstalledCon
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.QuarkModNotInstalledCondition;
 import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
-import kittehmod.morecraft.item.crafting.conditions.VariantCraftingTableModNotInstalledCondition;
+import kittehmod.morecraft.item.crafting.conditions.VariantCraftingTableModInstalledCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
@@ -84,7 +84,7 @@ public class MoreCraft
         CraftingHelper.register(new CharmModuleRecipeCondition.Serializer());
         CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
         CraftingHelper.register(new SalvageRecipeCondition.Serializer());
-        CraftingHelper.register(new VariantCraftingTableModNotInstalledCondition.Serializer());
+        CraftingHelper.register(new VariantCraftingTableModInstalledCondition.Serializer());
         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());

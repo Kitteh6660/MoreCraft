@@ -2,14 +2,14 @@
   "parent": "morecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morecraft:netherwood_crafting_table_minecraft"
+      "morecraft:netherwood_crafting_table_minecart"
     ]
   },
   "criteria": {
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:netherwood_crafting_table_minecraft"
+        "recipe": "morecraft:netherwood_crafting_table_minecart"
       }
     },
     "has_items": {
@@ -31,5 +31,10 @@
       "has_the_recipe",
       "has_items"
     ]
+  ],
+  "conditions": [
+    {
+      "type": "morecraft:variant_crafting_table_mod_installed"
+    }
   ]
 }

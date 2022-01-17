@@ -1,8 +1,0 @@
-{
-  "type": "environmental:sawing",
-  "ingredient": {
-    "tag": "minecraft:crimson_stems"
-  },
-  "result": "morecraft:crimson_crafting_table",
-  "count": 1
-}

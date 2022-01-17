@@ -1,13 +1,6 @@
 {
   "replace": false,
   "values": [
-    "morecraft:spruce_crafting_table",
-    "morecraft:birch_crafting_table",
-    "morecraft:jungle_crafting_table",
-    "morecraft:acacia_crafting_table",
-    "morecraft:dark_oak_crafting_table",
-    "morecraft:crimson_crafting_table",
-    "morecraft:warped_crafting_table",
     "morecraft:netherwood_crafting_table"
   ]
 }

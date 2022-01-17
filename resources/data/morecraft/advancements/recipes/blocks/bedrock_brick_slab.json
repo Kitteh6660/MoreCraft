@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "morecraft:bedrock_brick"
+            "items": [ "morecraft:bedrock_brick" ]
           }
         ]
       }

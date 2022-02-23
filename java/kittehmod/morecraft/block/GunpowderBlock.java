@@ -15,7 +15,12 @@ public class GunpowderBlock extends FallingBlock
 
     @Override
     public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 150;
+        return 50;
     }
 	
+    @Override
+    public int getFireSpreadSpeed(BlockState state, BlockGetter getter, BlockPos pos, Direction face) {
+    	return 20;
+    }
+    
 }

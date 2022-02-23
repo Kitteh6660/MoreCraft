@@ -1,0 +1,34 @@
+{
+  "parent": "morecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morecraft:enderdragon_leggings"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morecraft:enderdragon_leggings"
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:enderdragon_scales"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_item"
+    ]
+  ]
+}

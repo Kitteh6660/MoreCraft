@@ -29,27 +29,18 @@ public class ModItems
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreCraft.MODID);
 	
 	// -- BLOCKS -- \\
-	public static final RegistryObject<Item> TUFF_STAIRS = ITEMS.register("tuff_stairs", () -> new BlockItem(ModBlocks.TUFF_STAIRS.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> TUFF_SLAB = ITEMS.register("tuff_slab", () -> new BlockItem(ModBlocks.TUFF_SLAB.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> TUFF_WALL = ITEMS.register("tuff_wall", () -> new BlockItem(ModBlocks.TUFF_WALL.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> CALCITE_STAIRS = ITEMS.register("calcite_stairs", () -> new BlockItem(ModBlocks.CALCITE_STAIRS.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> CALCITE_SLAB = ITEMS.register("calcite_slab", () -> new BlockItem(ModBlocks.CALCITE_SLAB.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> CALCITE_WALL = ITEMS.register("calcite_wall", () -> new BlockItem(ModBlocks.CALCITE_WALL.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> DRIPSTONE_STAIRS = ITEMS.register("dripstone_stairs", () -> new BlockItem(ModBlocks.DRIPSTONE_STAIRS.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> DRIPSTONE_SLAB = ITEMS.register("dripstone_slab", () -> new BlockItem(ModBlocks.DRIPSTONE_SLAB.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> DRIPSTONE_WALL = ITEMS.register("dripstone_wall", () -> new BlockItem(ModBlocks.DRIPSTONE_WALL.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> TUFF_STAIRS = ITEMS.register("tuff_stairs", () -> new BlockItem(ModBlocks.TUFF_STAIRS.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> TUFF_SLAB = ITEMS.register("tuff_slab", () -> new BlockItem(ModBlocks.TUFF_SLAB.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> TUFF_WALL = ITEMS.register("tuff_wall", () -> new BlockItem(ModBlocks.TUFF_WALL.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> CALCITE_STAIRS = ITEMS.register("calcite_stairs", () -> new BlockItem(ModBlocks.CALCITE_STAIRS.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> CALCITE_SLAB = ITEMS.register("calcite_slab", () -> new BlockItem(ModBlocks.CALCITE_SLAB.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> CALCITE_WALL = ITEMS.register("calcite_wall", () -> new BlockItem(ModBlocks.CALCITE_WALL.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> DRIPSTONE_STAIRS = ITEMS.register("dripstone_stairs", () -> new BlockItem(ModBlocks.DRIPSTONE_STAIRS.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> DRIPSTONE_SLAB = ITEMS.register("dripstone_slab", () -> new BlockItem(ModBlocks.DRIPSTONE_SLAB.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> DRIPSTONE_WALL = ITEMS.register("dripstone_wall", () -> new BlockItem(ModBlocks.DRIPSTONE_WALL.get(), new Item.Properties().tab((ModList.get().isLoaded("quark") || ModList.get().isLoaded("caverns_and_chasms")) ? null : CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> SMOOTH_BASALT_STAIRS = ITEMS.register("smooth_basalt_stairs", () -> new BlockItem(ModBlocks.SMOOTH_BASALT_STAIRS.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> SMOOTH_BASALT_SLAB = ITEMS.register("smooth_basalt_slab", () -> new BlockItem(ModBlocks.SMOOTH_BASALT_SLAB.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> SMOOTH_BASALT_WALL = ITEMS.register("smooth_basalt_wall", () -> new BlockItem(ModBlocks.SMOOTH_BASALT_WALL.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
-
-	public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE = ITEMS.register("spruce_crafting_table", () -> new ModCraftingTableItem(ModBlocks.SPRUCE_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE = ITEMS.register("birch_crafting_table", () -> new ModCraftingTableItem(ModBlocks.BIRCH_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE = ITEMS.register("jungle_crafting_table", () -> new ModCraftingTableItem(ModBlocks.JUNGLE_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE = ITEMS.register("acacia_crafting_table", () -> new ModCraftingTableItem(ModBlocks.ACACIA_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE = ITEMS.register("dark_oak_crafting_table", () -> new ModCraftingTableItem(ModBlocks.DARK_OAK_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE = ITEMS.register("crimson_crafting_table", () -> new ModCraftingTableItem(ModBlocks.CRIMSON_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> WARPED_CRAFTING_TABLE = ITEMS.register("warped_crafting_table", () -> new ModCraftingTableItem(ModBlocks.WARPED_CRAFTING_TABLE.get(), new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new ModCraftingTableItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 
 	public static final RegistryObject<Item> NETHERWOOD_LOG = ITEMS.register("netherwood_log", () -> new BlockItem(ModBlocks.NETHERWOOD_LOG.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> STRIPPED_NETHERWOOD_LOG = ITEMS.register("stripped_netherwood_log", () -> new BlockItem(ModBlocks.STRIPPED_NETHERWOOD_LOG.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
@@ -149,16 +140,6 @@ public class ModItems
     public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoat.Type.WARPED));
     public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoat.Type.NETHERWOOD));
 
-    public static final RegistryObject<Item> OAK_CRAFTING_TABLE_MINECART = ITEMS.register("oak_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.OAK));
-    public static final RegistryObject<Item> SPRUCE_CRAFTING_TABLE_MINECART = ITEMS.register("spruce_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.SPRUCE));
-    public static final RegistryObject<Item> BIRCH_CRAFTING_TABLE_MINECART = ITEMS.register("birch_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.BIRCH));
-    public static final RegistryObject<Item> JUNGLE_CRAFTING_TABLE_MINECART = ITEMS.register("jungle_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.JUNGLE));
-    public static final RegistryObject<Item> ACACIA_CRAFTING_TABLE_MINECART = ITEMS.register("acacia_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.ACACIA));
-    public static final RegistryObject<Item> DARK_OAK_CRAFTING_TABLE_MINECART = ITEMS.register("dark_oak_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.DARK_OAK));
-    public static final RegistryObject<Item> CRIMSON_CRAFTING_TABLE_MINECART = ITEMS.register("crimson_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.CRIMSON));
-    public static final RegistryObject<Item> WARPED_CRAFTING_TABLE_MINECART = ITEMS.register("warped_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(ModList.get().isLoaded("variant_crafting_tables") ? null : CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.WARPED));
-    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1), MinecartCraftingTable.CraftingTableType.NETHERWOOD));
-    
     // QUARK ADDONS
     public static final RegistryObject<Item> NETHERWOOD_LADDER = ModItems.ITEMS.register("netherwood_ladder", () -> new BlockItem(ModBlocks.NETHERWOOD_LADDER.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_DECORATIONS))));
     public static final RegistryObject<Item> VERTICAL_NETHERWOOD_PLANKS = ModItems.ITEMS.register("vertical_netherwood_planks", () -> new BlockItem(ModBlocks.VERTICAL_NETHERWOOD_PLANKS.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_BUILDING_BLOCKS))));
@@ -186,6 +167,10 @@ public class ModItems
 	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     
+    // VARIANT CRAFTING TABLES
+    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new ModCraftingTableItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_DECORATIONS))));
+    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_TRANSPORTATION)).stacksTo(1), MinecartCraftingTable.CraftingTableType.NETHERWOOD));
+    
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> BONE_HORSE_ARMOR = ITEMS.register("bone_horse_armor", () -> new ModHorseArmorItem(4, "bone", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
@@ -202,7 +187,7 @@ public class ModItems
     public static final RegistryObject<Item> COPPER_PICKAXE = ITEMS.register("copper_pickaxe", () -> new ModPickaxeItem(ModTier.COPPER, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> COPPER_AXE = ITEMS.register("copper_axe", () -> new ModAxeItem(ModTier.COPPER, 6.0F, -3.15F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> COPPER_SHOVEL = ITEMS.register("copper_shovel", () -> new ModShovelItem(ModTier.COPPER, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> COPPER_HOE = ITEMS.register("copper_hoe", () -> new ModHoeItem(ModTier.COPPER, -3, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> COPPER_HOE = ITEMS.register("copper_hoe", () -> new ModHoeItem(ModTier.COPPER, -2, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> COPPER_SWORD = ITEMS.register("copper_sword", () -> new ModSwordItem(ModTier.COPPER, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> SLIME_HELMET = ITEMS.register("slime_helmet", () -> new ModArmorItem(ModArmorMaterial.SLIME, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
@@ -227,7 +212,7 @@ public class ModItems
     public static final RegistryObject<Item> OBSIDIAN_PICKAXE = ITEMS.register("obsidian_pickaxe", () -> new ModPickaxeItem(ModTier.OBSIDIAN, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> OBSIDIAN_AXE = ITEMS.register("obsidian_axe", () -> new ModAxeItem(ModTier.OBSIDIAN, 5.0F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> OBSIDIAN_SHOVEL = ITEMS.register("obsidian_shovel", () -> new ModShovelItem(ModTier.OBSIDIAN, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> OBSIDIAN_HOE = ITEMS.register("obsidian_hoe", () -> new ModHoeItem(ModTier.OBSIDIAN, -3, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> OBSIDIAN_HOE = ITEMS.register("obsidian_hoe", () -> new ModHoeItem(ModTier.OBSIDIAN, -3, 0.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> OBSIDIAN_SWORD = ITEMS.register("obsidian_sword", () -> new ModSwordItem(ModTier.OBSIDIAN, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> BONE_HELMET = ITEMS.register("bone_helmet", () -> new ModArmorItem(ModArmorMaterial.BONE, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
@@ -247,7 +232,7 @@ public class ModItems
     public static final RegistryObject<Item> WITHERBONE_PICKAXE = ITEMS.register("witherbone_pickaxe", () -> new ModPickaxeItem(ModTier.WITHERBONE, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(ModRarity.LEGENDARY)));
     public static final RegistryObject<Item> WITHERBONE_AXE = ITEMS.register("witherbone_axe", () -> new ModAxeItem(ModTier.WITHERBONE, 5.0F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(ModRarity.LEGENDARY)));
     public static final RegistryObject<Item> WITHERBONE_SHOVEL = ITEMS.register("witherbone_shovel", () -> new ModShovelItem(ModTier.WITHERBONE, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(ModRarity.LEGENDARY)));
-    public static final RegistryObject<Item> WITHERBONE_HOE = ITEMS.register("witherbone_hoe", () -> new ModHoeItem(ModTier.WITHERBONE, -4, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(ModRarity.LEGENDARY)));
+    public static final RegistryObject<Item> WITHERBONE_HOE = ITEMS.register("witherbone_hoe", () -> new ModHoeItem(ModTier.WITHERBONE, -4, 0.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(ModRarity.LEGENDARY)));
     public static final RegistryObject<Item> WITHERBONE_SWORD = ITEMS.register("witherbone_sword", () -> new ModSwordItem(ModTier.WITHERBONE, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).rarity(ModRarity.LEGENDARY)));
     
     public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet", () -> new ModArmorItem(ModArmorMaterial.EMERALD, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
@@ -277,7 +262,7 @@ public class ModItems
     public static final RegistryObject<Item> ENDER_PICKAXE = ITEMS.register("ender_pickaxe", () -> new ModPickaxeItem(ModTier.ENDER, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> ENDER_AXE = ITEMS.register("ender_axe", () -> new ModAxeItem(ModTier.ENDER, 5.0F, -3.1F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> ENDER_SHOVEL = ITEMS.register("ender_shovel", () -> new ModShovelItem(ModTier.ENDER, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> ENDER_HOE = ITEMS.register("ender_hoe", () -> new ModHoeItem(ModTier.ENDER, -2, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> ENDER_HOE = ITEMS.register("ender_hoe", () -> new ModHoeItem(ModTier.ENDER, -3, -1.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> ENDER_SWORD = ITEMS.register("ender_sword", () -> new ModSwordItem(ModTier.ENDER, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> BLAZE_HELMET = ITEMS.register("blaze_helmet", () -> new BlazeArmorItem(ModArmorMaterial.BLAZE, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
@@ -287,7 +272,7 @@ public class ModItems
     public static final RegistryObject<Item> BLAZE_PICKAXE = ITEMS.register("blaze_pickaxe", () -> new ModPickaxeItem(ModTier.BLAZE, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> BLAZE_AXE = ITEMS.register("blaze_axe", () -> new ModAxeItem(ModTier.BLAZE, 6.0F, -3.1F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> BLAZE_SHOVEL = ITEMS.register("blaze_shovel", () -> new ModShovelItem(ModTier.BLAZE, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> BLAZE_HOE = ITEMS.register("blaze_hoe", () -> new ModHoeItem(ModTier.BLAZE, -2, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BLAZE_HOE = ITEMS.register("blaze_hoe", () -> new ModHoeItem(ModTier.BLAZE, -3, -1.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> BLAZE_SWORD = ITEMS.register("blaze_sword", () -> new ModSwordItem(ModTier.BLAZE, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
     
     public static final RegistryObject<Item> ENDSTONE_PICKAXE = ITEMS.register("endstone_pickaxe", () -> new ModPickaxeItem(ModTier.ENDSTONE, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
@@ -319,7 +304,7 @@ public class ModItems
     public static final RegistryObject<Item> BEDROCK_PICKAXE = ITEMS.register("bedrock_pickaxe", () -> new ModPickaxeItem(ModTier.BEDROCK, 1, -2.8F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> BEDROCK_AXE = ITEMS.register("bedrock_axe", () -> new ModAxeItem(ModTier.BEDROCK, 4.0F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> BEDROCK_SHOVEL = ITEMS.register("bedrock_shovel", () -> new ModShovelItem(ModTier.BEDROCK, 1.5F, -3.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> BEDROCK_HOE = ITEMS.register("bedrock_hoe", () -> new ModHoeItem(ModTier.BEDROCK, -4, -2.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> BEDROCK_HOE = ITEMS.register("bedrock_hoe", () -> new ModHoeItem(ModTier.BEDROCK, -4, 0.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> BEDROCK_SWORD = ITEMS.register("bedrock_sword", () -> new ModSwordItem(ModTier.BEDROCK, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
 
     @Nullable

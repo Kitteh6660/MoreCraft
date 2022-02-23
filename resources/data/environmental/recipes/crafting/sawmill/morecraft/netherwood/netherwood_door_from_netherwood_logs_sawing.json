@@ -1,8 +1,0 @@
-{
-  "type": "environmental:sawing",
-  "ingredient": {
-    "tag": "morecraft:netherwood_logs"
-  },
-  "result": "morecraft:netherwood_door",
-  "count": 2
-}

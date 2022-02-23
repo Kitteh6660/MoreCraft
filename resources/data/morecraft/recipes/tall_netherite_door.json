@@ -17,7 +17,8 @@
   },
   "conditions": [
     {
-      "type": "morecraft:dramaticdoors_mod_installed"
+      "type": "forge:mod_loaded",
+      "modid": "dramaticdoors"
     }
   ]
 }

@@ -4,6 +4,6 @@
  		"type=half,facing=south": { "model": "morecraft:block/bedrock_brick_vertical_slab", "y": 180, "uvlock": true },
   		"type=half,facing=east": { "model": "morecraft:block/bedrock_brick_vertical_slab", "y": 90, "uvlock": true },
  		"type=half,facing=west": { "model": "morecraft:block/bedrock_brick_vertical_slab", "y": 270, "uvlock": true },
-        "type=double": { "model": "morecraft:block/bedrock_brick_planks" }
+        "type=double": { "model": "morecraft:block/bedrock_brick" }
     }
 }

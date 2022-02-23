@@ -16,5 +16,11 @@
   "result": {
     "item": "morecraft:netherwood_crafting_table_minecart",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "variant_crafting_tables"
+    }
+  ]
 }

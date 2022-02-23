@@ -25,7 +25,7 @@ public class MoreCraftConfig {
 	public static final String SUBCATEGORY_DROPS = "drops";
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
-	//public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
+	public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
 	//public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
 	public static ForgeConfigSpec.BooleanValue salvageRecipes;
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
@@ -49,11 +49,11 @@ public class MoreCraftConfig {
 		
         COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
-        /*hardcoreRecipes = COMMON_BUILDER
-                .comment("Hardcore Recipes\n" + "Default: False")
+        hardcoreRecipes = COMMON_BUILDER
+                .comment("Hardcore Recipes: Makes certain modded recipes more difficult." + "Default: False")
                 .define("hardcore_recipes", false);
 
-        sillyRecipes = COMMON_BUILDER
+        /*sillyRecipes = COMMON_BUILDER
                 .comment("Silly Recipes\n" + "Default: False")
                 .define("silly_recipes", false);*/
 

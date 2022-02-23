@@ -2,7 +2,28 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.18.1]==
 =======================
-## [4.5.3] - 2022-01-16
+## [4.5.5] - 2022-02-23
+
+🌟Added:
+* Re-implemented Hardcore Recipes config. Currently, this only affects Totem of Undying.
+
+🔧Changed:
+* Updated Ruby Ore textures.
+* Updated Spider Silk armour textures.
+* Spider silk armour now has a new advantage: you can move through webs faster.
+* Blaze and Spider Silk armour now count as providing warmth from powder snow.
+* Cleaned up some code pertaining to Quark conditions.
+* Some improvements to mod compatiblity. Calcite, Tuff, and Dripstone slabs, stairs, and walls will be inaccessible while Caverns & Chasms mod is installed.
+
+🐞Fixed:
+* Some attempt to fix potential server due to Enderdragon Scale Armour.
+* Fixed Bedrock Brick double slab issues.
+* Fixed a bug where Netherwood Chest (and its trapped variant) wouldn't drop itself when broken.
+* Fixed some recipe notifications. In particular, Netherbrick Fence Gate, Bone Ladder, Enchanted Golden Apple, and Cake Slice.
+* Made some tweaks to effectively silence missing textures for chests and mob effects in console output.
+
+=======================
+## [4.5.4] - 2022-01-16
 
 Some fixes. Removed modded Crafting Tables except for Netherwood.
 

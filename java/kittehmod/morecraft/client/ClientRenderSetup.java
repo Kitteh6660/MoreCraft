@@ -35,14 +35,6 @@ public class ClientRenderSetup
 		EntityRenderers.register(ModEntities.NETHERWOOD_BOAT.get(), NetherBoatRenderer::new);
 
 		// Minecarts with Crafting Table
-		EntityRenderers.register(ModEntities.OAK_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.SPRUCE_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.BIRCH_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.JUNGLE_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.ACACIA_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.DARK_OAK_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.CRIMSON_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		EntityRenderers.register(ModEntities.WARPED_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
 		EntityRenderers.register(ModEntities.NETHERWOOD_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
 		
 		// GUIs

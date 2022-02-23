@@ -7,7 +7,18 @@
   "count": 1,
   "conditions": [
     {
-      "type": "morecraft:quark_mod_not_installed"
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "quark"
+      }
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "caverns_and_chasms"
+      }
     }
   ]
 }

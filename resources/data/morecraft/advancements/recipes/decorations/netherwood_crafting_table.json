@@ -28,5 +28,11 @@
       "has_the_recipe",
       "has_items"
     ]
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "variant_crafting_tables"
+    }
   ]
 }

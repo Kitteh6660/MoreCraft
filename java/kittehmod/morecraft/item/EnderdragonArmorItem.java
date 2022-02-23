@@ -14,7 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.IItemRenderProperties;
 
-public class EnderdragonArmorItem extends ArmorItem implements IItemRenderProperties
+public class EnderdragonArmorItem extends ArmorItem
 {
 	public ArmorMaterial material;
 	

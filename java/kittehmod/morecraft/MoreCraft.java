@@ -1,7 +1,7 @@
 package kittehmod.morecraft;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
@@ -46,7 +46,7 @@ public class MoreCraft
 {
     public static final String MODID = "morecraft";
     
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    //public static final Logger LOGGER = LogManager.getLogger(MODID);
     
 	public MoreCraft()
     {

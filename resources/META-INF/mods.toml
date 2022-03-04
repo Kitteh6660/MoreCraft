@@ -9,7 +9,7 @@ license="GPL License" #mandatory (License Schmicense)
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[39,)" #mandatory
+loaderVersion="[40,)" #mandatory
 
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/Kitteh6660/MoreCraft/issues" #optional
@@ -47,21 +47,28 @@ description="The ultimate mod that expands a lot on Minecraft while staying true
 [[dependencies.morecraft]]
   modId="minecraft" 
   mandatory=true
-  versionRange="[1.18.1,)"
+  versionRange="[1.18.2,)"
+  ordering="NONE"
+  side="BOTH"
+  
+[[dependencies.morecraft]]
+  modId="forge" 
+  mandatory=true
+  versionRange="[40.0.2,)"
   ordering="NONE"
   side="BOTH"
 
 [[dependencies.morecraft]]
   modId = "quark" 
   mandatory = false
-  versionRange = "[3.0,)"
+  versionRange = "[3.1,)"
   ordering = "AFTER"
   side = "BOTH"
 
 [[dependencies.morecraft]] 
   modId = "dramaticdoors"
   mandatory = false
-  versionRange = "[1.18.1-1.4.1,)"
+  versionRange = "[1.18.1-1.5.0,)"
   ordering = "AFTER"
   side = "BOTH"
   

@@ -34,10 +34,9 @@ public class EnderdragonArmorItem extends ArmorItem
 	@Override
 	public void initializeClient(Consumer<IItemRenderProperties> consumer) {
 		consumer.accept(new IItemRenderProperties() {
-			@SuppressWarnings("unchecked")
 			@Override
-			public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemstack, EquipmentSlot armorSlot, A _default) {
-				return armorSlot == EquipmentSlot.LEGS ? (A) new EnderdragonLegsModel<HumanoidModel<LivingEntity>>() : (A) new EnderdragonArmorModel<HumanoidModel<LivingEntity>>();
+			public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemstack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+				return armorSlot == EquipmentSlot.LEGS ? new EnderdragonLegsModel<HumanoidModel<LivingEntity>>() : new EnderdragonArmorModel<HumanoidModel<LivingEntity>>();
 			}
 		});
 	}

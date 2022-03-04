@@ -3,6 +3,7 @@ package kittehmod.morecraft.worldgen;
 import java.util.List;
 
 import kittehmod.morecraft.MoreCraftConfig;
+import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
@@ -16,17 +17,17 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 @SuppressWarnings("deprecation")
 public class ModPlacements {
-	public static final PlacedFeature ORE_RUBY = PlacementUtils.register("ore_ruby", ModFeatures.ORE_RUBY_SMALL.placed(commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(8), VerticalAnchor.aboveBottom(96)))));
-	public static final PlacedFeature ORE_RUBY_LARGE = PlacementUtils.register("ore_ruby_large", ModFeatures.ORE_RUBY_LARGE.placed(rareOrePlacement(9, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(8), VerticalAnchor.aboveBottom(96)))));
-	public static final PlacedFeature ORE_RUBY_BURIED = PlacementUtils.register("ore_ruby_buried", ModFeatures.ORE_RUBY_BURIED.placed(commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(0), VerticalAnchor.aboveBottom(80)))));
+	public static final Holder<PlacedFeature> ORE_RUBY = PlacementUtils.register("morecraft:ore_ruby", ModFeatures.ORE_RUBY_SMALL, commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(8), VerticalAnchor.aboveBottom(96))));
+	public static final Holder<PlacedFeature> ORE_RUBY_LARGE = PlacementUtils.register("morecraft:ore_ruby_large", ModFeatures.ORE_RUBY_LARGE, rareOrePlacement(9, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(8), VerticalAnchor.aboveBottom(96))));
+	public static final Holder<PlacedFeature> ORE_RUBY_BURIED = PlacementUtils.register("morecraft:ore_ruby_buried", ModFeatures.ORE_RUBY_BURIED, commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(0), VerticalAnchor.aboveBottom(80))));
 	
-	protected static PlacedFeature NETHERWOOD_STRAIGHT_CHECKED;
-	protected static PlacedFeature NETHERWOOD_FORKY_CHECKED;
-	protected static PlacedFeature NETHERWOOD_FOREST;
+	protected static Holder<PlacedFeature> NETHERWOOD_STRAIGHT_CHECKED;
+	protected static Holder<PlacedFeature> NETHERWOOD_FORKY_CHECKED;
+	protected static Holder<PlacedFeature> NETHERWOOD_FOREST;
 
 	public static void setupPlacements() {
-		NETHERWOOD_STRAIGHT_CHECKED = PlacementUtils.register("netherwood_straight_checked", ModFeatures.NETHERWOOD_TREE_STRAIGHT.placed(CountOnEveryLayerPlacement.of((int)Math.floor(MoreCraftConfig.generateNetherwoodTrees.get() * 0.7))));
-		NETHERWOOD_FORKY_CHECKED = PlacementUtils.register("netherwood_forky_checked", ModFeatures.NETHERWOOD_TREE_FORKY.placed(CountOnEveryLayerPlacement.of((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3))));
+		NETHERWOOD_STRAIGHT_CHECKED = PlacementUtils.register("morecraft:netherwood_straight_checked", ModFeatures.NETHERWOOD_TREE_STRAIGHT, CountOnEveryLayerPlacement.of((int)Math.floor(MoreCraftConfig.generateNetherwoodTrees.get() * 0.7)));
+		NETHERWOOD_FORKY_CHECKED = PlacementUtils.register("morecraft:netherwood_forky_checked", ModFeatures.NETHERWOOD_TREE_FORKY, CountOnEveryLayerPlacement.of((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3)));
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

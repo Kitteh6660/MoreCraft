@@ -30,7 +30,6 @@ public class MorecraftPacketHandler {
 	
 	public static void register() {
 		registerMessage(ModBoatDismountPacket.class, ModBoatDismountPacket::encode, ModBoatDismountPacket::decode,  ModBoatDismountPacket::handle);
-		registerMessage(ModUpdateTileEntityPacket.class, ModUpdateTileEntityPacket::encode, ModUpdateTileEntityPacket::decode, ModUpdateTileEntityPacket.Handler::handle);
 	}
 
 	private static <MSG> void registerMessage(Class<MSG> type, BiConsumer<MSG, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, MSG> decoder, BiConsumer<MSG, Supplier<NetworkEvent.Context>> consumer) {

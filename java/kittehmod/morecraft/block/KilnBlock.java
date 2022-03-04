@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import kittehmod.morecraft.MoreCraftStats;
+//import kittehmod.morecraft.MoreCraftStats;
 import kittehmod.morecraft.blockentity.KilnBlockEntity;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
@@ -43,9 +43,8 @@ public class KilnBlock extends AbstractFurnaceBlock
 		BlockEntity blockentity = worldIn.getBlockEntity(pos);
 		if (blockentity instanceof KilnBlockEntity) {
 			player.openMenu((MenuProvider) blockentity);
-			player.awardStat(MoreCraftStats.INTERACT_WITH_KILN);
+			//player.awardStat(MoreCraftStats.INTERACT_WITH_KILN);
 		}
-
 	}
 
 	@OnlyIn(Dist.CLIENT)

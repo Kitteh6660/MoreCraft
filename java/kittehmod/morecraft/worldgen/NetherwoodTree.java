@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
@@ -16,7 +17,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 public class NetherwoodTree extends AbstractTreeGrower {
 	@Nullable
-	protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+	protected Holder<ConfiguredFeature<TreeConfiguration, ?>> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
 		if (randomIn.nextInt(100) < 30) { // 30% chance of forky.
 			return ModFeatures.NETHERWOOD_TREE_FORKY;
 		} else {
@@ -26,11 +27,11 @@ public class NetherwoodTree extends AbstractTreeGrower {
 
 	@Override
 	public boolean growTree(ServerLevel worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
-		ConfiguredFeature<TreeConfiguration, ?> configuredfeature = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
-		if (configuredfeature == null) {
+		Holder<? extends ConfiguredFeature<TreeConfiguration, ?>> holder = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
+		if (holder == null) {
 			return false;
 		} else {
-			//worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 4);
+			ConfiguredFeature<?, ?> configuredfeature = holder.value();
 			if (configuredfeature.place(worldIn, generatorIn, randomIn, blockPosIn)) {
 				return true;
 			} else {

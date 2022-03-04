@@ -141,6 +141,10 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 		if (generationReader.isStateAtPosition(blockpos, (block) -> block.getBlock() == ModBlocks.NETHERWOOD_SAPLING.get())) {
 			return true;
 		}
+		// 100% chance if in Netherwood Forest biome
+		if (generationReader.getBiome(blockpos).value() == ModBiomes.NETHERWOOD_FOREST.get()) {
+			return true;
+		}
 		// Reduce the frequency of Netherwood trees.
 		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
 			chance = CHANCE_LUSH;

@@ -70,11 +70,13 @@ public class ModBlocks {
 	public static final RegistryObject<Block> NETHERWOOD_DOOR = BLOCKS.register("netherwood_door", () -> new DoorBlock(Block.Properties.of(Material.NETHER_WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> NETHERITE_DOOR = BLOCKS.register("netherite_door", () -> new DoorBlock(Block.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> GLASS_DOOR = BLOCKS.register("glass_door", () -> new DoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+	public static final RegistryObject<Block> SOUL_GLASS_DOOR = BLOCKS.register("soul_glass_door", () -> new DoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> BONE_DOOR = BLOCKS.register("bone_door", () -> new DoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.STONE).noOcclusion()));
     public static final RegistryObject<Block> NETHERBRICK_TRAPDOOR = BLOCKS.register("netherbrick_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.NETHER_BRICKS).noOcclusion()));
     public static final RegistryObject<Block> NETHERWOOD_TRAPDOOR = BLOCKS.register("netherwood_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.WOOD).strength(2.0F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> NETHERITE_TRAPDOOR = BLOCKS.register("netherite_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GLASS_TRAPDOOR = BLOCKS.register("glass_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> SOUL_GLASS_TRAPDOOR = BLOCKS.register("soul_glass_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> BONE_TRAPDOOR = BLOCKS.register("bone_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
     public static final RegistryObject<Block> NETHERBRICK_FENCE_GATE = BLOCKS.register("netherbrick_fence_gate", () -> new FenceGateBlock(Block.Properties.of(Material.STONE).strength(3.0F, 8.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(Block.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD)));
@@ -152,6 +154,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> TALL_NETHERWOOD_DOOR = BLOCKS.register("tall_netherwood_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> TALL_NETHERITE_DOOR = BLOCKS.register("tall_netherite_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> TALL_GLASS_DOOR = BLOCKS.register("tall_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+	public static final RegistryObject<Block> TALL_SOUL_GLASS_DOOR = BLOCKS.register("tall_soul_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
     
 	@EventBusSubscriber(modid = MoreCraft.MODID)

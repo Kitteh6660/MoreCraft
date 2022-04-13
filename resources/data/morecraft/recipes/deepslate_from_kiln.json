@@ -1,0 +1,9 @@
+{
+  "type": "morecraft:kiln",
+  "ingredient": {
+    "item": "minecraft:cobbled_deepslate"
+  },
+  "result": "minecraft:deepslate",
+  "experience": 0.1,
+  "cookingtime": 100
+}

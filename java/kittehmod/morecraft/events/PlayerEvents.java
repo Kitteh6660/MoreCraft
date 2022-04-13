@@ -6,6 +6,7 @@ import kittehmod.morecraft.item.ModArmorMaterial;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.network.ModBoatDismountPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,19 +14,53 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.world.BlockEvent.BlockToolInteractEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class PlayerEvents
 {
 
+	//A chance to gain Copper Patina upon scraping copper.
+	@SubscribeEvent
+	public void copperScrapeEvent(BlockToolInteractEvent event) {
+		LevelAccessor level = event.getWorld();
+		if (event.getHeldItemStack().getItem() instanceof AxeItem && event.getToolAction()  == ToolActions.AXE_SCRAPE && !level.isClientSide()) {
+			if (event.getState().getBlock() instanceof WeatheringCopper) {
+				WeatheringCopper copper = (WeatheringCopper) event.getState().getBlock();
+				if (copper.getAge() != WeatherState.UNAFFECTED) {
+					float chance = 0.4F + EnchantmentHelper.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE, event.getPlayer()) * 0.2F; 
+					if (level.getRandom().nextFloat() < chance) {
+						BlockPos pos = event.getPos().relative(event.getPlayer().getDirection().getOpposite(), 1);
+						ItemEntity entity = new ItemEntity((Level) level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.PATINA.get(), 1));
+						level.addFreshEntity(entity);
+						event.setResult(Result.ALLOW);
+					}
+				}
+				else {
+					event.setResult(Result.DEFAULT);
+				}
+			}
+		}
+	}
+	
 	@SubscribeEvent
 	public void LavaBoatDismount(EntityMountEvent event) {
 		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherBoat) {

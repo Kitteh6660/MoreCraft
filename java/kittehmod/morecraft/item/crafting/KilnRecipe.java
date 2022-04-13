@@ -21,8 +21,4 @@ public class KilnRecipe extends AbstractCookingRecipe
 		return ModRecipes.KILN.get();
 	}
 
-	public boolean canFit(int width, int height) {
-		return this.getType() == ModRecipeType.KILN;
-	}
-
 }

@@ -11,9 +11,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class KilnScreen extends AbstractFurnaceScreen<KilnContainer>
 {
-	private static final ResourceLocation KILN_GUI_TEXTURES = new ResourceLocation("morecraft", "textures/gui/container/kiln.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation("morecraft", "textures/gui/container/kiln.png");
 	
 	public KilnScreen(KilnContainer container, Inventory playerInventory, Component title) {
-		super(container, new KilnRecipeGui(), playerInventory, title, KILN_GUI_TEXTURES);
+		super(container, new KilnRecipeBookComponent(), playerInventory, title, TEXTURE);
 	}
 }

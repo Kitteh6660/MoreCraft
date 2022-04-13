@@ -11,9 +11,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class KilnRecipeGui extends AbstractFurnaceRecipeBookComponent
+public class KilnRecipeBookComponent extends AbstractFurnaceRecipeBookComponent
 {
-	private static final Component FILTER_NAME = new TranslatableComponent("gui.recipebook.toggleRecipes.smokable");
+	private static final Component FILTER_NAME = new TranslatableComponent("gui.recipebook.toggleRecipes.kilnable");
 
 	protected Component getRecipeFilterName() {
 		return FILTER_NAME;

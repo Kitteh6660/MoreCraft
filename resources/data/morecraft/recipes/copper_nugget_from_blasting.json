@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "item": "morecraft:copper_pickaxe"
+    },
+    {
+      "item": "morecraft:copper_shovel"
+    },
+    {
+      "item": "morecraft:copper_axe"
+    },
+    {
+      "item": "morecraft:copper_hoe"
+    },
+    {
+      "item": "morecraft:copper_sword"
+    },
+    {
+      "item": "morecraft:copper_helmet"
+    },
+    {
+      "item": "morecraft:copper_chestplate"
+    },
+    {
+      "item": "morecraft:copper_leggings"
+    },
+    {
+      "item": "morecraft:copper_boots"
+    },
+    {
+      "item": "morecraft:copper_horse_armor"
+    }
+  ],
+  "result": "morecraft:copper_nugget",
+  "experience": 0.1,
+  "cookingtime": 100
+}

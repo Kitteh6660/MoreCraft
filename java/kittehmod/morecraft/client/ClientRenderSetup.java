@@ -51,23 +51,26 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_DOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERBRICK_DOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERITE_DOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS_DOOR.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.BONE_DOOR.get(), RenderType.cutout());
 
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERWOOD_DOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERBRICK_DOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERITE_DOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_GLASS_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_GLASS_DOOR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_SOUL_GLASS_DOOR.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_BONE_DOOR.get(), RenderType.cutout());
 		
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERBRICK_TRAPDOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERITE_TRAPDOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_TRAPDOOR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS_TRAPDOOR.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.BONE_TRAPDOOR.get(), RenderType.cutout());
 		
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.cutoutMipped());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.BONE_LADDER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.FLESH_CARPET.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LADDER.get(), RenderType.cutout());

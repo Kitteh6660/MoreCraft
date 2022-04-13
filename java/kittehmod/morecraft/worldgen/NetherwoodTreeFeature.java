@@ -15,6 +15,7 @@ import com.mojang.serialization.Codec;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.block.NetherSaplingBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
@@ -162,7 +163,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 	}
 	
 	private int getMaxFreeTreeHeight(LevelSimulatedReader p_241521_1_, int p_241521_2_, BlockPos p_241521_3_, TreeConfiguration p_241521_4_) {
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for (int i = 0; i <= p_241521_2_ + 1; ++i) {
 			int j = p_241521_4_.minimumSize.getSizeAtHeight(p_241521_2_, i);
@@ -230,7 +231,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 			list.add(Sets.newHashSet());
 		}
 
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for (BlockPos blockpos : Lists.newArrayList(p_236403_4_)) {
 			if (bbIn.isInside(blockpos)) {

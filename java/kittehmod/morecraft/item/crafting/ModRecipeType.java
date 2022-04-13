@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 
 public interface ModRecipeType<T extends Recipe<?>>
 {
-	RecipeType<KilnRecipe> KILN = register("kiln");
+	RecipeType<KilnRecipe> KILN = register("morecraft:kiln");
 
 	static <T extends Recipe<?>> RecipeType<T> register(final String key) {
 		return Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(key), new RecipeType<T>() {

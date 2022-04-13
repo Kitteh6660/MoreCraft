@@ -85,12 +85,14 @@ public class ModItems
     public static final RegistryObject<Item> NETHERWOOD_DOOR = ITEMS.register("netherwood_door", () -> new DoubleHighBlockItem(ModBlocks.NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
     public static final RegistryObject<Item> NETHERITE_DOOR = ITEMS.register("netherite_door", () -> new DoubleHighBlockItem(ModBlocks.NETHERITE_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE).fireResistant()));
 	public static final RegistryObject<Item> GLASS_DOOR = ITEMS.register("glass_door", () -> new DoubleHighBlockItem(ModBlocks.GLASS_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> SOUL_GLASS_DOOR = ITEMS.register("soul_glass_door", () -> new DoubleHighBlockItem(ModBlocks.SOUL_GLASS_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
     public static final RegistryObject<Item> BONE_DOOR = ITEMS.register("bone_door", () -> new DoubleHighBlockItem(ModBlocks.BONE_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
 	
 	public static final RegistryObject<Item> NETHERBRICK_TRAPDOOR = ITEMS.register("netherbrick_trapdoor", () -> new BlockItem(ModBlocks.NETHERBRICK_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> NETHERWOOD_TRAPDOOR = ITEMS.register("netherwood_trapdoor", () -> new BlockItem(ModBlocks.NETHERWOOD_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> NETHERITE_TRAPDOOR = ITEMS.register("netherite_trapdoor", () -> new BlockItem(ModBlocks.NETHERITE_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE).fireResistant()));
 	public static final RegistryObject<Item> GLASS_TRAPDOOR = ITEMS.register("glass_trapdoor", () -> new BlockItem(ModBlocks.GLASS_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> SOUL_GLASS_TRAPDOOR = ITEMS.register("soul_glass_trapdoor", () -> new BlockItem(ModBlocks.SOUL_GLASS_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> BONE_TRAPDOOR = ITEMS.register("bone_trapdoor", () -> new BlockItem(ModBlocks.BONE_TRAPDOOR.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
     
     public static final RegistryObject<Item> NETHERBRICK_FENCE_GATE = ITEMS.register("netherbrick_fence_gate", () -> new BlockItem(ModBlocks.NETHERBRICK_FENCE_GATE.get(), new Item.Properties().tab(ModList.get().isLoaded("quark") ? null : CreativeModeTab.TAB_REDSTONE)));
@@ -129,6 +131,8 @@ public class ModItems
     public static final RegistryObject<Item> SWEETBERRY_PIE = ITEMS.register("sweetberry_pie", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SWEETBERRY_PIE)));
 
     // -- MATERIALS -- \\
+    public static final RegistryObject<Item> PATINA = ITEMS.register("patina", () -> new PatinaItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> WITHER_BONE = ITEMS.register("wither_bone", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> WITHER_BONE_MEAL = ITEMS.register("wither_bone_meal", () -> new WitherBonemealItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -165,6 +169,7 @@ public class ModItems
     public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors"))).fireResistant()));
 	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
+	public static final RegistryObject<Item> TALL_SOUL_GLASS_DOOR = ITEMS.register("tall_soul_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_SOUL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     
     // VARIANT CRAFTING TABLES

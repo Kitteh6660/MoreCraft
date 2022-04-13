@@ -42,7 +42,7 @@ public class NetherwoodTree extends AbstractTreeGrower {
 	}
 	
 	private boolean hasFlowers(LevelReader worldIn, BlockPos blockPosIn) {
-		for(BlockPos blockpos : BlockPos.MutableBlockPos.betweenClosed(blockPosIn.below().north(2).west(2), blockPosIn.above().south(2).east(2))) {
+		for(BlockPos blockpos : BlockPos.betweenClosed(blockPosIn.below().north(2).west(2), blockPosIn.above().south(2).east(2))) {
 			if (worldIn.getBlockState(blockpos).is(BlockTags.FLOWERS)) {
 				return true;
 			}

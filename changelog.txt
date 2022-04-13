@@ -1,5 +1,44 @@
 NOTE: This change log may still be missing things! I will work to make sure it properly chronicles all sorts of changes from the mod's inception up to the latest release.
 
+==[ MINECRAFT 1.18.2]==
+=======================
+## [4.6.1] - 2022-04-12
+
+🌟Added:
++ Copper Nuggets. Can be obtained by smelting down copper equipment or from 9 copper ingots.
+  * You can craft 9 nuggets into a full copper ingot just like as with metal ingots.
++ Patinas. Scrape oxidization off any forms of copper blocks (including stairs and slabs) with axe for a chance to get Patina. Chance is affected by Fortune.
+  * Patinas can be currently crafted into cyan dyes.
+  * Patinas can be used on copper blocks to instantly advance oxidization, using up 1 patina.
++ Soul Glass Doors & Trapdoors! Crafted with Soul Glass.
+  * The tall version of Soul Glass Door is also available if Dramatic Doors mod is installed.
+
+🔧Changed:
+* Soul Glass can now be used to craft into Glass Bottles.
+
+🐞Fixed:
+* Kiln recipe book is now working! Yay!
+* You can now properly smelt Cobbled Deepslate into Deepslate in kilns.
+* Fixed an issue where you couldn't smelt Soul Sand in regular furnaces.
+* Fixed partial transparency for Soul Glass blocks.
+
+❌Removed:
+* Removed ModBrewingRecipe class as the mod brewing recipe registry now uses vanilla methods.
+
+=======================
+## [4.6.0] - 2022-03-04
+
+This update aims primarily to port the mod to Minecraft 1.18.2.
+
+🌟Added:
++ You can smelt basalts into smooth basalts in kilns.
+
+🔧Changed:
+* Netherwood Forest biome is now tagged as nether and also eligible for Bastion Remnants and Nether Fortresses.
+
+❌Removed:
+- Removed ModUpdateTileEntityPacket as it's no longer used.
+
 ==[ MINECRAFT 1.18.1]==
 =======================
 ## [4.5.5] - 2022-02-23

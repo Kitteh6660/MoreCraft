@@ -3,6 +3,7 @@ package kittehmod.morecraft.block;
 import java.util.Random;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -76,7 +77,7 @@ public class ModLeavesBlock extends LeavesBlock
 
 	private static BlockState updateDistance(BlockState state, LevelAccessor worldIn, BlockPos pos) {
 		int i = 7;
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for(Direction direction : Direction.values()) {
 			blockpos$mutable.setWithOffset(pos, direction);

@@ -37,11 +37,11 @@ public class ModFeatures {
 	protected static Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_RUBY_LARGE;
 	protected static Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_RUBY_BURIED;
 	
-	public static RegistryObject<Feature<TreeConfiguration>> NETHERWOOD_TREE = FEATURES.register("netherwood_tree", () -> new NetherwoodTreeFeature(TreeConfiguration.CODEC, true));
+	protected static RegistryObject<Feature<TreeConfiguration>> NETHERWOOD_TREE = FEATURES.register("netherwood_tree", () -> new NetherwoodTreeFeature(TreeConfiguration.CODEC, true));
 	
-	public static Holder<ConfiguredFeature<TreeConfiguration, ?>> NETHERWOOD_TREE_STRAIGHT;
-	public static Holder<ConfiguredFeature<TreeConfiguration, ?>> NETHERWOOD_TREE_FORKY;
-	public static Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> TREES_NETHERWOOD;
+	protected static Holder<ConfiguredFeature<TreeConfiguration, ?>> NETHERWOOD_TREE_STRAIGHT;
+	protected static Holder<ConfiguredFeature<TreeConfiguration, ?>> NETHERWOOD_TREE_FORKY;
+	protected static Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> TREES_NETHERWOOD;
 	
 	public static void setupFeatureConfigs() {
 		ORE_RUBY_TARGET_LIST = ImmutableList.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.RUBY_ORE.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_RUBY_ORE.get().defaultBlockState()));

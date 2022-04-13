@@ -1,0 +1,151 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morecraft:copper_nugget_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_copper_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_pickaxe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_shovel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_axe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_hoe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_helmet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_chestplate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_leggings"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "has_copper_horse_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morecraft:copper_horse_armor"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morecraft:copper_nugget_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_pickaxe",
+      "has_copper_shovel",
+      "has_copper_axe",
+      "has_copper_hoe",
+      "has_copper_sword",
+      "has_copper_helmet",
+      "has_copper_chestplate",
+      "has_copper_leggings",
+      "has_copper_boots",
+      "has_copper_horse_armor",
+      "has_the_recipe"
+    ]
+  ]
+}

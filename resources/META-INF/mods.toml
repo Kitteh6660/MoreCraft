@@ -54,7 +54,7 @@ description="The ultimate mod that expands a lot on Minecraft while staying true
 [[dependencies.morecraft]]
   modId="forge" 
   mandatory=true
-  versionRange="[40.0.2,)"
+  versionRange="[40.0.45,)"
   ordering="NONE"
   side="BOTH"
 

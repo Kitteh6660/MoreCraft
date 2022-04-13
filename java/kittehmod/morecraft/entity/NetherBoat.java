@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -443,7 +444,7 @@ public class NetherBoat extends Boat
 		int l = Mth.ceil(axisalignedbb.maxY - this.lastYd);
 		int i1 = Mth.floor(axisalignedbb.minZ);
 		int j1 = Mth.ceil(axisalignedbb.maxZ);
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		label39: for (int k1 = k; k1 < l; ++k1) {
 			float f = 0.0F;
@@ -486,7 +487,7 @@ public class NetherBoat extends Boat
 		VoxelShape voxelshape = Shapes.create(axisalignedbb1);
 		float f = 0.0F;
 		int k1 = 0;
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for (int l1 = i; l1 < j; ++l1) {
 			for (int i2 = i1; i2 < j1; ++i2) {
@@ -519,7 +520,7 @@ public class NetherBoat extends Boat
 		int j1 = Mth.ceil(axisalignedbb.maxZ);
 		boolean flag = false;
 		this.waterLevel = -Double.MAX_VALUE;
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for (int k1 = i; k1 < j; ++k1) {
 			for (int l1 = k; l1 < l; ++l1) {
@@ -552,7 +553,7 @@ public class NetherBoat extends Boat
 		int i1 = Mth.floor(axisalignedbb.minZ);
 		int j1 = Mth.ceil(axisalignedbb.maxZ);
 		boolean flag = false;
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+		MutableBlockPos blockpos$mutable = new MutableBlockPos();
 
 		for (int k1 = i; k1 < j; ++k1) {
 			for (int l1 = k; l1 < l; ++l1) {

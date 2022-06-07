@@ -22,9 +22,6 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 * Fixed missing recipe for Tall Soul Glass Door.
 * Fixed Minecart with Netherwood Crafting Table advancement unlocking prematurely.
 
-❌Removed:
-* Removed ModBrewingRecipe class as the mod brewing recipe registry now uses vanilla methods.
-
 =======================
 ## [4.6.1] - 2022-04-12
 

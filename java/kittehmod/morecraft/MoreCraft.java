@@ -23,6 +23,7 @@ import kittehmod.morecraft.item.crafting.conditions.CharmModuleRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.HardcoreRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
+import kittehmod.morecraft.item.crafting.conditions.SillyRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
@@ -34,13 +35,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.RecipeBookRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod(MoreCraft.MODID)
@@ -65,7 +66,9 @@ public class MoreCraft
    		ModPointOfInterestType.POINTS_OF_INTERESTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	MoreCraftSounds.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
-    	DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> { FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient); });
+    	if (FMLEnvironment.dist == Dist.CLIENT) {
+    		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
+    	}
     }
     
     private void setupCommon(final FMLCommonSetupEvent event)
@@ -84,6 +87,7 @@ public class MoreCraft
         CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
         CraftingHelper.register(new HardcoreRecipeCondition.Serializer());
         CraftingHelper.register(new SalvageRecipeCondition.Serializer());
+        CraftingHelper.register(new SillyRecipeCondition.Serializer());
         
     	MinecraftForge.EVENT_BUS.register(new MobEvents());
     	MinecraftForge.EVENT_BUS.register(new PlayerEvents());

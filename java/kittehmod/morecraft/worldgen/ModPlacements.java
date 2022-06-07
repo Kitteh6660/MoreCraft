@@ -23,22 +23,31 @@ public class ModPlacements {
 	
 	protected static Holder<PlacedFeature> NETHERWOOD_STRAIGHT_CHECKED;
 	protected static Holder<PlacedFeature> NETHERWOOD_FORKY_CHECKED;
-	protected static Holder<PlacedFeature> NETHERWOOD_FOREST;
+	protected static Holder<PlacedFeature> NETHERWOOD_STRAIGHT_LOW;
+	protected static Holder<PlacedFeature> NETHERWOOD_FORKY_LOW;
+	protected static Holder<PlacedFeature> NETHERWOOD_STRAIGHT_HIGH;
+	protected static Holder<PlacedFeature> NETHERWOOD_FORKY_HIGH;
 
 	public static void setupPlacements() {
+		NETHERWOOD_STRAIGHT_LOW = PlacementUtils.register("morecraft:netherwood_straight_low", ModFeatures.NETHERWOOD_TREE_STRAIGHT, PlacementUtils.countExtra(1, 0.2F, 1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+		NETHERWOOD_FORKY_LOW = PlacementUtils.register("morecraft:netherwood_forky_low", ModFeatures.NETHERWOOD_TREE_FORKY, PlacementUtils.countExtra(0, 0.2F, 1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+
+		NETHERWOOD_STRAIGHT_HIGH = PlacementUtils.register("morecraft:netherwood_straight_high", ModFeatures.NETHERWOOD_TREE_STRAIGHT, PlacementUtils.countExtra(4, 0.5F, 1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+		NETHERWOOD_FORKY_HIGH = PlacementUtils.register("morecraft:netherwood_forky_high", ModFeatures.NETHERWOOD_TREE_FORKY, PlacementUtils.countExtra(4, 0.5F, 1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+		
 		NETHERWOOD_STRAIGHT_CHECKED = PlacementUtils.register("morecraft:netherwood_straight_checked", ModFeatures.NETHERWOOD_TREE_STRAIGHT, CountOnEveryLayerPlacement.of((int)Math.floor(MoreCraftConfig.generateNetherwoodTrees.get() * 0.7)));
 		NETHERWOOD_FORKY_CHECKED = PlacementUtils.register("morecraft:netherwood_forky_checked", ModFeatures.NETHERWOOD_TREE_FORKY, CountOnEveryLayerPlacement.of((int)Math.ceil(MoreCraftConfig.generateNetherwoodTrees.get() * 0.3)));
 	}
 	
-	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
-		return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
+	private static List<PlacementModifier> orePlacement(PlacementModifier plMod, PlacementModifier plMod2) {
+		return List.of(plMod, InSquarePlacement.spread(), plMod2, BiomeFilter.biome());
 	}
 	
-	private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
-		return orePlacement(CountPlacement.of(p_195344_), p_195345_);
+	private static List<PlacementModifier> commonOrePlacement(int amt, PlacementModifier plMod) {
+		return orePlacement(CountPlacement.of(amt), plMod);
 	}
 
-	private static List<PlacementModifier> rareOrePlacement(int p_195350_, PlacementModifier p_195351_) {
-		return orePlacement(RarityFilter.onAverageOnceEvery(p_195350_), p_195351_);
+	private static List<PlacementModifier> rareOrePlacement(int amt, PlacementModifier plMod) {
+		return orePlacement(RarityFilter.onAverageOnceEvery(amt), plMod);
 	}
 }

@@ -2,14 +2,14 @@
   "parent": "morecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morecraft:netherwood_crafting_table_minecart"
+      "morecraft:ruby"
     ]
   },
   "criteria": {
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:netherwood_crafting_table_minecart"
+        "recipe": "morecraft:ruby"
       }
     },
     "has_items": {
@@ -17,10 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [ "morecraft:netherwood_crafting_table" ]
-          },
-          {
-            "items": [ "minecraft:minecart" ]
+            "items": [ "morecraft:ruby_block" ]
           }
         ]
       }
@@ -31,11 +28,5 @@
       "has_the_recipe",
       "has_items"
     ]
-  ],
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "variant_crafting_tables"
-    }
   ]
 }

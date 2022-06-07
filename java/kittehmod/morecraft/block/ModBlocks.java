@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StoneButtonBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
@@ -119,8 +120,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> SOUL_GLASS_PANE = BLOCKS.register("soul_glass_pane", () -> new IronBarsBlock(Block.Properties.of(Material.GLASS).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> FLESH_CARPET = BLOCKS.register("flesh_carpet", () -> new CarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.5F, 1.0F).sound(SoundType.NETHER_WART)));
     public static final RegistryObject<Block> BONE_LADDER = BLOCKS.register("bone_ladder", () -> new LadderBlock(Block.Properties.of(Material.STONE).strength(1.0F, 3.0F).sound(SoundType.LADDER).noOcclusion()));
-    public static final RegistryObject<Block> GLOWSTONE_TORCH = BLOCKS.register("glowstone_torch", () -> new GlowstoneTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
-    public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new GlowstoneWallTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
+    public static final RegistryObject<Block> GLOW_INK_TORCH = BLOCKS.register("glow_ink_torch", () -> new WaterloggableTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 10; })));
+    public static final RegistryObject<Block> WALL_GLOW_INK_TORCH = BLOCKS.register("wall_glow_ink_torch", () -> new WaterloggableWallTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 10; })));
+    public static final RegistryObject<Block> GLOWSTONE_TORCH = BLOCKS.register("glowstone_torch", () -> new WaterloggableTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
+    public static final RegistryObject<Block> WALL_GLOWSTONE_TORCH = BLOCKS.register("wall_glowstone_torch", () -> new WaterloggableWallTorchBlock(Block.Properties.of(Material.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((p_235464_0_) -> { return 15; })));
 	public static final RegistryObject<Block> GLOWSTONE_LANTERN = BLOCKS.register("glowstone_lantern", () -> new LanternBlock(Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((p_235447_0_) -> { return 15; }).noOcclusion()));    
 	public static final RegistryObject<Block> BEDROCK_BRICK = BLOCKS.register("bedrock_brick", () -> new Block(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
 	public static final RegistryObject<Block> BEDROCK_BRICK_STAIRS = BLOCKS.register("bedrock_brick_stairs", () -> new ModStairsBlock(BEDROCK_BRICK.get().defaultBlockState(), Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
@@ -128,6 +131,8 @@ public class ModBlocks {
 	public static final RegistryObject<Block> BEDROCK_BRICK_WALL = BLOCKS.register("bedrock_brick_wall", () -> new WallBlock(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
     public static final RegistryObject<Block> KILN = BLOCKS.register("kiln", () -> new KilnBlock(Block.Properties.of(Material.STONE).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(null, () -> { return NETHERWOOD_SAPLING.get(); }, Block.Properties.of(Material.PLANT).strength(0.0F)));
+    public static final RegistryObject<Block> DEEPSLATE_BUTTON = BLOCKS.register("deepslate_button", () -> new StoneButtonBlock(Block.Properties.of(Material.DECORATION).noCollission().strength(0.5F)));
+    public static final RegistryObject<Block> DEEPSLATE_PRESSURE_PLATE = BLOCKS.register("deepslate_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, Block.Properties.of(Material.STONE, Blocks.POLISHED_DEEPSLATE.defaultMaterialColor()).noCollission().strength(0.5F).requiresCorrectToolForDrops()));
 
     //Quark
     public static final RegistryObject<Block> NETHERWOOD_LADDER = BLOCKS.register("netherwood_ladder", () -> new LadderBlock(Block.Properties.of(Material.NETHER_WOOD).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
@@ -156,7 +161,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> TALL_GLASS_DOOR = BLOCKS.register("tall_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_SOUL_GLASS_DOOR = BLOCKS.register("tall_soul_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
-    
+	
 	@EventBusSubscriber(modid = MoreCraft.MODID)
 	public static class RegistrationHandler 
 	{

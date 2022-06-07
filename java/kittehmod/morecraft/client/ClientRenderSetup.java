@@ -75,6 +75,9 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.FLESH_CARPET.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LADDER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LEAVES.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOW_INK_TORCH.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.WALL_GLOW_INK_TORCH.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_TORCH.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.WALL_GLOWSTONE_TORCH.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.cutout());

@@ -2,6 +2,30 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.18.2]==
 =======================
+## [4.6.2] - 2022-06-17
+
+🌟Added:
++ Glow Ink Torch
+  * Can be crafted with Stick and Glow Ink Sac.
+  * Can be placed underwater, is waterloggable!
++ Deepslate Buttons & Pressure Plates
+  * Can be crafted with Polished Deepslate. They work the same as Stone & Blackstone counterparts.
+
+🔧Changed:
+* Updated the texture for Glowstone Torch.
+* Converted the Netherwood Sapling planted blocks to a block tag.
+* More tweaks to Netherwood Tree generation code. Netherwood Trees should be MUCH rarer in Nether Wastes and Soul Sand Valley now.
+
+🐞Fixed:
+* Fixed /placefeature for Netherwood trees, it should work now.
+* Fixed missing advancement for Ruby from Ruby Block.
+* Fixed missing recipe for Tall Soul Glass Door.
+* Fixed Minecart with Netherwood Crafting Table advancement unlocking prematurely.
+
+❌Removed:
+* Removed ModBrewingRecipe class as the mod brewing recipe registry now uses vanilla methods.
+
+=======================
 ## [4.6.1] - 2022-04-12
 
 🌟Added:

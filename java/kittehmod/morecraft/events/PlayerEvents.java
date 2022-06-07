@@ -37,7 +37,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class PlayerEvents
 {
-
+	
 	//A chance to gain Copper Patina upon scraping copper.
 	@SubscribeEvent
 	public void copperScrapeEvent(BlockToolInteractEvent event) {

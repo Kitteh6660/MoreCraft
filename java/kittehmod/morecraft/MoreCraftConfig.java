@@ -26,7 +26,7 @@ public class MoreCraftConfig {
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
 	public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
-	//public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
+	public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
 	public static ForgeConfigSpec.BooleanValue salvageRecipes;
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
@@ -50,12 +50,12 @@ public class MoreCraftConfig {
         COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 
         hardcoreRecipes = COMMON_BUILDER
-                .comment("Hardcore Recipes: Makes certain modded recipes more difficult." + "Default: False")
+                .comment("Hardcore Recipes: Makes certain modded recipes more difficult.  " + "Default: False")
                 .define("hardcore_recipes", false);
 
-        /*sillyRecipes = COMMON_BUILDER
-                .comment("Silly Recipes\n" + "Default: False")
-                .define("silly_recipes", false);*/
+        sillyRecipes = COMMON_BUILDER
+                .comment("Silly Recipes: Enables certain, silly recipes.  " + "Default: False")
+                .define("silly_recipes", false);
 
         salvageRecipes = COMMON_BUILDER
                 .comment("Salvage Recipe: Enables recipes that allows you to salvage certain items back into materials.  " + "Default: True")

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "morecraft:block/glow_ink_torch_wall" },
+        "facing=south": { "model": "morecraft:block/glow_ink_torch_wall", "y": 90 },
+        "facing=west": { "model": "morecraft:block/glow_ink_torch_wall", "y": 180 },
+        "facing=north": { "model": "morecraft:block/glow_ink_torch_wall", "y": 270 }
+    }
+}

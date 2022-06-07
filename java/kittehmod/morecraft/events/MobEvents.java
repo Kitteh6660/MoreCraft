@@ -6,11 +6,13 @@ import kittehmod.morecraft.MoreCraftConfig;
 import kittehmod.morecraft.effects.ModMobEffects;
 import kittehmod.morecraft.entity.ai.FearAvoidEntityGoal;
 import kittehmod.morecraft.item.ModArmorItem;
+import kittehmod.morecraft.item.ModItemTags;
 import kittehmod.morecraft.item.ModItems;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.animal.goat.Goat;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
@@ -31,6 +33,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
@@ -161,6 +164,16 @@ public class MobEvents
 			}
 		}
 
+	}
+	
+	@SubscribeEvent
+	public void onDamageEvent(LivingDeathEvent event) {
+		if (event.getEntity() instanceof ItemEntity) {
+			ItemEntity ie = (ItemEntity) event.getEntity();
+			if (ie.getItem().is(ModItemTags.CACTUS_IMMUNE) && event.getSource() == DamageSource.CACTUS) {
+				event.setCanceled(true);
+			}
+		}
 	}
 	
 	@SubscribeEvent

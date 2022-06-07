@@ -16,10 +16,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -72,13 +74,16 @@ public class ModItems
 	public static final RegistryObject<Item> SOUL_GLASS_PANE = ITEMS.register("soul_glass_pane", () -> new BlockItem(ModBlocks.SOUL_GLASS_PANE.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> FLESH_CARPET = ITEMS.register("flesh_carpet", () -> new BlockItem(ModBlocks.FLESH_CARPET.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> BONE_LADDER = ITEMS.register("bone_ladder", () -> new BlockItem(ModBlocks.BONE_LADDER.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> GLOW_INK_TORCH = ITEMS.register("glow_ink_torch", () -> new StandingAndWallBlockItem(ModBlocks.GLOW_INK_TORCH.get(), ModBlocks.WALL_GLOW_INK_TORCH.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_TORCH = ITEMS.register("glowstone_torch", () -> new StandingAndWallBlockItem(ModBlocks.GLOWSTONE_TORCH.get(), ModBlocks.WALL_GLOWSTONE_TORCH.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> GLOWSTONE_LANTERN = ITEMS.register("glowstone_lantern", () -> new BlockItem(ModBlocks.GLOWSTONE_LANTERN.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
-	public static final RegistryObject<Item> KILN = ITEMS.register("kiln", () -> new BlockItem(ModBlocks.KILN.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK = ITEMS.register("bedrock_brick", () -> new BlockItem(ModBlocks.BEDROCK_BRICK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK_STAIRS = ITEMS.register("bedrock_brick_stairs", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_STAIRS.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK_SLAB = ITEMS.register("bedrock_brick_slab", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_SLAB.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> BEDROCK_BRICK_WALL = ITEMS.register("bedrock_brick_wall", () -> new BlockItem(ModBlocks.BEDROCK_BRICK_WALL.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> KILN = ITEMS.register("kiln", () -> new BlockItem(ModBlocks.KILN.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+	public static final RegistryObject<Item> DEEPSLATE_BUTTON = ITEMS.register("deepslate_button", () -> new BlockItem(ModBlocks.DEEPSLATE_BUTTON.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> DEEPSLATE_PRESSURE_PLATE = ITEMS.register("deepslate_pressure_plate", () -> new BlockItem(ModBlocks.DEEPSLATE_PRESSURE_PLATE.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 
 	// -- DOORS -- \\
     public static final RegistryObject<Item> NETHERBRICK_DOOR = ITEMS.register("netherbrick_door", () -> new DoubleHighBlockItem(ModBlocks.NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));
@@ -175,7 +180,7 @@ public class ModItems
     // VARIANT CRAFTING TABLES
     public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new ModCraftingTableItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_DECORATIONS))));
     public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_TRANSPORTATION)).stacksTo(1), MinecartCraftingTable.CraftingTableType.NETHERWOOD));
-    
+
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> BONE_HORSE_ARMOR = ITEMS.register("bone_horse_armor", () -> new ModHorseArmorItem(4, "bone", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
@@ -322,13 +327,18 @@ public class ModItems
     	}
     }
     
-	private static CreativeModeTab getTabWithMatchingName(String tabName) {
+    private static CreativeModeTab getTabWithMatchingName(String tabName) {
     	CreativeModeTab tab = null;
+    	if (FMLEnvironment.dist == Dist.DEDICATED_SERVER) { // Check to make sure the code doesn't advance on server to prevent crashes.
+    		return null;
+    	}
     	for (CreativeModeTab tempTab : CreativeModeTab.TABS) {
-    		TranslatableComponent tabComp = (TranslatableComponent) tempTab.getDisplayName();
-    		if (tabComp.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
-    			tab = tempTab;
-    			break;
+    		if (tempTab.getDisplayName() instanceof TranslatableComponent) { // Check if it's the correct class to avoid crashes.
+	    		TranslatableComponent tabComp = (TranslatableComponent) tempTab.getDisplayName();
+	    		if (tabComp.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
+	    			tab = tempTab;
+	    			break;
+	    		}
     		}
     	}
     	return tab;

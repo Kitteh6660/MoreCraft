@@ -61,8 +61,13 @@
 "block.morecraft.soul_glass_pane": "Soul Glass Pane",
 "block.morecraft.flesh_carpet": "Flesh Carpet",
 "block.morecraft.bone_ladder": "Bone Ladder",
+"block.morecraft.glow_ink_torch": "Glow Ink Torch",
+"block.morecraft.glow_ink_lantern": "Glow Ink Lantern",
 "block.morecraft.glowstone_torch": "Glowstone Torch",
 "block.morecraft.glowstone_lantern": "Glowstone Lantern",
+"block.morecraft.kiln": "Kiln",
+"block.morecraft.deepslate_button": "Deepslate Button",
+"block.morecraft.deepslate_pressure_plate": "Deepslate Pressure Plate",
 
 "block.morecraft.spider_head": "Spider Head",
 "block.morecraft.cave_spider_head": "Cave Spider Head",

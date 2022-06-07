@@ -12,8 +12,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 
+import kittehmod.morecraft.block.ModBlockTags;
 import kittehmod.morecraft.block.ModBlocks;
-import kittehmod.morecraft.block.NetherSaplingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -45,7 +45,6 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 
 	public NetherwoodTreeFeature(Codec<TreeConfiguration> codecIn, boolean netherGenAttempt) {
 		super(codecIn);
-		// this.attemptNetherGen = netherGenAttempt;
 	}
 
 	public static boolean isFree(LevelSimulatedReader p_236410_0_, BlockPos p_236410_1_) {
@@ -67,7 +66,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 	private static boolean isGrassOrDirtOrFarmland(LevelSimulatedReader p_236418_0_, BlockPos pos) {
 		return p_236418_0_.isStateAtPosition(pos, (blockstate) -> {
 			Block block = blockstate.getBlock();
-			return blockstate.is(BlockTags.DIRT) || block == Blocks.FARMLAND || NetherSaplingBlock.EXTRA_ALLOWED_BLOCKS.contains(block);
+			return blockstate.is(BlockTags.DIRT) || block == Blocks.FARMLAND || blockstate.is(ModBlockTags.NETHERWOOD_SAPLING_PLANTABLES);
 		});
 	}
 
@@ -97,10 +96,23 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 		BlockPos blockpos = positionIn;
 		BlockState blockstate = generationReader.getBlockState(blockpos.below());
 		BlockState origstate = generationReader.getBlockState(blockpos.below());
-		if (!randomChancePassed(generationReader, positionIn, rand)) {
+		// Shift down potential tree generation to increase chance.
+		if (origstate == Blocks.AIR.defaultBlockState()) {
+			for (int offsetDown = 0; offsetDown < 16; offsetDown++) {
+				if (generationReader.getBlockState(blockpos.below(offsetDown)) != Blocks.AIR.defaultBlockState()) {
+					blockpos = blockpos.below(offsetDown - 1);
+					blockstate = generationReader.getBlockState(blockpos.below());
+					origstate = generationReader.getBlockState(blockpos.below());
+					break;
+				}
+			}
+		}
+		// Cancel if it's still air.
+		if (generationReader.getBlockState(blockpos.below()) == Blocks.AIR.defaultBlockState()) {
 			return false;
 		}
-		if (blockpos.getY() >= 1 && blockpos.getY() + i + 1 <= 256) {
+		// Proceed with the generation.
+		if (blockpos.getY() >= 1 && blockpos.getY() + i + 1 <= generationReader.getMaxBuildHeight()) {
 			if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
 				blockstate = Blocks.SOUL_SOIL.defaultBlockState(); //Set the blockstate for Netherrack to Soul Soil.
 				generationReader.setBlock(blockpos.below(), blockstate, 19);
@@ -118,7 +130,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 
 				int i1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
 				if (i1 >= i || optionalint.isPresent() && i1 >= optionalint.getAsInt()) {
-					List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, biconsumer1, rand, i1, positionIn, configIn);
+					List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, biconsumer1, rand, i1, blockpos, configIn);
 					list.forEach((p_160539_) -> { configIn.foliagePlacer.createFoliage(generationReader, biconsumer2, rand, configIn, i1, p_160539_, j, l); });
 					if (blockstate != null) {
 						generationReader.setBlock(blockpos.below(), blockstate, 19);
@@ -134,32 +146,6 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 		} else {
 			return false;
 		}
-	}
-
-	private boolean randomChancePassed(WorldGenLevel generationReader, BlockPos blockpos, Random rand) {
-		int chance = 1;
-		// Skip RNG if there's Netherwood Sapling planted.
-		if (generationReader.isStateAtPosition(blockpos, (block) -> block.getBlock() == ModBlocks.NETHERWOOD_SAPLING.get())) {
-			return true;
-		}
-		// 100% chance if in Netherwood Forest biome
-		if (generationReader.getBiome(blockpos).value() == ModBiomes.NETHERWOOD_FOREST.get()) {
-			return true;
-		}
-		// Reduce the frequency of Netherwood trees.
-		if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.CRIMSON_NYLIUM || block.getBlock() == Blocks.WARPED_NYLIUM)) {
-			chance = CHANCE_LUSH;
-		} 
-		else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.SOUL_SAND || block.getBlock() == Blocks.SOUL_SOIL)) {
-			chance = CHANCE_MODERATE;
-		}
-		else if (generationReader.isStateAtPosition(blockpos.below(), (block) -> block.getBlock() == Blocks.NETHERRACK)) {
-			chance = CHANCE_BARRENS;
-		}
-		if (rand.nextInt(100) >= chance) {
-			return false;
-		}
-		return true;
 	}
 	
 	private int getMaxFreeTreeHeight(LevelSimulatedReader p_241521_1_, int p_241521_2_, BlockPos p_241521_3_, TreeConfiguration p_241521_4_) {
@@ -180,7 +166,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 
 		return p_241521_2_;
 	}
-
+	
 	@Override
 	public final boolean place(FeaturePlaceContext<TreeConfiguration> placeContxt) {
 		WorldGenLevel worldgenlevel = placeContxt.level();

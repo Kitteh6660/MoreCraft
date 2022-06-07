@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#$"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bed"
+    },
+    "$": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "minecraft:bedrock",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "morecraft:silly_recipes"
+    }
+  ]
+}

@@ -6,10 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -19,13 +18,13 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class GlowstoneWallTorchBlock extends WallTorchBlock implements SimpleWaterloggedBlock {
-	
+public class WaterloggableTorchBlock extends TorchBlock implements SimpleWaterloggedBlock 
+{	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-	public GlowstoneWallTorchBlock(Block.Properties properties) {
-	   super(properties, null);
-	   this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+	
+	public WaterloggableTorchBlock(Block.Properties properties) {
+		super(properties, null); //No particles.
+		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
 	}
 	
 	@Override
@@ -35,26 +34,12 @@ public class GlowstoneWallTorchBlock extends WallTorchBlock implements SimpleWat
 	}
 	
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockState blockstate = this.defaultBlockState();
-		LevelReader iworldreader = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		Level world = context.getLevel();
-		//Get direction and try to place.
-		Direction[] adirection = context.getNearestLookingDirections();
-	    for(Direction direction : adirection) {
-	    	if (direction.getAxis().isHorizontal()) {
-	        	Direction direction1 = direction.getOpposite();
-	        	blockstate = blockstate.setValue(FACING, direction1).setValue(WATERLOGGED, Boolean.valueOf(world.getFluidState(blockpos).getType() == Fluids.WATER));
-	        	if (blockstate.canSurvive(iworldreader, blockpos)) {
-	        		return blockstate;
-	        	}
-	    	}
-	    }
-		return null;
+		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
 	}
 	
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, WATERLOGGED);
+		builder.add(WATERLOGGED);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -68,5 +53,6 @@ public class GlowstoneWallTorchBlock extends WallTorchBlock implements SimpleWat
 		}
 		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
-
+	
+	
 }

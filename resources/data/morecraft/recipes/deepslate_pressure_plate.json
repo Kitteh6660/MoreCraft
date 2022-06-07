@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "##"
   ],
   "key": {
     "#": {
-      "tag": "morecraft:copper_nugget"
+      "item": "minecraft:polished_deepslate"
     }
   },
   "result": {
-    "item": "minecraft:copper_ingot"
+    "item": "morecraft:deepslate_pressure_plate"
   }
 }

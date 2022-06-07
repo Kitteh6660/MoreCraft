@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cactus",
+    "#forge:ores",
+    "minecraft:ancient_debris",
+    "#forge:nuggets/copper",
+    "minecraft:iron_nugget",
+    "minecraft:gold_nugget",
+    "minecraft:raw_copper",
+    "minecraft:raw_iron",
+    "minecraft:raw_gold",
+    "minecraft:netherite_scrap",
+    "minecraft:coal",
+    "minecraft:copper_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:redstone",
+    "minecraft:lapis_lazuli",
+    "minecraft:emerald",
+    "minecraft:diamond",
+    "minecraft:netherite_ingot",
+    "minecraft:coal_block",
+    "minecraft:copper_block",
+    "minecraft:iron_block",
+    "minecraft:gold_block",
+    "minecraft:redstone_block",
+    "minecraft:lapis_block",
+    "minecraft:emerald_block",
+    "minecraft:diamond_block",
+    "minecraft:netherite_block"
+  ]
+}

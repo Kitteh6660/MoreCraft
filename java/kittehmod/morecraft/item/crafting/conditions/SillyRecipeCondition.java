@@ -3,16 +3,16 @@ package kittehmod.morecraft.item.crafting.conditions;
 import com.google.gson.JsonObject;
 
 import kittehmod.morecraft.MoreCraft;
+import kittehmod.morecraft.MoreCraftConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
-import net.minecraftforge.fml.ModList;
 
-public class CharmModNotInstalledCondition implements ICondition
+public class SillyRecipeCondition implements ICondition
 {
 	private final ResourceLocation location;
 
-	public CharmModNotInstalledCondition(ResourceLocation location) {
+	public SillyRecipeCondition(ResourceLocation location) {
 		this.location = location;
 	}
 	
@@ -23,24 +23,24 @@ public class CharmModNotInstalledCondition implements ICondition
 
 	@Override
 	public boolean test() {
-		return !ModList.get().isLoaded("charm");
+		return MoreCraftConfig.sillyRecipes.get();
 	}
 
-	public static class Serializer implements IConditionSerializer<CharmModNotInstalledCondition> {
+	public static class Serializer implements IConditionSerializer<SillyRecipeCondition> {
 		private final ResourceLocation location;
 
 		public Serializer() {
-			this.location = new ResourceLocation(MoreCraft.MODID, "charm_mod_not_installed");
+			this.location = new ResourceLocation(MoreCraft.MODID, "silly_recipes");
 		}
 
 		@Override
-		public void write(JsonObject json, CharmModNotInstalledCondition value) {
-			// Nothing to write here...
+		public void write(JsonObject json, SillyRecipeCondition value) {
+			json.addProperty("config", MoreCraftConfig.sillyRecipes.get());
 		}
 
 		@Override
-		public CharmModNotInstalledCondition read(JsonObject json) {
-			return new CharmModNotInstalledCondition(this.location);
+		public SillyRecipeCondition read(JsonObject json) {
+			return new SillyRecipeCondition(this.location);
 		}
 
 		@Override

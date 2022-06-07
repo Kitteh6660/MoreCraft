@@ -70,11 +70,21 @@ public class ModBiomes
     	bgsb.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacements.ORE_RUBY_LARGE);
     	bgsb.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacements.ORE_RUBY_BURIED);
     	if (event.getCategory() == BiomeCategory.NETHER) {
-    		if (MoreCraftConfig.generateNetherwoodTrees.get() <= 0) {
-    			return; //Don't generate trees if set to 0.
+    		if (MoreCraftConfig.generateNetherwoodTrees.get() > 0) {
+			    if (event.getName().toString().equalsIgnoreCase("minecraft:crimson_forest") || event.getName().toString().equalsIgnoreCase("minecraft:warped_forest")) {
+		    		bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_STRAIGHT_HIGH);
+				    bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_FORKY_HIGH);
+			    }
+			    else {
+		    		bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_STRAIGHT_LOW);
+				    bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_FORKY_LOW);
+			    }
+    			// Netherwood Forest gets the highest concentration.
+    			if (event.getName().toString().equalsIgnoreCase("morecraft:netherwood_forest")) {
+		        	bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_STRAIGHT_CHECKED);
+		        	bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_FORKY_CHECKED);
+    			}
     		}
-        	bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_STRAIGHT_CHECKED);
-        	bgsb.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacements.NETHERWOOD_FORKY_CHECKED);
     	}
     	
     }

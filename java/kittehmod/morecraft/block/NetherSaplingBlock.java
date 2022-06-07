@@ -1,10 +1,6 @@
 package kittehmod.morecraft.block;
 
 import java.util.Random;
-import java.util.Set;
-
-import com.google.common.collect.ImmutableSet;
-
 import kittehmod.morecraft.worldgen.NetherwoodTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,7 +9,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,8 +20,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NetherSaplingBlock extends SaplingBlock implements BonemealableBlock
 {
-	public static final Set<Block> EXTRA_ALLOWED_BLOCKS = ImmutableSet.of(Blocks.SOUL_SAND, Blocks.SOUL_SOIL, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM);
-
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	private final NetherwoodTree treeGrower;
@@ -39,8 +32,7 @@ public class NetherSaplingBlock extends SaplingBlock implements BonemealableBloc
 
 	@Override
 	public boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		Block block = state.getBlock();
-		return super.mayPlaceOn(state, worldIn, pos) || EXTRA_ALLOWED_BLOCKS.contains(block);
+		return super.mayPlaceOn(state, worldIn, pos) || state.is(ModBlockTags.NETHERWOOD_SAPLING_PLANTABLES);
 	}
 
 	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {

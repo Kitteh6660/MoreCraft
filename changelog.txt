@@ -23,6 +23,7 @@ This mod is the first release for Minecraft 1.19! Already, I've started integrat
 🔧Changed:
 * Made the Reinforced Deepslate harvestable with Diamond Pickaxe or better.
 * Moved the mod world features over to use the new system.
+* Updated the Netherwood Sapling texture.
 
 🐞Fixed:
 * Deepslate Buttons and Pressure Plates are now properly added to pickaxe mineable tag.

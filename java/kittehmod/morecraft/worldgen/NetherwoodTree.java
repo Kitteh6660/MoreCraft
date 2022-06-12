@@ -1,13 +1,12 @@
 package kittehmod.morecraft.worldgen;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,7 +16,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 public class NetherwoodTree extends AbstractTreeGrower {
 	@Nullable
-	protected Holder<ConfiguredFeature<TreeConfiguration, ?>> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+	protected Holder<ConfiguredFeature<TreeConfiguration, ?>> getConfiguredFeature(RandomSource randomIn, boolean p_225546_2_) {
 		if (randomIn.nextInt(100) < 30) { // 30% chance of forky.
 			return ModFeatures.NETHERWOOD_TREE_FORKY;
 		} else {
@@ -26,7 +25,7 @@ public class NetherwoodTree extends AbstractTreeGrower {
 	}
 
 	@Override
-	public boolean growTree(ServerLevel worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, Random randomIn) {
+	public boolean growTree(ServerLevel worldIn, ChunkGenerator generatorIn, BlockPos blockPosIn, BlockState blockStateIn, RandomSource randomIn) {
 		Holder<? extends ConfiguredFeature<TreeConfiguration, ?>> holder = this.getConfiguredFeature(randomIn, this.hasFlowers(worldIn, blockPosIn));
 		if (holder == null) {
 			return false;

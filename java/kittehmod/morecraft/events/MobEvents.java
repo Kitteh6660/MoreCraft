@@ -18,6 +18,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Squid;
+import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -73,6 +74,15 @@ public class MobEvents
 		if (event.getEntityLiving() instanceof Goat && MoreCraftConfig.chevonDrops.get()) {
 			if (!((Goat) event.getEntityLiving()).isBaby()) {
 				stack = event.getEntityLiving().isOnFire() ? new ItemStack(ModItems.COOKED_CHEVON.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1)) : new ItemStack(ModItems.RAW_CHEVON.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1));
+				drop = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), stack);
+				event.getDrops().add(drop);
+			}
+		}
+		
+		// FROGS
+		if (event.getEntityLiving() instanceof Frog && MoreCraftConfig.frogLegsDrops.get()) {
+			if (!((Frog) event.getEntityLiving()).isBaby()) {
+				stack = event.getEntityLiving().isOnFire() ? new ItemStack(ModItems.COOKED_FROG_LEGS.get(), 1) : new ItemStack(ModItems.RAW_FROG_LEGS.get(), 1);
 				drop = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), stack);
 				event.getDrops().add(drop);
 			}

@@ -93,7 +93,7 @@ public class NetherBoat extends Boat
 	}
 
 	public NetherBoat(Level worldIn, double x, double y, double z) {
-		this(ModEntities.NETHERWOOD_BOAT.get(), worldIn);
+		this(ModEntities.NETHER_BOAT.get(), worldIn);
 		this.setPos(x, y, z);
 		this.xo = x;
 		this.yo = y;
@@ -389,7 +389,7 @@ public class NetherBoat extends Boat
 	private void tickLerp() {
 		if (this.isControlledByLocalInstance()) {
 			this.lerpSteps = 0;
-			this.setPacketCoordinates(this.getX(), this.getY(), this.getZ());
+			this.syncPacketPositionCodec(this.getX(), this.getY(), this.getZ());
 		}
 
 		if (this.lerpSteps > 0) {

@@ -1,0 +1,8 @@
+{
+    "parent": "morecraft:block/door_middle_left",
+    "textures": {
+        "bottom": "morecraft:blocks/tall_netherite_door_middle",
+        "middle": "morecraft:blocks/tall_netherite_door_middle",
+        "top": "morecraft:blocks/tall_netherite_door_middle"
+    }
+}

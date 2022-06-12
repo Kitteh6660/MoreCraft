@@ -10,10 +10,10 @@ import net.minecraft.world.inventory.ContainerData;
 public class KilnContainer extends AbstractFurnaceMenu
 {
 	public KilnContainer(int id, Inventory playerInventoryIn) {
-		super(ModContainerType.KILN.get(), ModRecipeType.KILN, ModRecipes.KILN_RECIPE_BOOK, id, playerInventoryIn);
+		super(ModContainerType.KILN.get(), ModRecipeType.KILN.get(), ModRecipes.KILN_RECIPE_BOOK, id, playerInventoryIn);
 	}
 
 	public KilnContainer(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData contDataIn) {
-		super(ModContainerType.KILN.get(), ModRecipeType.KILN, ModRecipes.KILN_RECIPE_BOOK, id, playerInventoryIn, furnaceInventoryIn, contDataIn);
+		super(ModContainerType.KILN.get(), ModRecipeType.KILN.get(), ModRecipes.KILN_RECIPE_BOOK, id, playerInventoryIn, furnaceInventoryIn, contDataIn);
 	}
 }

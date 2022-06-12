@@ -22,7 +22,7 @@ public class SillyRecipeCondition implements ICondition
 	}
 
 	@Override
-	public boolean test() {
+	public boolean test(IContext context) {
 		return MoreCraftConfig.sillyRecipes.get();
 	}
 

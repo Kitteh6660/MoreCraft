@@ -25,12 +25,12 @@ public class CharmModuleRecipeCondition implements ICondition
 	}
 
 	@Override
-	public boolean test() {
+	public boolean test(IContext context) {
 		if (ModList.get().isLoaded("charm")) {
 			JsonObject dummyObject = new JsonObject();
 			dummyObject.addProperty("type", "charm:module_enabled");
 			dummyObject.addProperty("module", "charm:" + this.flag);
-			return CraftingHelper.getCondition(dummyObject).test();
+			return CraftingHelper.getCondition(dummyObject).test(context);
 		}
 		return false;
 	}

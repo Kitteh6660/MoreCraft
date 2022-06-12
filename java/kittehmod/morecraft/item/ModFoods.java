@@ -9,6 +9,8 @@ public class ModFoods {
 	public static final FoodProperties COOKED_FLESH = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.4F).meat().effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 400, 0), 0.1F).build();
 	public static final FoodProperties CHEVON_RAW = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).meat().build();
 	public static final FoodProperties CHEVON_COOKED = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).meat().build();
+	public static final FoodProperties FROG_LEGS_RAW = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).meat().build();
+	public static final FoodProperties FROG_LEGS_COOKED = (new FoodProperties.Builder()).nutrition(5).saturationMod(1.0F).meat().build();
 	public static final FoodProperties SPIDER_RAW = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).meat().effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600, 0), 0.1F).build();
 	public static final FoodProperties SPIDER_COOKED = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.7F).meat().build();
 	public static final FoodProperties SQUID_RAW = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).meat().build();

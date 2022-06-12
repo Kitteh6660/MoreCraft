@@ -4,7 +4,6 @@ import kittehmod.morecraft.container.KilnContainer;
 import kittehmod.morecraft.item.crafting.ModRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -14,11 +13,11 @@ import net.minecraft.world.level.block.state.BlockState;
 public class KilnBlockEntity extends AbstractFurnaceBlockEntity 
 {
    public KilnBlockEntity(BlockPos pos, BlockState state) {
-      super(ModBlockEntityType.KILN.get(), pos, state, ModRecipeType.KILN);
+      super(ModBlockEntityType.KILN.get(), pos, state, ModRecipeType.KILN.get());
    }
 
    protected Component getDefaultName() {
-      return new TranslatableComponent("container.kiln");
+      return Component.translatable("container.kiln");
    }
 
    protected int getBurnDuration(ItemStack fuel) {

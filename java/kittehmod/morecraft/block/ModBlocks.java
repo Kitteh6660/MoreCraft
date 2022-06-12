@@ -10,14 +10,13 @@ import kittehmod.morecraft.block.addons.ModTallDoorBlock;
 import kittehmod.morecraft.block.addons.ModVerticalSlabBlock;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.worldgen.NetherwoodTree;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -25,7 +24,6 @@ import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.LanternBlock;
-import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -36,16 +34,14 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModBlocks {
-
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModBlocks 
+{
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MoreCraft.MODID);
 	
 	//--LIST OF BLOCKS--\\
@@ -83,8 +79,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_FENCE_GATE = BLOCKS.register("netherwood_fence_gate", () -> new FenceGateBlock(Block.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD)));
 
     //Ores
-    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = BLOCKS.register("deepslate_ruby_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = BLOCKS.register("deepslate_ruby_ore", () -> new DropExperienceBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(2, 5)));
    
     //Storage Blocks
     public static final RegistryObject<Block> FLESH_BLOCK = BLOCKS.register("flesh_block", () -> new Block(Block.Properties.of(Material.PLANT).strength(1.0F, 1.0F).sound(SoundType.GRASS)));
@@ -111,9 +107,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERWOOD_WALL_SIGN = BLOCKS.register("netherwood_wall_sign", () -> new ModWallSignBlock(Block.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).noCollission().strength(1.0F).sound(SoundType.WOOD), ModWoodType.NETHERWOOD));
     public static final RegistryObject<Block> NETHERWOOD_BUTTON = BLOCKS.register("netherwood_button", () -> new WoodButtonBlock(Block.Properties.of(Material.NETHER_WOOD).noCollission().strength(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> NETHERWOOD_PRESSURE_PLATE = BLOCKS.register("netherwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of(Material.NETHER_WOOD, NETHERWOOD_PLANKS.get().defaultMaterialColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-
-    //Crafting Tables
-    public static final RegistryObject<Block> NETHERWOOD_CRAFTING_TABLE = BLOCKS.register("netherwood_crafting_table", () -> new ModCraftingTableBlock(Block.Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD)));
 
     //Others
     public static final RegistryObject<Block> SOUL_GLASS = BLOCKS.register("soul_glass", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
@@ -162,26 +155,4 @@ public class ModBlocks {
 	public static final RegistryObject<Block> TALL_SOUL_GLASS_DOOR = BLOCKS.register("tall_soul_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
 	
-	@EventBusSubscriber(modid = MoreCraft.MODID)
-	public static class RegistrationHandler 
-	{
-		public static <T extends IForgeRegistryEntry<T>> T setup(final T entry, final String name) {
-			return setup(entry, new ResourceLocation(MoreCraft.MODID, name));
-		}
-
-		public static <T extends IForgeRegistryEntry<T>> T setup(final T entry, final ResourceLocation registryName) {
-			entry.setRegistryName(registryName);
-			return entry;
-		}
-		
-	    @SubscribeEvent
-	    public static void registerBlocks(final RegistryEvent.Register<Block> event) { 
-	    	event.getRegistry().registerAll();
-	    }
-	    
-	    @SubscribeEvent
-	    public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
-	    	event.getRegistry().registerAll();
-	    }
-	}
 }

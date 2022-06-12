@@ -1,6 +1,0 @@
-{
-    "parent": "morecraft:block/door_middle",
-    "textures": {
-        "middle": "morecraft:blocks/tall_netherbrick_door_middle"
-    }
-}

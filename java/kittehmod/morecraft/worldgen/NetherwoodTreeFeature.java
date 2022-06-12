@@ -1,9 +1,7 @@
 package kittehmod.morecraft.worldgen;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -17,8 +15,8 @@ import kittehmod.morecraft.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.LevelWriter;
@@ -31,6 +29,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.material.Material;
@@ -39,9 +38,7 @@ import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 
 public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 {
-	public static final int CHANCE_BARRENS = 2;
-	public static final int CHANCE_MODERATE = 5;
-	public static final int CHANCE_LUSH = 10;
+
 
 	public NetherwoodTreeFeature(Codec<TreeConfiguration> codecIn, boolean netherGenAttempt) {
 		super(codecIn);
@@ -88,7 +85,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 	/**
 	 * Called when placing the tree feature.
 	 */
-	private boolean doPlace(WorldGenLevel generationReader, Random rand, BlockPos positionIn, BiConsumer<BlockPos, BlockState> biconsumer1, BiConsumer<BlockPos, BlockState> biconsumer2, TreeConfiguration configIn) {
+	private boolean doPlace(WorldGenLevel generationReader, RandomSource rand, BlockPos positionIn, BiConsumer<BlockPos, BlockState> biconsumer1, BiConsumer<BlockPos, BlockState> biconsumer2, BiConsumer<BlockPos, BlockState> biconsumer3, TreeConfiguration configIn) {
 		int i = configIn.trunkPlacer.getTreeHeight(rand);
 		int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
 		int k = i - j;
@@ -170,12 +167,13 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 	@Override
 	public final boolean place(FeaturePlaceContext<TreeConfiguration> placeContxt) {
 		WorldGenLevel worldgenlevel = placeContxt.level();
-		Random random = placeContxt.random();
+		RandomSource randomsource = placeContxt.random();
 		BlockPos blockpos = placeContxt.origin();
 		TreeConfiguration treeconfiguration = placeContxt.config();
 		Set<BlockPos> set = Sets.newHashSet();
 		Set<BlockPos> set1 = Sets.newHashSet();
 		Set<BlockPos> set2 = Sets.newHashSet();
+		Set<BlockPos> set3 = Sets.newHashSet();
 		BiConsumer<BlockPos, BlockState> biconsumer = (p_160555_, p_160556_) -> {
 			set.add(p_160555_.immutable());
 			worldgenlevel.setBlock(p_160555_, p_160556_, 19);
@@ -188,16 +186,16 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 			set2.add(p_160543_.immutable());
 			worldgenlevel.setBlock(p_160543_, p_160544_, 19);
 		};
-		boolean flag = this.doPlace(worldgenlevel, random, blockpos, biconsumer, biconsumer1, treeconfiguration);
-		if (flag && (!set.isEmpty() || !set1.isEmpty())) {
+		BiConsumer<BlockPos, BlockState> biconsumer3 = (p_225290_, p_225291_) -> {
+			set3.add(p_225290_.immutable());
+			worldgenlevel.setBlock(p_225290_, p_225291_, 19);
+		};
+		boolean flag = this.doPlace(worldgenlevel, randomsource, blockpos, biconsumer, biconsumer1, biconsumer2, treeconfiguration);
+		if (flag && (!set1.isEmpty() || !set2.isEmpty())) {
 			if (!treeconfiguration.decorators.isEmpty()) {
-				List<BlockPos> list = Lists.newArrayList(set);
-				List<BlockPos> list1 = Lists.newArrayList(set1);
-				list.sort(Comparator.comparingInt(Vec3i::getY));
-				list1.sort(Comparator.comparingInt(Vec3i::getY));
-				treeconfiguration.decorators.forEach((p_160528_) -> { p_160528_.place(worldgenlevel, biconsumer2, random, list, list1); });
+				TreeDecorator.Context treedecorator$context = new TreeDecorator.Context(worldgenlevel, biconsumer3, randomsource, set1, set2, set);
+				treeconfiguration.decorators.forEach((p_160528_) -> { p_160528_.place(treedecorator$context); });
 			}
-
 			return BoundingBox.encapsulatingPositions(Iterables.concat(set, set1, set2)).map((p_160521_) -> {
 				DiscreteVoxelShape discretevoxelshape = updateLeaves(worldgenlevel, p_160521_, set, set2);
 				StructureTemplate.updateShapeAtEdge(worldgenlevel, 3, discretevoxelshape, p_160521_.minX(), p_160521_.minY(), p_160521_.minZ());

@@ -22,7 +22,7 @@ public class HardcoreRecipeCondition implements ICondition
 	}
 
 	@Override
-	public boolean test() {
+	public boolean test(IContext context) {
 		return MoreCraftConfig.hardcoreRecipes.get();
 	}
 

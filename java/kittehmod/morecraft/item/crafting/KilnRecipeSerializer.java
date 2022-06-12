@@ -13,11 +13,10 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.util.GsonHelper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class KilnRecipeSerializer<T extends AbstractCookingRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T>
+public class KilnRecipeSerializer<T extends AbstractCookingRecipe> implements RecipeSerializer<T>
 {
-	protected final RecipeType<?> type = ModRecipeType.KILN;
+	protected final RecipeType<?> type = ModRecipeType.KILN.get();
 	protected final int cookingTime;
 	private final KilnRecipeSerializer.IFactory<T> factory;
 

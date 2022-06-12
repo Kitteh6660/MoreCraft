@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "morecraft:items/door_glass"
+		"layer0": "morecraft:items/glass_door"
 	}
 }

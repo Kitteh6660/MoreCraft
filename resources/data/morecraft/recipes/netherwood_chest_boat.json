@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "morecraft:netherwood_boat"
+    }
+  ],
+  "result": {
+    "item": "morecraft:netherwood_chest_boat"
+  }
+}

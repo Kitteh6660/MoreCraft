@@ -21,6 +21,6 @@ public class BookcaseSlot extends Slot
 	}
 
 	public boolean mayPlace(ItemStack stack) {
-		return ALLOWED_ITEMS.contains(stack.getItem()) || stack.getItem().getRegistryName() == ATLAS_REGISTRY_NAME;
+		return ALLOWED_ITEMS.contains(stack.getItem());
 	}
 }

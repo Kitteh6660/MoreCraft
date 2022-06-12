@@ -4,9 +4,8 @@ import javax.annotation.Nullable;
 
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
-import kittehmod.morecraft.entity.MinecartCraftingTable;
 import kittehmod.morecraft.entity.NetherBoat;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BowlFoodItem;
@@ -17,10 +16,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -107,6 +103,8 @@ public class ModItems
     public static final RegistryObject<Item> COOKED_FLESH = ITEMS.register("cooked_flesh", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.COOKED_FLESH)));
     public static final RegistryObject<Item> RAW_CHEVON = ITEMS.register("raw_chevon", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.CHEVON_RAW)));
     public static final RegistryObject<Item> COOKED_CHEVON = ITEMS.register("cooked_chevon", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.CHEVON_COOKED)));
+    public static final RegistryObject<Item> RAW_FROG_LEGS = ITEMS.register("raw_frog_legs", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.FROG_LEGS_RAW)));
+    public static final RegistryObject<Item> COOKED_FROG_LEGS = ITEMS.register("cooked_frog_legs", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.FROG_LEGS_COOKED)));
     public static final RegistryObject<Item> RAW_SPIDER = ITEMS.register("raw_spider", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SPIDER_RAW)));
     public static final RegistryObject<Item> COOKED_SPIDER = ITEMS.register("cooked_spider", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SPIDER_COOKED)));
     public static final RegistryObject<Item> RAW_SQUID = ITEMS.register("raw_squid", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SQUID_RAW)));
@@ -145,9 +143,12 @@ public class ModItems
     public static final RegistryObject<Item> ENDERDRAGON_SCALES = ITEMS.register("enderdragon_scales", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_BREWING)));
     
 	// -- TRANSPORTATION ITEMS -- \\
-    public static final RegistryObject<Item> CRIMSON_BOAT = ITEMS.register("crimson_boat", () -> new NetherBoatItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoat.Type.CRIMSON));
-    public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoat.Type.WARPED));
-    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant(), NetherBoat.Type.NETHERWOOD));
+    public static final RegistryObject<Item> CRIMSON_BOAT = ITEMS.register("crimson_boat", () -> new NetherBoatItem(false, NetherBoat.Type.CRIMSON, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> CRIMSON_CHEST_BOAT = ITEMS.register("crimson_chest_boat", () -> new NetherBoatItem(true, NetherBoat.Type.CRIMSON, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> WARPED_BOAT = ITEMS.register("warped_boat", () -> new NetherBoatItem(false, NetherBoat.Type.WARPED, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> WARPED_CHEST_BOAT = ITEMS.register("warped_chest_boat", () -> new NetherBoatItem(true, NetherBoat.Type.WARPED, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> NETHERWOOD_BOAT = ITEMS.register("netherwood_boat", () -> new NetherBoatItem(false, NetherBoat.Type.NETHERWOOD, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> NETHERWOOD_CHEST_BOAT = ITEMS.register("netherwood_chest_boat", () -> new NetherBoatItem(true, NetherBoat.Type.NETHERWOOD, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1).fireResistant()));
 
     // QUARK ADDONS
     public static final RegistryObject<Item> NETHERWOOD_LADDER = ModItems.ITEMS.register("netherwood_ladder", () -> new BlockItem(ModBlocks.NETHERWOOD_LADDER.get(), new Item.Properties().tab(conditionallyAddTab("quark", CreativeModeTab.TAB_DECORATIONS))));
@@ -177,10 +178,6 @@ public class ModItems
 	public static final RegistryObject<Item> TALL_SOUL_GLASS_DOOR = ITEMS.register("tall_soul_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_SOUL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     
-    // VARIANT CRAFTING TABLES
-    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE = ITEMS.register("netherwood_crafting_table", () -> new ModCraftingTableItem(ModBlocks.NETHERWOOD_CRAFTING_TABLE.get(), new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_DECORATIONS))));
-    public static final RegistryObject<Item> NETHERWOOD_CRAFTING_TABLE_MINECART = ITEMS.register("netherwood_crafting_table_minecart", () -> new CraftingTableMinecartItem(new Item.Properties().tab(conditionallyAddTab("variant_crafting_tables", CreativeModeTab.TAB_TRANSPORTATION)).stacksTo(1), MinecartCraftingTable.CraftingTableType.NETHERWOOD));
-
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> BONE_HORSE_ARMOR = ITEMS.register("bone_horse_armor", () -> new ModHorseArmorItem(4, "bone", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
@@ -190,6 +187,11 @@ public class ModItems
     public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new ModHorseArmorItem(12, "netherite", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC).fireResistant()));
 
 	// -- TOOLS, WEAPONS, ARMOUR -- \\
+    public static final RegistryObject<Item> WOOL_HELMET = ITEMS.register("wool_helmet", () -> new WoolArmorItem(ModArmorMaterial.WOOL, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> WOOL_CHESTPLATE = ITEMS.register("wool_chestplate", () -> new WoolArmorItem(ModArmorMaterial.WOOL, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> WOOL_LEGGINGS = ITEMS.register("wool_leggings", () -> new WoolArmorItem(ModArmorMaterial.WOOL, EquipmentSlot.LEGS, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> WOOL_BOOTS = ITEMS.register("wool_boots", () -> new WoolArmorItem(ModArmorMaterial.WOOL, EquipmentSlot.FEET, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    
     public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("copper_helmet", () -> new ModArmorItem(ModArmorMaterial.COPPER, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate", () -> new ModArmorItem(ModArmorMaterial.COPPER, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings", () -> new ModArmorItem(ModArmorMaterial.COPPER, EquipmentSlot.LEGS, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
@@ -317,7 +319,7 @@ public class ModItems
     public static final RegistryObject<Item> BEDROCK_HOE = ITEMS.register("bedrock_hoe", () -> new ModHoeItem(ModTier.BEDROCK, -4, 0.0F, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> BEDROCK_SWORD = ITEMS.register("bedrock_sword", () -> new ModSwordItem(ModTier.BEDROCK, 3, -2.4F, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
 
-    @Nullable
+	@Nullable
     private static CreativeModeTab conditionallyAddTab(String modid, CreativeModeTab tab) {
     	if (ModList.get().isLoaded(modid)) {
     		return tab;
@@ -333,9 +335,9 @@ public class ModItems
     		return null;
     	}
     	for (CreativeModeTab tempTab : CreativeModeTab.TABS) {
-    		if (tempTab.getDisplayName() instanceof TranslatableComponent) { // Check if it's the correct class to avoid crashes.
-	    		TranslatableComponent tabComp = (TranslatableComponent) tempTab.getDisplayName();
-	    		if (tabComp.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
+    		if (tempTab.getDisplayName().getContents() instanceof TranslatableContents) { // Check if it's the correct class to avoid crashes.
+	    		TranslatableContents tabContents = (TranslatableContents) tempTab.getDisplayName().getContents();
+	    		if (tabContents.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
 	    			tab = tempTab;
 	    			break;
 	    		}
@@ -343,13 +345,5 @@ public class ModItems
     	}
     	return tab;
     }
-    
-	@EventBusSubscriber(modid = MoreCraft.MODID)
-	public static class RegistrationHandler 
-	{
-	    @SubscribeEvent
-	    public static void registerItems(final RegistryEvent.Register<Item> event) {
-	    	event.getRegistry().registerAll();
-	    }
-	}
+
 }

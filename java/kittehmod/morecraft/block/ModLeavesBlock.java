@@ -1,12 +1,11 @@
 package kittehmod.morecraft.block;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -18,6 +17,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,10 +26,11 @@ public class ModLeavesBlock extends LeavesBlock
 {	
 	public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE;
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public ModLeavesBlock(Block.Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(7)).setValue(PERSISTENT, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(7)).setValue(PERSISTENT, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}
 	
 	/**
@@ -41,7 +43,7 @@ public class ModLeavesBlock extends LeavesBlock
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!state.getValue(PERSISTENT) && state.getValue(DISTANCE) == 7) {
 			dropResources(state, worldIn, pos);
 			worldIn.removeBlock(pos, false);
@@ -50,7 +52,7 @@ public class ModLeavesBlock extends LeavesBlock
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		worldIn.setBlock(pos, updateDistance(state, worldIn, pos), 3);
 	}
 
@@ -67,6 +69,9 @@ public class ModLeavesBlock extends LeavesBlock
 	*/
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+		}
 		int i = getDistanceAt(facingState) + 1;
 		if (i != 1 || stateIn.getValue(DISTANCE) != i) {
 			worldIn.scheduleTick(currentPos, this, 1);
@@ -98,6 +103,10 @@ public class ModLeavesBlock extends LeavesBlock
 		}
 	}
 
+	public FluidState getFluidState(BlockState state) {
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	}
+	
 	/**
 * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
 * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
@@ -105,7 +114,7 @@ public class ModLeavesBlock extends LeavesBlock
 */
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		if (worldIn.isRainingAt(pos.above())) {
 			if (rand.nextInt(15) == 1) {
 				BlockPos blockpos = pos.below();
@@ -122,11 +131,13 @@ public class ModLeavesBlock extends LeavesBlock
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(DISTANCE, PERSISTENT);
+		builder.add(DISTANCE, PERSISTENT, WATERLOGGED);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.valueOf(true)), context.getLevel(), context.getClickedPos());
+		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+    	BlockState blockstate = this.defaultBlockState().setValue(PERSISTENT, Boolean.valueOf(true)).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+    	return updateDistance(blockstate, context.getLevel(), context.getClickedPos());
 	}
 }

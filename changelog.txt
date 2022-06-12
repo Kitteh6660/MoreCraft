@@ -1,8 +1,38 @@
 NOTE: This change log may still be missing things! I will work to make sure it properly chronicles all sorts of changes from the mod's inception up to the latest release.
 
+==[ MINECRAFT 1.19  ]==
+=======================
+## [4.7.0] - 2022-06-12
+
+This mod is the first release for Minecraft 1.19! Already, I've started integrating some of the 1.19 features.
+
+🌟Added:
++ Frog Legs, raw and cooked.
+  * Dropped by killing a Frog.
+  * Can be eaten. Raw restores 2 hunger points, cooked restores 5 hunger points. Cooked has high saturation.
++ Nether Boats with Chests.
+  * Can be crafted just like any vanilla boats, only with boats made from Nether wood materials.
+  * Doesn't burn in lava.
++ Wool Armour.
+  * Currently only can be crafted with white wool.
+  * Provides you warmth just like leather armour.
+  * In the future, may be dyeable.
++ Crafting Recipe for Reinforced Deepslate.
+  * Made with Cobbled Deepslate, Bones, Sculk Catalyst, and Obsidian.
+
+🔧Changed:
+* Made the Reinforced Deepslate harvestable with Diamond Pickaxe or better.
+* Moved the mod world features over to use the new system.
+
+🐞Fixed:
+* Deepslate Buttons and Pressure Plates are now properly added to pickaxe mineable tag.
+
+❌Removed:
+* Netherwood Crafting Tables & Minecarts. Moved to Variant Crafting Table starting with version 1.6.1+ of VCT mod.
+
 ==[ MINECRAFT 1.18.2]==
 =======================
-## [4.6.2] - 2022-06-17
+## [4.6.2] - 2022-06-07
 
 🌟Added:
 + Glow Ink Torch

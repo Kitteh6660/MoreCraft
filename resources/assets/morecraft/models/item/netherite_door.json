@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "morecraft:items/door_netherite"
+		"layer0": "morecraft:items/netherite_door"
 	}
 }

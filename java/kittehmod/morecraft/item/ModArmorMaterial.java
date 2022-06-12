@@ -2,6 +2,7 @@ package kittehmod.morecraft.item;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
@@ -11,8 +12,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum ModArmorMaterial implements ArmorMaterial {
 	COPPER("copper", 10, new int[]{2, 4, 5, 2}, 17, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, Ingredient.of(Items.COPPER_INGOT)),
+	WOOL("wool", 8, new int[]{1, 2, 3, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(ItemTags.WOOL)),
 	SLIME("slime", 8, new int[]{2, 2, 3, 2}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.SLIME_BALL)),
-	FLESH("flesh", 4, new int[]{1, 3, 2, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.ROTTEN_FLESH)),
+	FLESH("flesh", 4, new int[]{1, 2, 3, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.ROTTEN_FLESH)),
 	SILK("spidersilk", 15, new int[]{2, 3, 3, 2}, 18, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.of(Items.COBWEB)),
 	BONE("bone", 15, new int[]{2, 3, 5, 2}, 15, SoundEvents.ARMOR_EQUIP_TURTLE, 0.0F, 0.0F, Ingredient.of(Items.BONE)),
 	WITHERBONE("witherbone", 35, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_TURTLE, 3.0F, 0.1F, Ingredient.of(ModItems.WITHER_BONE.get())),

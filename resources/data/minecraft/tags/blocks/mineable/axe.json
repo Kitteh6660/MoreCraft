@@ -27,7 +27,6 @@
     "morecraft:netherwood_crate",
     "morecraft:netherwood_bookcase",
     "morecraft:tall_netherwood_door",
-    "morecraft:flesh_block",
-    "morecraft:netherwood_crafting_table"
+    "morecraft:flesh_block"
   ]
 }

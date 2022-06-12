@@ -5,6 +5,7 @@ import kittehmod.morecraft.worldgen.NetherwoodTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -48,7 +49,7 @@ public class NetherSaplingBlock extends SaplingBlock implements BonemealableBloc
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 0 && random.nextInt(7) == 0) {
 			if (!worldIn.isAreaLoaded(pos, 1))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
@@ -57,7 +58,7 @@ public class NetherSaplingBlock extends SaplingBlock implements BonemealableBloc
 	}
 
 	@Override
-	public void advanceTree(ServerLevel worldIn, BlockPos pos, BlockState state, Random rand) {
+	public void advanceTree(ServerLevel worldIn, BlockPos pos, BlockState state, RandomSource rand) {
 		if (state.getValue(STAGE) == 0) {
 			worldIn.setBlock(pos, state.cycle(STAGE), 4);
 		} else {
@@ -76,7 +77,7 @@ public class NetherSaplingBlock extends SaplingBlock implements BonemealableBloc
 		return (double) worldIn.random.nextFloat() < 0.45D;
 	}
 
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		this.advanceTree(worldIn, pos, state, rand);
 	}
 

@@ -78,6 +78,8 @@
 "item.morecraft.cooked_flesh": "Cooked Flesh",
 "item.morecraft.raw_spider": "Spider",
 "item.morecraft.cooked_spider": "Fried Spider",
+"item.morecraft.raw_frog_legs": "Raw Frog Legs",
+"item.morecraft.cooked_frog_legs": "Cooked Frog Legs",
 "item.morecraft.raw_squid": "Squid",
 "item.morecraft.cooked_squid": "Calamari",
 "item.morecraft.raw_guardian_meat": "Raw Guardian Meat",
@@ -109,9 +111,12 @@
 "item.morecraft.guardian_scales": "Guardian Scales",
 "item.morecraft.enderdragon_scales": "Enderdragon Scales",
 
-"item.morecraft.netherwood_boat": "Netherwood Boat",
-"item.morecraft.warped_boat": "Warped Boat",
 "item.morecraft.crimson_boat": "Crimson Boat",
+"item.morecraft.crimson_chest_boat": "Crimson Boat with Chest",
+"item.morecraft.warped_boat": "Warped Boat",
+"item.morecraft.warped_chest_boat": "Warped Boat with Chest",
+"item.morecraft.netherwood_boat": "Netherwood Boat",
+"item.morecraft.netherwood_chest_boat": "Netherwood Boat with Chest",
 
 "block.morecraft.netherbrick_door": "Nether Brick Door",
 "block.morecraft.netherwood_door": "Netherwood Door",
@@ -130,6 +135,7 @@
 "block.morecraft.tall_netherwood_door": "Tall Netherwood Door",
 "block.morecraft.tall_netherite_door": "Tall Netherite Door",
 "block.morecraft.tall_glass_door": "Tall Glass Door",
+"block.morecraft.tall_soul_glass_door": "Tall Soul Glass Door",
 "block.morecraft.tall_bone_door": "Tall Bone Door",
 
 "item.morecraft.copper_helmet": "Copper Helmet",
@@ -141,6 +147,11 @@
 "item.morecraft.copper_shovel": "Copper Shovel",
 "item.morecraft.copper_hoe": "Copper Hoe",
 "item.morecraft.copper_sword": "Copper Sword",
+
+"item.morecraft.wool_helmet": "Wool Cap",
+"item.morecraft.wool_chestplate": "Wool Tunic",
+"item.morecraft.wool_leggings": "Wool Pants",
+"item.morecraft.wool_boots": "Wool Boots",
 
 "item.morecraft.slime_helmet": "Slime Helmet",
 "item.morecraft.slime_chestplate": "Slime Chestplate",

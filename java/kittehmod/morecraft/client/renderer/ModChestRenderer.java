@@ -8,7 +8,6 @@ import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.block.ModChestBlock;
-import kittehmod.morecraft.blockentity.ModChestBlockEntity;
 import kittehmod.morecraft.blockentity.ModTrappedChestBlockEntity;
 import kittehmod.morecraft.client.ClientHelper;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -30,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
@@ -113,7 +113,7 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 			poseStack.translate(0.5D, 0.5D, 0.5D);
 			poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
 			poseStack.translate(-0.5D, -0.5D, -0.5D);
-			DoubleBlockCombiner.NeighborCombineResult<? extends ModChestBlockEntity> neighborcombineresult;
+			DoubleBlockCombiner.NeighborCombineResult<? extends ChestBlockEntity> neighborcombineresult;
 			if (flag) {
 				neighborcombineresult = abstractchestblock.combine(blockstate, level, world.getBlockPos(), true);
 			} else {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import kittehmod.morecraft.entity.NetherBoat;
+import kittehmod.morecraft.entity.NetherChestBoat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,9 +23,11 @@ public class NetherBoatItem extends Item
 {
 	private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::canBeCollidedWith);
 	private final NetherBoat.Type type;
+	private final boolean hasChest;
 
-	public NetherBoatItem(Item.Properties properties, NetherBoat.Type typeIn) {
+	public NetherBoatItem(boolean hasChest, NetherBoat.Type typeIn, Item.Properties properties) {
 		super(properties);
+		this.hasChest = hasChest;
 		this.type = typeIn;
 	}
 	
@@ -51,7 +54,7 @@ public class NetherBoatItem extends Item
 				}
 			}
 			if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-				NetherBoat boatentity = new NetherBoat(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+				NetherBoat boatentity = this.hasChest ? new NetherChestBoat(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z) : new NetherBoat(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
 				boatentity.setBoatType(this.type);
 				boatentity.setYRot(playerIn.getYRot());
 				if (!worldIn.noCollision(boatentity, boatentity.getBoundingBox().inflate(-0.1D))) {

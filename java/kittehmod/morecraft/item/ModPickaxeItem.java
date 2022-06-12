@@ -4,7 +4,7 @@ import java.util.Random;
 
 import kittehmod.morecraft.block.ModBlockTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -21,7 +21,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ModPickaxeItem extends PickaxeItem
@@ -46,7 +46,7 @@ public class ModPickaxeItem extends PickaxeItem
 	public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
 		boolean result = super.mineBlock(stack, level, state, pos, entity);
 		if (this == ModItems.EMERALD_PICKAXE.get() && result && !level.isClientSide) {
-			if (level.getBlockState(pos).getBlock() instanceof OreBlock && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) <= 0) {
+			if (level.getBlockState(pos).getBlock() instanceof DropExperienceBlock && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) <= 0) {
 				Random rand = new Random();
 				int chance = 2; // Default chance of 2%.
 				int range = 100; // Default random range from 0 to 99.
@@ -104,7 +104,7 @@ public class ModPickaxeItem extends PickaxeItem
 						}
 					}
 					if (hasChanged && entity instanceof Player) {
-						((Player)entity).displayClientMessage(new TranslatableComponent("messages.morecraft.emerald_pickaxe_effect"), true);
+						((Player)entity).displayClientMessage(Component.translatable("messages.morecraft.emerald_pickaxe_effect"), true);
 					}
 				}
 			}

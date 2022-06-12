@@ -1,0 +1,5 @@
+{
+  "type": "morecraft:morecraft_codec",
+  "biomes": "#minecraft:is_overworld",
+  "feature": "morecraft:ore_ruby"
+}

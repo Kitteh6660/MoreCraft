@@ -1,6 +1,0 @@
-{
-    "parent": "morecraft:block/door_middle_rh",
-    "textures": {
-        "middle": "morecraft:blocks/tall_netherwood_door_middle"
-    }
-}

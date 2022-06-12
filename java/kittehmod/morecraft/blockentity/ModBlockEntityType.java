@@ -6,13 +6,12 @@ import kittehmod.morecraft.blockentity.addons.ModBarrelBlockEntity;
 import kittehmod.morecraft.blockentity.addons.ModBookcaseBlockEntity;
 import kittehmod.morecraft.blockentity.addons.ModCrateBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBlockEntityType {
 
 	public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, MoreCraft.MODID);
@@ -26,15 +25,4 @@ public class ModBlockEntityType {
     public static RegistryObject<BlockEntityType<ModBarrelBlockEntity>> MOD_BARREL = TILE_ENTITIES.register("mod_barrel", () -> BlockEntityType.Builder.of(ModBarrelBlockEntity::new, ModBlocks.NETHERWOOD_BARREL.get()).build(null));
 
     public static ModBlockEntityType instance = new ModBlockEntityType();
-    
-    @Mod.EventBusSubscriber(modid = MoreCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class Registration
-    {
-        @SubscribeEvent
-        public static void onTileEntityRegistry(final RegistryEvent.Register<BlockEntityType<?>> e)
-        {
-            e.getRegistry().registerAll();
-        }
-    }
-	
 }

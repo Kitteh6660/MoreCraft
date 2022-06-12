@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "morecraft:raw_frog_legs"
+  },
+  "result": "morecraft:cooked_frog_legs",
+  "experience": 1.0,
+  "cookingtime": 200
+}

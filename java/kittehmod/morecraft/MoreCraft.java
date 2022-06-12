@@ -10,7 +10,6 @@ import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.effects.ModMobEffects;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.ai.CatsSitOnChestsHandler;
-import kittehmod.morecraft.entity.ai.ModPointOfInterestType;
 import kittehmod.morecraft.events.MobEvents;
 import kittehmod.morecraft.events.PlayerEvents;
 import kittehmod.morecraft.item.ModItems;
@@ -25,6 +24,7 @@ import kittehmod.morecraft.item.crafting.conditions.QuarkFlagRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.SalvageRecipeCondition;
 import kittehmod.morecraft.item.crafting.conditions.SillyRecipeCondition;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
+import kittehmod.morecraft.worldgen.ModBiomeCodecs;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
 import kittehmod.morecraft.worldgen.ModPlacements;
@@ -62,8 +62,9 @@ public class MoreCraft
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModBiomes.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModContainerType.CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+     	ModRecipeType.RECIPE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
      	ModRecipes.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-   		ModPointOfInterestType.POINTS_OF_INTERESTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+     	ModBiomeCodecs.BIOME_MODIFIER_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	MoreCraftSounds.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
     	if (FMLEnvironment.dist == Dist.CLIENT) {
@@ -111,8 +112,8 @@ public class MoreCraft
     	// Set up the kiln recipe categories.
     	RecipeBookRegistry.addCategoriesToType(ModRecipes.KILN_RECIPE_BOOK, ModRecipes.KILN_CATEGORIES);
     	RecipeBookRegistry.addAggregateCategories(ModRecipes.KILN_SEARCH, ModRecipes.KILN_CATEGORIES);
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN, rc -> ModRecipes.KILN_BLOCKS );
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN, rc -> ModRecipes.KILN_MISC );
+    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipes.KILN_BLOCKS );
+    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipes.KILN_MISC );
     	// Set up the client renderers.
 		ClientRenderSetup.setup();
     }

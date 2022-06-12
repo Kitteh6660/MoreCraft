@@ -1,0 +1,5 @@
+{
+  "type": "morecraft:morecraft_codec",
+  "biomes": [ "minecraft:crimson_forest", "minecraft:warped_forest"],
+  "feature": "morecraft:netherwood_forky_high"
+}

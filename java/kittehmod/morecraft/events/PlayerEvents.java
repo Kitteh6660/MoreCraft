@@ -7,7 +7,7 @@ import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.network.ModBoatDismountPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,7 +31,7 @@ import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.world.BlockEvent.BlockToolInteractEvent;
+import net.minecraftforge.event.world.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -40,7 +40,7 @@ public class PlayerEvents
 	
 	//A chance to gain Copper Patina upon scraping copper.
 	@SubscribeEvent
-	public void copperScrapeEvent(BlockToolInteractEvent event) {
+	public void copperScrapeEvent(BlockToolModificationEvent event) {
 		LevelAccessor level = event.getWorld();
 		if (event.getHeldItemStack().getItem() instanceof AxeItem && event.getToolAction()  == ToolActions.AXE_SCRAPE && !level.isClientSide()) {
 			if (event.getState().getBlock() instanceof WeatheringCopper) {
@@ -91,7 +91,7 @@ public class PlayerEvents
 		int rand = (int) (Math.random() * 40); // Each piece is 2.5% chance to completely nullify damage.
 		if (blockChance > rand) {
 			if (event.getEntityLiving() instanceof Player) {
-				((Player) event.getEntityLiving()).displayClientMessage(new TranslatableComponent("messages.morecraft.ruby_armour_block"), true);
+				((Player) event.getEntityLiving()).displayClientMessage(Component.translatable("messages.morecraft.ruby_armour_block"), true);
 			}
 			event.setCanceled(true);
 		}

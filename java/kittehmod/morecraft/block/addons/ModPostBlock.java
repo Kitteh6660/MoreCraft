@@ -6,9 +6,8 @@ import kittehmod.morecraft.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -93,12 +92,12 @@ public class ModPostBlock extends Block implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolAction toolType) {
-		if (toolType == ToolActions.AXE_STRIP) {
+	public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+		if (toolAction == ToolActions.AXE_STRIP) {
 			Block block = state.getBlock() == ModBlocks.NETHERWOOD_POST.get() ? ModBlocks.STRIPPED_NETHERWOOD_POST.get() : ModBlocks.STRIPPED_NETHERWOOD_POST.get();
 			return block != null ? block.defaultBlockState().setValue(AXIS, state.getValue(AXIS)).setValue(CHAINED[0], state.getValue(CHAINED[0])).setValue(CHAINED[1], state.getValue(CHAINED[1])).setValue(CHAINED[2], state.getValue(CHAINED[2])).setValue(CHAINED[3], state.getValue(CHAINED[3])).setValue(CHAINED[4], state.getValue(CHAINED[4])).setValue(CHAINED[5], state.getValue(CHAINED[5])).setValue(WATERLOGGED, state.getValue(WATERLOGGED)) : null;
 		}
-		return super.getToolModifiedState(state, world, pos, player, stack, toolType);
+		return super.getToolModifiedState(state, context, toolAction, simulate);
 	}
 	
 	private BlockState getRelevantState(Level world, BlockPos pos, Axis axis) {

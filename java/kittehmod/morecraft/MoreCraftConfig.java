@@ -31,6 +31,7 @@ public class MoreCraftConfig {
 	public static ForgeConfigSpec.BooleanValue overrideMobDrops; //Overrides mob drops.
 	public static ForgeConfigSpec.BooleanValue mobHeadDrops; //Enables mob head drops.
 	public static ForgeConfigSpec.BooleanValue chevonDrops; //Enables chevon drops.
+	public static ForgeConfigSpec.BooleanValue frogLegsDrops; //Enables frog legs drops.
 	public static ForgeConfigSpec.IntValue generateNetherwoodTrees; //Enables Netherwood trees generation.
 	public static ForgeConfigSpec.IntValue rubyOreGenMaxHeight; //Determines max height of Ruby Ores.
 	public static ForgeConfigSpec.IntValue rubyOreGenFreq; //Determines frequency of Ruby Ore veins.
@@ -76,6 +77,10 @@ public class MoreCraftConfig {
         chevonDrops = COMMON_BUILDER
                 .comment("Chevon Drops: Determines if goats should drop meat on death. Disable if you have other Chevon-adding mods installed.  " + "Default: true")
                 .define("chevon_drops", true);
+        
+        frogLegsDrops = COMMON_BUILDER
+                .comment("Frog Legs Drops: Determines if frogs should drop frog legs on death. Disable if you have other Frog Legs-adding mods installed.  " + "Default: true")
+                .define("frog_legs_drops", true);
         
         COMMON_BUILDER.pop();
         

@@ -1,101 +1,184 @@
 {
-    "variants": {
-        "facing=east,third=lower,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom" },
-        "facing=south,third=lower,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 90 },
-        "facing=west,third=lower,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 180 },
-        "facing=north,third=lower,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 270 },
-        "facing=east,third=lower,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh" },
-        "facing=south,third=lower,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 90 },
-        "facing=west,third=lower,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 180 },
-        "facing=north,third=lower,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 270 },
-        "facing=east,third=lower,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 90 },
-        "facing=south,third=lower,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 180 },
-        "facing=west,third=lower,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 270 },
-        "facing=north,third=lower,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh" },
-        "facing=east,third=lower,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 270 },
-        "facing=south,third=lower,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom" },
-        "facing=west,third=lower,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 90 },
-        "facing=north,third=lower,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 180 },
-        "facing=east,third=middle,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle" },
-        "facing=south,third=middle,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 90 },
-        "facing=west,third=middle,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 180 },
-        "facing=north,third=middle,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 270 },
-        "facing=east,third=middle,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh" },
-        "facing=south,third=middle,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 90 },
-        "facing=west,third=middle,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 180 },
-        "facing=north,third=middle,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 270 },
-        "facing=east,third=middle,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 90 },
-        "facing=south,third=middle,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 180 },
-        "facing=west,third=middle,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 270 },
-        "facing=north,third=middle,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle_rh" },
-        "facing=east,third=middle,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 270 },
-        "facing=south,third=middle,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle" },
-        "facing=west,third=middle,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 90 },
-        "facing=north,third=middle,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 180 },
-        "facing=east,third=upper,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top" },
-        "facing=south,third=upper,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 90 },
-        "facing=west,third=upper,hinge=left,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 180 },
-        "facing=north,third=upper,hinge=left,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 270 },
-        "facing=east,third=upper,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top_rh" },
-        "facing=south,third=upper,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 90 },
-        "facing=west,third=upper,hinge=right,open=false,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 180 },
-        "facing=north,third=upper,hinge=right,open=false,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 270 },
-        "facing=east,third=upper,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 90 },
-        "facing=south,third=upper,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 180 },
-        "facing=west,third=upper,hinge=left,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 270 },
-        "facing=north,third=upper,hinge=left,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top_rh" },
-        "facing=east,third=upper,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 270 },
-        "facing=south,third=upper,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top" },
-        "facing=west,third=upper,hinge=right,open=true,powered=false":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 90 },
-        "facing=north,third=upper,hinge=right,open=true,powered=false": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 180 },
-        
-        "facing=east,third=lower,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom" },
-        "facing=south,third=lower,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 90 },
-        "facing=west,third=lower,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 180 },
-        "facing=north,third=lower,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 270 },
-        "facing=east,third=lower,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh" },
-        "facing=south,third=lower,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 90 },
-        "facing=west,third=lower,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 180 },
-        "facing=north,third=lower,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 270 },
-        "facing=east,third=lower,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 90 },
-        "facing=south,third=lower,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 180 },
-        "facing=west,third=lower,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom_rh", "y": 270 },
-        "facing=north,third=lower,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom_rh" },
-        "facing=east,third=lower,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 270 },
-        "facing=south,third=lower,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom" },
-        "facing=west,third=lower,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 90 },
-        "facing=north,third=lower,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_bottom", "y": 180 },
-        "facing=east,third=middle,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle" },
-        "facing=south,third=middle,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 90 },
-        "facing=west,third=middle,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 180 },
-        "facing=north,third=middle,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 270 },
-        "facing=east,third=middle,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh" },
-        "facing=south,third=middle,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 90 },
-        "facing=west,third=middle,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 180 },
-        "facing=north,third=middle,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 270 },
-        "facing=east,third=middle,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 90 },
-        "facing=south,third=middle,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 180 },
-        "facing=west,third=middle,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle_rh", "y": 270 },
-        "facing=north,third=middle,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle_rh" },
-        "facing=east,third=middle,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 270 },
-        "facing=south,third=middle,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle" },
-        "facing=west,third=middle,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 90 },
-        "facing=north,third=middle,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_middle", "y": 180 },
-        "facing=east,third=upper,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top" },
-        "facing=south,third=upper,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 90 },
-        "facing=west,third=upper,hinge=left,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 180 },
-        "facing=north,third=upper,hinge=left,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 270 },
-        "facing=east,third=upper,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top_rh" },
-        "facing=south,third=upper,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 90 },
-        "facing=west,third=upper,hinge=right,open=false,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 180 },
-        "facing=north,third=upper,hinge=right,open=false,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 270 },
-        "facing=east,third=upper,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 90 },
-        "facing=south,third=upper,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 180 },
-        "facing=west,third=upper,hinge=left,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top_rh", "y": 270 },
-        "facing=north,third=upper,hinge=left,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top_rh" },
-        "facing=east,third=upper,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 270 },
-        "facing=south,third=upper,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top" },
-        "facing=west,third=upper,hinge=right,open=true,powered=true":  { "model": "morecraft:block/tall_soul_glass_door_top", "y": 90 },
-        "facing=north,third=upper,hinge=right,open=true,powered=true": { "model": "morecraft:block/tall_soul_glass_door_top", "y": 180 }
+  "variants": {
+    "facing=east,third=lower,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left"
+    },
+    "facing=east,third=lower,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left_open",
+      "y": 90
+    },
+    "facing=east,third=lower,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right"
+    },
+    "facing=east,third=lower,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right_open",
+      "y": 270
+    },
+    "facing=east,third=middle,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left"
+    },
+    "facing=east,third=middle,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left_open",
+      "y": 90
+    },
+    "facing=east,third=middle,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right"
+    },
+    "facing=east,third=middle,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right_open",
+      "y": 270
+    },
+    "facing=east,third=upper,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left"
+    },
+    "facing=east,third=upper,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left_open",
+      "y": 90
+    },
+    "facing=east,third=upper,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right"
+    },
+    "facing=east,third=upper,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right_open",
+      "y": 270
+    },
+    "facing=north,third=lower,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left",
+      "y": 270
+    },
+    "facing=north,third=lower,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left_open"
+    },
+    "facing=north,third=lower,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right",
+      "y": 270
+    },
+    "facing=north,third=lower,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right_open",
+      "y": 180
+    },
+    "facing=north,third=middle,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left",
+      "y": 270
+    },
+    "facing=north,third=middle,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left_open"
+    },
+    "facing=north,third=middle,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right",
+      "y": 270
+    },
+    "facing=north,third=middle,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right_open",
+      "y": 180
+    },
+    "facing=north,third=upper,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left",
+      "y": 270
+    },
+    "facing=north,third=upper,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left_open"
+    },
+    "facing=north,third=upper,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right",
+      "y": 270
+    },
+    "facing=north,third=upper,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right_open",
+      "y": 180
+    },
+    "facing=south,third=lower,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left",
+      "y": 90
+    },
+    "facing=south,third=lower,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left_open",
+      "y": 180
+    },
+    "facing=south,third=lower,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right",
+      "y": 90
+    },
+    "facing=south,third=lower,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right_open"
+    },
+    "facing=south,third=middle,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left",
+      "y": 90
+    },
+    "facing=south,third=middle,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left_open",
+      "y": 180
+    },
+    "facing=south,third=middle,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right",
+      "y": 90
+    },
+    "facing=south,third=middle,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right_open"
+    },
+    "facing=south,third=upper,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left",
+      "y": 90
+    },
+    "facing=south,third=upper,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left_open",
+      "y": 180
+    },
+    "facing=south,third=upper,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right",
+      "y": 90
+    },
+    "facing=south,third=upper,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right_open"
+    },
+    "facing=west,third=lower,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left",
+      "y": 180
+    },
+    "facing=west,third=lower,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_left_open",
+      "y": 270
+    },
+    "facing=west,third=lower,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right",
+      "y": 180
+    },
+    "facing=west,third=lower,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_bottom_right_open",
+      "y": 90
+    },
+    "facing=west,third=middle,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left",
+      "y": 180
+    },
+    "facing=west,third=middle,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_left_open",
+      "y": 270
+    },
+    "facing=west,third=middle,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right",
+      "y": 180
+    },
+    "facing=west,third=middle,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_middle_right_open",
+      "y": 90
+    },
+    "facing=west,third=upper,hinge=left,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left",
+      "y": 180
+    },
+    "facing=west,third=upper,hinge=left,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_left_open",
+      "y": 270
+    },
+    "facing=west,third=upper,hinge=right,open=false": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right",
+      "y": 180
+    },
+    "facing=west,third=upper,hinge=right,open=true": {
+      "model": "morecraft:block/tall_soul_glass_door_top_right_open",
+      "y": 90
     }
+  }
 }

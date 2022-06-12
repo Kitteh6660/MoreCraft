@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$#$",
+    "OXO",
+    "$#$"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sculk_catalyst"
+    },
+    "$": {
+      "item": "minecraft:bone"
+    },
+    "X": {
+      "item": "minecraft:cobbled_deepslate"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "minecraft:reinforced_deepslate",
+    "count": 2
+  }
+}

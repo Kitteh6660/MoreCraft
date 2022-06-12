@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "morecraft:items/door_bone"
+		"layer0": "morecraft:items/bone_door"
 	}
 }

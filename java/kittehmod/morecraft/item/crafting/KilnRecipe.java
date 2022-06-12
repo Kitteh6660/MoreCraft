@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 public class KilnRecipe extends AbstractCookingRecipe
 {
 	public KilnRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, float experience, int cookTime) {
-		super(ModRecipeType.KILN, id, group, ingredient, result, experience, cookTime);
+		super(ModRecipeType.KILN.get(), id, group, ingredient, result, experience, cookTime);
 	}
 
 	public ItemStack getToastSymbol() {

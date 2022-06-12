@@ -11,14 +11,15 @@ import kittehmod.morecraft.client.renderer.ModSignRenderer;
 import kittehmod.morecraft.client.renderer.NetherBoatRenderer;
 import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.entity.ModEntities;
+import kittehmod.morecraft.item.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.MinecartRenderer;
+import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -30,13 +31,9 @@ public class ClientRenderSetup
 		Sheets.addWoodType(ModWoodType.NETHERWOOD);
 
 		// Nether Boats
-		EntityRenderers.register(ModEntities.CRIMSON_BOAT.get(), NetherBoatRenderer::new);
-		EntityRenderers.register(ModEntities.WARPED_BOAT.get(), NetherBoatRenderer::new);
-		EntityRenderers.register(ModEntities.NETHERWOOD_BOAT.get(), NetherBoatRenderer::new);
+		EntityRenderers.register(ModEntities.NETHER_BOAT.get(), (boat) -> {return new NetherBoatRenderer(boat, false); } );
+		EntityRenderers.register(ModEntities.NETHER_CHEST_BOAT.get(), (boat) -> {return new NetherBoatRenderer(boat, true); });
 
-		// Minecarts with Crafting Table
-		EntityRenderers.register(ModEntities.NETHERWOOD_CRAFTING_TABLE_MINECART.get(), (entity) -> { return new MinecartRenderer<>(entity, ModelLayers.CHEST_MINECART); });
-		
 		// GUIs
 		MenuScreens.register(ModContainerType.KILN.get(), KilnScreen::new);
 		MenuScreens.register(ModContainerType.CRATE.get(), CrateScreen::new);
@@ -90,6 +87,10 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
+		
+		Minecraft.getInstance().getItemColors().register((itemstack, colourvalue) -> {
+			return colourvalue > 0 ? -1 : ((DyeableLeatherItem)itemstack.getItem()).getColor(itemstack);
+		}, ModItems.WOOL_HELMET.get(), ModItems.WOOL_CHESTPLATE.get(), ModItems.WOOL_LEGGINGS.get(), ModItems.WOOL_BOOTS.get());
 	}
 
 }

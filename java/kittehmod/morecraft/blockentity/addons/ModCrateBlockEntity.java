@@ -13,7 +13,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -92,7 +91,7 @@ public class ModCrateBlockEntity extends RandomizableContainerBlockEntity implem
 	}
 
 	protected Component getDefaultName() {
-		return new TranslatableComponent("container.charm.crate");
+		return Component.translatable("container.charm.crate");
 	}
 
 	protected AbstractContainerMenu createMenu(int syncID, Inventory playerInv) {

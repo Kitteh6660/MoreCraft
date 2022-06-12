@@ -1,0 +1,5 @@
+{
+  "type": "morecraft:morecraft_codec",
+  "biomes": "#minecraft:is_nether",
+  "feature": "morecraft:netherwood_forky_low"
+}

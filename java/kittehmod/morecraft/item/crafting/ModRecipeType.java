@@ -1,28 +1,18 @@
 package kittehmod.morecraft.item.crafting;
 
-import java.util.Optional;
-
-import net.minecraft.core.Registry;
+import kittehmod.morecraft.MoreCraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-public interface ModRecipeType<T extends Recipe<?>>
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModRecipeType
 {
-	RecipeType<KilnRecipe> KILN = register("morecraft:kiln");
+	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, MoreCraft.MODID);
+	
+	public static final RegistryObject<RecipeType<KilnRecipe>> KILN = RECIPE_TYPES.register("kiln", () -> RecipeType.simple(new ResourceLocation("morecraft", "kiln")));
 
-	static <T extends Recipe<?>> RecipeType<T> register(final String key) {
-		return Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(key), new RecipeType<T>() {
-			public String toString() {
-				return key;
-			}
-		});
-	}
-
-	@SuppressWarnings("unchecked")
-	default <C extends Inventory> Optional<T> matches(Recipe<C> recipe, Level worldIn, C inv) {
-		return recipe.matches(inv, worldIn) ? Optional.of((T) recipe) : Optional.empty();
-	}
 }

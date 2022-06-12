@@ -5,13 +5,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModPotions extends Potions 
 {
 	public static final DeferredRegister<Potion> POTION_TYPES = DeferredRegister.create(ForgeRegistries.POTIONS, MoreCraft.MODID);
@@ -26,13 +25,4 @@ public class ModPotions extends Potions
 
 	public static final RegistryObject<Potion> GLOWING = POTION_TYPES.register("glowing", () -> new Potion("glowing", new MobEffectInstance(MobEffects.GLOWING, 1200)));
 	public static final RegistryObject<Potion> LONG_GLOWING = POTION_TYPES.register("long_glowing", () -> new Potion("glowing", new MobEffectInstance(MobEffects.GLOWING, 3200)));
-	
-	@EventBusSubscriber(modid = MoreCraft.MODID)
-	public static class RegistrationHandler 
-	{
-	    @SubscribeEvent
-	    public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-	    	event.getRegistry().registerAll();
-	    }
-	}
 }

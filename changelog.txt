@@ -2,6 +2,12 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.19  ]==
 =======================
+## [4.7.0_1] - 2022-06-13
+
+🐞Fixed:
+* Corrected a Deepslate Pressure Plate typo in pickaxe tag. Now pickaxes can mine stones again.
+
+=======================
 ## [4.7.0] - 2022-06-12
 
 This mod is the first release for Minecraft 1.19! Already, I've started integrating some of the 1.19 features.

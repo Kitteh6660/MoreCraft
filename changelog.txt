@@ -2,7 +2,21 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.18.2]==
 =======================
-## [4.6.2] - 2022-06-17
+## [4.6.3] - 2022-06-14
+
+This update aims to address several issues with the mod.
+
+🔧Changed:
+* Added block and item tags to Deepslate Buttons and Pressure Plates.
+
+🐞Fixed:
+* Fixed an issue where the server wouldn't run with the mod installed.
+* Deepslate Buttons and Pressure Plates should now be correctly tagged as pickaxe-mineable.
+* Fixed advancement and recipe related to converting between Copper Nuggets and Copper Ingots.
+* Re-added missing Netherwood Crafting Table assets. I think.
+
+=======================
+## [4.6.2] - 2022-06-07
 
 🌟Added:
 + Glow Ink Torch

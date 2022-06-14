@@ -19,4 +19,10 @@ public class WoolArmorItem extends ModArmorItem implements DyeableLeatherItem
 		return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : 16777215;
 	}
 
+	@Override
+	public boolean hasCustomColor(ItemStack p_41114_) {
+		CompoundTag compoundtag = p_41114_.getTagElement("display");
+		return compoundtag != null && compoundtag.contains("color", 99);
+	}
+	
 }

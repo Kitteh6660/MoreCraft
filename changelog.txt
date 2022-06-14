@@ -2,6 +2,19 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.19  ]==
 =======================
+## [4.7.1] - 2022-06-14
+
+This update ports the fixes from mod version 4.6.3 for 1.18.2, into 1.19.
+
+🔧Changed:
+* Added block and item tags to Deepslate Buttons and Pressure Plates.
+
+🐞Fixed:
+* Fixed an issue where the server wouldn't run with the mod installed.
+* Deepslate Buttons and Pressure Plates should now be correctly tagged as pickaxe-mineable.
+* Fixed advancement and recipe related to converting between Copper Nuggets and Copper Ingots.
+
+=======================
 ## [4.7.0_1] - 2022-06-13
 
 🐞Fixed:
@@ -38,6 +51,20 @@ This mod is the first release for Minecraft 1.19! Already, I've started integrat
 * Netherwood Crafting Tables & Minecarts. Moved to Variant Crafting Table starting with version 1.6.1+ of VCT mod.
 
 ==[ MINECRAFT 1.18.2]==
+=======================
+## [4.6.3] - 2022-06-14
+
+This update aims to address several issues with the mod.
+
+🔧Changed:
+* Added block and item tags to Deepslate Buttons and Pressure Plates.
+
+🐞Fixed:
+* Fixed an issue where the server wouldn't run with the mod installed.
+* Deepslate Buttons and Pressure Plates should now be correctly tagged as pickaxe-mineable.
+* Fixed advancement and recipe related to converting between Copper Nuggets and Copper Ingots.
+* Re-added missing Netherwood Crafting Table assets. I think.
+
 =======================
 ## [4.6.2] - 2022-06-07
 

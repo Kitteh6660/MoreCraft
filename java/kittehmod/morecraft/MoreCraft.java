@@ -15,6 +15,7 @@ import kittehmod.morecraft.events.PlayerEvents;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.item.crafting.ModBrewingRecipes;
+import kittehmod.morecraft.item.crafting.ModRecipeBookCategories;
 import kittehmod.morecraft.item.crafting.ModRecipeType;
 import kittehmod.morecraft.item.crafting.ModRecipes;
 import kittehmod.morecraft.item.crafting.conditions.CharmModNotInstalledCondition;
@@ -110,10 +111,10 @@ public class MoreCraft
 	private void setupClient(final FMLClientSetupEvent event)
     {
     	// Set up the kiln recipe categories.
-    	RecipeBookRegistry.addCategoriesToType(ModRecipes.KILN_RECIPE_BOOK, ModRecipes.KILN_CATEGORIES);
-    	RecipeBookRegistry.addAggregateCategories(ModRecipes.KILN_SEARCH, ModRecipes.KILN_CATEGORIES);
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipes.KILN_BLOCKS );
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipes.KILN_MISC );
+    	RecipeBookRegistry.addCategoriesToType(ModRecipes.KILN_RECIPE_BOOK, ModRecipeBookCategories.KILN_CATEGORIES);
+    	RecipeBookRegistry.addAggregateCategories(ModRecipeBookCategories.KILN_SEARCH, ModRecipeBookCategories.KILN_CATEGORIES);
+    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_BLOCKS );
+    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_MISC );
     	// Set up the client renderers.
 		ClientRenderSetup.setup();
     }

@@ -1,5 +1,6 @@
 package kittehmod.morecraft.item;
 
+import kittehmod.morecraft.enchantments.ModEnchantments;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -7,6 +8,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class ModArmorItem extends ArmorItem 
 {
@@ -46,6 +48,23 @@ public class ModArmorItem extends ArmorItem
     	}
     	// Returns the value.
     	return fear;
+    }
+    
+    public static int getTotalMagicProtectionLevels(LivingEntity entity) {
+    	int amt = 0;
+    	if (entity.getItemBySlot(EquipmentSlot.HEAD) != null) {
+    		amt += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.MAGIC_PROTECTION.get(), entity.getItemBySlot(EquipmentSlot.HEAD));
+    	}
+    	if (entity.getItemBySlot(EquipmentSlot.CHEST) != null) {
+    		amt += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.MAGIC_PROTECTION.get(), entity.getItemBySlot(EquipmentSlot.CHEST));
+    	}
+    	if (entity.getItemBySlot(EquipmentSlot.LEGS) != null) {
+    		amt += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.MAGIC_PROTECTION.get(), entity.getItemBySlot(EquipmentSlot.LEGS));
+    	}
+    	if (entity.getItemBySlot(EquipmentSlot.FEET) != null) {
+    		amt += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.MAGIC_PROTECTION.get(), entity.getItemBySlot(EquipmentSlot.FEET));
+    	}
+    	return amt;
     }
     
     public static int countPiecesOfMaterial(LivingEntity entity, ArmorMaterial material) {

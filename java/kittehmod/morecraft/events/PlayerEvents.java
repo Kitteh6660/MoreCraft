@@ -8,7 +8,7 @@ import kittehmod.morecraft.network.ModBoatDismountPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,6 +25,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
@@ -75,7 +76,7 @@ public class PlayerEvents
 	@SubscribeEvent
 	public void onAttackEvent(LivingAttackEvent event) {
 		if (event.getEntityLiving() != null && event.getEntityLiving().getVehicle() != null && event.getEntityLiving().getVehicle() instanceof NetherBoat) {
-			if (event.getSource() == DamageSource.LAVA && !event.getEntityLiving().isEyeInFluid(FluidTags.LAVA)) {
+			if (event.getSource() == DamageSource.LAVA && !event.getEntityLiving().isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
 				event.setCanceled(true);
 				event.getEntityLiving().clearFire();
 			}
@@ -87,19 +88,28 @@ public class PlayerEvents
 	public void onHurtEvent(LivingHurtEvent event) {
 		// Ruby armour
 		int blockChance = 0;
-		blockChance += ModArmorItem.countPiecesOfMaterial(event.getEntityLiving(), ModArmorMaterial.RUBY);
+		float damage = 0;
+		LivingEntity entity = event.getEntityLiving();
+		blockChance += ModArmorItem.countPiecesOfMaterial(entity, ModArmorMaterial.RUBY);
 		int rand = (int) (Math.random() * 40); // Each piece is 2.5% chance to completely nullify damage.
 		if (blockChance > rand) {
-			if (event.getEntityLiving() instanceof Player) {
-				((Player) event.getEntityLiving()).displayClientMessage(Component.translatable("messages.morecraft.ruby_armour_block"), true);
+			if (entity instanceof Player) {
+				((Player) entity).displayClientMessage(Component.translatable("messages.morecraft.ruby_armour_block"), true);
 			}
 			event.setCanceled(true);
 		}
 		// Alter fire damage taken based on Obsidian or Spider Silk. Obsidian decreases
 		// fire damage, Spider Silk increases fire damage.
 		if (event.getSource().isFire()) {
-			float damage = event.getAmount();
-			event.setAmount(damage * ModArmorItem.getFireDmgMultiplier(event.getEntityLiving()));
+			damage = event.getAmount();
+			event.setAmount(damage * ModArmorItem.getFireDmgMultiplier(entity));
+		}
+		// Alter magic damage taken based on Magic Protection.
+		if (event.getSource().isMagic() || event.getSource() == DamageSource.DRAGON_BREATH || (event.getSource().getDirectEntity() != null && event.getSource() == DamageSource.sonicBoom(event.getSource().getDirectEntity()))) {
+			damage = event.getAmount();
+			int protectionLevels = ModArmorItem.getTotalMagicProtectionLevels(entity);
+			float f = Mth.clamp(protectionLevels, 0, 20);
+			event.setAmount(damage * (1 - (f / 25.0F)));
 		}
 	}
 

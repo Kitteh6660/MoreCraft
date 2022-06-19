@@ -6,10 +6,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:nether_brick"
+      "item": "minecraft:nether_bricks"
     },
     "X": {
-      "item": "minecraft:stick"
+      "item": "minecraft:nether_brick"
     }
   },
   "result": {

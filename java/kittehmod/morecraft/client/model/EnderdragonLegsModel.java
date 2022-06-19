@@ -1,4 +1,4 @@
-package kittehmod.morecraft.client;
+package kittehmod.morecraft.client.model;
 
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.PartPose;

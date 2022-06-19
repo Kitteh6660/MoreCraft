@@ -9,6 +9,7 @@ import kittehmod.morecraft.client.gui.KilnScreen;
 import kittehmod.morecraft.client.renderer.ModChestRenderer;
 import kittehmod.morecraft.client.renderer.ModSignRenderer;
 import kittehmod.morecraft.client.renderer.NetherBoatRenderer;
+import kittehmod.morecraft.client.renderer.WardenSkullBlockRenderer;
 import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.item.ModItems;
@@ -43,6 +44,7 @@ public class ClientRenderSetup
 		BlockEntityRenderers.register(ModBlockEntityType.NETHERWOOD_CHEST.get(), ModChestRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityType.NETHERWOOD_TRAPPED_CHEST.get(), ModChestRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityType.MOD_SIGN.get(), ModSignRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityType.WARDEN_HEAD.get(), WardenSkullBlockRenderer::new);
 
 		// For blocks that are transparent or non-solid.
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_DOOR.get(), RenderType.cutout());
@@ -92,5 +94,5 @@ public class ClientRenderSetup
 			return colourvalue > 0 ? -1 : ((DyeableLeatherItem)itemstack.getItem()).getColor(itemstack);
 		}, ModItems.WOOL_HELMET.get(), ModItems.WOOL_CHESTPLATE.get(), ModItems.WOOL_LEGGINGS.get(), ModItems.WOOL_BOOTS.get());
 	}
-
+	
 }

@@ -2,14 +2,14 @@
   "parent": "morecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morecraft:netherbrick_fence_gate"
+      "morecraft:cobweb"
     ]
   },
   "criteria": {
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morecraft:netherbrick_fence_gate"
+        "recipe": "morecraft:cobweb"
       }
     },
     "has_items": {
@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [ "minecraft:nether_bricks" ]
+            "items": [ "minecraft:string" ]
           }
         ]
       }
@@ -28,14 +28,5 @@
       "has_the_recipe",
       "has_items"
     ]
-  ],
-  "conditions": [
-    {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:mod_loaded",
-        "modid": "quark"
-      }
-    }
   ]
 }

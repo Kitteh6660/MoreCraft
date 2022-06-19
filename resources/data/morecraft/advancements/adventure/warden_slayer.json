@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:adventure/kill_all_mobs",
+  "display": {
+    "icon": {
+      "item": "morecraft:warden_head"
+    },
+    "title": {
+      "translate": "advancements.adventure.kill_warden.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.kill_warden.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "minecraft:warden": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:warden"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "requirements": [
+    [
+      "minecraft:warden"
+    ]
+  ]
+}

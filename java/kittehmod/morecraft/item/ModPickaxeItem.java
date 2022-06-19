@@ -46,7 +46,7 @@ public class ModPickaxeItem extends PickaxeItem
 	public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
 		boolean result = super.mineBlock(stack, level, state, pos, entity);
 		if (this == ModItems.EMERALD_PICKAXE.get() && result && !level.isClientSide) {
-			if (level.getBlockState(pos).getBlock() instanceof DropExperienceBlock && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) <= 0) {
+			if (level.getBlockState(pos).getBlock() instanceof DropExperienceBlock && EnchantmentHelper.getTagEnchantmentLevel(Enchantments.SILK_TOUCH, stack) <= 0) {
 				Random rand = new Random();
 				int chance = 2; // Default chance of 2%.
 				int range = 100; // Default random range from 0 to 99.
@@ -79,7 +79,7 @@ public class ModPickaxeItem extends PickaxeItem
 					chance = 10;
 				}
 				// Alters based on Fortune level.
-				range -= (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, stack) * 4);
+				range -= (EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BLOCK_FORTUNE, stack) * 4);
 				if (range < 80) range = 80; // Accounts for any mods that allows Fortune greater than III.
 				// Now roll.
 				if (rand.nextInt(range) < chance) {

@@ -2,8 +2,8 @@ package kittehmod.morecraft.item;
 
 import java.util.function.Consumer;
 
-import kittehmod.morecraft.client.EnderdragonArmorModel;
-import kittehmod.morecraft.client.EnderdragonLegsModel;
+import kittehmod.morecraft.client.model.EnderdragonArmorModel;
+import kittehmod.morecraft.client.model.EnderdragonLegsModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;

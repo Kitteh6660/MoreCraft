@@ -1,5 +1,7 @@
 package kittehmod.morecraft.block;
 
+import java.util.function.ToIntFunction;
+
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.addons.ModBarrelBlock;
 import kittehmod.morecraft.block.addons.ModBookcaseBlock;
@@ -32,6 +34,8 @@ import net.minecraft.world.level.block.StoneButtonBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.fml.common.Mod;
@@ -122,10 +126,12 @@ public class ModBlocks
 	public static final RegistryObject<Block> BEDROCK_BRICK_STAIRS = BLOCKS.register("bedrock_brick_stairs", () -> new ModStairsBlock(BEDROCK_BRICK.get().defaultBlockState(), Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
 	public static final RegistryObject<Block> BEDROCK_BRICK_SLAB = BLOCKS.register("bedrock_brick_slab", () -> new SlabBlock(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
 	public static final RegistryObject<Block> BEDROCK_BRICK_WALL = BLOCKS.register("bedrock_brick_wall", () -> new WallBlock(Block.Properties.of(Material.STONE).strength(-1F, 3600000F).requiresCorrectToolForDrops().sound(SoundType.STONE)));   
-    public static final RegistryObject<Block> KILN = BLOCKS.register("kiln", () -> new KilnBlock(Block.Properties.of(Material.STONE).strength(0.5F, 3.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> KILN = BLOCKS.register("kiln", () -> new KilnBlock(Block.Properties.of(Material.STONE).strength(10.0F, 6.0F).sound(SoundType.STONE).lightLevel(litBlockEmission(13))));
 	public static final RegistryObject<Block> POTTED_NETHERWOOD_SAPLING = BLOCKS.register("potted_netherwood_sapling", () -> new FlowerPotBlock(null, () -> { return NETHERWOOD_SAPLING.get(); }, Block.Properties.of(Material.PLANT).strength(0.0F)));
     public static final RegistryObject<Block> DEEPSLATE_BUTTON = BLOCKS.register("deepslate_button", () -> new StoneButtonBlock(Block.Properties.of(Material.DECORATION).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> DEEPSLATE_PRESSURE_PLATE = BLOCKS.register("deepslate_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, Block.Properties.of(Material.STONE, Blocks.POLISHED_DEEPSLATE.defaultMaterialColor()).noCollission().strength(0.5F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WARDEN_HEAD = BLOCKS.register("warden_head", () -> new WardenHeadBlock(Block.Properties.of(Material.SCULK).strength(1.0F, 3.0F).sound(SoundType.SCULK).noOcclusion()));
+    public static final RegistryObject<Block> WARDEN_WALL_HEAD = BLOCKS.register("warden_wall_head", () -> new WallWardenHeadBlock(Block.Properties.of(Material.SCULK).strength(1.0F, 3.0F).sound(SoundType.SCULK).noOcclusion()));
 
     //Quark
     public static final RegistryObject<Block> NETHERWOOD_LADDER = BLOCKS.register("netherwood_ladder", () -> new LadderBlock(Block.Properties.of(Material.NETHER_WOOD).strength(0.4F).sound(SoundType.LADDER).noOcclusion()));
@@ -154,5 +160,11 @@ public class ModBlocks
 	public static final RegistryObject<Block> TALL_GLASS_DOOR = BLOCKS.register("tall_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_SOUL_GLASS_DOOR = BLOCKS.register("tall_soul_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
+	
+	private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+		return (blockState) -> {
+			return blockState.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+		};
+   }
 	
 }

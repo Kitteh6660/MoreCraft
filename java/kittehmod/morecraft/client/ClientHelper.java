@@ -1,11 +1,13 @@
 package kittehmod.morecraft.client;
 
 import kittehmod.morecraft.MoreCraft;
+import kittehmod.morecraft.client.model.WardenHeadModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +28,8 @@ public class ClientHelper
 	public static final ResourceLocation ENDERDRAGON_ARMOUR_TEXTURE = new ResourceLocation(MoreCraft.MODID, "models/armor/enderdragon");
 
 	public static final ModelLayerLocation ENDERDRAGON_ARMOUR_LAYER = new ModelLayerLocation(new ResourceLocation("morecraft", "armor/enderdragon"), "main");
+	
+	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(new ResourceLocation("morecraft", "warden_head"), "main");
 
 	@SubscribeEvent
 	public static void onStitch(TextureStitchEvent.Pre event) {
@@ -52,5 +56,10 @@ public class ClientHelper
 		} else {
 			return trapped ? NETHERWOOD_CHEST_TRAPPED : NETHERWOOD_CHEST;
 		}
+	}
+	
+	@SubscribeEvent
+	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
+		event.registerLayerDefinition(WARDEN_HEAD, () -> WardenHeadModel.createHeadLayer());
 	}
 }

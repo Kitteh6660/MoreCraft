@@ -68,6 +68,7 @@
 "block.morecraft.kiln": "Kiln",
 "block.morecraft.deepslate_button": "Deepslate Button",
 "block.morecraft.deepslate_pressure_plate": "Deepslate Pressure Plate",
+"block.morecraft.warden_head": "Warden Head",
 
 "block.morecraft.spider_head": "Spider Head",
 "block.morecraft.cave_spider_head": "Cave Spider Head",
@@ -315,6 +316,8 @@
 
 "advancements.adventure.bone_armor.title": "Cover Me in Bones",
 "advancements.adventure.bone_armor.description": "Craft a piece of bone armor.",
+"advancements.adventure.kill_warden.title": "Warden Slayer",
+"advancements.adventure.kill_warden.description": "Against all odds, you've managed to slay the Warden by your very own hands. If you've already acquired Monsters Hunted then you've finally done it, you killed every vanilla hostile mob in the game, including the Warden. Congratulations!",
 "advancements.story.mine_ruby.title": "The Forgotten Red Ore",
 "advancements.story.mine_ruby.description": "Mine some rubies.",
 "advancements.end.enderdragon_armor.title": "Cover Me in Scales",
@@ -322,6 +325,8 @@
 
 "gui.recipebook.toggleRecipes.kilnable": "Showing Kilnable",
 "container.kiln": "Kiln",
+
+"enchantment.morecraft.magic_protection": "Magic Protection",
 
 "messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armor protected you from harm!",
 "messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."

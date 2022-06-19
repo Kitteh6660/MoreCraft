@@ -51,6 +51,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.network.NetworkHooks;
 
 public class NetherBoat extends Boat
@@ -871,7 +872,7 @@ public class NetherBoat extends Boat
 	}
 
 	protected boolean canFitPassenger(Entity passenger) {
-		return this.getPassengers().size() < 2 && !this.isEyeInFluid(FluidTags.WATER) && !this.isEyeInFluid(FluidTags.LAVA);
+		return this.getPassengers().size() < 2 && !this.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) && !this.isEyeInFluidType(ForgeMod.LAVA_TYPE.get());
 	}
 
 	/**

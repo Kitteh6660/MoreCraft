@@ -5,9 +5,11 @@ package kittehmod.morecraft;
 
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
+import kittehmod.morecraft.client.ClientHelper;
 import kittehmod.morecraft.client.ClientRenderSetup;
 import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.effects.ModMobEffects;
+import kittehmod.morecraft.enchantments.ModEnchantments;
 import kittehmod.morecraft.entity.ModEntities;
 import kittehmod.morecraft.entity.ai.CatsSitOnChestsHandler;
 import kittehmod.morecraft.events.MobEvents;
@@ -57,7 +59,8 @@ public class MoreCraft
     	ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModEntities.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    	ModBlockEntityType.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	ModBlockEntityType.BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	ModEnchantments.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModPotions.POTION_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModMobEffects.MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     	ModFeatures.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -75,12 +78,13 @@ public class MoreCraft
     
     private void setupCommon(final FMLCommonSetupEvent event)
     {
-    	ModBrewingRecipes.registerRecipes();
+        MoreCraftConfig.loadConfig(MoreCraftConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft.toml")); // Load the config first.
+
+        ModBrewingRecipes.registerRecipes();
     	ModFeatures.setupFeatureConfigs();
     	ModPlacements.setupPlacements();
     	
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MoreCraftConfig.COMMON_CONFIG);
-        MoreCraftConfig.loadConfig(MoreCraftConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("morecraft.toml"));
     	
         MorecraftPacketHandler.register();
         
@@ -116,6 +120,7 @@ public class MoreCraft
     	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_BLOCKS );
     	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_MISC );
     	// Set up the client renderers.
+    	MinecraftForge.EVENT_BUS.register(ClientHelper.class);
 		ClientRenderSetup.setup();
     }
     

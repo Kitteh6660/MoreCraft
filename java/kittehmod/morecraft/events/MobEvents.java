@@ -15,8 +15,6 @@ import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
-import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Squid;
 import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.monster.Creeper;
@@ -29,9 +27,9 @@ import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.monster.Stray;
-import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -103,10 +101,7 @@ public class MobEvents
 
 		// ENDERMEN
 		if (event.getEntityLiving() instanceof EnderMan) {
-			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)/*
-																													 * && (event.getEntityLiving().world.dimensionType() !=
-																													 * DimensionType.END_LOCATION || Math.random() < 0.2D)
-																													 */) { // Checks for Damage Type.
+			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) { // Checks for Damage Type.
 				stack = new ItemStack(Items.DIAMOND, 1);
 				drop = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), stack);
 				event.getDrops().add(drop);
@@ -173,6 +168,20 @@ public class MobEvents
 				event.getDrops().add(drop);
 			}
 		}
+		
+		// WARDENS
+		if (event.getEntityLiving() instanceof Warden && MoreCraftConfig.mobHeadDrops.get()) {
+			if (event.getSource().isExplosion() && event.getSource().getMsgId().equals("charged_creeper")) {
+				stack = new ItemStack(ModItems.WARDEN_HEAD.get(), 1);
+				drop = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), stack);
+				event.getDrops().add(drop);
+			}
+			else if (event.getSource().getMsgId().equals("player") && r.nextInt(100) < 20 + (event.getLootingLevel() * 10)) {
+				stack = new ItemStack(ModItems.WARDEN_HEAD.get(), 1);
+				drop = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), stack);
+				event.getDrops().add(drop);
+			}
+		}
 
 	}
 	
@@ -202,15 +211,6 @@ public class MobEvents
 	
 	@SubscribeEvent
 	public void updateMonsterEvent(final LivingEvent.LivingUpdateEvent event) {
-		if (event.getEntity() instanceof Witch) {
-			Witch witch = (Witch)event.getEntity();
-			if (!((GroundPathNavigation)witch.getNavigation()).canOpenDoors()) {
-				((GroundPathNavigation)witch.getNavigation()).setCanOpenDoors(true);
-				if (witch.goalSelector.getRunningGoals().count() > 0) {
-					witch.goalSelector.addGoal(1, new OpenDoorGoal(witch, true));
-				}
-			}
-		}
 		if (event.getEntityLiving() instanceof Monster) {
 			Monster mob = (Monster) event.getEntityLiving();
 			MobEffectInstance unafraid = mob.getEffect(ModMobEffects.UNAFRAID.get());

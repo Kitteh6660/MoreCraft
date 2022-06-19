@@ -2,6 +2,33 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.19  ]==
 =======================
+## [4.7.2] - 2022-06-19
+
+🌟Added:
++ Warden Head.
+  * Dropped from Wardens occasionally. Can also be found in Decorations tab.
+  * It's spooky. Try powering it with redstone!
+  * Currently cannot be worn.
++ Magic Protection
+  * Reduces damage from Potion of Instant Damage, Enderdragon breath, and Warden's Sonic Boom.
+  * Can be applied to any pieces of armour. Maximum enchantment level is 4.
++ Warden Slayer
+  * Kill the Warden to get the advancement. This is purely for bragging rights.
++ Added a recipe for processing 4x Cooked Flesh into 1x Leather.
+
+🔧Changed:
+* Now based on Forge 41.0.38. Updated requirements.
+* Changed the recipes for Nether Brick Doors and Fence Gates. Likewise, the corresponding advancements are tweaked.
+
+🐞Fixed:
+* Fixed recipe advancement for cobwebs.
+* Fixed compatibility for later Forge versions by making sure config is loaded first.
+* Fixed Kiln blocks. Hardness and sound values have been corrected, should also now light up and emit particles when active.
+
+❌Removed:
+* Removed the leftover event code for adding Witch being able to open doors, it was wonky. Use Dramatic Doors mod for that functionality, it works better.
+
+=======================
 ## [4.7.1] - 2022-06-14
 
 This update ports the fixes from mod version 4.6.3 for 1.18.2, into 1.19.

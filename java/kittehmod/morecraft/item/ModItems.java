@@ -80,6 +80,7 @@ public class ModItems
 	public static final RegistryObject<Item> KILN = ITEMS.register("kiln", () -> new BlockItem(ModBlocks.KILN.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> DEEPSLATE_BUTTON = ITEMS.register("deepslate_button", () -> new BlockItem(ModBlocks.DEEPSLATE_BUTTON.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
 	public static final RegistryObject<Item> DEEPSLATE_PRESSURE_PLATE = ITEMS.register("deepslate_pressure_plate", () -> new BlockItem(ModBlocks.DEEPSLATE_PRESSURE_PLATE.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE)));
+	public static final RegistryObject<Item> WARDEN_HEAD = ITEMS.register("warden_head", () -> new WardenHeadItem(ModBlocks.WARDEN_HEAD.get(), ModBlocks.WARDEN_WALL_HEAD.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS).rarity(ModRarity.LEGENDARY)));
 
 	// -- DOORS -- \\
     public static final RegistryObject<Item> NETHERBRICK_DOOR = ITEMS.register("netherbrick_door", () -> new DoubleHighBlockItem(ModBlocks.NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_REDSTONE)));

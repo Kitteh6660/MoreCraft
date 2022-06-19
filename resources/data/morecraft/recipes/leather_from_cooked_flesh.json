@@ -2,16 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "##",
-    "##",
     "##"
   ],
   "key": {
     "#": {
-      "item": "minecraft:nether_bricks"
+      "item": "morecraft:cooked_flesh"
     }
   },
   "result": {
-    "item": "morecraft:netherbrick_door",
-    "count": 3
+    "item": "minecraft:leather",
+    "count": 1
   }
-}
+} 

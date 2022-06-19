@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.blockentity.ModChestBlockEntity;
 import kittehmod.morecraft.blockentity.ModTrappedChestBlockEntity;
+import kittehmod.morecraft.blockentity.WardenSkullBlockEntity;
 import kittehmod.morecraft.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -27,6 +28,7 @@ public class ModBEWLR extends BlockEntityWithoutLevelRenderer
 	
 	private final ModChestBlockEntity netherwood_chest = new ModChestBlockEntity(BlockPos.ZERO, ModBlocks.NETHERWOOD_CHEST.get().defaultBlockState());
 	private final ModTrappedChestBlockEntity netherwood_trapped_chest = new ModTrappedChestBlockEntity(BlockPos.ZERO, ModBlocks.NETHERWOOD_CHEST_TRAPPED.get().defaultBlockState());
+	private final WardenSkullBlockEntity warden_skull = new WardenSkullBlockEntity(BlockPos.ZERO, ModBlocks.WARDEN_HEAD.get().defaultBlockState());
 	private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 	
 	public ModBEWLR(BlockEntityRenderDispatcher berd, EntityModelSet ems) {
@@ -44,6 +46,9 @@ public class ModBEWLR extends BlockEntityWithoutLevelRenderer
 			}
 			else if (item == ModItems.NETHERWOOD_TRAPPED_CHEST.get()) {
 				blockentity = this.netherwood_trapped_chest;
+			}
+			else if (item == ModItems.WARDEN_HEAD.get()) {
+				blockentity = this.warden_skull;
 			}
 			else {
 				blockentity = this.netherwood_chest;

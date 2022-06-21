@@ -240,7 +240,7 @@ public class MobEvents
 	}
 	
 	private static boolean isMobImmuneToFear(LivingEntity entity) {
-		if (entity instanceof EnderDragon || entity instanceof WitherBoss || entity instanceof ElderGuardian || entity instanceof PiglinBrute || entity instanceof Ravager) {
+		if (entity instanceof EnderDragon || entity instanceof WitherBoss || entity instanceof Warden || entity instanceof ElderGuardian || entity instanceof PiglinBrute || entity instanceof Ravager) {
 			return true;
 		}
 		if (entity.getMaxHealth() >= 100) { //Accounts for any possible minibosses or bosses added with the mods.

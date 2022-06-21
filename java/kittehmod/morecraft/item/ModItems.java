@@ -346,5 +346,4 @@ public class ModItems
     	}
     	return tab;
     }
-
 }

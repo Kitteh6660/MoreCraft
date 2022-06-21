@@ -12,15 +12,12 @@ import kittehmod.morecraft.client.renderer.NetherBoatRenderer;
 import kittehmod.morecraft.client.renderer.WardenSkullBlockRenderer;
 import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.entity.ModEntities;
-import kittehmod.morecraft.item.ModItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -89,10 +86,6 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRIPPED_NETHERWOOD_POST.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
-		
-		Minecraft.getInstance().getItemColors().register((itemstack, colourvalue) -> {
-			return colourvalue > 0 ? -1 : ((DyeableLeatherItem)itemstack.getItem()).getColor(itemstack);
-		}, ModItems.WOOL_HELMET.get(), ModItems.WOOL_CHESTPLATE.get(), ModItems.WOOL_LEGGINGS.get(), ModItems.WOOL_BOOTS.get());
 	}
 	
 }

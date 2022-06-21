@@ -31,6 +31,7 @@ import kittehmod.morecraft.worldgen.ModBiomeCodecs;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
 import kittehmod.morecraft.worldgen.ModPlacements;
+import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
@@ -109,6 +110,11 @@ public class MoreCraft
     	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_LEAVES.get(), 0.3F);
     	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_SAPLING.get(), 0.3F);
     	ComposterBlock.COMPOSTABLES.put(ModItems.NETHERWOOD_LEAF_CARPET.get(), 0.3F);
+    	
+    	CauldronInteraction.WATER.put(ModItems.WOOL_HELMET.get(), CauldronInteraction.DYED_ITEM);
+    	CauldronInteraction.WATER.put(ModItems.WOOL_CHESTPLATE.get(), CauldronInteraction.DYED_ITEM);
+    	CauldronInteraction.WATER.put(ModItems.WOOL_LEGGINGS.get(), CauldronInteraction.DYED_ITEM);
+    	CauldronInteraction.WATER.put(ModItems.WOOL_BOOTS.get(), CauldronInteraction.DYED_ITEM);
     }
     
     @OnlyIn(Dist.CLIENT)

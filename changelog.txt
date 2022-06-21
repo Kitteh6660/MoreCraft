@@ -2,6 +2,28 @@ NOTE: This change log may still be missing things! I will work to make sure it p
 
 ==[ MINECRAFT 1.19  ]==
 =======================
+## [4.7.3] - 2022-06-21
+
+This is primarily a bug fix update but it also brings the Enderbane enchantment and polished the wool armour.
+
+🌟Added:
++ Enderbane enchantment. 
+  * Increases damage against Endermen, Endermites, Shulkers, and Enderdragon. 1.25 damage per level.
+  * Can be applied to swords (normally) and axes (via book). Maximum enchantment level is 5.
+  * Fun fact: Netherite axes with Enderbane V can kill Enderman in two hits!
+
+🔧Changed:
+* You can now craft wool armour with any wool. However, currently, the wool armour will be white regardless of wool colours used so dye the armour.
+* Wool armour can now be used on cauldrons to remove the dye.
+* Brightened the wool armour outline.
+* Kilns changed, hardness and resistance should now match the vanilla furnaces. You also now need a pickaxe to pick up kilns.
+* Warden is added to list of mobs immune to fear from bone armour.
+
+🐞Fixed:
+* Fixed damage reduction logic for Magic Protection. It unnecessarily applied to every damage type and was overpowered. Now it only reduces damage from magic damage type, and still applies to Warden sonic boom.
+* Fixed dyed wool armour on player model, it should be properly coloured now.
+
+=======================
 ## [4.7.2] - 2022-06-19
 
 🌟Added:

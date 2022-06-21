@@ -1,6 +1,9 @@
 package kittehmod.morecraft.item;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.DyeableLeatherItem;
@@ -14,15 +17,30 @@ public class WoolArmorItem extends ModArmorItem implements DyeableLeatherItem
 	}
 
 	@Override
-	public int getColor(ItemStack p_41122_) {
-		CompoundTag compoundtag = p_41122_.getTagElement("display");
-		return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : 16777215;
+	public int getColor(ItemStack stack) {
+		CompoundTag compoundtag = stack.getTagElement("display");
+		return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : 0xFFFFFF;
 	}
 
 	@Override
-	public boolean hasCustomColor(ItemStack p_41114_) {
-		CompoundTag compoundtag = p_41114_.getTagElement("display");
+	public void setColor(ItemStack stack, int newValue) {
+		stack.getOrCreateTagElement("display").putInt("color", newValue);
+	}
+	
+	@Override
+	public boolean hasCustomColor(ItemStack stack) {
+		CompoundTag compoundtag = stack.getTagElement("display");
 		return compoundtag != null && compoundtag.contains("color", 99);
+	}
+	
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, @Nullable String type) {
+		if (slot == EquipmentSlot.LEGS) {
+			return "morecraft:textures/models/armor/wool_layer_2" + (type == null ? "" : "_overlay") + ".png";
+		}
+		else {
+			return "morecraft:textures/models/armor/wool_layer_1" + (type == null ? "" : "_overlay") + ".png";
+		}
 	}
 	
 }

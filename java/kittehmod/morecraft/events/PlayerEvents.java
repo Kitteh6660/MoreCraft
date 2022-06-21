@@ -1,5 +1,6 @@
 package kittehmod.morecraft.events;
 
+import kittehmod.morecraft.enchantments.ModEnchantments;
 import kittehmod.morecraft.entity.NetherBoat;
 import kittehmod.morecraft.item.ModArmorItem;
 import kittehmod.morecraft.item.ModArmorMaterial;
@@ -14,7 +15,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
@@ -75,8 +80,9 @@ public class PlayerEvents
 
 	@SubscribeEvent
 	public void onAttackEvent(LivingAttackEvent event) {
-		if (event.getEntityLiving() != null && event.getEntityLiving().getVehicle() != null && event.getEntityLiving().getVehicle() instanceof NetherBoat) {
-			if (event.getSource() == DamageSource.LAVA && !event.getEntityLiving().isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
+		LivingEntity entity = event.getEntityLiving();
+		if (entity != null && entity.getVehicle() != null && entity.getVehicle() instanceof NetherBoat) {
+			if (event.getSource() == DamageSource.LAVA && !entity.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
 				event.setCanceled(true);
 				event.getEntityLiving().clearFire();
 			}
@@ -86,10 +92,10 @@ public class PlayerEvents
 	// Armour set effects that alter hurting
 	@SubscribeEvent
 	public void onHurtEvent(LivingHurtEvent event) {
+		LivingEntity entity = event.getEntityLiving();
 		// Ruby armour
 		int blockChance = 0;
 		float damage = 0;
-		LivingEntity entity = event.getEntityLiving();
 		blockChance += ModArmorItem.countPiecesOfMaterial(entity, ModArmorMaterial.RUBY);
 		int rand = (int) (Math.random() * 40); // Each piece is 2.5% chance to completely nullify damage.
 		if (blockChance > rand) {
@@ -104,12 +110,21 @@ public class PlayerEvents
 			damage = event.getAmount();
 			event.setAmount(damage * ModArmorItem.getFireDmgMultiplier(entity));
 		}
-		// Alter magic damage taken based on Magic Protection.
-		if (event.getSource().isMagic() || event.getSource() == DamageSource.DRAGON_BREATH || (event.getSource().getDirectEntity() != null && event.getSource() == DamageSource.sonicBoom(event.getSource().getDirectEntity()))) {
+		// Alter Warden damage taken based on Magic Protection. A workaround for Warden's enchantment bypass.
+		if (event.getSource().isMagic() && event.getSource().isBypassEnchantments()) {
 			damage = event.getAmount();
 			int protectionLevels = ModArmorItem.getTotalMagicProtectionLevels(entity);
-			float f = Mth.clamp(protectionLevels, 0, 20);
+			float f = Mth.clamp(protectionLevels * 2, 0, 20);
 			event.setAmount(damage * (1 - (f / 25.0F)));
+		}
+		// Alter damage when done against Ender-type mobs.
+		if ((event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity() instanceof LivingEntity) && (entity instanceof EnderMan || entity instanceof Endermite || entity instanceof EnderDragon || entity instanceof Shulker)) {
+			LivingEntity attacker = (LivingEntity)event.getSource().getDirectEntity();
+			damage = event.getAmount();
+			if (attacker.getMainHandItem() != null && EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.ENDER_BANE.get(), attacker.getMainHandItem()) > 0) {
+				damage += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.ENDER_BANE.get(), attacker.getMainHandItem()) * 1.25F;
+				event.setAmount(damage);
+			}
 		}
 	}
 

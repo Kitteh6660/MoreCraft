@@ -158,8 +158,8 @@
 "item.morecraft.copper_hoe": "Copper Hoe",
 "item.morecraft.copper_sword": "Copper Sword",
 
-"item.morecraft.wool_helmet": "Wool Cap",
-"item.morecraft.wool_chestplate": "Wool Tunic",
+"item.morecraft.wool_helmet": "Wool Hat",
+"item.morecraft.wool_chestplate": "Wool Sweater",
 "item.morecraft.wool_leggings": "Wool Pants",
 "item.morecraft.wool_boots": "Wool Boots",
 
@@ -327,6 +327,7 @@
 "container.kiln": "Kiln",
 
 "enchantment.morecraft.magic_protection": "Magic Protection",
+"enchantment.morecraft.ender_bane": "Enderbane",
 
 "messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armor protected you from harm!",
 "messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."

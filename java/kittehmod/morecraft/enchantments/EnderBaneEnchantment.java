@@ -1,47 +1,49 @@
 package kittehmod.morecraft.enchantments;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.ProtectionEnchantment;
+import net.minecraftforge.common.extensions.IForgeEnchantment;
 
-public class MagicProtectionEnchantment extends Enchantment
+public class EnderBaneEnchantment extends Enchantment implements IForgeEnchantment
 {
 
-	protected MagicProtectionEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
-		super(rarity, category, slots);
+	protected EnderBaneEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slot) {
+		super(rarity, category, slot);
 	}
 
 	public int getMinCost(int lvl) {
-		return 10 + (lvl - 1) * this.getLevelCost();
+		return 5 + (lvl - 1) * this.getLevelCost();
 	}
 
 	public int getMaxCost(int lvl) {
 		return this.getMinCost(lvl) + this.getLevelCost();
 	}
-	
+
 	public int getLevelCost() {
 		return 8;
 	}
 
 	public int getMaxLevel() {
-		return 4;
+		return 5;
 	}
-	
+
 	public boolean isTreasureOnly() {
 		return false;
 	}
-   
+
 	public boolean canApplyAtEnchantingTable(ItemStack stack) {
 		return stack.canApplyAtEnchantingTable(this);
 	}
-	
+
 	public boolean isAllowedOnBooks() {
 		return true;
 	}
-	
+
 	public boolean isTradeable() {
 		return true;
 	}
@@ -49,21 +51,23 @@ public class MagicProtectionEnchantment extends Enchantment
 	public boolean isDiscoverable() {
 		return true;
 	}
-	
-	public int getDamageProtection(int amt, DamageSource source) {
-		if (source.isMagic() || source == DamageSource.DRAGON_BREATH) {
-			return amt * 2;
-		}
-		else {
-			return 0;
-		}
-	}
-   
+
 	public boolean checkCompatibility(Enchantment enchantment) {
-		if (enchantment instanceof ProtectionEnchantment protectionenchantment) {
-			return protectionenchantment.type == ProtectionEnchantment.Type.FALL;
+		if (enchantment instanceof DamageEnchantment damageenchantment) {
+			return false;
 		} else {
 			return super.checkCompatibility(enchantment);
 		}
 	}
+
+	public boolean canEnchant(ItemStack stack) {
+		return stack.getItem() instanceof AxeItem ? true : super.canEnchant(stack);
+	}
+
+	// This will be handled in events due to lack of Ender category.
+	@Override
+	public float getDamageBonus(int lvl, MobType mobtype, ItemStack stack) {
+		return 0; 
+	}
+	
 }

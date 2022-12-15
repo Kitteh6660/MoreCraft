@@ -81,8 +81,8 @@
 "item.morecraft.cooked_chevon": "Cooked Chevon",
 "item.morecraft.raw_frog_legs": "Raw Frog Legs",
 "item.morecraft.cooked_frog_legs": "Cooked Frog Legs",
-"item.morecraft.raw_spider": "Spider",
-"item.morecraft.cooked_spider": "Fried Spider",
+"item.morecraft.raw_spider": "Raw Spider Chops",
+"item.morecraft.cooked_spider": "Cooked Spider Chops",
 "item.morecraft.raw_squid": "Squid",
 "item.morecraft.cooked_squid": "Calamari",
 "item.morecraft.raw_guardian_meat": "Raw Guardian Meat",
@@ -140,13 +140,6 @@
 "block.morecraft.bone_trapdoor": "Bone Trapdoor",
 "block.morecraft.netherbrick_fence_gate": "Nether Brick Fence Gate",
 "block.morecraft.netherwood_fence_gate": "Netherwood Fence Gate",
-
-"block.morecraft.tall_netherbrick_door": "Tall Nether Brick Door",
-"block.morecraft.tall_netherwood_door": "Tall Netherwood Door",
-"block.morecraft.tall_netherite_door": "Tall Netherite Door",
-"block.morecraft.tall_glass_door": "Tall Glass Door",
-"block.morecraft.tall_soul_glass_door": "Tall Soul Glass Door",
-"block.morecraft.tall_bone_door": "Tall Bone Door",
 
 "item.morecraft.copper_helmet": "Copper Helmet",
 "item.morecraft.copper_chestplate": "Copper Chestplate",
@@ -328,6 +321,7 @@
 
 "enchantment.morecraft.magic_protection": "Magic Protection",
 "enchantment.morecraft.ender_bane": "Enderbane",
+"enchantment.morecraft.reinforcement": "Reinforcement",
 
 "messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armor protected you from harm!",
 "messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."

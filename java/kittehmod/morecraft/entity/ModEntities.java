@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
 
-	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MoreCraft.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MoreCraft.MODID);
 	
 	public static final RegistryObject<EntityType<NetherBoat>> NETHER_BOAT = ENTITIES.register("nether_boat", () -> EntityType.Builder.<NetherBoat>of(NetherBoat::new, MobCategory.MISC).fireImmune().sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new NetherBoat(world, 0, 0, 0)).build("nether_boat")); 
 

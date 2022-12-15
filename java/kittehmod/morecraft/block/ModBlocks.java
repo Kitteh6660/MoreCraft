@@ -8,7 +8,6 @@ import kittehmod.morecraft.block.addons.ModBookcaseBlock;
 import kittehmod.morecraft.block.addons.ModCrateBlock;
 import kittehmod.morecraft.block.addons.ModHedgeBlock;
 import kittehmod.morecraft.block.addons.ModPostBlock;
-import kittehmod.morecraft.block.addons.ModTallDoorBlock;
 import kittehmod.morecraft.block.addons.ModVerticalSlabBlock;
 import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.worldgen.NetherwoodTree;
@@ -153,14 +152,6 @@ public class ModBlocks
     //Buzzier Bees
     public static final RegistryObject<Block> NETHERWOOD_BEEHIVE = ModBlocks.BLOCKS.register("netherwood_beehive", () -> new BeehiveBlock(Block.Properties.of(Material.NETHER_WOOD, MaterialColor.COLOR_PURPLE).strength(2.0F, 4.0F).sound(SoundType.WOOD)));
     
-    //Dramatic Doors
-    public static final RegistryObject<Block> TALL_NETHERBRICK_DOOR = BLOCKS.register("tall_netherbrick_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(5.0F, 8.0F).sound(SoundType.NETHER_BRICKS).noOcclusion())); 
-	public static final RegistryObject<Block> TALL_NETHERWOOD_DOOR = BLOCKS.register("tall_netherwood_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.WOOD).strength(2.5F, 4.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final RegistryObject<Block> TALL_NETHERITE_DOOR = BLOCKS.register("tall_netherite_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.METAL).strength(50.0F, 1200.0F).sound(SoundType.METAL).noOcclusion().requiresCorrectToolForDrops()));
-	public static final RegistryObject<Block> TALL_GLASS_DOOR = BLOCKS.register("tall_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> TALL_SOUL_GLASS_DOOR = BLOCKS.register("tall_soul_glass_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.GLASS).strength(1.0F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> TALL_BONE_DOOR = BLOCKS.register("tall_bone_door", () -> new ModTallDoorBlock(Block.Properties.of(Material.STONE).strength(2.5F, 4.0F).sound(SoundType.BONE_BLOCK).noOcclusion()));
-	
 	private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
 		return (blockState) -> {
 			return blockState.getValue(BlockStateProperties.LIT) ? lightValue : 0;

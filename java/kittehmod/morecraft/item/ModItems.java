@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.block.ModBlocks;
 import kittehmod.morecraft.entity.NetherBoat;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BowlFoodItem;
@@ -15,9 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -112,8 +109,8 @@ public class ModItems
     public static final RegistryObject<Item> COOKED_SQUID = ITEMS.register("cooked_squid", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SQUID_COOKED)));
     public static final RegistryObject<Item> RAW_GUARDIAN_MEAT = ITEMS.register("raw_guardian_meat", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.GUARDIAN_MEAT_RAW)));
     public static final RegistryObject<Item> COOKED_GUARDIAN_MEAT = ITEMS.register("cooked_guardian_meat", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.GUARDIAN_MEAT_COOKED)));
-    public static final RegistryObject<Item> RAW_DRAGON_MEAT = ITEMS.register("raw_dragon_meat", () -> new Item(new Item.Properties().tab(null).food(ModFoods.DRAGON_MEAT_RAW).rarity(Rarity.UNCOMMON))); //Not used at the moment.
-    public static final RegistryObject<Item> COOKED_DRAGON_MEAT = ITEMS.register("cooked_dragon_meat", () -> new Item(new Item.Properties().tab(null).food(ModFoods.DRAGON_MEAT_COOKED).rarity(Rarity.UNCOMMON))); //Not used at the moment.
+    public static final RegistryObject<Item> RAW_DRAGON_MEAT = ITEMS.register("raw_dragon_meat", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.DRAGON_MEAT_RAW).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> COOKED_DRAGON_MEAT = ITEMS.register("cooked_dragon_meat", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.DRAGON_MEAT_COOKED).rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> BEEF_STEW = ITEMS.register("beef_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.BEEF_STEW).stacksTo(1)));
     public static final RegistryObject<Item> PORK_STEW = ITEMS.register("pork_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.PORK_STEW).stacksTo(1)));
@@ -123,7 +120,7 @@ public class ModItems
     public static final RegistryObject<Item> SPIDER_STEW = ITEMS.register("spider_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.SPIDER_STEW).stacksTo(1)));
     public static final RegistryObject<Item> FISH_STEW = ITEMS.register("fish_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.FISH_STEW).stacksTo(1)));
     public static final RegistryObject<Item> GUARDIAN_STEW = ITEMS.register("guardian_stew", () -> new BowlFoodItem(new Item.Properties().tab(null).food(ModFoods.GUARDIAN_STEW).stacksTo(1))); //Not used at the moment.
-    public static final RegistryObject<Item> DRAGON_STEW = ITEMS.register("dragon_stew", () -> new BowlFoodItem(new Item.Properties().tab(null).food(ModFoods.DRAGON_STEW).stacksTo(1).rarity(Rarity.UNCOMMON))); //Not used at the moment.
+    public static final RegistryObject<Item> DRAGON_STEW = ITEMS.register("dragon_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.DRAGON_STEW).stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> NETHERSHROOM_STEW = ITEMS.register("nethershroom_stew", () -> new BowlFoodItem(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.NETHERSHROOM_STEW).stacksTo(1)));
 
     public static final RegistryObject<Item> COOKED_EGG = ITEMS.register("cooked_egg", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(ModFoods.COOKED_EGG)));
@@ -170,14 +167,6 @@ public class ModItems
    
     // BUZZIER BEES
     public static final RegistryObject<Item> NETHERWOOD_BEEHIVE = ModItems.ITEMS.register("netherwood_beehive", () -> new BlockItem(ModBlocks.NETHERWOOD_BEEHIVE.get(), new Item.Properties().tab(conditionallyAddTab("buzzier_bees", CreativeModeTab.TAB_DECORATIONS))));
-    
-    // DRAMATIC DOORS
-    public static final RegistryObject<Item> TALL_NETHERBRICK_DOOR = ITEMS.register("tall_netherbrick_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERBRICK_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
-    public static final RegistryObject<Item> TALL_NETHERWOOD_DOOR = ITEMS.register("tall_netherwood_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERWOOD_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
-    public static final RegistryObject<Item> TALL_NETHERITE_DOOR = ITEMS.register("tall_netherite_door", () -> new ModTallDoorItem(ModBlocks.TALL_NETHERITE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors"))).fireResistant()));
-	public static final RegistryObject<Item> TALL_GLASS_DOOR = ITEMS.register("tall_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
-	public static final RegistryObject<Item> TALL_SOUL_GLASS_DOOR = ITEMS.register("tall_soul_glass_door", () -> new ModTallDoorItem(ModBlocks.TALL_SOUL_GLASS_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
-    public static final RegistryObject<Item> TALL_BONE_DOOR = ITEMS.register("tall_bone_door", () -> new ModTallDoorItem(ModBlocks.TALL_BONE_DOOR.get(), (new Item.Properties()).tab(conditionallyAddTab("dramaticdoors", getTabWithMatchingName("dramaticdoors")))));
     
 	// -- HORSE ARMOUR -- \\
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () -> new ModHorseArmorItem(5, "copper", (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
@@ -330,20 +319,4 @@ public class ModItems
     	}
     }
     
-    private static CreativeModeTab getTabWithMatchingName(String tabName) {
-    	CreativeModeTab tab = null;
-    	if (FMLEnvironment.dist == Dist.DEDICATED_SERVER) { // Check to make sure the code doesn't advance on server to prevent crashes.
-    		return null;
-    	}
-    	for (CreativeModeTab tempTab : CreativeModeTab.TABS) {
-    		if (tempTab.getDisplayName().getContents() instanceof TranslatableContents) { // Check if it's the correct class to avoid crashes.
-	    		TranslatableContents tabContents = (TranslatableContents) tempTab.getDisplayName().getContents();
-	    		if (tabContents.getKey().equalsIgnoreCase("itemGroup." + tabName)) {
-	    			tab = tempTab;
-	    			break;
-	    		}
-    		}
-    	}
-    	return tab;
-    }
 }

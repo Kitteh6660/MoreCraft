@@ -37,7 +37,7 @@ import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.world.BlockEvent.BlockToolModificationEvent;
+import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -47,7 +47,7 @@ public class PlayerEvents
 	//A chance to gain Copper Patina upon scraping copper.
 	@SubscribeEvent
 	public void copperScrapeEvent(BlockToolModificationEvent event) {
-		LevelAccessor level = event.getWorld();
+		LevelAccessor level = event.getLevel();
 		if (event.getHeldItemStack().getItem() instanceof AxeItem && event.getToolAction()  == ToolActions.AXE_SCRAPE && !level.isClientSide()) {
 			if (event.getState().getBlock() instanceof WeatheringCopper) {
 				WeatheringCopper copper = (WeatheringCopper) event.getState().getBlock();
@@ -80,11 +80,11 @@ public class PlayerEvents
 
 	@SubscribeEvent
 	public void onAttackEvent(LivingAttackEvent event) {
-		LivingEntity entity = event.getEntityLiving();
+		LivingEntity entity = event.getEntity();
 		if (entity != null && entity.getVehicle() != null && entity.getVehicle() instanceof NetherBoat) {
 			if (event.getSource() == DamageSource.LAVA && !entity.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
 				event.setCanceled(true);
-				event.getEntityLiving().clearFire();
+				event.getEntity().clearFire();
 			}
 		}
 	}
@@ -92,7 +92,7 @@ public class PlayerEvents
 	// Armour set effects that alter hurting
 	@SubscribeEvent
 	public void onHurtEvent(LivingHurtEvent event) {
-		LivingEntity entity = event.getEntityLiving();
+		LivingEntity entity = event.getEntity();
 		// Ruby armour
 		int blockChance = 0;
 		float damage = 0;
@@ -130,8 +130,8 @@ public class PlayerEvents
 
 	@SubscribeEvent
 	public void onFallEvent(LivingFallEvent event) {
-		if (event.getEntityLiving() instanceof LivingEntity) {
-			LivingEntity entity = event.getEntityLiving();
+		if (event.getEntity() instanceof LivingEntity) {
+			LivingEntity entity = event.getEntity();
 			if (entity.getItemBySlot(EquipmentSlot.FEET) != null && entity.getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.SLIME_BOOTS.get()) {
 				float mult = (float) (event.getDamageMultiplier() * 0.25);
 				float dist = event.getDistance();

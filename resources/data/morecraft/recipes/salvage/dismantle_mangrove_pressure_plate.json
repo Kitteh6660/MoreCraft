@@ -3,7 +3,7 @@
   "group": "salvage_planks",
   "ingredients": [
     {
-        "item": "minecraft:mangrove_fence_gate"
+        "item": "minecraft:mangrove_pressure_plate"
     }
   ],
   "result": {

@@ -17,7 +17,6 @@ import kittehmod.morecraft.events.PlayerEvents;
 import kittehmod.morecraft.item.ModItems;
 import kittehmod.morecraft.item.ModPotions;
 import kittehmod.morecraft.item.crafting.ModBrewingRecipes;
-import kittehmod.morecraft.item.crafting.ModRecipeBookCategories;
 import kittehmod.morecraft.item.crafting.ModRecipeType;
 import kittehmod.morecraft.item.crafting.ModRecipes;
 import kittehmod.morecraft.item.crafting.conditions.CharmModNotInstalledCondition;
@@ -31,12 +30,13 @@ import kittehmod.morecraft.worldgen.ModBiomeCodecs;
 import kittehmod.morecraft.worldgen.ModBiomes;
 import kittehmod.morecraft.worldgen.ModFeatures;
 import kittehmod.morecraft.worldgen.ModPlacements;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.RecipeBookRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -101,7 +101,7 @@ public class MoreCraft
     	MinecraftForge.EVENT_BUS.register(new CatsSitOnChestsHandler());
     	MinecraftForge.EVENT_BUS.register(new ModFeatures());
     	MinecraftForge.EVENT_BUS.register(new ModBiomes());
-    	
+    	    	
     	ComposterBlock.COMPOSTABLES.put(Items.POISONOUS_POTATO, 0.65F); //Fixes the annoyance.
     	ComposterBlock.COMPOSTABLES.put(ModItems.SWEETBERRY_PIE.get(), 1.0F);
     	ComposterBlock.COMPOSTABLES.put(ModItems.APPLE_PIE.get(), 1.0F);
@@ -120,14 +120,13 @@ public class MoreCraft
     @OnlyIn(Dist.CLIENT)
 	private void setupClient(final FMLClientSetupEvent event)
     {
-    	// Set up the kiln recipe categories.
-    	RecipeBookRegistry.addCategoriesToType(ModRecipes.KILN_RECIPE_BOOK, ModRecipeBookCategories.KILN_CATEGORIES);
-    	RecipeBookRegistry.addAggregateCategories(ModRecipeBookCategories.KILN_SEARCH, ModRecipeBookCategories.KILN_CATEGORIES);
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_BLOCKS );
-    	RecipeBookRegistry.addCategoriesFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_MISC );
     	// Set up the client renderers.
     	MinecraftForge.EVENT_BUS.register(ClientHelper.class);
 		ClientRenderSetup.setup();
+		// Now add some items that should have been in creative menu.
+		Items.DRAGON_EGG.fillItemCategory(CreativeModeTab.TAB_DECORATIONS, NonNullList.create());
+    	Items.SPAWNER.fillItemCategory(CreativeModeTab.TAB_MISC, NonNullList.create());
+
     }
     
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 public class EnderdragonArmorItem extends ArmorItem
 {
@@ -32,10 +32,10 @@ public class EnderdragonArmorItem extends ArmorItem
 	}
 
 	@Override
-	public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-		consumer.accept(new IItemRenderProperties() {
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(new IClientItemExtensions() {
 			@Override
-			public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemstack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+			public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemstack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
 				return armorSlot == EquipmentSlot.LEGS ? new EnderdragonLegsModel<HumanoidModel<LivingEntity>>() : new EnderdragonArmorModel<HumanoidModel<LivingEntity>>();
 			}
 		});

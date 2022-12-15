@@ -3,15 +3,18 @@ package kittehmod.morecraft.client;
 import kittehmod.morecraft.MoreCraft;
 import kittehmod.morecraft.client.model.WardenHeadModel;
 import kittehmod.morecraft.item.ModItems;
-import net.minecraft.client.color.item.ItemColors;
+import kittehmod.morecraft.item.crafting.ModRecipeBookCategories;
+import kittehmod.morecraft.item.crafting.ModRecipeType;
+import kittehmod.morecraft.item.crafting.ModRecipes;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -68,10 +71,17 @@ public class ClientHelper
 	}
 	
 	@SubscribeEvent
-	public static void registerColours(final ColorHandlerEvent.Item event) {
-		ItemColors itemColours = event.getItemColors();
-		itemColours.register((itemstack, index) -> {
+	public static void registerColours(final RegisterColorHandlersEvent.Item event) {
+		event.register((itemstack, index) -> {
 			return itemstack.getItem() instanceof DyeableLeatherItem ? ((DyeableLeatherItem)itemstack.getItem()).getColor(itemstack) : 0xFFFFFF;
 		}, ModItems.WOOL_HELMET.get(), ModItems.WOOL_CHESTPLATE.get(), ModItems.WOOL_LEGGINGS.get(), ModItems.WOOL_BOOTS.get());
     }
+	
+	@SubscribeEvent
+	public static void registerRecipeBooks(RegisterRecipeBookCategoriesEvent event) {
+    	event.registerBookCategories(ModRecipes.KILN_RECIPE_BOOK, ModRecipeBookCategories.KILN_CATEGORIES);
+    	event.registerAggregateCategory(ModRecipeBookCategories.KILN_SEARCH, ModRecipeBookCategories.KILN_CATEGORIES);
+    	event.registerRecipeCategoryFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_BLOCKS );
+    	event.registerRecipeCategoryFinder(ModRecipeType.KILN.get(), rc -> ModRecipeBookCategories.KILN_MISC );
+	}
 }

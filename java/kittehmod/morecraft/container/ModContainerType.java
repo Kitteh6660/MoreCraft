@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModContainerType
 {
-	public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MoreCraft.MODID);
+	public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MoreCraft.MODID);
 
 	public static RegistryObject<MenuType<KilnContainer>> KILN = CONTAINERS.register("kiln", () -> new MenuType<KilnContainer>(KilnContainer::new));
 	public static RegistryObject<MenuType<ModCrateContainer>> CRATE = CONTAINERS.register("crate", () -> new MenuType<ModCrateContainer>(ModCrateContainer::new));

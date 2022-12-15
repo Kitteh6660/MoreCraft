@@ -25,6 +25,7 @@ public class MoreCraftConfig {
 	public static final String SUBCATEGORY_DROPS = "drops";
 	public static final String SUBCATEGORY_GENERATION = "generation";
 	
+	public static ForgeConfigSpec.BooleanValue preventCactusDestroyItems;
 	public static ForgeConfigSpec.BooleanValue hardcoreRecipes;
 	public static ForgeConfigSpec.BooleanValue sillyRecipes; //Enables silly recipes.
 	public static ForgeConfigSpec.BooleanValue salvageRecipes;
@@ -47,6 +48,10 @@ public class MoreCraftConfig {
 	private static void initializeConfig()
 	{
 		COMMON_BUILDER.comment("MoreCraft").push(CATEGORY_GENERAL);
+		
+        preventCactusDestroyItems = COMMON_BUILDER
+                .comment("Prevent Cactus Destroy Items: When set to true, cactus will no longer be able to destroy dropped items.  " + "Default: True")
+                .define("prevent_cactus_destroy_items", true);
 		
         COMMON_BUILDER.push(SUBCATEGORY_RECIPES);
 

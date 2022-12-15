@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBlockEntityType {
 
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, MoreCraft.MODID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MoreCraft.MODID);
 	
 	//Core
     public static final RegistryObject<BlockEntityType<ModChestBlockEntity>> NETHERWOOD_CHEST = BLOCK_ENTITIES.register("netherwood_chest", () -> BlockEntityType.Builder.of(ModChestBlockEntity::new, ModBlocks.NETHERWOOD_CHEST.get()).build(null));

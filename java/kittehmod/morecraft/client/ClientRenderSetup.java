@@ -25,6 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ClientRenderSetup
 {
 
+	@SuppressWarnings("removal")
 	public static void setup() {
 		Sheets.addWoodType(ModWoodType.NETHERWOOD);
 
@@ -50,13 +51,6 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_GLASS_DOOR.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.BONE_DOOR.get(), RenderType.cutout());
-
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERWOOD_DOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERBRICK_DOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_NETHERITE_DOOR.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_GLASS_DOOR.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_SOUL_GLASS_DOOR.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_BONE_DOOR.get(), RenderType.cutout());
 		
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_TRAPDOOR.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERBRICK_TRAPDOOR.get(), RenderType.cutout());

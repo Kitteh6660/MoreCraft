@@ -54,7 +54,7 @@ description="The ultimate mod that expands a lot on Minecraft while staying true
 [[dependencies.morecraft]]
   modId="forge" 
   mandatory=true
-  versionRange="[41.0.38,)"
+  versionRange="[41.1.0,)"
   ordering="NONE"
   side="BOTH"
 
@@ -64,11 +64,3 @@ description="The ultimate mod that expands a lot on Minecraft while staying true
   versionRange = "[3.2,)"
   ordering = "AFTER"
   side = "BOTH"
-
-[[dependencies.morecraft]] 
-  modId = "dramaticdoors"
-  mandatory = false
-  versionRange = "[1.19-2.0.0,)"
-  ordering = "AFTER"
-  side = "BOTH"
-  

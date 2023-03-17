@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "morecraft:block/netherwood_boards_horizontal",
+      "y": 270
+    },
+    "axis=y": {
+      "model": "morecraft:block/netherwood_boards"
+    },
+    "axis=z": {
+      "model": "morecraft:block/netherwood_boards_horizontal"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:quartz_brick_vertical_slab"
+    }
+  },
+  "result": {
+    "item": "morecraft:quartz_brick_slab",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "morecraft:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}

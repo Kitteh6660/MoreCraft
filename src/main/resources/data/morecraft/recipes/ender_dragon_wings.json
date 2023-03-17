@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#N#",
+    "#$#",
+    "#C#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:enderdragon_scales"
+    },
+    "$": {
+      "item": "minecraft:elytra"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "minecraft:end_crystal"
+    }
+  },
+  "result": {
+    "item": "morecraft:ender_dragon_wings"
+  }
+}

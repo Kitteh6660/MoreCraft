@@ -1,0 +1,27 @@
+{
+"item.morecraft.copper_horse_armor": "Copper Horse Armour",
+"item.morecraft.bone_horse_armor": "Bone Horse Armour",
+"item.morecraft.emerald_horse_armor": "Emerald Horse Armour",
+"item.morecraft.ruby_horse_armor": "Ruby Horse Armour",
+"item.morecraft.obsidian_horse_armor": "Obsidian Horse Armour",
+"item.morecraft.netherite_horse_armor": "Netherite Horse Armour",
+
+"advancements.adventure.bone_armor.title": "Cover Me in Bones",
+"advancements.adventure.bone_armor.description": "Craft a piece of bone armour.",
+"advancements.adventure.kill_warden.title": "Warden Slayer",
+"advancements.adventure.kill_warden.description": "Against all odds, you've managed to slay the Warden by your very own hands. If you've already acquired Monsters Hunted then you've finally done it, you killed every vanilla hostile mob in the game, including the Warden. Congratulations!",
+"advancements.story.mine_ruby.title": "The Forgotten Red Ore",
+"advancements.story.mine_ruby.description": "Mine some rubies.",
+"advancements.end.enderdragon_armor.title": "Cover Me in Scales",
+"advancements.end.enderdragon_armor.description": "Craft a piece of Enderdragon Scale armour.",
+
+"enchantment.morecraft.magic_protection": "Magic Protection",
+"enchantment.morecraft.magic_protection.desc": "Reduces damage from magic, including Warden's sonic boom attacks.",
+"enchantment.morecraft.ender_bane": "Enderbane",
+"enchantment.morecraft.ender_bane.desc": "Increases damage dealt to mobs of Ender origin such as Enderman, Endermite, Shulker, and Ender Dragon.",
+"enchantment.morecraft.reinforcement": "Reinforcement",
+"enchantment.morecraft.reinforcement.desc": "Increases the maximum durability of items with this enchantment.",
+
+"messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armour protected you from harm!",
+"messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."
+}

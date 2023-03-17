@@ -1,0 +1,61 @@
+{
+  "variants": {
+    "facing=east,variant=ladder": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,variant=ladder_waterlogged": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,variant=vine": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_vine",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,variant=ladder": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,variant=ladder_waterlogged": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,variant=vine": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_vine",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=south,variant=ladder": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true
+    },
+    "facing=south,variant=ladder_waterlogged": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true
+    },
+    "facing=south,variant=vine": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_vine",
+      "uvlock": true
+    },
+    "facing=west,variant=ladder": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,variant=ladder_waterlogged": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_ladder",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,variant=vine": {
+      "model": "morecraft:block/hollow_netherwood_log_climbable_vine",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

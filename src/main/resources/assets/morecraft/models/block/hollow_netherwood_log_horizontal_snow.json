@@ -1,0 +1,9 @@
+{
+  "parent": "twilightforest:block/hollow_log_snow",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "inner": "morecraft:block/stripped_netherwood_log",
+    "side": "morecraft:block/netherwood_log_side",
+    "top": "morecraft:block/netherwood_log_top"
+  }
+}

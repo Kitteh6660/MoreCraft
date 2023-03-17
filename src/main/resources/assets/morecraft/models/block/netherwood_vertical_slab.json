@@ -1,0 +1,8 @@
+{
+    "parent": "morecraft:block/vertical_slab",
+    "textures": {
+        "side": "morecraft:block/netherwood_planks",
+        "top": "morecraft:block/netherwood_planks",
+        "bottom": "morecraft:block/netherwood_planks"
+    }
+}

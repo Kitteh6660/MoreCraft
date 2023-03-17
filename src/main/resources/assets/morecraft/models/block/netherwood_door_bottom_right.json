@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom_right",
+    "textures": {
+        "bottom": "morecraft:block/netherwood_door_lower",
+        "top": "morecraft:block/netherwood_door_upper"
+    }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "morecraft:block/post",
-  "textures": {
-    "texture": "morecraft:blocks/netherwood_log_side"
-  }
-}

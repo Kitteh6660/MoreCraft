@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:cooked_flesh",
+    "morecraft:cooked_egg",
+    "morecraft:raw_chevon",
+    "morecraft:cooked_chevon",
+    "morecraft:raw_frog_legs",
+    "morecraft:cooked_frog_legs",
+    "morecraft:raw_spider",
+    "morecraft:cooked_spider",
+    "morecraft:raw_squid",
+    "morecraft:cooked_squid",
+    "morecraft:raw_guardian_meat",
+    "morecraft:cooked_guardian_meat",
+    "morecraft:raw_dragon_meat",
+    "morecraft:cooked_dragon_meat",
+    "morecraft:beef_stew",
+    "morecraft:pork_stew",
+    "morecraft:mutton_stew",
+    "morecraft:chicken_stew",
+    "morecraft:chevon_stew",
+    "morecraft:spider_stew",
+    "morecraft:fish_stew",
+    "morecraft:guardian_stew",
+    "morecraft:dragon_stew"
+  ]
+}

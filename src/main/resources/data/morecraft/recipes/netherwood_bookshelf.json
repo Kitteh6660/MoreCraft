@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "BBB",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "morecraft:netherwood_planks"
+    },
+    "B": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_bookshelf"
+  },
+  "conditions": [
+    {
+      "type": "forge:or",
+      "values": [
+        {
+          "type": "morecraft:quark_flag",
+          "flag": "variant_bookshelves"
+        },
+        {
+          "type": "forge:mod_loaded",
+          "modid": "woodworks"
+        }
+      ]
+    }
+  ]
+}

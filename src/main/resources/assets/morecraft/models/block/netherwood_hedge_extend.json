@@ -1,0 +1,6 @@
+{
+  "parent": "morecraft:block/hedge_extend",
+  "textures": {
+    "leaf": "morecraft:block/netherwood_leaves"
+  }
+}

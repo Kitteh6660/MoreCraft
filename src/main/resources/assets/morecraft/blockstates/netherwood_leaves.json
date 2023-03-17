@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "": [
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves" },
+      { "model": "morecraft:block/netherwood_leaves_animated" }
+    ]
+  }
+}

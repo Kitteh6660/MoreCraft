@@ -1,0 +1,7 @@
+{
+	"variants": {
+        "type=bottom": { "model": "morecraft:block/quartz_brick_slab_lower" },
+        "type=top": { "model": "morecraft:block/quartz_brick_slab_upper" },
+        "type=double": { "model": "minecraft:block/quartz_bricks" }
+	}
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:tuff_wall",
+    "morecraft:calcite_wall",
+    "morecraft:dripstone_wall",
+    "morecraft:smooth_basalt_wall",
+    "morecraft:quartz_brick_wall",
+    "morecraft:bedrock_brick_wall"
+  ]
+}

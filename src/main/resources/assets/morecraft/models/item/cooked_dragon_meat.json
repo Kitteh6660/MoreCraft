@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "morecraft:item/dragon_meat_cooked"
+	}
+}

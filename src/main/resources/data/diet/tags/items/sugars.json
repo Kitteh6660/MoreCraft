@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:cake_slice",
+    "morecraft:apple_pie",
+    "morecraft:nether_apple_pie",
+    "morecraft:sweetberry_pie"
+  ]
+}

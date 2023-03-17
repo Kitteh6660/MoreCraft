@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "morecraft:raw_dragon_meat"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "morecraft:dragon_stew"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ]
+}

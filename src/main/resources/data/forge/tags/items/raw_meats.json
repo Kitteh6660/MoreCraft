@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:raw_chevon",
+    "morecraft:raw_frog_legs",
+    "morecraft:raw_spider",
+    "morecraft:raw_squid",
+    "morecraft:raw_guardian_meat",
+    "morecraft:raw_dragon_meat"
+  ]
+}

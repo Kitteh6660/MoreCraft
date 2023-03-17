@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cobweb",
+    {"id": "blue_skies:spider_webbing", "required": false },
+    {"id": "biomesoplenty:hanging_webbing", "required": false }
+  ]
+}

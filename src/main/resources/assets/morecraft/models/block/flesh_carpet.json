@@ -1,0 +1,7 @@
+{
+    "parent": "block/carpet",
+    "textures": {
+        "particle": "morecraft:block/flesh_block",
+        "wool": "morecraft:block/flesh_block"
+    }
+}

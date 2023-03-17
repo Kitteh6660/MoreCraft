@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "morecraft:block/netherwood_planks",
+    "up": "morecraft:block/netherwood_crate_top",
+    "down": "morecraft:block/netherwood_crate_top",
+    "north": "morecraft:block/netherwood_crate_side",
+    "east": "morecraft:block/netherwood_crate_side",
+    "south": "morecraft:block/netherwood_crate_side",
+    "west": "morecraft:block/netherwood_crate_side"
+  }
+}

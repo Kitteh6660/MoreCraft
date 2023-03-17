@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boards",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:netherwood_planks"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_boards",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
+    }
+  ]
+}

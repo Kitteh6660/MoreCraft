@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "morecraft:block/netherwood_cabinet_front",
+    "side": "morecraft:block/netherwood_cabinet_side",
+    "top": "morecraft:block/netherwood_cabinet_top"
+  }
+}

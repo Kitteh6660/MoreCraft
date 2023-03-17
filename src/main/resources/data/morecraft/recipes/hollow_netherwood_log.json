@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "morecraft:netherwood_log"
+  },
+  "result": "morecraft:hollow_netherwood_log"
+}

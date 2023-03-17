@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "morecraft:cooked_dragon_meat"
+    },
+    {
+        "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "result": {
+    "item": "morecraft:dragon_stew"
+  }
+}

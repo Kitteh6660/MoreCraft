@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab_top",
-	"textures": {
-        "bottom": "morecraft:blocks/bedrock_brick",
-        "top": "morecraft:blocks/bedrock_brick",
-        "side": "morecraft:blocks/bedrock_brick"
-	}
-}

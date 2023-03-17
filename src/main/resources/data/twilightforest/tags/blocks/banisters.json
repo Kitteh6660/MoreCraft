@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "morecraft:netherwood_banister", "required": false}
+  ]
+}

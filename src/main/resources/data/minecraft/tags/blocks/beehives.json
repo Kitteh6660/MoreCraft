@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "morecraft:netherwood_beehive", "required": false }
+  ]
+}

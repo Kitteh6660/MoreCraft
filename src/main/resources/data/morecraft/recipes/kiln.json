@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "IFI",
+    "BBB"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "#": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "item": "morecraft:kiln"
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "clayworks"
+      }
+    }
+  ]
+}

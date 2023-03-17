@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:enderman",
+    "minecraft:endermite",
+    "minecraft:shulker",
+    "minecraft:ender_dragon",
+    { "id": "endergetic:booflo_baby", "required": false },
+    { "id": "endergetic:booflo_adolescent", "required": false },
+    { "id": "endergetic:booflo", "required": false },
+    { "id": "endergetic:brood_eetle", "required": false },
+    { "id": "endergetic:charger_eetle", "required": false },
+    { "id": "endergetic:glider_eetle", "required": false },
+    { "id": "endergetic:puffbug", "required": false },
+    { "id": "endergetic:purpoid", "required": false },
+    { "id": "alexsmobs:cosmaw", "required": false },
+    { "id": "alexsmobs:cosmic_cod", "required": false },
+    { "id": "alexsmobs:enderiophage", "required": false },
+    { "id": "alexsmobs:mimicube", "required": false },
+    { "id": "alexsmobs:spectre", "required": false },
+    { "id": "alexsmobs:void_worm", "required": false },
+    { "id": "alexsmobs:farseer", "required": false }
+  ]
+}

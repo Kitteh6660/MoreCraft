@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "minecraft:bowl"
+    },
+    {
+        "item": "morecraft:cooked_guardian_meat"
+    },
+    {
+        "item": "minecraft:carrot"
+    },
+    {
+        "item": "minecraft:potato"
+    },
+    {
+        "item": "minecraft:kelp"
+    }
+  ],
+  "result": {
+    "item": "morecraft:guardian_stew"
+  }
+}

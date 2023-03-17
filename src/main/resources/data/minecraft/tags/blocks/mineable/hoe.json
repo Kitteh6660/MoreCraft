@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:netherwood_leaves",
+    "morecraft:netherwood_leaf_pile",
+    "morecraft:netherwood_leaf_carpet",
+    "morecraft:flesh_carpet",
+    "morecraft:flesh_block"
+  ]
+}

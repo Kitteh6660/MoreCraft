@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:reinforced_deepslate",
+    "morecraft:netherite_door",
+    "morecraft:netherite_trapdoor"
+  ]
+}

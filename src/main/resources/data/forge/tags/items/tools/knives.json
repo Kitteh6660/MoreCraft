@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:copper_knife",
+    "morecraft:bone_knife",
+    "morecraft:emerald_knife",
+    "morecraft:ruby_knife",
+    "morecraft:obsidian_knife",
+    "morecraft:blaze_knife"
+  ]
+}

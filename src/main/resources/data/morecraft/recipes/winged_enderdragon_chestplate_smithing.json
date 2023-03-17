@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morecraft:enderdragon_chestplate"
+  },
+  "addition": {
+    "item": "morecraft:ender_dragon_wings"
+  },
+  "result": {
+    "item": "morecraft:winged_enderdragon_chestplate"
+  }
+}

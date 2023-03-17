@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:tuff_slab",
+    "morecraft:calcite_slab",
+    "morecraft:dripstone_slab",
+    "morecraft:smooth_basalt_slab",
+    "morecraft:quartz_brick_slab",
+    "morecraft:bedrock_brick_slab",
+    "morecraft:netherwood_slab"
+  ]
+}

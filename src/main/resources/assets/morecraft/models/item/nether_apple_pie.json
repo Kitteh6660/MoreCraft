@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "morecraft:item/nether_apple_pie"
+	}
+}

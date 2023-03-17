@@ -1,0 +1,6 @@
+{
+  "parent": "twilightforest:item/banister_item",
+  "textures": {
+    "texture": "morecraft:block/netherwood_planks"
+  }
+}

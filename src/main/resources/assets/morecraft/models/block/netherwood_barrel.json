@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "morecraft:block/netherwood_barrel_top",
+    "bottom": "morecraft:block/netherwood_barrel_bottom",
+    "side": "morecraft:block/netherwood_barrel_side"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "morecraft:blocks/netherwood_planks",
-    "side": "morecraft:blocks/netherwood_bookcase_6"
-  }
-}

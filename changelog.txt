@@ -1,7 +1,118 @@
 NOTE: This change log may still be missing things! I will work to make sure it properly chronicles all sorts of changes from the mod's inception up to the latest release.
 
+==[ MINECRAFT 1.19.2]==
+=======================
+## [5.0.0] - 2023-03-17
+
+A HUGE update for MoreCraft with lots of compats and plenty of overhauls.
+
+🌟Added:
+* Added new blocks: Quartz Brick Stairs, Slabs, and Walls.
+* Added new item: Elytra Blueprint.
+   * Crafted by reverse-engineering Elytra. Check the recipe book, you'll also receive an advancement for picking up elytra. The original Elytra will be destroyed.
+   * Elytra Blueprint will allow you to craft Elytra. The blueprint won't be consumed when crafting Elytras.
+* Added new item: Ender Dragon Wings.
+   * Crafted by surrounding Elytra with Ender Dragon Scales.
+   * Used for the creation of Winged Enderdragon Scale Chestplate.
+* Added Winged Enderdragon Scale Chestplate.
+   * There are plenty of cool animations. Wings spread out when you glide like elytra. Wings also flap when you fly. When not flying, the wings fold neatly.
+   * Made by using Smithing Table. Enderdragon Scale Chestplate + Enderdragon Wings.
+* Guardian Stews are now implemented and as such, can be crafted and shows up in creative inventory.
+* Added integrations for Abnormals Blueprint. It remains an optional dependency.
+   * When Blueprint is installed, Netherwood Forest biome will generate in the Nether.
+* Added support for Farmer's Delight.
+   * Added Netherwood Cabinets.
+   * Added 6 different knives: Copper, Ruby, Emerald, Bone, Obsidian, and Blaze.
+   * Added Chevon Chops, Minced Spider, Guardian Cuts, and Dragon Chops, both raw and cooked.
+   * You can use the cooking pot to create Goat Stews, Spider Stews, Guardian Stews, and Dragon Stews.
+   * Added Dragon Casserole, a new food that is difficult to make. Made using Cooking Pots. The recipe is for you to find out!
+   * MoreCraft version of cooked eggs, cake slices, and stews made from vanilla meat are hidden and uncraftable if Farmers Delight is installed.
+  * Added the advancement goal Dinner of the Gods, achieved by making Dragon Casserole.
+* Added proper support for Woodworks.
+  * Added some of integrations from Quark to Abnormals Woodworks. Affected blocks: Netherwood Bookshelves, Netherwood Chests (and trapped), Netherwood Ladders.
+  * Added Netherwood Boards, can be crafted in the same way as other boards.
+  * Added Netherwood Leaf Piles. Basically just the same as leaf carpet from Quark.
+  * Integrated Sawmill recipes for Netherwood.
+  * If the mod (alongside Blueprint) is installed, Netherwood beehive will use Blueprint.
+   * Quark integration will remain.
+* Added support for Twilight Forest.
+   * When mod is installed, Netherwood Hollow Logs and Banisters will be added.
+* Added tags for Forge.
+   * forge:cooked_eggs: Fried Eggs
+   * forge:raw_meats: Raw Chevon, Raw Frog Legs, Raw Spider, Raw Squid, Raw Guardian Meat, and Raw Dragon Meat.
+* Added tags for Diet mod.
+   * diet:fruits: Apple Pie, Sweet Berry Pie, Nether Apple, and Nether Apple Pie
+   * diet:vegetables: Nethershroom Stew
+   * diet:proteins: Cooked Flesh, Cooked Egg, all modded meats and meat-based stews
+   * diet:sugars: Cake Slice, Apple Pie, Nether Apple Pie, and Sweet Berry Pie
+   * Added ender_mobs tag which will be used for checking Enderbane.
+   * Vanilla entities: Enderman, Endermite, Shulker, and Ender Dragon.
+   * Endergetic Expansion entities: Booflos (all stages), Eetles (all variants), Puffbug, and Purpoids.
+   * Alex's Mobs entities: Cosmaw, Cosmic Cod, Enderiophage, Mimicube, Spectre, and Farseer.
+
+🔧Changed:
+* Kilns are now hidden and uncraftable when Clayworks mod is installed.
+* Enderbane has been changed to use entity type tags instead of a hardcoded check against mob types.
+* Revamped Netherwood Leaves textures.
+  * Now only 10% of Netherwood leaf blocks are animated.
+  * Netherwood Leaves now have smooth transition for Herobrine-styled eyes appearing.
+* Updated Netherwood Chest textures.
+* Updated door item textures.
+* Updated Bone Lord chestplate item texture.
+* Updated Warped Boat item texture.
+* Updated Netherwood Boat entity texture for consistency.
+* Netherwood Beehive now works if Woodworks is installed.
+* Added final modifier to Legendary rarity enum.
+* Flesh blocks are now broken faster using hoes.
+* Changed CactusBlockMixin to use inject instead of overwrite for improved mod compatibility.
+   * Now properly added cactus_immune tag.
+   * Cactus, ores (and the products), shulker boxes, and Netherite items are immune to cactus.
+* Cleaned up en_gb and en_ca language files.
+
+🐞Fixed:
+* Netherwood Leaves should now correctly drop themselves instead of oak leaves when harvested with silk touch.
+* Fixed Netherwood Trapped Chests, both functionality and rendering.
+
+=======================
+## [4.7.6] - 2023-01-23
+
+🌟Added:
+* Added new enchantment: Reinforcement. Increases maximum durability by 10% per level.
+* Added tooltip descriptions for modded enchantments for compatibility with Enchantment Descriptions.
+
+🔧Changed:
+* Bumped up Forge version requirement to 43.2.0+ to encourage using a stable environment.
+
+🐞Fixed:
+* Enderbane enchantment now properly emits enchanted hit particles on dealing extra damage.
+* Fixed diamond tools requirement tag.
+* Fixed mixins, thus spider silk armour should now be able to reduce slowdown from webs again.
+
+❌Removed:
+* Removed many references to tall version of MoreCraft doors as everything was moved over to Dramatic Doors.
+
+=======================
+## [4.7.5] - 2022-12-15
+
+🌟Added:
+* Dragon meat is finally obtainable and can be cooked.
+
+🔧Changed:
+* New textures for spider meat, guardian meat, and dragon meat!
+
+❌Removed:
+* Removed tall doors, they have been moved to Dramatic Doors mod.
+
 ==[ MINECRAFT 1.19  ]==
 =======================
+## [4.7.4] - 2022-07-14
+
+🌟Added:
+* Added a config that allows you to disable cactus destroying dropped items. This fixes MC-3532.
+
+🔧Changed:
+* Updated to Forge 41.0.94 and is now the minimum version.
+
 ## [4.7.3] - 2022-06-21
 
 This is primarily a bug fix update but it also brings the Enderbane enchantment and polished the wool armour.

@@ -28,20 +28,5 @@
       "has_the_recipe",
       "has_items"
     ]
-  ],
-  "conditions": [
-    {
-      "type": "forge:or",
-      "values": [
-        {
-          "type": "morecraft:quark_flag",
-          "flag": "variant_chests"
-        },
-        {
-          "type": "forge:mod_loaded",
-          "modid": "woodworks"
-        }
-      ]
-    }
   ]
 }

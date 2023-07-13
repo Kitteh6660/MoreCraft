@@ -30,5 +30,11 @@
         "result": "morecraft:netherwood_ladder"
       }
     }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
+    }
   ]
 }

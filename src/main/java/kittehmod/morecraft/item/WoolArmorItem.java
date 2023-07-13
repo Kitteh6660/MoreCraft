@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 public class WoolArmorItem extends ModArmorItem implements DyeableLeatherItem
 {
 
-	public WoolArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties properties) {
+	public WoolArmorItem(ArmorMaterial material, Type slot, Properties properties) {
 		super(material, slot, properties);
 	}
 

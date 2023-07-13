@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "morecraft:item/spider_cooked"
+		"layer0": "morecraft:item/cooked_minced_spider"
 	}
 }

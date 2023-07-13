@@ -14,7 +14,7 @@ public class ModArmorItem extends ArmorItem
 {
 	private ArmorMaterial material;
 	
-	public ModArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+	public ModArmorItem(ArmorMaterial materialIn, Type slot, Item.Properties builder) {
 		super(materialIn, slot, builder);
 		this.material = materialIn;
 	}
@@ -27,8 +27,8 @@ public class ModArmorItem extends ArmorItem
     public static float getFireDmgMultiplier(LivingEntity entity) {
     	float amt = 1.0F;
     	// Obsidian reduces fire damage, silk increases fire damage taken.
-    	amt -= countPiecesOfMaterial(entity, ModArmorMaterial.OBSIDIAN) * 0.1;
-    	amt += countPiecesOfMaterial(entity, ModArmorMaterial.SILK) * 0.1;
+    	amt -= countPiecesOfMaterial(entity, ModArmorMaterials.OBSIDIAN) * 0.1;
+    	amt += countPiecesOfMaterial(entity, ModArmorMaterials.SILK) * 0.1;
     	return amt;
     }
     
@@ -36,9 +36,9 @@ public class ModArmorItem extends ArmorItem
     	// Declares a variable for this function.
     	int fear = 0;
     	// Checks for each slot.
-    	fear += countPiecesOfMaterial(entity, ModArmorMaterial.BONE);
-    	fear += countPiecesOfMaterial(entity, ModArmorMaterial.BONELORD) * 2;
-    	fear += countPiecesOfMaterial(entity, ModArmorMaterial.WITHERBONE) * 2;
+    	fear += countPiecesOfMaterial(entity, ModArmorMaterials.BONE);
+    	fear += countPiecesOfMaterial(entity, ModArmorMaterials.BONELORD) * 2;
+    	fear += countPiecesOfMaterial(entity, ModArmorMaterials.WITHERBONE) * 2;
     	// Clamps the value.
     	if (fear < 0) {
     		fear = 0;

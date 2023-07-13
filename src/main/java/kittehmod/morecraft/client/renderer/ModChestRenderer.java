@@ -2,8 +2,7 @@ package kittehmod.morecraft.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
-
+import com.mojang.math.Axis;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import kittehmod.morecraft.block.ModChestBlock;
@@ -111,7 +110,7 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 			poseStack.pushPose();
 			float f = blockstate.getValue(ModChestBlock.FACING).toYRot();
 			poseStack.translate(0.5D, 0.5D, 0.5D);
-			poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
+			poseStack.mulPose(Axis.YP.rotationDegrees(-f));
 			poseStack.translate(-0.5D, -0.5D, -0.5D);
 			DoubleBlockCombiner.NeighborCombineResult<? extends ChestBlockEntity> neighborcombineresult;
 			if (flag) {

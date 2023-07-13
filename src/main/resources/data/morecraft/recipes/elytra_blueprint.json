@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "elytra_blueprint",
   "ingredients": [
     {
       "item": "minecraft:elytra"

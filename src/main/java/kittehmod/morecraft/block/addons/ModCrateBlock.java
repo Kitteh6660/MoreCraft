@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import kittehmod.morecraft.block.ModWoodType;
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.blockentity.addons.ModCrateBlockEntity;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import kittehmod.morecraft.init.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -35,8 +35,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -124,15 +123,14 @@ public class ModCrateBlock extends BaseEntityBlock
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
 		BlockEntity blockentity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
 		if (blockentity instanceof ModCrateBlockEntity) {
 			ModCrateBlockEntity cratetileentity = (ModCrateBlockEntity) blockentity;
-			builder = builder.withDynamicDrop(CONTENTS, (p_220168_1_, p_220168_2_) -> {
+			builder = builder.withDynamicDrop(CONTENTS, (consumer) -> {
 				for (int i = 0; i < cratetileentity.getContainerSize(); ++i) {
-					p_220168_2_.accept(cratetileentity.getItem(i));
+					consumer.accept(cratetileentity.getItem(i));
 				}
-
 			});
 		}
 
@@ -194,11 +192,6 @@ public class ModCrateBlock extends BaseEntityBlock
 			}
 		}
 
-	}
-
-	@Override
-	public PushReaction getPistonPushReaction(BlockState p_149656_1_) {
-		return PushReaction.NORMAL;
 	}
 
 	@Override

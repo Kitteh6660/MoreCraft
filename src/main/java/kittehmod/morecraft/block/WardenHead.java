@@ -11,6 +11,10 @@ public interface WardenHead
 		return 8;
 	}
 	
+	static boolean canActivate(BlockState state) {
+		return true;
+	}
+	
 	default boolean canJumpscare(Level level, BlockState state, BlockPos pos) {
 		return false;
 	}

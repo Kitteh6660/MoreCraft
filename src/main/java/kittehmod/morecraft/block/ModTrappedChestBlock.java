@@ -1,8 +1,8 @@
 package kittehmod.morecraft.block;
 
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.blockentity.ModChestBlockEntity;
 import kittehmod.morecraft.blockentity.ModTrappedChestBlockEntity;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -16,13 +16,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class ModTrappedChestBlock extends ModChestBlock
 {
-   public ModTrappedChestBlock(BlockBehaviour.Properties properties) {
-      super(properties, () -> {
+   public ModTrappedChestBlock(BlockBehaviour.Properties p_57573_) {
+      super(p_57573_, () -> {
          return ModBlockEntityType.NETHERWOOD_TRAPPED_CHEST.get();
       });
    }
 
-   @Override
    public BlockEntity newBlockEntity(BlockPos p_154834_, BlockState p_154835_) {
       return new ModTrappedChestBlockEntity(p_154834_, p_154835_);
    }

@@ -26,5 +26,11 @@
         "result": "morecraft:netherwood_button"
       }
     }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
+    }
   ]
 }

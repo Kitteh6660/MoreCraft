@@ -1,25 +1,21 @@
 package kittehmod.morecraft.client;
 
 import kittehmod.morecraft.MoreCraft;
-import kittehmod.morecraft.client.model.EnderdragonArmorModel;
-import kittehmod.morecraft.client.model.WardenHeadModel;
-import kittehmod.morecraft.init.ModItems;
 import kittehmod.morecraft.client.model.EnderdragonArmorWingsModel;
+import kittehmod.morecraft.client.model.WardenHeadModel;
+import kittehmod.morecraft.client.renderer.EnderdragonArmorWingsLayer;
+import kittehmod.morecraft.init.ModItems;
 import kittehmod.morecraft.item.crafting.ModRecipeBookCategories;
 import kittehmod.morecraft.item.crafting.ModRecipeType;
 import kittehmod.morecraft.item.crafting.ModRecipes;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -36,17 +32,18 @@ public class ClientHelper
 	public static final ResourceLocation NETHERWOOD_CHEST_TRAPPED_LEFT = new ResourceLocation(MoreCraft.MODID, "entity/chest/netherwood_trapped_left");
 	public static final ResourceLocation NETHERWOOD_CHEST_TRAPPED_RIGHT = new ResourceLocation(MoreCraft.MODID, "entity/chest/netherwood_trapped_right");
 
-	public static final ResourceLocation ENDERDRAGON_ARMOUR_TEXTURE = new ResourceLocation(MoreCraft.MODID, "models/armor/enderdragon");	
+	public static final ResourceLocation ENDERDRAGON_ARMOUR_TEXTURE = new ResourceLocation(MoreCraft.MODID, "models/armor/enderdragon");
 
-	public static final ModelLayerLocation ENDERDRAGON_ARMOUR_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("morecraft", "armor/enderdragon"), "main");
-	public static final ModelLayerLocation WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("morecraft", "armor/winged_enderdragon"), "main");
-	public static final ModelLayerLocation WARDEN_HEAD_LOCATION = new ModelLayerLocation(new ResourceLocation("morecraft", "warden_head"), "main");
-
-	public static final EnderdragonArmorModel<? extends HumanoidModel<?>> ENDERDRAGON_ARMOR_MODEL = new EnderdragonArmorModel<HumanoidModel<LivingEntity>>();
+	public static final ModelLayerLocation ENDERDRAGON_ARMOUR_LAYER = new ModelLayerLocation(new ResourceLocation("morecraft", "armor/enderdragon"), "main");
 	
-	@SubscribeEvent
-	public static void onStitch(TextureStitchEvent.Pre event) {
+	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(new ResourceLocation("morecraft", "warden_head"), "main");
+
+	//@SubscribeEvent
+	/*public static void onStitch(TextureStitchEvent event) {
 		if (event.getAtlas().location().equals(Sheets.SIGN_SHEET)) {
+			event.addSprite(NETHERWOOD_SIGN_LOCATION);
+		}
+		if (event.getAtlas().location().equals(Sheets.HANGING_SIGN_MATERIALS)) {
 			event.addSprite(NETHERWOOD_SIGN_LOCATION);
 		}
 		if (event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
@@ -57,7 +54,7 @@ public class ClientHelper
 			event.addSprite(NETHERWOOD_CHEST_TRAPPED_LEFT);
 			event.addSprite(NETHERWOOD_CHEST_TRAPPED_RIGHT);
 		}
-	}
+	}*/
 
 	public static ResourceLocation chooseChestTexture(ChestType type, Boolean trapped) {
 		if (type == ChestType.SINGLE) {
@@ -73,13 +70,12 @@ public class ClientHelper
 	
 	@SubscribeEvent
 	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		event.registerLayerDefinition(ENDERDRAGON_ARMOUR_LAYER_LOCATION, () -> EnderdragonArmorModel.createLayer());
-		event.registerLayerDefinition(WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION, () -> EnderdragonArmorWingsModel.createLayer());
-		event.registerLayerDefinition(WARDEN_HEAD_LOCATION, () -> WardenHeadModel.createHeadLayer());
+		event.registerLayerDefinition(EnderdragonArmorWingsLayer.WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION, () -> EnderdragonArmorWingsModel.createLayer());
+		event.registerLayerDefinition(WARDEN_HEAD, () -> WardenHeadModel.createHeadLayer());
 	}
 	
 	@SubscribeEvent
-	public static void registerItemColours(final RegisterColorHandlersEvent.Item event) {
+	public static void registerColours(final RegisterColorHandlersEvent.Item event) {
 		event.register((itemstack, index) -> {
 			return itemstack.getItem() instanceof DyeableLeatherItem ? ((DyeableLeatherItem)itemstack.getItem()).getColor(itemstack) : 0xFFFFFF;
 		}, ModItems.WOOL_HELMET.get(), ModItems.WOOL_CHESTPLATE.get(), ModItems.WOOL_LEGGINGS.get(), ModItems.WOOL_BOOTS.get());

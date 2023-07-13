@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 //import kittehmod.morecraft.MoreCraftStats;
 import kittehmod.morecraft.blockentity.KilnBlockEntity;
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

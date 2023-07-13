@@ -12,20 +12,5 @@
   },
   "result": {
     "item": "morecraft:netherwood_chest"
-  },
-  "conditions": [
-    {
-      "type": "forge:or",
-      "values": [
-        {
-          "type": "morecraft:quark_flag",
-          "flag": "variant_chests"
-        },
-        {
-          "type": "forge:mod_loaded",
-          "modid": "woodworks"
-        }
-      ]
-    }
-  ]
+  }
 }

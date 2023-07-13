@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "morecraft:item/copper_leggings",
+    "layer1": "morecraft:trims/items/leggings_trim_ruby"
+  }
+}

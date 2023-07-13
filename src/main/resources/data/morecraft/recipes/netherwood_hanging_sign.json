@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hanging_sign",
+  "pattern": [
+    "$ $",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "morecraft:stripped_netherwood_log"
+    },
+    "$": {
+      "item": "minecraft:chain"
+    }
+  },
+  "result": {
+    "item": "morecraft:netherwood_hanging_sign",
+    "count": 6
+  }
+}

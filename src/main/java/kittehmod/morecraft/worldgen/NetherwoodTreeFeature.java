@@ -32,60 +32,57 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
 import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 
 public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 {
 
-
 	public NetherwoodTreeFeature(Codec<TreeConfiguration> codecIn, boolean netherGenAttempt) {
 		super(codecIn);
 	}
 
-	public static boolean isFree(LevelSimulatedReader p_236410_0_, BlockPos p_236410_1_) {
-		return validTreePos(p_236410_0_, p_236410_1_) || p_236410_0_.isStateAtPosition(p_236410_1_, (p_236417_0_) -> { return p_236417_0_.is(BlockTags.LOGS); });
+	public static boolean isFree(LevelSimulatedReader reader, BlockPos pos) {
+		return validTreePos(reader, pos) || reader.isStateAtPosition(pos, (state) -> { return state.is(BlockTags.LOGS); });
 	}
 
-	private static boolean isVine(LevelSimulatedReader p_236414_0_, BlockPos p_236414_1_) {
-		return p_236414_0_.isStateAtPosition(p_236414_1_, (p_236415_0_) -> { return p_236415_0_.is(Blocks.VINE); });
+	private static boolean isVine(LevelSimulatedReader reader, BlockPos pos) {
+		return reader.isStateAtPosition(pos, (state) -> { return state.is(Blocks.VINE); });
 	}
 
-	private static boolean isBlockWater(LevelSimulatedReader p_236416_0_, BlockPos p_236416_1_) {
-		return p_236416_0_.isStateAtPosition(p_236416_1_, (p_236413_0_) -> { return p_236413_0_.is(Blocks.WATER); });
+	private static boolean isBlockWater(LevelSimulatedReader reader, BlockPos pos) {
+		return reader.isStateAtPosition(pos, (state) -> { return state.is(Blocks.WATER); });
 	}
 
-	public static boolean isAirOrLeaves(LevelSimulatedReader p_236412_0_, BlockPos p_236412_1_) {
-		return p_236412_0_.isStateAtPosition(p_236412_1_, (p_236411_0_) -> { return p_236411_0_.isAir() || p_236411_0_.is(BlockTags.LEAVES); });
+	public static boolean isAirOrLeaves(LevelSimulatedReader reader, BlockPos pos) {
+		return reader.isStateAtPosition(pos, (state) -> { return state.isAir() || state.is(BlockTags.LEAVES); });
 	}
 
-	private static boolean isGrassOrDirtOrFarmland(LevelSimulatedReader p_236418_0_, BlockPos pos) {
-		return p_236418_0_.isStateAtPosition(pos, (blockstate) -> {
+	private static boolean isGrassOrDirtOrFarmland(LevelSimulatedReader reader, BlockPos pos) {
+		return reader.isStateAtPosition(pos, (blockstate) -> {
 			Block block = blockstate.getBlock();
 			return blockstate.is(BlockTags.DIRT) || block == Blocks.FARMLAND || blockstate.is(ModBlockTags.NETHERWOOD_SAPLING_PLANTABLES);
 		});
 	}
 
-	private static boolean isReplaceablePlant(LevelSimulatedReader p_236419_0_, BlockPos p_236419_1_) {
-		return p_236419_0_.isStateAtPosition(p_236419_1_, (p_236406_0_) -> {
-			Material material = p_236406_0_.getMaterial();
-			return material == Material.REPLACEABLE_PLANT;
+	private static boolean isReplaceablePlant(LevelSimulatedReader reader, BlockPos pos) {
+		return reader.isStateAtPosition(pos, (state) -> {
+			return state.is(BlockTags.REPLACEABLE);
 		});
 	}
 
-	public static void setBlockKnownShape(LevelWriter p_236408_0_, BlockPos p_236408_1_, BlockState p_236408_2_) {
-		p_236408_0_.setBlock(p_236408_1_, p_236408_2_, 19);
+	public static void setBlockKnownShape(LevelWriter writer, BlockPos pos, BlockState state) {
+		writer.setBlock(pos, state, 19);
 	}
 
-	public static boolean validTreePos(LevelSimulatedReader p_236404_0_, BlockPos p_236404_1_) {
-		return isAirOrLeaves(p_236404_0_, p_236404_1_) || isReplaceablePlant(p_236404_0_, p_236404_1_) || isBlockWater(p_236404_0_, p_236404_1_);
+	public static boolean validTreePos(LevelSimulatedReader reader, BlockPos pos) {
+		return isAirOrLeaves(reader, pos) || isReplaceablePlant(reader, pos) || isBlockWater(reader, pos);
 	}
 
 	/**
 	 * Called when placing the tree feature.
 	 */
-	private boolean doPlace(WorldGenLevel generationReader, RandomSource rand, BlockPos positionIn, BiConsumer<BlockPos, BlockState> biconsumer1, BiConsumer<BlockPos, BlockState> biconsumer2, BiConsumer<BlockPos, BlockState> biconsumer3, TreeConfiguration configIn) {
+	private boolean doPlace(WorldGenLevel generationReader, RandomSource rand, BlockPos positionIn, BiConsumer<BlockPos, BlockState> biconsumer1, BiConsumer<BlockPos, BlockState> biconsumer2, FoliagePlacer.FoliageSetter foliagesetter, TreeConfiguration configIn) {
 		int i = configIn.trunkPlacer.getTreeHeight(rand);
 		int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
 		int k = i - j;
@@ -128,7 +125,7 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 				int i1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
 				if (i1 >= i || optionalint.isPresent() && i1 >= optionalint.getAsInt()) {
 					List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, biconsumer1, rand, i1, blockpos, configIn);
-					list.forEach((p_160539_) -> { configIn.foliagePlacer.createFoliage(generationReader, biconsumer2, rand, configIn, i1, p_160539_, j, l); });
+					list.forEach((p_160539_) -> { configIn.foliagePlacer.createFoliage(generationReader, foliagesetter, rand, configIn, i1, p_160539_, j, l); });
 					if (blockstate != null) {
 						generationReader.setBlock(blockpos.below(), blockstate, 19);
 					}
@@ -182,18 +179,24 @@ public class NetherwoodTreeFeature extends Feature<TreeConfiguration>
 			set1.add(p_160548_.immutable());
 			worldgenlevel.setBlock(p_160548_, p_160549_, 19);
 		};
-		BiConsumer<BlockPos, BlockState> biconsumer2 = (p_160543_, p_160544_) -> {
-			set2.add(p_160543_.immutable());
-			worldgenlevel.setBlock(p_160543_, p_160544_, 19);
+		FoliagePlacer.FoliageSetter foliageplacer$foliagesetter = new FoliagePlacer.FoliageSetter() {
+			public void set(BlockPos p_272825_, BlockState p_273311_) {
+				set2.add(p_272825_.immutable());
+				worldgenlevel.setBlock(p_272825_, p_273311_, 19);
+			}
+
+			public boolean isSet(BlockPos p_272999_) {
+				return set2.contains(p_272999_);
+			}
 		};
-		BiConsumer<BlockPos, BlockState> biconsumer3 = (p_225290_, p_225291_) -> {
+		BiConsumer<BlockPos, BlockState> biconsumer2 = (p_225290_, p_225291_) -> {
 			set3.add(p_225290_.immutable());
 			worldgenlevel.setBlock(p_225290_, p_225291_, 19);
 		};
-		boolean flag = this.doPlace(worldgenlevel, randomsource, blockpos, biconsumer, biconsumer1, biconsumer2, treeconfiguration);
+		boolean flag = this.doPlace(worldgenlevel, randomsource, blockpos, biconsumer, biconsumer1, foliageplacer$foliagesetter, treeconfiguration);
 		if (flag && (!set1.isEmpty() || !set2.isEmpty())) {
 			if (!treeconfiguration.decorators.isEmpty()) {
-				TreeDecorator.Context treedecorator$context = new TreeDecorator.Context(worldgenlevel, biconsumer3, randomsource, set1, set2, set);
+				TreeDecorator.Context treedecorator$context = new TreeDecorator.Context(worldgenlevel, biconsumer2, randomsource, set1, set2, set);
 				treeconfiguration.decorators.forEach((p_160528_) -> { p_160528_.place(treedecorator$context); });
 			}
 			return BoundingBox.encapsulatingPositions(Iterables.concat(set, set1, set2)).map((p_160521_) -> {

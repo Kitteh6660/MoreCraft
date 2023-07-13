@@ -17,5 +17,11 @@
         "result": "morecraft:netherwood_fence"
       }
     }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
+    }
   ]
 }

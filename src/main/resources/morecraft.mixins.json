@@ -6,12 +6,9 @@
 	"mixins": [
         "WebBlockMixin",
         "CactusBlockMixin",
-        "ItemStackMixin"
-	],
-    "client": [
-        "ArmorStandRendererMixin",
+        "ItemStackMixin",
         "HumanoidMobRendererMixin",
         "PlayerRendererMixin"
-    ],
+	],
 	"minVersion": "0.8"
 }

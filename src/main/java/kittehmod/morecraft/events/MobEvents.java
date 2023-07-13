@@ -11,6 +11,7 @@ import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.animal.goat.Goat;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Squid;
@@ -53,7 +54,7 @@ public class MobEvents
 		if (event.getEntity() instanceof Squid && MoreCraftConfig.overrideMobDrops.get()) {
 			event.getDrops().removeIf(e -> e.getItem().getItem() == Items.INK_SAC);
 			stack = event.getEntity().isOnFire() ? new ItemStack(ModItems.COOKED_SQUID.get(), 1) : new ItemStack(ModItems.RAW_SQUID.get(), 1);
-			drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+			drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 			event.getDrops().add(drop);
 		}
 
@@ -61,7 +62,7 @@ public class MobEvents
 		if (event.getEntity() instanceof Spider && MoreCraftConfig.overrideMobDrops.get()) {
 			event.getDrops().removeIf(e -> e.getItem().getItem() == Items.SPIDER_EYE);
 			stack = event.getEntity().isOnFire() ? new ItemStack(ModItems.COOKED_SPIDER.get(), 1) : new ItemStack(ModItems.RAW_SPIDER.get(), 1);
-			drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+			drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 			event.getDrops().add(drop);
 		}
 		
@@ -69,7 +70,7 @@ public class MobEvents
 		if (event.getEntity() instanceof Goat && MoreCraftConfig.chevonDrops.get()) {
 			if (!((Goat) event.getEntity()).isBaby()) {
 				stack = event.getEntity().isOnFire() ? new ItemStack(ModItems.COOKED_CHEVON.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1)) : new ItemStack(ModItems.RAW_CHEVON.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1));
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -78,7 +79,7 @@ public class MobEvents
 		if (event.getEntity() instanceof Frog && MoreCraftConfig.frogLegsDrops.get()) {
 			if (!((Frog) event.getEntity()).isBaby()) {
 				stack = event.getEntity().isOnFire() ? new ItemStack(ModItems.COOKED_FROG_LEGS.get(), 1) : new ItemStack(ModItems.RAW_FROG_LEGS.get(), 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -87,11 +88,11 @@ public class MobEvents
 		if (event.getEntity() instanceof Guardian || event.getEntity() instanceof ElderGuardian) {
 			stack = event.getEntity().isOnFire() ? new ItemStack(ModItems.COOKED_GUARDIAN_MEAT.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1))
 					: new ItemStack(ModItems.RAW_GUARDIAN_MEAT.get(), 1 + r.nextInt(3) + r.nextInt(event.getLootingLevel() + 1));
-			drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+			drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 			event.getDrops().add(drop);
 			if (rand < 0.4D + (event.getLootingLevel() * 0.2) || event.getEntity() instanceof ElderGuardian) {
 				stack = new ItemStack(ModItems.GUARDIAN_SCALES.get(), 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -100,7 +101,7 @@ public class MobEvents
 		if (event.getEntity() instanceof EnderMan) {
 			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) { // Checks for Damage Type.
 				stack = new ItemStack(Items.DIAMOND, 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -109,7 +110,7 @@ public class MobEvents
 		if ((event.getEntity() instanceof Skeleton || event.getEntity() instanceof Stray) && MoreCraftConfig.mobHeadDrops.get()) {
 			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) {
 				stack = new ItemStack(Items.SKELETON_SKULL, 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -118,7 +119,7 @@ public class MobEvents
 		if ((event.getEntity() instanceof Zombie || event.getEntity() instanceof Husk) && MoreCraftConfig.mobHeadDrops.get()) {
 			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) {
 				stack = new ItemStack(Items.ZOMBIE_HEAD, 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -126,9 +127,8 @@ public class MobEvents
 		// CREEPERS
 		if (event.getEntity() instanceof Creeper) {
 			if (event.getSource().getMsgId().equals("player") && rand < 0.025D + (event.getLootingLevel() * 0.005)) {
-				stack = r.nextInt(2) == 1 && MoreCraftConfig.mobHeadDrops.get() ? new ItemStack(Items.CREEPER_HEAD, 1) : new ItemStack(Items.TNT, 1); // Equally 50/50 chance. If head drops are off and rare drop is rolled, only TNT
-																																						// will be dropped.
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				stack = r.nextInt(2) == 1 && MoreCraftConfig.mobHeadDrops.get() ? new ItemStack(Items.CREEPER_HEAD, 1) : new ItemStack(Items.TNT, 1); // Equally 50/50 chance. If head drops are off and rare drop is rolled, only TNT will be dropped.
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -142,13 +142,13 @@ public class MobEvents
 			if (boss.getDragonFight().hasPreviouslyKilledDragon())
 				amount /= 2; // Amount is halved with repeat kills.
 			stack = new ItemStack(ModItems.ENDERDRAGON_SCALES.get(), amount);
-			drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+			drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 			event.getDrops().add(drop);
 
 			// Drop #2: Enderdragon Meat
 			amount = 2 + (int)(Math.random() * 4) + (int)(Math.random() * event.getLootingLevel() * 2); 
 			stack = new ItemStack(ModItems.RAW_DRAGON_MEAT.get(), amount);
-			drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+			drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 			event.getDrops().add(drop);
 
 			// Drop #3: Enderdragon Head
@@ -157,21 +157,21 @@ public class MobEvents
 				amount = 1; // 1st kill is guaranteed.
 			if (rand < chance && MoreCraftConfig.mobHeadDrops.get()) {
 				stack = new ItemStack(Items.DRAGON_HEAD, 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
 		
 		// WARDENS
 		if (event.getEntity() instanceof Warden && MoreCraftConfig.mobHeadDrops.get()) {
-			if (event.getSource().isExplosion() && event.getSource().getMsgId().equals("charged_creeper")) {
+			if (event.getSource().is(DamageTypes.EXPLOSION) && event.getSource().getMsgId().equals("charged_creeper")) {
 				stack = new ItemStack(ModItems.WARDEN_HEAD.get(), 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 			else if (event.getSource().getMsgId().equals("player") && r.nextInt(100) < 20 + (event.getLootingLevel() * 10)) {
 				stack = new ItemStack(ModItems.WARDEN_HEAD.get(), 1);
-				drop = new ItemEntity(event.getEntity().level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
+				drop = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), stack);
 				event.getDrops().add(drop);
 			}
 		}
@@ -179,8 +179,8 @@ public class MobEvents
 	
 	@SubscribeEvent
 	public void creeperExplodeEvent(final ExplosionEvent event) {
-		if (event.getExplosion().getSourceMob() instanceof Creeper) {
-			Creeper creeper = (Creeper)event.getExplosion().getSourceMob();
+		if (event.getExplosion().getDirectSourceEntity() instanceof Creeper) {
+			Creeper creeper = (Creeper)event.getExplosion().getDirectSourceEntity();
 			if (creeper.hasEffect(ModMobEffects.UNAFRAID.get())) {
 				creeper.removeEffect(ModMobEffects.UNAFRAID.get());
 			}

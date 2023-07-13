@@ -1,7 +1,7 @@
 package kittehmod.morecraft.blockentity.addons;
 
 import kittehmod.morecraft.block.addons.ModBarrelBlock;
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;

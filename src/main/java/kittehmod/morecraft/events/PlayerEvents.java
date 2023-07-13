@@ -5,13 +5,13 @@ import kittehmod.morecraft.entity.ModEntityTags;
 import kittehmod.morecraft.entity.NetherBoat;
 import kittehmod.morecraft.init.ModItems;
 import kittehmod.morecraft.item.ModArmorItem;
-import kittehmod.morecraft.item.ModArmorMaterial;
+import kittehmod.morecraft.item.ModArmorMaterials;
 import kittehmod.morecraft.network.ModBoatDismountPacket;
 import kittehmod.morecraft.network.MorecraftPacketHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -68,7 +68,7 @@ public class PlayerEvents
 	public void LavaBoatDismount(EntityMountEvent event) {
 		if (event.isDismounting() && event.getEntityMounting() instanceof LivingEntity && event.getEntityBeingMounted() instanceof NetherBoat) {
 			event.getEntityMounting().clearFire();
-			if (event.getEntityMounting() instanceof Player && event.getEntityMounting().level.isClientSide) {
+			if (event.getEntityMounting() instanceof Player && event.getEntityMounting().level().isClientSide()) {
 				MorecraftPacketHandler.sendToServer(new ModBoatDismountPacket()); // Has to be called otherwise fire won't properly get extinguished.
 			}
 			event.setResult(Result.ALLOW);
@@ -79,7 +79,7 @@ public class PlayerEvents
 	public void onAttackEvent(LivingAttackEvent event) {
 		LivingEntity entity = event.getEntity();
 		if (entity != null && entity.getVehicle() != null && entity.getVehicle() instanceof NetherBoat) {
-			if (event.getSource() == DamageSource.LAVA && !entity.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
+			if (event.getSource().is(DamageTypes.LAVA) && !entity.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
 				event.setCanceled(true);
 				event.getEntity().clearFire();
 			}
@@ -93,7 +93,7 @@ public class PlayerEvents
 		// Ruby armour
 		int blockChance = 0;
 		float damage = 0;
-		blockChance += ModArmorItem.countPiecesOfMaterial(entity, ModArmorMaterial.RUBY);
+		blockChance += ModArmorItem.countPiecesOfMaterial(entity, ModArmorMaterials.RUBY);
 		int rand = (int) (Math.random() * 40); // Each piece is 2.5% chance to completely nullify damage.
 		if (blockChance > rand) {
 			if (entity instanceof Player) {
@@ -103,12 +103,12 @@ public class PlayerEvents
 		}
 		// Alter fire damage taken based on Obsidian or Spider Silk. Obsidian decreases
 		// fire damage, Spider Silk increases fire damage.
-		if (event.getSource().isFire()) {
+		if (event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.ON_FIRE)) {
 			damage = event.getAmount();
 			event.setAmount(damage * ModArmorItem.getFireDmgMultiplier(entity));
 		}
 		// Alter Warden damage taken based on Magic Protection. A workaround for Warden's enchantment bypass.
-		if (event.getSource().isMagic() && event.getSource().isBypassEnchantments()) {
+		if (event.getSource().is(DamageTypes.SONIC_BOOM)) {
 			damage = event.getAmount();
 			int protectionLevels = ModArmorItem.getTotalMagicProtectionLevels(entity);
 			float f = Mth.clamp(protectionLevels * 2, 0, 20);
@@ -120,9 +120,6 @@ public class PlayerEvents
 			damage = event.getAmount();
 			if (attacker.getMainHandItem() != null && EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.ENDER_BANE.get(), attacker.getMainHandItem()) > 0) {
 				damage += EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.ENDER_BANE.get(), attacker.getMainHandItem()) * 1.25F;
-				if (attacker instanceof Player) {
-					((Player)attacker).magicCrit(entity);
-				}
 				event.setAmount(damage);
 			}
 		}
@@ -157,7 +154,7 @@ public class PlayerEvents
 	// Blaze armour set effects
 	@SubscribeEvent
 	public void onTickPlayerEvent(PlayerTickEvent event) {
-		if (ModArmorItem.countPiecesOfMaterial(event.player, ModArmorMaterial.BLAZE) >= 4) {
+		if (ModArmorItem.countPiecesOfMaterial(event.player, ModArmorMaterials.BLAZE) >= 4) {
 			MobEffectInstance effect = event.player.getEffect(MobEffects.FIRE_RESISTANCE);
 			if (effect == null || effect.getDuration() < 10) {
 				event.player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 0, true, false));

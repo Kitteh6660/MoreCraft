@@ -33,13 +33,13 @@ public class WardenSkullBlockRenderer implements BlockEntityRenderer<WardenSkull
 	
 	public static Map<SkullBlock.Type, SkullModelBase> createSkullRenderers(EntityModelSet p_173662_) {
 		ImmutableMap.Builder<SkullBlock.Type, SkullModelBase> builder = ImmutableMap.builder();
-		builder.put(WardenHeadBlock.Types.WARDEN, new WardenHeadModel(p_173662_.bakeLayer(ClientHelper.WARDEN_HEAD_LOCATION)));
+		builder.put(WardenHeadBlock.Types.WARDEN, new WardenHeadModel(p_173662_.bakeLayer(ClientHelper.WARDEN_HEAD)));
 		net.minecraftforge.fml.ModLoader.get().postEvent(new net.minecraftforge.client.event.EntityRenderersEvent.CreateSkullModels(builder, p_173662_));
 		return builder.build();
 	}
 
 	public WardenSkullBlockRenderer(BlockEntityRendererProvider.Context context) {
-		WARDEN_HEAD_MODEL = new WardenHeadModel(context.getModelSet().bakeLayer(ClientHelper.WARDEN_HEAD_LOCATION));
+		WARDEN_HEAD_MODEL = new WardenHeadModel(context.getModelSet().bakeLayer(ClientHelper.WARDEN_HEAD));
 	}
 	
 	public void render(WardenSkullBlockEntity blockentity, float p_112535_, PoseStack poseStack, MultiBufferSource mbs, int p_112538_, int p_112539_) {

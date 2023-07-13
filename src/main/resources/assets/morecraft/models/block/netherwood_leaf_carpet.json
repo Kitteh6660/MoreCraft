@@ -1,7 +1,7 @@
 {
     "parent": "block/carpet",
     "textures": {
-        "particle": "morecraft:block/netherwood_leaves_animated",
+        "particle": "morecraft:block/netherwood_leaves",
         "wool": "morecraft:block/netherwood_leaves"
     }
 }

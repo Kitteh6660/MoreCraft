@@ -1,22 +1,23 @@
 package kittehmod.morecraft.client;
 
 import kittehmod.morecraft.block.ModWoodType;
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.client.gui.BookcaseScreen;
 import kittehmod.morecraft.client.gui.CrateScreen;
 import kittehmod.morecraft.client.gui.KilnScreen;
 import kittehmod.morecraft.client.renderer.ModChestRenderer;
-import kittehmod.morecraft.client.renderer.ModSignRenderer;
 import kittehmod.morecraft.client.renderer.NetherBoatRenderer;
 import kittehmod.morecraft.client.renderer.WardenSkullBlockRenderer;
 import kittehmod.morecraft.container.ModContainerType;
 import kittehmod.morecraft.entity.ModEntities;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import kittehmod.morecraft.init.ModBlocks;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ClientRenderSetup
 {
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("deprecation")
 	public static void setup() {
 		Sheets.addWoodType(ModWoodType.NETHERWOOD);
 
@@ -41,7 +42,8 @@ public class ClientRenderSetup
 		// Block Entities (Formerly Tile Entities)
 		BlockEntityRenderers.register(ModBlockEntityType.NETHERWOOD_CHEST.get(), ModChestRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityType.NETHERWOOD_TRAPPED_CHEST.get(), ModChestRenderer::new);
-		BlockEntityRenderers.register(ModBlockEntityType.MOD_SIGN.get(), ModSignRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityType.MOD_SIGN.get(), SignRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityType.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityType.WARDEN_HEAD.get(), WardenSkullBlockRenderer::new);
 
 		// For blocks that are transparent or non-solid.
@@ -73,7 +75,6 @@ public class ClientRenderSetup
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLOWSTONE_LANTERN.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_SAPLING.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_CARPET.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_LEAF_PILE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.NETHERWOOD_HEDGE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_NETHERWOOD_SAPLING.get(), RenderType.cutout());
 

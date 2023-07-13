@@ -15,20 +15,5 @@
   },
   "result": {
     "item": "morecraft:netherwood_bookshelf"
-  },
-  "conditions": [
-    {
-      "type": "forge:or",
-      "values": [
-        {
-          "type": "morecraft:quark_flag",
-          "flag": "variant_bookshelves"
-        },
-        {
-          "type": "forge:mod_loaded",
-          "modid": "woodworks"
-        }
-      ]
-    }
-  ]
+  }
 }

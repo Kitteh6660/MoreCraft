@@ -20,6 +20,7 @@
     }
   },
   "result": {
-    "item": "morecraft:ender_dragon_wings"
+    "item": "morecraft:ender_dragon_wings",
+    "count": 2
   }
 }

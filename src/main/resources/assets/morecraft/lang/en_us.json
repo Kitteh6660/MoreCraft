@@ -1,4 +1,5 @@
 {
+"block.morecraft.bone_block": "Block of Bones",
 "block.morecraft.flesh_block": "Block of Rotten Flesh",
 "block.morecraft.blaze_block": "Blazing Block",
 "block.morecraft.ender_block": "Block of Ender Pearl",
@@ -19,22 +20,21 @@
 "block.morecraft.netherwood_slab": "Netherwood Slab",
 "block.morecraft.netherwood_fence": "Netherwood Fence",
 "block.morecraft.netherwood_chest": "Netherwood Chest",
-"block.morecraft.netherwood_sign": "Netherwood Sign",
-"block.morecraft.netherwood_button": "Netherwood Button",
-"block.morecraft.netherwood_pressure_plate": "Netherwood Pressure Plate",
-
-"block.morecraft.netherwood_boards": "Netherwood Boards",
-"block.morecraft.netherwood_beehive": "Netherwood Beehive",
 "block.morecraft.netherwood_trapped_chest": "Netherwood Trapped Chest",
 "block.morecraft.netherwood_bookshelf": "Netherwood Bookshelf",
 "block.morecraft.netherwood_cabinet": "Netherwood Cabinet",
+"block.morecraft.netherwood_sign": "Netherwood Sign",
+"block.morecraft.netherwood_hanging_sign": "Netherwood Hanging Sign",
+"block.morecraft.netherwood_button": "Netherwood Button",
+"block.morecraft.netherwood_pressure_plate": "Netherwood Pressure Plate",
+"block.morecraft.netherwood_beehive": "Netherwood Beehive",
+
 "block.morecraft.netherwood_ladder": "Netherwood Ladder",
 "block.morecraft.vertical_netherwood_planks": "Vertical Netherwood Planks",
 "block.morecraft.netherwood_vertical_slab": "Netherwood Vertical Slab",
 "block.morecraft.netherwood_post": "Netherwood Post",
 "block.morecraft.stripped_netherwood_post": "Stripped Netherwood Post",
 "block.morecraft.netherwood_hedge": "Netherwood Hedge",
-"block.morecraft.netherwood_leaf_pile": "Pile of Netherwood Leaves",
 "block.morecraft.netherwood_leaf_carpet": "Netherwood Leaf Carpet",
 "block.morecraft.netherwood_crate": "Netherwood Crate",
 "block.morecraft.netherwood_bookcase": "Netherwood Bookcase",
@@ -78,13 +78,13 @@
 "block.morecraft.kiln": "Kiln",
 "block.morecraft.deepslate_button": "Deepslate Button",
 "block.morecraft.deepslate_pressure_plate": "Deepslate Pressure Plate",
+"block.morecraft.warden_head": "Warden Head",
 
 "block.morecraft.spider_head": "Spider Head",
 "block.morecraft.cave_spider_head": "Cave Spider Head",
 "block.morecraft.zombie_pigman_head": "Zombie Pigman Head",
 "block.morecraft.blaze_head": "Blaze Head",
 "block.morecraft.enderman_head": "Enderman Head",
-"block.morecraft.warden_head": "Warden Head",
 
 "item.morecraft.cooked_flesh": "Cooked Flesh",
 "item.morecraft.raw_chevon": "Raw Chevon",
@@ -137,7 +137,7 @@
 "item.morecraft.wither_bone": "Wither Bone",
 "item.morecraft.wither_bone_meal": "Wither Bone Meal",
 "item.morecraft.guardian_scales": "Guardian Scales",
-"item.morecraft.enderdragon_scales": "Ender Dragon Scales",
+"item.morecraft.enderdragon_scales": "Enderdragon Scales",
 "item.morecraft.ender_dragon_wings": "Ender Dragon Wings",
 "item.morecraft.elytra_blueprint": "Elytra Blueprint",
 
@@ -339,7 +339,7 @@
 
 "advancements.adventure.bone_armor.title": "Cover Me in Bones",
 "advancements.adventure.bone_armor.description": "Craft a piece of bone armor.",
-"advancements.adventure.kill_warden.title": "Warden Slayer",
+"advancements.adventure.kill_warden.title": "A Deafening Silence",
 "advancements.adventure.kill_warden.description": "Against all odds, you've managed to slay the Warden by your very own hands. If you've already acquired Monsters Hunted then you've finally done it, you killed every vanilla hostile mob in the game, including the Warden. Congratulations!",
 "advancements.story.mine_ruby.title": "The Forgotten Red Ore",
 "advancements.story.mine_ruby.description": "Mine some rubies.",
@@ -352,12 +352,12 @@
 "container.kiln": "Kiln",
 
 "enchantment.morecraft.magic_protection": "Magic Protection",
-"enchantment.morecraft.magic_protection.desc": "Reduces magic damage taken, including Warden's sonic boom attacks.",
 "enchantment.morecraft.ender_bane": "Enderbane",
-"enchantment.morecraft.ender_bane.desc": "Increases damage dealt to mobs of Ender origin such as Enderman, Endermite, Shulker, and Ender Dragon.",
 "enchantment.morecraft.reinforcement": "Reinforcement",
-"enchantment.morecraft.reinforcement.desc": "Increases the maximum durability of items with this enchantment.",
 
 "messages.morecraft.ruby_armour_block": "The lucky effects of the Ruby Armor protected you from harm!",
-"messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe..."
+"messages.morecraft.emerald_pickaxe_effect": "Something has changed when you mined the ore with your Emerald Pickaxe...",
+
+"trim_material.minecraft.obsidian": "Obsidian",
+"trim_material.minecraft.ruby": "Ruby"
 }

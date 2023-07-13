@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "morecraft:copper_helmet",
+    "morecraft:copper_chestplate",
+    "morecraft:copper_leggings",
+    "morecraft:copper_boots",
+    "morecraft:ruby_helmet",
+    "morecraft:ruby_chestplate",
+    "morecraft:ruby_leggings",
+    "morecraft:ruby_boots",
+    "morecraft:emerald_helmet",
+    "morecraft:emerald_chestplate",
+    "morecraft:emerald_leggings",
+    "morecraft:emerald_boots",
+    "morecraft:obsidian_helmet",
+    "morecraft:obsidian_chestplate",
+    "morecraft:obsidian_leggings",
+    "morecraft:obsidian_boots",
+    "morecraft:blaze_helmet",
+    "morecraft:blaze_chestplate",
+    "morecraft:blaze_leggings",
+    "morecraft:blaze_boots"
+  ]
+}

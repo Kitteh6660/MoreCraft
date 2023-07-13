@@ -1,0 +1,9 @@
+{
+  "asset_name": "ruby",
+  "description": {
+    "color": "#971607",
+    "translate": "trim_material.minecraft.ruby"
+  },
+  "ingredient": "morecraft:ruby",
+  "item_model_index": 1.1
+}

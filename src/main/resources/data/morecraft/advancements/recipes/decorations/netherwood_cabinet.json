@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has__trapdoor": {
+    "has_trapdoor": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has__trapdoor",
+      "has_trapdoor",
       "has_the_recipe"
     ]
   ],

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "morecraft:item/obsidian_boots",
+    "layer1": "morecraft:trims/items/boots_trim_obsidian_darker"
+  }
+}

@@ -2,7 +2,7 @@ package kittehmod.morecraft.item;
 
 import java.util.function.Consumer;
 
-import kittehmod.morecraft.client.ClientHelper;
+import kittehmod.morecraft.client.model.EnderdragonArmorModel;
 import kittehmod.morecraft.client.model.EnderdragonLegsModel;
 import kittehmod.morecraft.init.ModItems;
 import net.minecraft.client.model.HumanoidModel;
@@ -20,14 +20,16 @@ import net.minecraft.world.item.ElytraItem;
 
 public class EnderdragonArmorItem extends ArmorItem
 {
+	public static final EnderdragonArmorModel<? extends HumanoidModel<?>> ENDERDRAGON_ARMOR_MODEL = new EnderdragonArmorModel<HumanoidModel<LivingEntity>>();
+	
 	public ArmorMaterial material;
 		
-	public EnderdragonArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+	public EnderdragonArmorItem(ArmorMaterial materialIn, Type slot, Item.Properties builder) {
 		super(materialIn, slot, builder);
 	}
 
-	public ModArmorMaterial getArmorMaterial(ItemStack par1ItemStack) {
-		return ModArmorMaterial.ENDERDRAGON;
+	public ArmorMaterial getArmorMaterial(ItemStack par1ItemStack) {
+		return ModArmorMaterials.ENDERDRAGON;
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class EnderdragonArmorItem extends ArmorItem
 				if (armorSlot == EquipmentSlot.LEGS) {
 					return new EnderdragonLegsModel<HumanoidModel<LivingEntity>>();
 				}
-				return ClientHelper.ENDERDRAGON_ARMOR_MODEL;
+				return ENDERDRAGON_ARMOR_MODEL;
 			}
 		});
 	}
@@ -56,7 +58,7 @@ public class EnderdragonArmorItem extends ArmorItem
 
 	@Override
 	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-		if (!entity.level.isClientSide) {
+		if (!entity.level().isClientSide()) {
 			int nextFlightTick = flightTicks + 1;
 			if (nextFlightTick % 10 == 0) {
 				if (nextFlightTick % 20 == 0) {

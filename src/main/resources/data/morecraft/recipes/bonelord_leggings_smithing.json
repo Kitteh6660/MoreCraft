@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
   "base": {
     "item": "morecraft:bone_leggings"
   },
@@ -8,5 +8,8 @@
   },
   "result": {
     "item": "morecraft:bonelord_leggings"
+  },
+  "template": {
+    "item": "minecraft:skeleton_skull"
   }
 }

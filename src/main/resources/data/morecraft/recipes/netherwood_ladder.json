@@ -28,10 +28,6 @@
         {
           "type": "morecraft:charm_module",
           "module": "variant_ladders"
-        },
-        {
-          "type": "forge:mod_loaded",
-          "modid": "woodworks"
         }
       ]
     }

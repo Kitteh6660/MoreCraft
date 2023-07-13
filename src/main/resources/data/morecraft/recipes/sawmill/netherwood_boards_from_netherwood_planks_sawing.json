@@ -30,5 +30,11 @@
         "result": "morecraft:netherwood_boards"
       }
     }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
+    }
   ]
 }

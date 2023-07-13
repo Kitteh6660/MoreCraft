@@ -1,6 +1,7 @@
 package kittehmod.morecraft.enchantments;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -51,7 +52,7 @@ public class MagicProtectionEnchantment extends Enchantment
 	}
 	
 	public int getDamageProtection(int amt, DamageSource source) {
-		if (source.isMagic() || source == DamageSource.DRAGON_BREATH) {
+		if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC) || source.is(DamageTypes.DRAGON_BREATH)) {
 			return amt * 2;
 		}
 		else {

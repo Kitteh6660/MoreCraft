@@ -7,9 +7,8 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.blockentity.WardenSkullBlockEntity;
-import kittehmod.morecraft.state.properties.ModBlockStateProperties;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -32,9 +31,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
 import net.minecraft.world.level.gameevent.GameEventListener;
+import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -42,11 +44,11 @@ public class WallWardenHeadBlock extends BaseEntityBlock implements WardenHead
 {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(4.0D, 4.0D, 8.0D, 12.0D, 12.0D, 16.0D), Direction.SOUTH, Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 8.0D), Direction.EAST, Block.box(0.0D, 4.0D, 4.0D, 8.0D, 12.0D, 12.0D), Direction.WEST, Block.box(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D)));
-	private static final BooleanProperty JUMPSCARE_READY = ModBlockStateProperties.JUMPSCARE_READY;
+	public static final EnumProperty<SculkSensorPhase> PHASE = BlockStateProperties.SCULK_SENSOR_PHASE;
 	
 	public WallWardenHeadBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(JUMPSCARE_READY, true));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(PHASE, SculkSensorPhase.INACTIVE));
 	}
 	
 	@Override
@@ -90,10 +92,10 @@ public class WallWardenHeadBlock extends BaseEntityBlock implements WardenHead
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_58112_) {
-		p_58112_.add(FACING).add(JUMPSCARE_READY);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(FACING).add(PHASE);
 	}
-	
+
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (!level.isClientSide) {
@@ -105,44 +107,57 @@ public class WallWardenHeadBlock extends BaseEntityBlock implements WardenHead
 	@Override
 	public void jumpscarePlayer(Level level, BlockState state, BlockPos pos, Player player) {
 		if (state.getBlock() instanceof WardenHead) {
-			state = state.setValue(JUMPSCARE_READY, false);
+			state = state.setValue(PHASE, SculkSensorPhase.COOLDOWN);
 		}
 		level.playSound(null, pos, SoundEvents.WARDEN_ROAR, SoundSource.BLOCKS, 10.0F, 2.0F);
 		player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100, 0, true, false));
 	}
 	
+	public static SculkSensorPhase getPhase(BlockState state) {
+		return state.getValue(PHASE);
+	}
+	
+	public static boolean canActivate(BlockState state) {
+		return getPhase(state) == SculkSensorPhase.ACTIVE;
+	}
+	
+	@Override
+	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos pos2, boolean flag) {
+		level.setBlock(pos, state.setValue(PHASE, level.hasNeighborSignal(pos) ? SculkSensorPhase.ACTIVE : SculkSensorPhase.INACTIVE), Block.UPDATE_ALL_IMMEDIATE);
+	}
+	
 	@Override
 	public boolean canJumpscare(Level level, BlockState state, BlockPos pos) {
-		return state.getValue(JUMPSCARE_READY) && level.hasNeighborSignal(pos);
+		return state.getValue(PHASE) == SculkSensorPhase.ACTIVE;
 	}
 	
 	@Override
 	public void setJumpscareCooldown(Level level, BlockState state, BlockPos pos) {
-		state = state.setValue(JUMPSCARE_READY, false);
+		state = state.setValue(PHASE, SculkSensorPhase.COOLDOWN);
 		level.setBlock(pos, state, 10);
 	}
 	
 	@Override
 	public void resetJumpscareCooldown(Level level, BlockState state, BlockPos pos) {
-		if (state.getValue(JUMPSCARE_READY)) {
+		if (state.getValue(PHASE) == SculkSensorPhase.ACTIVE) {
 			return;
 		}
 		if (level.getBlockEntity(pos) instanceof WardenSkullBlockEntity) {
 			((WardenSkullBlockEntity)level.getBlockEntity(pos)).setRapidlyWiggling(false);
 		}
 		level.playSound(null, pos, SoundEvents.WARDEN_AMBIENT, SoundSource.BLOCKS, 1.0F, 2.0F);
-		state = state.setValue(JUMPSCARE_READY, true);
+		state = state.setValue(PHASE, level.hasNeighborSignal(pos) ? SculkSensorPhase.ACTIVE : SculkSensorPhase.INACTIVE);
 		level.setBlock(pos, state, 10);
 	}
 	
 	@Nullable
-	public <T extends BlockEntity> GameEventListener getListener(ServerLevel p_222123_, T p_222124_) {
-		return p_222124_ instanceof WardenSkullBlockEntity ? ((WardenSkullBlockEntity)p_222124_).getListener() : null;
+	public <T extends BlockEntity> GameEventListener getListener(ServerLevel level, T blockEntity) {
+		return blockEntity instanceof WardenSkullBlockEntity ? ((WardenSkullBlockEntity)blockEntity).getListener() : null;
 	}
 	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> typeIn) {
-		return !level.isClientSide ? createTickerHelper(typeIn, ModBlockEntityType.WARDEN_HEAD.get(), (p_154417_, p_154418_, p_154419_, p_154420_) -> { p_154420_.getListener().tick(p_154417_); }) : createTickerHelper(typeIn, ModBlockEntityType.WARDEN_HEAD.get(), WardenSkullBlockEntity::movingTendrils);
+		return !level.isClientSide ? createTickerHelper(typeIn, ModBlockEntityType.WARDEN_HEAD.get(), (world, blockpos, blockstate, blockentity) -> { VibrationSystem.Ticker.tick(world, blockentity.getVibrationData(), blockentity.getVibrationUser()); }) : createTickerHelper(typeIn, ModBlockEntityType.WARDEN_HEAD.get(), WardenSkullBlockEntity::movingTendrils);
 	}
 	
 	@Override

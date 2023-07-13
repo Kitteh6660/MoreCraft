@@ -14,7 +14,7 @@ public class ModContainerType
 {
 	public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MoreCraft.MODID);
 
-	public static RegistryObject<MenuType<KilnContainer>> KILN = CONTAINERS.register("kiln", () -> new MenuType<KilnContainer>(KilnContainer::new));
-	public static RegistryObject<MenuType<ModCrateContainer>> CRATE = CONTAINERS.register("crate", () -> new MenuType<ModCrateContainer>(ModCrateContainer::new));
-	public static RegistryObject<MenuType<ModBookcaseContainer>> BOOKCASE = CONTAINERS.register("bookcase", () -> new MenuType<ModBookcaseContainer>(ModBookcaseContainer::new));
+	public static RegistryObject<MenuType<KilnContainer>> KILN = CONTAINERS.register("kiln", () -> new MenuType<KilnContainer>(KilnContainer::new, null));
+	public static RegistryObject<MenuType<ModCrateContainer>> CRATE = CONTAINERS.register("crate", () -> new MenuType<ModCrateContainer>(ModCrateContainer::new, null));
+	public static RegistryObject<MenuType<ModBookcaseContainer>> BOOKCASE = CONTAINERS.register("bookcase", () -> new MenuType<ModBookcaseContainer>(ModBookcaseContainer::new, null));
 }

@@ -17,7 +17,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "morecraft:netherwood_logs"
+            "items": [
+              "morecraft:netherwood_log"
+            ]
           }
         ]
       }

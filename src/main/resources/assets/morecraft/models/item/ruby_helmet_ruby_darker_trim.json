@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "morecraft:item/ruby_helmet",
+    "layer1": "morecraft:trims/items/helmet_trim_ruby_darker"
+  }
+}

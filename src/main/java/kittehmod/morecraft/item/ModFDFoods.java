@@ -22,5 +22,4 @@ public class ModFDFoods
 	public static final FoodProperties RAW_DRAGON_CHOPS = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().meat().build();
 	public static final FoodProperties COOKED_DRAGON_CHOPS = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).fast().meat().effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 1.0F).build();
 	public static final FoodProperties DRAGON_CASSEROLE = (new FoodProperties.Builder()).nutrition(16).saturationMod(1.0F).meat().effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 600, 0), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 0), 1.0F).effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 3600, 0), 1.0F).build();
-
 }

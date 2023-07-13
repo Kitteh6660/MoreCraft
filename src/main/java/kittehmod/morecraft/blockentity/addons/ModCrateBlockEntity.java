@@ -4,9 +4,9 @@ import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.container.addons.CrateSlot;
 import kittehmod.morecraft.container.addons.ModCrateContainer;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

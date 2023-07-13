@@ -4,16 +4,16 @@ import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
-import kittehmod.morecraft.MoreCraftSounds;
 import kittehmod.morecraft.block.addons.ModBookcaseBlock;
-import kittehmod.morecraft.blockentity.ModBlockEntityType;
 import kittehmod.morecraft.container.addons.BookcaseSlot;
 import kittehmod.morecraft.container.addons.ModBookcaseContainer;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -103,12 +103,12 @@ public class ModBookcaseBlockEntity extends RandomizableContainerBlockEntity imp
 
 	@Override
 	public void startOpen(Player player) {
-		player.level.playSound(null, this.getBlockPos(), MoreCraftSounds.BOOKSHELF_OPEN.get(), SoundSource.BLOCKS, 0.5f, player.level.random.nextFloat() * 0.1F + 0.9F);
+		player.level().playSound(null, this.getBlockPos(), SoundEvents.CHISELED_BOOKSHELF_PICKUP, SoundSource.BLOCKS, 0.5f, player.level().getRandom().nextFloat() * 0.1F + 0.9F);
 	}
 
 	@Override
 	public void stopOpen(Player player) {
-		player.level.playSound(null, this.getBlockPos(), MoreCraftSounds.BOOKSHELF_CLOSE.get(), SoundSource.BLOCKS, 0.5f, player.level.random.nextFloat() * 0.1F + 0.9F);
+		player.level().playSound(null, this.getBlockPos(), SoundEvents.CHISELED_BOOKSHELF_INSERT, SoundSource.BLOCKS, 0.5f, player.level().getRandom().nextFloat() * 0.1F + 0.9F);
 		
 	}
 	

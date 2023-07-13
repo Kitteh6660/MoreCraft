@@ -7,10 +7,6 @@
           "type": "forge:and",
           "values": [
             {
-              "type": "forge:mod_loaded",
-              "modid": "woodworks"
-            },
-            {
               "type": "woodworks:config",
               "value": "sawmill"
             },
@@ -29,6 +25,12 @@
         },
         "result": "morecraft:netherwood_boards"
       }
+    }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "woodworks"
     }
   ]
 }

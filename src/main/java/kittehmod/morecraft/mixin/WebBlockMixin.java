@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import kittehmod.morecraft.item.ModArmorItem;
-import kittehmod.morecraft.item.ModArmorMaterial;
+import kittehmod.morecraft.item.ModArmorMaterials;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,8 +25,8 @@ public class WebBlockMixin
 		float baseVSpd = 0.05F;
 		if (entity instanceof LivingEntity) {
 			LivingEntity le = (LivingEntity)entity;
-			baseHSpd += ModArmorItem.countPiecesOfMaterial(le, ModArmorMaterial.SILK) * 0.25;
-			baseVSpd += ModArmorItem.countPiecesOfMaterial(le, ModArmorMaterial.SILK) * 0.05;
+			baseHSpd += ModArmorItem.countPiecesOfMaterial(le, ModArmorMaterials.SILK) * 0.25;
+			baseVSpd += ModArmorItem.countPiecesOfMaterial(le, ModArmorMaterials.SILK) * 0.05;
 		}
 		entity.makeStuckInBlock(state, new Vec3(baseHSpd, (double)baseVSpd, baseHSpd));
 		ci.cancel();

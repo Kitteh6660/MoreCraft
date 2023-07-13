@@ -1,6 +1,7 @@
 package kittehmod.morecraft.blockentity;
 
 import kittehmod.morecraft.container.KilnContainer;
+import kittehmod.morecraft.init.ModBlockEntityType;
 import kittehmod.morecraft.item.crafting.ModRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

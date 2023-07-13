@@ -3,16 +3,19 @@ package kittehmod.morecraft.client.renderer;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.joml.Quaternionf;
+
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import kittehmod.morecraft.entity.NetherBoat;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -32,16 +35,17 @@ public class NetherBoatRenderer extends EntityRenderer<NetherBoat>
 	public NetherBoatRenderer(EntityRendererProvider.Context context, boolean isChest) {
 		super(context);
 		this.shadowRadius = 0.8F;
-		this.boatResources = Stream.of(NetherBoat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
-			return p_173938_;
-		}, (p_234575_) -> {
-			return Pair.of(new ResourceLocation("morecraft", getTextureLocation(p_234575_, isChest)), this.createBoatModel(context, p_234575_, isChest));
+		this.boatResources = Stream.of(NetherBoat.Type.values()).collect(ImmutableMap.toImmutableMap((map) -> {
+			return map;
+		}, (boattype) -> {
+			return Pair.of(new ResourceLocation("morecraft", getTextureLocation(boattype, isChest)), this.createBoatModel(context, boattype, isChest));
 		}));
 	}
 
 	private BoatModel createBoatModel(EntityRendererProvider.Context context, NetherBoat.Type boatType, boolean isChest) {
 		ModelLayerLocation modellayerlocation = isChest ? createChestBoatModelName(boatType) : createBoatModelName(boatType);
-		return new BoatModel(context.bakeLayer(modellayerlocation), isChest);
+		ModelPart modelpart = context.bakeLayer(modellayerlocation);
+		return isChest ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
 	}
 
 	private static String getTextureLocation(NetherBoat.Type boatType, boolean isChest) {
@@ -53,7 +57,7 @@ public class NetherBoatRenderer extends EntityRenderer<NetherBoat>
 	public void render(NetherBoat entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.0D, 0.375D, 0.0D);
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(180.0F - entityYaw));
 		float f = (float) entityIn.getHurtTime() - partialTicks;
 		float f1 = entityIn.getDamage() - partialTicks;
 		if (f1 < 0.0F) {
@@ -61,19 +65,19 @@ public class NetherBoatRenderer extends EntityRenderer<NetherBoat>
 		}
 
 		if (f > 0.0F) {
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * (float) entityIn.getHurtDir()));
+			matrixStackIn.mulPose(Axis.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * (float) entityIn.getHurtDir()));
 		}
 
 		float f2 = entityIn.getBubbleAngle(partialTicks);
 		if (!Mth.equal(f2, 0.0F)) {
-			matrixStackIn.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getBubbleAngle(partialTicks), true));
+			matrixStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float)Math.PI / 180F), 1.0F, 0.0F, 1.0F));
 		}
 
 		Pair<ResourceLocation, BoatModel> pair = getModelWithLocation(entityIn);
 		ResourceLocation resourcelocation = pair.getFirst();
 		BoatModel boatmodel = pair.getSecond();
 		matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90.0F));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(90.0F));
 		boatmodel.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = bufferIn.getBuffer(boatmodel.renderType(resourcelocation));
 		boatmodel.renderToBuffer(matrixStackIn, vertexconsumer, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

@@ -4,11 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import kittehmod.morecraft.MoreCraft;
-import kittehmod.morecraft.client.ClientHelper;
 import kittehmod.morecraft.client.model.EnderdragonArmorWingsModel;
 import kittehmod.morecraft.init.ModItems;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -23,12 +23,13 @@ import net.minecraft.world.item.ItemStack;
 
 public class EnderdragonArmorWingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M>
 {
+	public static final ModelLayerLocation WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("morecraft", "armor/winged_enderdragon"), "main");
 	public static final ResourceLocation WINGED_ENDERDRAGON_ARMOUR_TEXTURE = new ResourceLocation(MoreCraft.MODID, "textures/models/armor/winged_enderdragon_layer_1.png");
 	private final EnderdragonArmorWingsModel<?> armourModel;
 
 	public EnderdragonArmorWingsLayer(RenderLayerParent<T, M> parent, EntityModelSet modelset) {
 		super(parent);
-		this.armourModel = new EnderdragonArmorWingsModel<>(modelset.bakeLayer(ClientHelper.WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION));
+		this.armourModel = new EnderdragonArmorWingsModel<>(modelset.bakeLayer(WINGED_ENDERDRAGON_ARMOUR_LAYER_LOCATION));
 	}
 
 	@SuppressWarnings("unchecked")
